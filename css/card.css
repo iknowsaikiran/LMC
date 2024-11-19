@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .blog-slider {
+    width: 95%;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+  }
+  
+  .blog-slider__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .blog-slider__img {
+    flex: 1 1 30%;
+    max-width: 250px;
+    margin: auto;
+  }
+  
+  .blog-slider__img img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+  
+  .blog-slider__content {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .blog-slider__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+  
+  .availability-status {
+    font-size: 1rem;
+    font-weight: 600;
+    color: green;
+  }
+  
+  .timings,
+  p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+  }
+  
+  .button-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    flex: 1 1 calc(33% - 10px);
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #0056b3;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .blog-slider__item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .blog-slider__img {
+      flex: 1 1 100%;
+      max-width: 90%;
+    }
+  
+    .blog-slider__content {
+      flex: 1 1 100%;
+      margin-top: 15px;
+    }
+  
+    .button-group {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .btn {
+      flex: 1 1 100%;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .blog-slider {
+      padding: 15px;
+    }
+  
+    .blog-slider__title {
+      font-size: 1.2rem;
+    }
+  
+    .btn {
+      font-size: 0.85rem;
+      padding: 8px 12px;
+    }
+  }
+  
