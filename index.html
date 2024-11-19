@@ -30,6 +30,82 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+    
+        .form-wrap {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .form-cols {
+            display: flex;
+            align-items: center;
+        }
+    
+        .form-control, .form-select {
+            font-size: 14px;
+            padding: 12px;
+            border-radius: 50px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+    
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+    
+        .input-group-text {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+    
+        .location-icon {
+            font-size: 20px;
+            color: #007bff;
+            cursor: pointer;
+        }
+    
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 12px;
+        }
+    
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s ease;
+        }
+    
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .form-wrap {
+                margin-top: 20px;
+                padding: 15px;
+            }
+        }
+        /* Hide cards initially */
+.hidden {
+    display: none;
+}
+
+    </style>
+    
+    
+    
 </head>
 
 <body>
@@ -157,102 +233,182 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="d-flex flex-column">
-                        <img class="img-fluid rounded w-75 align-self-end" src="img/about-1.jpg" alt="">
-                        <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-2.jpg" alt="" style="margin-top: -25%;">
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <p class="d-inline-block border rounded-pill py-1 px-4">About Us</p>
-                    <h1 class="mb-4">Why You Should Trust Us? Get Know About Us!</h1>
-                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
-                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Read More</a>
+    <form action="search.html" class="search-form-area" id="search-form">
+        <div class="row justify-content-center form-wrap">
+            <!-- Search Input -->
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+                <input type="text" class="form-control shadow-sm border-0 rounded-pill"
+                       name="search" id="search-input" placeholder="Search Hospitals near your location">
+            </div>
+            
+            <!-- Location Detection -->
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+                <div class="input-group">
+                    <input type="text" class="form-control shadow-sm border-0 rounded-pill" 
+                           id="location-input" placeholder="Detecting location..." readonly>
+                    <span class="input-group-text location-icon" onclick="getLocation()">
+                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                    </span>
                 </div>
             </div>
+            
+            <!-- Problem Dropdown -->
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+                <div class="dropdown">
+                    <select class="form-select shadow-sm border-0 rounded-pill" id="problemSelect" onchange="navigateToPage()">
+                        <option value="">By Problem</option>
+                        <option value="/category?problem=fever">Fever</option>
+                        <option value="/category?problem=headache">Headache</option>
+                        <option value="/category?problem=emergency">Emergency</option>
+                        <option value="/category?problem=stomach-pain">Stomach Pain</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Search Button -->
+            <div class="col-lg-2 col-md-3 col-sm-6 form-cols mb-3">
+                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill">
+                    <span class="lnr lnr-magnifier"></span> Search
+                </button>
+            </div>
         </div>
-    </div>
+    </form>
+    
+    
+    <!-- Custom Styles (Optional) -->
     <!-- About End -->
 
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="text-center mx-auto mb-5" style="max-width: 600px;">
                 <p class="d-inline-block border rounded-pill py-1 px-4">Services</p>
                 <h1>Health Care Solutions</h1>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <!-- Card Items -->
+                <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-heartbeat text-primary fs-4"></i>
+                            <img src="/img/humanheart.jpg" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Cardiology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-x-ray text-primary fs-4"></i>
+                            <img src="/img/pulmonology.webp" alt="" width="60px" height="60px">  
                         </div>
                         <h4 class="mb-3">Pulmonary</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-brain text-primary fs-4"></i>
+                            <img src="/img/health.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Neurology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <!-- Hidden Cards -->
+                <div class="col-lg-4 col-md-6 card-item hidden">
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
                             <i class="fa fa-wheelchair text-primary fs-4"></i>
                         </div>
                         <h4 class="mb-3">Orthopedics</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4 col-md-6 card-item hidden" >
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-tooth text-primary fs-4"></i>
+                            <img src="/img/hand.png" alt="" width="60px" height="60px">
                         </div>
-                        <h4 class="mb-3">Dental Surgery</h4>
+                        <h4 class="mb-3">Dermatology</h4>
                         <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-6 card-item hidden" >
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-vials text-primary fs-4"></i>
+                            <img src="/img/maternity.png" alt="" width="60px" height="60px">
                         </div>
-                        <h4 class="mb-3">Laboratory</h4>
+                        <h4 class="mb-3">Gynecology</h4>
                         <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
+                    <div class="service-item bg-light rounded h-100 p-5">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                            <img src="/img/oncology.png" alt="" width="60px" height="60px">
+                        </div>
+                        <h4 class="mb-3">Oncology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
+                    <div class="service-item bg-light rounded h-100 p-5">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                            <img src="/img/eye.png" alt="" width="60px" height="60px">
+                        </div>
+                        <h4 class="mb-3">Ophthamology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
+                    <div class="service-item bg-light rounded h-100 p-5">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                            <img src="/img/nephrology.webp" alt="" width="60px" height="60px">
+                        </div>
+                        <h4 class="mb-3">Nephrology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
+                    <div class="service-item bg-light rounded h-100 p-5">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                            <img src="/img/hepatology.png" alt="" width="60px" height="60px">
+                        </div>
+                        <h4 class="mb-3">Heptalogy</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
+                    <div class="service-item bg-light rounded h-100 p-5">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                            <img src="/img/gastro.png" alt="" width="60px" height="60px">
+                        </div>
+                        <h4 class="mb-3">Gastroenterology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                    </div>
+                </div>
+                <!-- More Hidden Cards -->
+                <!-- Add as needed -->
+            </div>
+            <div class="text-center mt-4">
+                <button id="toggle-button" class="btn btn-primary">Show All</button>
             </div>
         </div>
     </div>
+    
+    
     <!-- Service End -->
 
 
@@ -595,6 +751,69 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        // Function to detect user's location and update the input field
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+    
+                    // Update the location input field with latitude and longitude
+                    document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
+    
+                    // Optionally, you can use reverse geocoding to get the city name using the coordinates
+                }, function(error) {
+                    document.getElementById("location-input").value = "Location not available";
+                });
+            } else {
+                document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
+            }
+        }
+    
+        // Function to redirect to the selected problem category
+        
+        document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("toggle-button");
+    const cardItems = document.querySelectorAll(".card-item");
+    const initialVisibleCount = 3; // Number of cards visible initially
+    let showingAll = false;
+
+    // Show only the first 3 cards initially
+    cardItems.forEach((card, index) => {
+        if (index >= initialVisibleCount) {
+            card.classList.add("hidden");
+        }
+    });
+
+    toggleButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent default behavior to avoid refresh
+
+        // Save the current scroll position
+        const currentScrollPosition = window.scrollY;
+
+        if (!showingAll) {
+            // Show all cards
+            cardItems.forEach(card => card.classList.remove("hidden"));
+            toggleButton.textContent = "Show Less";
+        } else {
+            // Show only the first 3 cards
+            cardItems.forEach((card, index) => {
+                if (index >= initialVisibleCount) {
+                    card.classList.add("hidden");
+                }
+            });
+            toggleButton.textContent = "Show All";
+        }
+        showingAll = !showingAll;
+
+        // Restore the scroll position
+        window.scrollTo(0, currentScrollPosition);
+    });
+});
+
+    </script>
+    
 </body>
 
 </html>
