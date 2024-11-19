@@ -30,6 +30,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
+
+    
+
     <style>
         /* Global Styles */
         body {
@@ -100,6 +104,71 @@
         /* Hide cards initially */
 .hidden {
     display: none;
+}
+    </style>
+    <style>
+        /* Modal Styles */
+.custom-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Form Styling */
+.modal-form {
+    margin-top: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-form .form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
     </style>
@@ -408,11 +477,72 @@
             </div>
         </div>
     </div>
-    
-    
     <!-- Service End -->
-
-
+    <!--Hospital Card Start-->
+    <div class="blog-slider">
+        <div class="blog-slider__wrp swiper-wrapper">
+            <div class="blog-slider__item swiper-slide d-flex flex-wrap">
+                <div class="blog-slider__img col-12 col-md-4">
+                    <img src="/img/apollo.jfif" alt="" class="img-fluid">
+                </div>
+                <div class="blog-slider__content col-12 col-md-5">
+                    <h3 class="blog-slider__title">Saty Kiran babu Hospitals</h3>
+                    <p class="availability-status" style="color: green;">Available Now</p>
+                    <p class="timings">Timings: 24</p>
+                    <p>25 years in health care</p>
+                    <p><i class="fas fa-map-marker-alt"></i>3rd floor MRLS hub, plot No:45, Jai Hind Enclave, Gandhi road</p>
+                    <p>Op price: ₹1000</p>
+                    <p>Current OP count: ****</p>
+                    <p>Login to see the current op count</p>
+                </div>
+                <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
+                    <button class="btn custom-btn mb-2">Call</button>
+                    <button class="btn custom-btn mb-2">Chat</button>
+                    <button class="btn custom-btn mb-2" onclick="openModal()">Book Appointment</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!--Hospital End-->
+    <div id="customModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Book Appointment - Saty Kiran babu Hospitals</h2>
+            <div class="text-center mb-3">
+                <button class="btn m-2" onclick="toggleForm('new')">New Patient</button>
+                <button class="btn m-2" onclick="toggleForm('existing')">Already a Patient</button>
+            </div>
+    
+            <!-- New Patient Form -->
+            <form id="newPatientForm" class="modal-form" style="display: none;">
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" class="form-control" required>
+    
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" class="form-control" required>
+    
+                <label for="number">Phone Number:</label>
+                <input type="text" name="number" class="form-control" required>
+    
+                <button type="submit" class="btn mt-3">Book Appointment</button>
+            </form>
+    
+            <!-- Existing Patient Form -->
+            <form id="existingPatientForm" class="modal-form" style="display: none;">
+                <label for="opName">Name on OP Card:</label>
+                <input type="text" name="opName" class="form-control" required>
+    
+                <label for="opNumber">OP Number:</label>
+                <input type="text" name="opNumber" class="form-control" required>
+    
+                <button type="submit" class="btn mt-3">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+    
+   
     <!-- Feature Start -->
     <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
         <div class="container feature px-lg-0">
@@ -479,6 +609,8 @@
         </div>
     </div>
     <!-- Feature End -->
+
+  
 
 
     <!-- Team Start -->
@@ -814,6 +946,32 @@
 });
 
     </script>
+<script>    
+function openModal() {
+    document.getElementById("customModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("customModal").style.display = "none";
+    toggleForm(); // Reset forms
+}
+
+function toggleForm(type) {
+    const newPatientForm = document.getElementById("newPatientForm");
+    const existingPatientForm = document.getElementById("existingPatientForm");
+
+    if (type === "new") {
+        newPatientForm.style.display = "block";
+        existingPatientForm.style.display = "none";
+    } else if (type === "existing") {
+        newPatientForm.style.display = "none";
+        existingPatientForm.style.display = "block";
+    } else {
+        newPatientForm.style.display = "none";
+        existingPatientForm.style.display = "none";
+    }
+}
+</script>
     
 </body>
 
