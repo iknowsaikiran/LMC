@@ -49,6 +49,20 @@ def about_us():
 def appointment():
     return render_template('appointment.html') 
 
+@app.route('/appointment')
+def appointment():
+    return render_template('appointment.html')
+
+
+@app.route('/referafriend')
+def referafriend():
+    return render_template('referAfriend.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
 def toggle_favorite(hospital_id, action):
     """Helper function to add or remove a hospital from favorites."""
     username = session['username']
