@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -32,7 +34,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/card.css" rel="stylesheet">
 
-    
+
 
     <style>
         /* Global Styles */
@@ -40,8 +42,9 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f4f7fa;
             color: #333;
+            overflow-x: hidden;
         }
-    
+
         .form-wrap {
             margin-top: 50px;
             padding: 20px;
@@ -49,37 +52,39 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-    
+
         .form-cols {
             display: flex;
             align-items: center;
         }
-    
-        .form-control, .form-select {
+
+        .form-control,
+        .form-select {
             font-size: 14px;
             padding: 12px;
             border-radius: 50px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
         }
-    
-        .form-control:focus, .form-select:focus {
+
+        .form-control:focus,
+        .form-select:focus {
             outline: none;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
-    
+
         .input-group-text {
             background-color: transparent;
             border: none;
             padding: 0;
         }
-    
+
         .location-icon {
             font-size: 20px;
             color: #007bff;
             cursor: pointer;
         }
-    
+
         .btn-primary {
             background-color: #007bff;
             border: none;
@@ -88,12 +93,12 @@
             font-size: 16px;
             padding: 12px;
         }
-    
+
         .btn-primary:hover {
             background-color: #0056b3;
             transition: background-color 0.3s ease;
         }
-    
+
         /* Responsive Styles */
         @media (max-width: 767px) {
             .form-wrap {
@@ -101,85 +106,114 @@
                 padding: 15px;
             }
         }
+
         /* Hide cards initially */
-.hidden {
-    display: none;
-}
+        .hidden {
+            display: none;
+        }
     </style>
     <style>
         /* Modal Styles */
-.custom-modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+        .custom-modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .btnn {
+            padding: 10px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btnn:hover {
+            background: #0056b3;
+        }
+
+        /* Form Styling */
+        .modal-form {
+            margin-top: 20px;
+        }
+
+        .modal-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .modal-form .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <style>
+       .footer {
+    background-color: #343a40;
 }
 
-.custom-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    position: relative;
+.footer .btn {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
     text-align: center;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
+.footer p {
+    margin-bottom: 0;
+    font-size: 14px;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    background: #007bff;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-}
+@media (max-width: 576px) {
+    .footer p {
+        font-size: 12px;
+    }
 
-.btn:hover {
-    background: #0056b3;
+    .footer .btn {
+        margin-bottom: 8px;
+    }
 }
+</style>
 
-/* Form Styling */
-.modal-form {
-    margin-top: 20px;
-}
 
-.modal-form label {
-    display: block;
-    margin-bottom: 5px;
-}
 
-.modal-form .form-control {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-    </style>
-    
-    
-    
 </head>
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -206,10 +240,14 @@
                     <small>+012 345 6789</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -242,7 +280,8 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i
+                    class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -306,25 +345,26 @@
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
             <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
-                <input type="text" class="form-control shadow-sm border-0 rounded-pill"
-                       name="search" id="search-input" placeholder="Search Hospitals near your location">
+                <input type="text" class="form-control shadow-sm border-0 rounded-pill" name="search" id="search-input"
+                    placeholder="Search Hospitals near your location">
             </div>
-            
+
             <!-- Location Detection -->
             <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
                 <div class="input-group">
-                    <input type="text" class="form-control shadow-sm border-0 rounded-pill" 
-                           id="location-input" placeholder="Detecting location..." readonly>
+                    <input type="text" class="form-control shadow-sm border-0 rounded-pill" id="location-input"
+                        placeholder="Detecting location..." readonly>
                     <span class="input-group-text location-icon" onclick="getLocation()">
                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
                     </span>
                 </div>
             </div>
-            
+
             <!-- Problem Dropdown -->
             <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
                 <div class="dropdown">
-                    <select class="form-select shadow-sm border-0 rounded-pill" id="problemSelect" onchange="navigateToPage()">
+                    <select class="form-select shadow-sm border-0 rounded-pill" id="problemSelect"
+                        onchange="navigateToPage()">
                         <option value="">By Problem</option>
                         <option value="/category?problem=fever">Fever</option>
                         <option value="/category?problem=headache">Headache</option>
@@ -333,7 +373,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <!-- Search Button -->
             <div class="col-lg-2 col-md-3 col-sm-6 form-cols mb-3">
                 <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill">
@@ -342,8 +382,8 @@
             </div>
         </div>
     </form>
-    
-    
+
+
     <!-- Custom Styles (Optional) -->
     <!-- About End -->
 
@@ -359,112 +399,134 @@
                 <!-- Card Items -->
                 <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/humanheart.jpg" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Cardiology</h4>
-                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.
+                        </p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <img src="/img/pulmonology.webp" alt="" width="60px" height="60px">  
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
+                            <img src="/img/pulmonology.webp" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Pulmonary</h4>
-                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.
+                        </p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 card-item">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/health.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Neurology</h4>
-                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.
+                        </p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <!-- Hidden Cards -->
                 <div class="col-lg-4 col-md-6 card-item hidden">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-wheelchair text-primary fs-4"></i>
                         </div>
                         <h4 class="mb-3">Orthopedics</h4>
-                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p>Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.
+                        </p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 card-item hidden" >
+                <div class="col-lg-4 col-md-6 card-item hidden">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/hand.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Dermatology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 card-item hidden" >
+                <div class="col-lg-4 col-md-6 card-item hidden">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/maternity.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Gynecology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/oncology.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Oncology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/eye.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Ophthamology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/nephrology.webp" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Nephrology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/hepatology.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Heptalogy</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp card-item hidden" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <img src="/img/gastro.png" alt="" width="60px" height="60px">
                         </div>
                         <h4 class="mb-3">Gastroenterology</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
@@ -481,67 +543,76 @@
     <div class="blog-slider">
         <div class="blog-slider__wrp swiper-wrapper">
             <div class="blog-slider__item swiper-slide d-flex flex-wrap">
-                <div class="blog-slider__img col-12 col-md-4">
-                    <img src="/img/apollo.jfif" alt="" class="img-fluid">
-                </div>
-                <div class="blog-slider__content col-12 col-md-5">
-                    <h3 class="blog-slider__title">Saty Kiran babu Hospitals</h3>
-                    <p class="availability-status" style="color: green;">Available Now</p>
-                    <p class="timings">Timings: 24</p>
-                    <p>25 years in health care</p>
-                    <p><i class="fas fa-map-marker-alt"></i>3rd floor MRLS hub, plot No:45, Jai Hind Enclave, Gandhi road</p>
-                    <p>Op price: ₹1000</p>
-                    <p>Current OP count: ****</p>
-                    <p>Login to see the current op count</p>
+                <div class="row d-flex">
+                    <div class="blog-slider__img col-6 col-md-4 p-2">
+                        <img src="/img/apollo.jfif" alt="" class="img-fluid">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="bt btn-primary mt-1">view</button>
+                            <button class="bt btn-primary mt-1">view</button>
+                        </div>
+                    </div>
+                    <div class="blog-slider__content col-6 col-md-5">
+                        <h3 class="blog-slider__title">Saty Kiran babu Hospitals</h3>
+                        <p class="availability-status" style="color: green;">Available Now</p>
+                        <p class="timings">Timings: 24</p>
+                        <p>25 years in health care</p>
+                        <p><i class="fas fa-map-marker-alt"></i>3rd floor MRLS hub, plot No:45, Jai Hind Enclave, Gandhi
+                            road</p>
+                        <p>Op price: ₹1000</p>
+                        <p>Current OP count: ****</p>
+                        <p>Login to see the current op count</p>
+                    </div>
+
+
                 </div>
                 <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
-                    <button class="btn custom-btn mb-2">Call</button>
-                    <button class="btn custom-btn mb-2">Chat</button>
-                    <button class="btn custom-btn mb-2" onclick="openModal()">Book Appointment</button>
+                    <button class="bt custom-btn mb-2">Call</button>
+                    <button class="bt custom-btn mb-2">Chat</button>
+                    <button class="bt custom-btn mb-2" onclick="openModal()">Book Appointment</button>
                 </div>
-                
+
             </div>
         </div>
     </div>
-    
+
     <!--Hospital End-->
     <div id="customModal" class="custom-modal">
         <div class="custom-modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <h2>Book Appointment - Saty Kiran babu Hospitals</h2>
             <div class="text-center mb-3">
-                <button class="btn m-2" onclick="toggleForm('new')">New Patient</button>
-                <button class="btn m-2" onclick="toggleForm('existing')">Already a Patient</button>
+                <button class="btnn m-2" onclick="toggleForm('new')">New Patient</button>
+                <button class="btnn m-2" onclick="toggleForm('existing')">Already a Patient</button>
             </div>
-    
+
             <!-- New Patient Form -->
             <form id="newPatientForm" class="modal-form" style="display: none;">
                 <label for="firstName">First Name:</label>
                 <input type="text" name="firstName" class="form-control" required>
-    
+
                 <label for="lastName">Last Name:</label>
                 <input type="text" name="lastName" class="form-control" required>
-    
+
                 <label for="number">Phone Number:</label>
                 <input type="text" name="number" class="form-control" required>
-    
+
                 <button type="submit" class="btn mt-3">Book Appointment</button>
             </form>
-    
+
             <!-- Existing Patient Form -->
             <form id="existingPatientForm" class="modal-form" style="display: none;">
                 <label for="opName">Name on OP Card:</label>
                 <input type="text" name="opName" class="form-control" required>
-    
+
                 <label for="opNumber">OP Number:</label>
                 <input type="text" name="opNumber" class="form-control" required>
-    
+
                 <button type="submit" class="btn mt-3">Book Appointment</button>
             </form>
         </div>
     </div>
-    
-   
+
+
     <!-- Feature Start -->
     <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
         <div class="container feature px-lg-0">
@@ -550,11 +621,14 @@
                     <div class="p-lg-5 ps-lg-0">
                         <p class="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
                         <h1 class="text-white mb-4">Why Choose Us</h1>
-                        <p class="text-white mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet</p>
+                        <p class="text-white mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
+                            Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
+                            justo erat amet</p>
                         <div class="row g-4">
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-user-md text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -565,7 +639,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-check text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -576,7 +651,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-comment-medical text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -587,7 +663,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-headphones text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -601,7 +678,8 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg"
+                            style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
@@ -609,7 +687,7 @@
     </div>
     <!-- Feature End -->
 
-  
+
 
 
     <!-- Team Start -->
@@ -697,9 +775,12 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
                     <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
                     <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-phone-alt text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -708,7 +789,8 @@
                         </div>
                     </div>
                     <div class="bg-light rounded d-flex align-items-center p-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-envelope-open text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -722,13 +804,16 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" placeholder="Your Name"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" class="form-control border-0" placeholder="Your Email"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" placeholder="Your Mobile"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select border-0" style="height: 55px;">
@@ -740,20 +825,21 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                        <input type="text" class="form-control border-0 datetimepicker-input"
+                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker"
+                                            style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
+                                        <input type="text" class="form-control border-0 datetimepicker-input"
+                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker"
+                                            style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" rows="5" placeholder="Describe your problem"></textarea>
+                                    <textarea class="form-control border-0" rows="5"
+                                        placeholder="Describe your problem"></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
@@ -777,25 +863,34 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
@@ -807,66 +902,48 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Address</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Services</h5>
-                    <a class="btn btn-link" href="">Cardiology</a>
-                    <a class="btn btn-link" href="">Pulmonary</a>
-                    <a class="btn btn-link" href="">Neurology</a>
-                    <a class="btn btn-link" href="">Orthopedics</a>
-                    <a class="btn btn-link" href="">Laboratory</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Quick Links</h5>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <footer class="footer bg-dark text-light p-4">
         <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                    </div>
+            <div class="row text-center text-md-start align-items-center">
+                <!-- Left Section -->
+                <div class="col-12 col-md-4 mb-3 mb-md-0">
+                    <p class="mb-0 text-light">&copy; 2024 Your Company</p>
+                </div>
+    
+                <!-- Center Section -->
+                <div class="col-12 col-md-4 mb-3 mb-md-0">
+                    <p class="mb-0 text-light">
+                        <a href="mailto:contact@yourcompany.com" class="text-light text-decoration-none">contact@batalks.com</a> |
+                        <i class="fa fa-phone-alt text-primary me-2"></i>+91 8341322771
+                    </p>
+                </div>
+    
+                <!-- Right Section -->
+                <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2" href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2" href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2" href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary" href="https://www.instagram.com/batalkspvtltd/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
+    
+
     <!-- Footer End -->
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
@@ -887,91 +964,91 @@
         // Function to detect user's location and update the input field
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                     var lat = position.coords.latitude;
                     var lon = position.coords.longitude;
-    
+
                     // Update the location input field with latitude and longitude
                     document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
-    
+
                     // Optionally, you can use reverse geocoding to get the city name using the coordinates
-                }, function(error) {
+                }, function (error) {
                     document.getElementById("location-input").value = "Location not available";
                 });
             } else {
                 document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
             }
         }
-    
+
         // Function to redirect to the selected problem category
-        
+
         document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.getElementById("toggle-button");
-    const cardItems = document.querySelectorAll(".card-item");
-    const initialVisibleCount = 3; // Number of cards visible initially
-    let showingAll = false;
+            const toggleButton = document.getElementById("toggle-button");
+            const cardItems = document.querySelectorAll(".card-item");
+            const initialVisibleCount = 3; // Number of cards visible initially
+            let showingAll = false;
 
-    // Show only the first 3 cards initially
-    cardItems.forEach((card, index) => {
-        if (index >= initialVisibleCount) {
-            card.classList.add("hidden");
-        }
-    });
-
-    toggleButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevent default behavior to avoid refresh
-
-        // Save the current scroll position
-        const currentScrollPosition = window.scrollY;
-
-        if (!showingAll) {
-            // Show all cards
-            cardItems.forEach(card => card.classList.remove("hidden"));
-            toggleButton.textContent = "Show Less";
-        } else {
-            // Show only the first 3 cards
+            // Show only the first 3 cards initially
             cardItems.forEach((card, index) => {
                 if (index >= initialVisibleCount) {
                     card.classList.add("hidden");
                 }
             });
-            toggleButton.textContent = "Show All";
-        }
-        showingAll = !showingAll;
 
-        // Restore the scroll position
-        window.scrollTo(0, currentScrollPosition);
-    });
-});
+            toggleButton.addEventListener("click", (event) => {
+                event.preventDefault(); // Prevent default behavior to avoid refresh
+
+                // Save the current scroll position
+                const currentScrollPosition = window.scrollY;
+
+                if (!showingAll) {
+                    // Show all cards
+                    cardItems.forEach(card => card.classList.remove("hidden"));
+                    toggleButton.textContent = "Show Less";
+                } else {
+                    // Show only the first 3 cards
+                    cardItems.forEach((card, index) => {
+                        if (index >= initialVisibleCount) {
+                            card.classList.add("hidden");
+                        }
+                    });
+                    toggleButton.textContent = "Show All";
+                }
+                showingAll = !showingAll;
+
+                // Restore the scroll position
+                window.scrollTo(0, currentScrollPosition);
+            });
+        });
 
     </script>
-<script>    
-function openModal() {
-    document.getElementById("customModal").style.display = "flex";
-}
+    <script>
+        function openModal() {
+            document.getElementById("customModal").style.display = "flex";
+        }
 
-function closeModal() {
-    document.getElementById("customModal").style.display = "none";
-    toggleForm(); // Reset forms
-}
+        function closeModal() {
+            document.getElementById("customModal").style.display = "none";
+            toggleForm(); // Reset forms
+        }
 
-function toggleForm(type) {
-    const newPatientForm = document.getElementById("newPatientForm");
-    const existingPatientForm = document.getElementById("existingPatientForm");
+        function toggleForm(type) {
+            const newPatientForm = document.getElementById("newPatientForm");
+            const existingPatientForm = document.getElementById("existingPatientForm");
 
-    if (type === "new") {
-        newPatientForm.style.display = "block";
-        existingPatientForm.style.display = "none";
-    } else if (type === "existing") {
-        newPatientForm.style.display = "none";
-        existingPatientForm.style.display = "block";
-    } else {
-        newPatientForm.style.display = "none";
-        existingPatientForm.style.display = "none";
-    }
-}
-</script>
-    
+            if (type === "new") {
+                newPatientForm.style.display = "block";
+                existingPatientForm.style.display = "none";
+            } else if (type === "existing") {
+                newPatientForm.style.display = "none";
+                existingPatientForm.style.display = "block";
+            } else {
+                newPatientForm.style.display = "none";
+                existingPatientForm.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 
 </html>
