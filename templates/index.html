@@ -368,6 +368,40 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        @media (max-width: 1024px) {
+    .button24 {
+        width: 45%; /* Adjust width to 45% for medium screens */
+        font-size: 14px; /* Reduce font size on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .button24 {
+        width: 45%; /* Adjust to 45% for smaller tablets */
+        font-size: 14px; /* Slightly reduce font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .button24 {
+        width: 48%; /* Adjust to 48% for small mobile screens */
+        font-size: 13px; /* Reduce font size further */
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+    .col-md-4 {
+        flex: 1 1 33.33%; /* Each card will take 1/3rd of the row */
+        max-width: 33.33%;
+    }
+}
+
+/* For small screens (Mobile devices) */
+@media (max-width: 768px) {
+    .mobilecard {
+        padding-left: 30px;
+    }
+}
     </style>
 
 
@@ -563,7 +597,7 @@
                 </div>
             </div>
         </div>
-        <div class="row m-3">
+        <div class="row m-3 mobilecard">
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                 <a href="/category?type=general">
                     <div class="single-fcat">
@@ -700,9 +734,13 @@
 
     <!--24/7 buttons-->
     <div class=" mb-3 text-center mt-3" >
-        <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('8to8')">8 AM to 8 PM Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('all')">All</button>
+        <div class="button-container">
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
+            <button class="button24" onclick="filterHospitals('8to8')">Snake Bites</button>
+            <button class="button24" onclick="filterHospitals('all')">Rat Bites</button>
+            <button class="button24" onclick="filterHospitals('all')">Dog Bites</button>
+        </div>
+        
         <!--Hospital Card Start-->
         <div id="hospitalContainer" style="display: none;">
             <div class="blog-slider hospital" data-timing="247">
