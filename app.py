@@ -49,9 +49,6 @@ def about_us():
 def appointment():
     return render_template('appointment.html') 
 
-@app.route('/appointment')
-def appointment():
-    return render_template('appointment.html')
 
 
 @app.route('/referafriend')
