@@ -30,6 +30,114 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .modal-form {
+    margin-top: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-form .form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group .form-control {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .button {
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #357ABD;
+        }
+
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 768px) {
+            .button5 {
+                display: flex;
+                justify-content: space-between;
+                margin-left: 10px;
+            }
+            .custom-btn{
+                margin-right: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            .appointment{
+                padding:12px;
+            }
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -147,48 +255,73 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" style="height: 55px;">
-                                        <option selected>Choose Doctor</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                    <div class="container appointment">
+                
+                        <div class="form-container">
+                            <h1>Book Your Appointment</h1>
+                            <form id="appointmentForm">
+                                <!-- First and Last Name -->
+                                <div class="form-group">
+                                    <div class="">
+                                        <label for="firstName">First Name:</label>
+                                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" class="form-control " required>
+                                    </div>
+                                    <div class="">
+                                        <label for="lastName">Last Name:</label>
+                                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
+                    
+                                <!-- Gender and Phone Number -->
+                                <div class="form-group">
+                                    <div class="">
+                                        <label for="gender">Gender:</label>
+                                        <select id="gender" name="gender" required class="form-control">
+                                            <option value="" disabled selected>Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <label for="number">Phone Number:</label>
+                                        <input type="text" id="number" name="number" placeholder="Enter your phone number" required class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <textarea class="form-control border-0" rows="5" placeholder="Describe your problem"></textarea>
+                    
+                                <!-- Department -->
+                                <label for="department">Department:</label>
+                                <select id="department" name="department" required class="form-control">
+                                    <option value="" disabled selected>Choose Department</option>
+                                    <option value="general">General Medicine</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="dermatology">Dermatology</option>
+                                </select>
+                    
+                                <!-- Appointment Date and Time -->
+                                <div class="form-group">
+                                    <div class="">
+                                        <label for="appointmentDate">Appointment Date:</label>
+                                        <input type="date" id="appointmentDate" name="appointmentDate" required class="form-control">
+                                    </div>
+                                    <div class="">
+                                        <label for="appointmentTime">Preferred Time:</label>
+                                        <input type="time" id="appointmentTime" name="appointmentTime" required class="form-control">
+                                    </div>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
-                                </div>
-                            </div>
-                        </form>
+                    
+                                <!-- Comments -->
+                                <label for="comments">Additional Comments (Optional):</label>
+                                <textarea id="comments" name="comments" rows="4" placeholder="Describe your issue or leave a note" class="form-control"></textarea>
+                    
+                                <!-- Submit Button -->
+                                <button type="submit" class="button">Book Appointment</button>
+                            </form>
+                        </div>
+                        <div class="note">
+                            Please ensure all fields are filled before submitting your appointment.
+                        </div>
                     </div>
                 </div>
             </div>
