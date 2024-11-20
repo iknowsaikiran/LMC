@@ -421,7 +421,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -519,9 +519,11 @@
                 <div class="input-group">
                     <input type="text" class="form-control shadow-sm border-0 rounded-pill" id="location-input"
                         placeholder="Detecting location..." readonly>
-                    <span class="input-group-text location-icon" onclick="getLocation()">
+                    <!-- <span class="input-group-text location-icon" onclick="getLocation()">
                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
-                    </span>
+                    </span> -->
+                    <i class="fa-solid fa-location-crosshairs" id="location-icon" aria-hidden="true"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                 </div>
             </div>
 
@@ -699,12 +701,12 @@
     </div>
 
     <!--24/7 buttons-->
-    <div class=" mb-3 text-center mt-3" >
+    <div class=" mb-3 text-center mt-3">
         <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
         <button class=" button24" onclick="filterHospitals('8to8')">8 AM to 8 PM Hospitals</button>
         <button class=" button24" onclick="filterHospitals('all')">All</button>
         <!--Hospital Card Start-->
-        <div id="hospitalContainer" style="display: none;">
+        <!-- <div id="hospitalContainer" style="display: none;">
             <div class="blog-slider hospital" data-timing="247">
                 {% if hospitals %}
                 <div class="blog-slider">
@@ -734,11 +736,6 @@
                                     {% endif %}
                                     </p>
                                 </div>
-                                <!-- <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
-                                        <button class="btn custom-btn mb-2">Call</button>
-                                        <button class="btn custom-btn mb-2">Chat</button>
-                        
-                                    </div> -->
                                 <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
                                     <ul class="btns ">
                                         <li>
@@ -758,7 +755,6 @@
                                         data-bs-target="#callModal{{ hospitals[0] }}">Call</button>
                                     <button class="btn custom-btn mb-2" data-bs-toggle="modal"
                                         data-bs-target="#chatModal{{ hospitals[0] }}">Chat</button>
-                                    <!-- <button class="btn custom-btn mb-2" data-bs-toggle="modal" data-bs-target="#appointmentModal{{ hospitals[0] }}">Book Appointment</button> -->
                                     <button class="btn custom-btn mb-2" onclick="openModal()">Book Appointment</button>
                                 </div>
 
@@ -769,10 +765,8 @@
                         <p>No hospitals near you.</p>
                         {% endif %}
                     </div>
-                </div>                
+                </div>
             </div>
-            <!--8am to 8pm-->
-            <!--static data-->
             <div class="blog-slider hospital" data-timing="8to8" style="display: none;">
                 <div class="blog-slider__wrp swiper-wrapper">
                     <div class="blog-slider__item swiper-slide d-flex flex-wrap">
@@ -796,9 +790,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
+    </div>
 
+    <!--based on the location-->
+    <!-- Start post Area -->
+		<section class="">
+			<div class="container">
+				<div class="row justify-content-center d-flex">
+					<div class="col-lg-12 post-list">
+						<div class="hospital-list">
+							<!-- Hospitals will be dynamically inserted here -->
+						</div>
+
+						<a class="text-uppercase loadmore-btn mx-auto d-block" href="#">Load More hospitals</a>
+					</div>
+				</div>
+			</div>
+		</section>
 
         <!--Hospital End-->
         <div id="customModal" class="custom-modal">
@@ -841,369 +851,13 @@
         </div>
 
 
-        <!-- Feature Start -->
-        <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
-            <div class="container feature px-lg-0">
-                <div class="row g-0 mx-lg-0">
-                    <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="p-lg-5 ps-lg-0">
-                            <p class="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
-                            <h1 class="text-white mb-4">Why Choose Us</h1>
-                            <p class="text-white mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                duo
-                                justo erat amet</p>
-                            <div class="row g-4">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
-                                            style="width: 55px; height: 55px;">
-                                            <i class="fa fa-user-md text-primary"></i>
-                                        </div>
-                                        <div class="ms-4">
-                                            <p class="text-white mb-2">Experience</p>
-                                            <h5 class="text-white mb-0">Doctors</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
-                                            style="width: 55px; height: 55px;">
-                                            <i class="fa fa-check text-primary"></i>
-                                        </div>
-                                        <div class="ms-4">
-                                            <p class="text-white mb-2">Quality</p>
-                                            <h5 class="text-white mb-0">Services</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
-                                            style="width: 55px; height: 55px;">
-                                            <i class="fa fa-comment-medical text-primary"></i>
-                                        </div>
-                                        <div class="ms-4">
-                                            <p class="text-white mb-2">Positive</p>
-                                            <h5 class="text-white mb-0">Consultation</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
-                                            style="width: 55px; height: 55px;">
-                                            <i class="fa fa-headphones text-primary"></i>
-                                        </div>
-                                        <div class="ms-4">
-                                            <p class="text-white mb-2">24 Hours</p>
-                                            <h5 class="text-white mb-0">Support</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
-                        <div class="position-relative h-100">
-                            <img class="position-absolute img-fluid w-100 h-100" src="/static/img/feature.jpg"
-                                style="object-fit: cover;" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Feature End -->
 
 
 
 
-        <!-- Team Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <p class="d-inline-block border rounded-pill py-1 px-4">Doctors</p>
-                    <h1>Our Experience Doctors</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item position-relative rounded overflow-hidden">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="/static/img/team-1.jpg" alt="">
-                            </div>
-                            <div class="team-text bg-light text-center p-4">
-                                <h5>Doctor Name</h5>
-                                <p class="text-primary">Department</p>
-                                <div class="team-social text-center">
-                                    <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item position-relative rounded overflow-hidden">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="/static/img/team-2.jpg" alt="">
-                            </div>
-                            <div class="team-text bg-light text-center p-4">
-                                <h5>Doctor Name</h5>
-                                <p class="text-primary">Department</p>
-                                <div class="team-social text-center">
-                                    <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item position-relative rounded overflow-hidden">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="/static/img/team-3.jpg" alt="">
-                            </div>
-                            <div class="team-text bg-light text-center p-4">
-                                <h5>Doctor Name</h5>
-                                <p class="text-primary">Department</p>
-                                <div class="team-social text-center">
-                                    <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item position-relative rounded overflow-hidden">
-                            <div class="overflow-hidden">
-                                <img class="img-fluid" src="/static/img/team-4.jpg" alt="">
-                            </div>
-                            <div class="team-text bg-light text-center p-4">
-                                <h5>Doctor Name</h5>
-                                <p class="text-primary">Department</p>
-                                <div class="team-social text-center">
-                                    <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
 
 
-        <!-- Appointment Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
-                        <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-                            diam et
-                            eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
-                            amet
-                        </p>
-                        <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                            <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
-                                style="width: 55px; height: 55px;">
-                                <i class="fa fa-phone-alt text-primary"></i>
-                            </div>
-                            <div class="ms-4">
-                                <p class="mb-2">Call Us Now</p>
-                                <h5 class="mb-0">+012 345 6789</h5>
-                            </div>
-                        </div>
-                        <div class="bg-light rounded d-flex align-items-center p-5">
-                            <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
-                                style="width: 55px; height: 55px;">
-                                <i class="fa fa-envelope-open text-primary"></i>
-                            </div>
-                            <div class="ms-4">
-                                <p class="mb-2">Mail Us Now</p>
-                                <h5 class="mb-0">info@example.com</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" placeholder="Your Name"
-                                            style="height: 55px;">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control border-0" placeholder="Your Email"
-                                            style="height: 55px;">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" placeholder="Your Mobile"
-                                            style="height: 55px;">
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <select class="form-select border-0" style="height: 55px;">
-                                            <option selected>Choose Doctor</option>
-                                            <option value="1">Doctor 1</option>
-                                            <option value="2">Doctor 2</option>
-                                            <option value="3">Doctor 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="date" id="date" data-target-input="nearest">
-                                            <input type="text" class="form-control border-0 datetimepicker-input"
-                                                placeholder="Choose Date" data-target="#date"
-                                                data-toggle="datetimepicker" style="height: 55px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="time" id="time" data-target-input="nearest">
-                                            <input type="text" class="form-control border-0 datetimepicker-input"
-                                                placeholder="Choose Date" data-target="#time"
-                                                data-toggle="datetimepicker" style="height: 55px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea class="form-control border-0" rows="5"
-                                            placeholder="Describe your problem"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Book
-                                            Appointment</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Appointment End -->
-
-
-        <!-- Testimonial Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <p class="d-inline-block border rounded-pill py-1 px-4">Testimonial</p>
-                    <h1>What Say Our Patients!</h1>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item text-center">
-                        <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
-                            src="/static/img/testimonial-1.jpg" style="width: 100px; height: 100px;">
-                        <div class="testimonial-text rounded text-center p-4">
-                            <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed.
-                                Magna
-                                ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo
-                                sea
-                                clita.</p>
-                            <h5 class="mb-1">Patient Name</h5>
-                            <span class="fst-italic">Profession</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center">
-                        <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
-                            src="/static/img/testimonial-2.jpg" style="width: 100px; height: 100px;">
-                        <div class="testimonial-text rounded text-center p-4">
-                            <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed.
-                                Magna
-                                ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo
-                                sea
-                                clita.</p>
-                            <h5 class="mb-1">Patient Name</h5>
-                            <span class="fst-italic">Profession</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-item text-center">
-                        <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4"
-                            src="/static/img/testimonial-3.jpg" style="width: 100px; height: 100px;">
-                        <div class="testimonial-text rounded text-center p-4">
-                            <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed.
-                                Magna
-                                ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo
-                                sea
-                                clita.</p>
-                            <h5 class="mb-1">Patient Name</h5>
-                            <span class="fst-italic">Profession</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
-
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-light mb-4">Address</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
-                                    class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
-                                    class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
-                                    class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-light mb-4">Services</h5>
-                        <a class="btn btn-link" href="">Cardiology</a>
-                        <a class="btn btn-link" href="">Pulmonary</a>
-                        <a class="btn btn-link" href="">Neurology</a>
-                        <a class="btn btn-link" href="">Orthopedics</a>
-                        <a class="btn btn-link" href="">Laboratory</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-light mb-4">Quick Links</h5>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Our Services</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Support</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-light mb-4">Newsletter</h5>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                                placeholder="Your email">
-                            <button type="button"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
+        
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
                 class="bi bi-arrow-up"></i></a>
@@ -1223,25 +877,26 @@
 
         <!-- Template Javascript -->
         <script src="/static/js/main.js"></script>
+
         <script>
             // Function to detect user's location and update the input field
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var lat = position.coords.latitude;
-                        var lon = position.coords.longitude;
-
-                        // Update the location input field with latitude and longitude
-                        document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
-
-                        // Optionally, you can use reverse geocoding to get the city name using the coordinates
-                    }, function (error) {
-                        document.getElementById("location-input").value = "Location not available";
-                    });
-                } else {
-                    document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
-                }
-            }
+            //function getLocation() {
+            //  if (navigator.geolocation) {
+            //        navigator.geolocation.getCurrentPosition(function (position) {
+            //            var lat = position.coords.latitude;
+            //            var lon = position.coords.longitude;
+            //
+            //           // Update the location input field with latitude and longitude
+            //            document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
+            //
+            //            // Optionally, you can use reverse geocoding to get the city name using the coordinates
+            //        }, function (error) {
+            //            document.getElementById("location-input").value = "Location not available";
+            //        });
+            //    } else {
+            //        document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
+            //    }
+            //}
 
             // Function to redirect to the selected problem category
 
@@ -1446,6 +1101,315 @@
 
 
         </script>
+
+        <!--CODE FROM INDEX.HTML-->
+        <script>
+            window.onload = function () {
+                getLocation();
+            };
+
+            // Function to get user's current location
+            function getLocation() {
+                const locationInput = document.getElementById('location-input');
+
+                if (navigator.geolocation) {
+                    console.log('Geolocation is supported. Fetching location...');
+                    navigator.geolocation.getCurrentPosition(success, showError, { enableHighAccuracy: true });
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                    locationInput.value = 'Geolocation not supported';
+                }
+
+                function success(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+                    // Reverse geocoding to get area name
+                    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Failed to fetch location details.');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Geocoding API response:", data);  // Log the full response for debugging
+                            const locality = data.locality || 'Unknown locality';
+                            const principalSubdivision = data.principalSubdivision || 'Unknown region';
+                            locationInput.value = `${locality}, ${principalSubdivision}`;  // Display the area name
+
+                            // Send user location to the backend
+                            return fetch('/', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    latitude: latitude,
+                                    longitude: longitude
+                                })
+                            });
+                        })
+                        .then(response => response.json()) // Assuming server returns a JSON array of hospitals
+                        .then(hospitals => {
+                            console.log("Received data from server:", hospitals);
+                            displayHospitals(hospitals);  // Update the UI with hospital data
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                // Handle errors in geolocation
+                function showError(error) {
+                    const locationInput = document.getElementById('location-input');
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("User denied the request for Geolocation.");
+                            locationInput.value = 'Permission denied';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Location information is unavailable.");
+                            locationInput.value = 'Location unavailable';
+                            break;
+                        case error.TIMEOUT:
+                            alert("The request to get user location timed out.");
+                            locationInput.value = 'Request timed out';
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            alert("An unknown error occurred.");
+                            locationInput.value = 'Unknown error';
+                            break;
+                    }
+                }
+            }
+
+            function displayHospitals(hospitals) {
+                const hospitalList = document.querySelector('.hospital-list');
+                hospitalList.innerHTML = ''; // Clear the list before adding new items
+
+                if (!hospitals || hospitals.length === 0) {
+                    hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
+                } else {
+                    hospitals.forEach(hospital => {
+                        const hospitalItem = `
+            <div class="blog-slider">
+                <div class="blog-slider__wrp swiper-wrapper">
+                    <div class="blog-slider__item swiper-slide d-flex">
+                        <div class="blog-slider__img col-4">
+                            <img src="/static/img/apollo.jfif" alt="Hospital Image">
+                        </div>
+                        <div class="blog-slider__content col-5">
+                            <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
+                            <p class="availability-status" style="color: green;">Available Now</p>
+                            <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
+                            <p>${hospital.years_since_established} years in healthcare</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
+                            <p>Op price: ₹${hospital.opcard_price}</p>
+                            <p class="current-op-count">
+                                <strong>Current OP count:</strong> 
+                                <span onclick="alert('Please login to see the current OP count.')">**</span>
+                            </p>
+                        </div>
+                        <div class="button-group col-3 btnt">
+                            <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
+                            <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Appointment Modal -->
+            <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}">New Patient</button>
+                                <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
+                            </div>
+                            <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="firstName">First Name:</label>
+                                      <input type="text" name="firstName" placeholder="First name" class="form-control" required>
+  
+                                      <label for="lastName">Last Name:</label>
+                                      <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
+  
+                                      <label for="number">Phone Number:</label>
+                                      <input type="text" name="number" placeholder="Phone number" class="form-control" required>
+  
+                                      <label for="address">Address:</label>
+                                      <input type="text" name="address" placeholder="Your address" class="form-control" required>
+  
+                                      <label for="reason">Reason for your Appointment:</label>
+                                      <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
+  
+                                      <label for="appointmentDate">Select Date:</label>
+                                      <input type="date" name="appointmentDate" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                                 <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="opName">Name on OP Card:</label>
+                                      <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
+  
+                                      <label for="opPhone">Phone Number on OP Card:</label>
+                                      <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
+  
+                                      <label for="opNumber">OP Number:</label>
+                                      <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+                        hospitalList.innerHTML += hospitalItem;
+                    });
+
+                    // Add event listeners for Call and Chat buttons to display "coming soon" modals
+                    document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            alert('This feature is coming soon.');
+                        });
+                    });
+
+                    // Toggle between New Patient and Existing Patient forms in the modal
+                    hospitalList.addEventListener('click', function (event) {
+                        const target = event.target;
+                        const hospitalId = target.dataset.hospitalId;
+                        if (target.classList.contains('new-patient-btn')) {
+                            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
+                            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
+                        }
+                        if (target.classList.contains('existing-patient-btn')) {
+                            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
+                            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                        }
+                    });
+                }
+            }
+
+        </script>
+        <script>
+            //document.getElementById('showbtn').addEventListener('click', function () {
+            //	var hiddenCategories = document.getElementById('category-2');
+            //	if (hiddenCategories.style.display === 'none') {
+            //		hiddenCategories.style.display = 'flex'; // Shows the hidden categories
+            //		this.textContent = 'Show Less'; // Changes button text
+            //	} else {
+            //		hiddenCategories.style.display = 'none'; // Hides the categories again
+            //		this.textContent = 'Show All'; // Resets button text
+            //	}
+            //});
+
+
+            // Header links by problem
+            function navigateToPage() {
+                var select = document.getElementById("problemSelect");
+                var selectedValue = select.options[select.selectedIndex].value;
+                if (selectedValue) {
+                    window.location.href = selectedValue;
+                }
+            }
+        </script>
+        <script>
+            // Add this script to your HTML
+            window.addEventListener('scroll', function () {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) { // Change this value to control when the effect starts
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        </script>
+
+        <!-- Modal JavaScript -->
+        <script>
+            // Get modal element
+            var modal = document.getElementById('featureModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById('openModalBtn');
+
+            // Get the close button element
+            var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = 'flex'; // Display the modal
+            }
+
+            // When the user clicks on close button (x), close the modal
+            closeBtn.onclick = function () {
+                modal.style.display = 'none'; // Hide the modal
+            }
+
+            // Close the modal if the user clicks outside the modal content
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Check if modal button exists (only after login)
+                const openModalBtn = document.getElementById("openModalBtn");
+                if (openModalBtn) {
+                    const modal = document.getElementById("featureModal");
+                    const closeBtn = document.querySelector(".close-btn");
+
+                    // Open modal when button is clicked
+                    openModalBtn.addEventListener("click", function () {
+                        modal.style.display = "flex"; // Show modal
+                    });
+
+                    // Close modal when the close button is clicked
+                    closeBtn.addEventListener("click", function () {
+                        modal.style.display = "none"; // Hide modal
+                    });
+
+                    // Close modal when clicking outside the modal content
+                    window.addEventListener("click", function (event) {
+                        if (event.target === modal) {
+                            modal.style.display = "none"; // Hide modal
+                        }
+                    });
+                }
+            });
+
+        </script>
+        <script>
+            var swiper = new Swiper('.blog-slider', {
+                spaceBetween: 30,
+                effect: 'fade',
+                loop: true,
+                mousewheel: {
+                    invert: false,
+                },
+                // autoHeight: true,
+                pagination: {
+                    el: '.blog-slider__pagination',
+                    clickable: true,
+                }
+            });
+        </script>
+
+
+
 
 </body>
 

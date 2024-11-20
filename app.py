@@ -13,33 +13,93 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
 
-@app.route('/')
+
+# Function to calculate distance between two coordinates using Haversine formula
+# Function to calculate distance between two coordinates using Haversine formula
+from math import radians, sin, cos, sqrt, atan2
+
+def haversine(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    
+    a = sin(dlat / 2)*2 + cos(lat1) * cos(lat2) * sin(dlon / 2)*2
+    
+    # Clamp a between 0 and 1 to avoid math domain errors
+    a = max(0, min(1, a))
+    
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))  # Use atan2 instead of asin
+    
+    radius = 6371  # Radius of Earth in kilometers
+    distance = radius * c
+    
+    return distance
+
+@app.route('/', methods=['GET','POST'])
 def index():
-    try:
-        # Connect to the database
+    if request.method == 'POST':
+        # Handle POST request (when the geolocation data is sent)
+        data = request.get_json()
+        print("Received data:", data)  # Add this line to verify if the data is being received
+        user_latitude = float(data.get('latitude'))
+        user_longitude = float(data.get('longitude'))
+
+        # Debugging: print the received values
+        print(f"Received Latitude: {user_latitude}")
+        print(f"Received Longitude: {user_longitude}")
+
         cur = mysql.connection.cursor()
-
-        # Fetch data from the 'hospitals' table
-        query = """
-            SELECT * FROM hospitals
-        """
-        cur.execute(query)
+        cur.execute("SELECT hospital_id,hospital_name, timings, years_since_established, opcard_price, latitude, longitude FROM hospitals")
         hospitals = cur.fetchall()
+        print(hospitals)
 
-        # Close the database connection
-        cur.close()
+        nearby_hospitals = []
+        for hospital in hospitals:
+            hospital_id,hospital_name, timings, years_since_established, opcard_price, lat, lon = hospital
+            distance = haversine(user_latitude, user_longitude, lat, lon)
+            if distance <= 5:
+                nearby_hospitals.append({
+                    'hospital_id': hospital_id,
+                    'hospital_name': hospital_name,
+                    'timings': timings,
+                    'years_since_established': years_since_established,
+                    'opcard_price': opcard_price,
+                    'distance': round(distance, 2)
+                })
 
-        # Render the index.html template with the fetched hospital data
-        return render_template('index.html', hospitals=hospitals)
+        print("Nearby hospitals:", nearby_hospitals)
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return "An error occurred while fetching hospital data. {e}"
+        return jsonify(nearby_hospitals)  # Return hospitals as JSON to the frontend    
+    
+    # If GET request (when the page is first loaded)
+    return render_template('index.html', hospitals=[])
+    # try:
+    #     # Connect to the database
+    #     cur = mysql.connection.cursor()
+
+    #     # Fetch data from the 'hospitals' table
+    #     query = """
+    #         SELECT * FROM hospitals
+    #     """
+    #     cur.execute(query)
+    #     hospitals = cur.fetchall()
+
+    #     # Close the database connection
+    #     cur.close()
+
+    #     # Render the index.html template with the fetched hospital data
+    #     return render_template('index.html', hospitals=hospitals)
+
+    # except Exception as e:
+    #     print(f"An error occurred: {e}")
+    #     return "An error occurred while fetching hospital data. {e}"
 
 @app.route('/about_us')
 def about_us():
