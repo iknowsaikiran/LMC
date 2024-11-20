@@ -105,15 +105,19 @@ def index():
 def about_us():
     return render_template('about.html')
 
-
 @app.route('/appointment')
 def appointment():
-    return render_template('appointment.html')
+    return render_template('appointment.html') 
+
 
 
 @app.route('/referafriend')
 def referafriend():
     return render_template('referAfriend.html')
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
 
 @app.route('/contact')
 def contact():
