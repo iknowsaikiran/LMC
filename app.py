@@ -203,6 +203,33 @@ def login():
 #     return render_template('signup.html')
 
 
+############################################
+@app.route('/category')
+def category():
+    category_type = request.args.get('type')
+    
+    if category_type is None:
+        return render_template('category.html', hospitals=[])
+    
+    username = session.get('username')
+    
+    # Fetch hospitals and check if they're favorites for the logged-in user
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+        FROM hospitals h
+        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+        WHERE h.category = %s
+    """, (username, category_type))
+    
+    hospitals = cur.fetchall()
+    cur.close()
+    
+    return render_template('category.html', hospitals=hospitals, category=category_type)
+
+
+
 
 
 
