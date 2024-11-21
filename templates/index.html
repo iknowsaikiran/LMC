@@ -1256,6 +1256,19 @@
                             </p>
                         </div>
                         <div class="button-group col-3 btnt">
+                            <ul class="btns ">
+                                    <li>
+                                        <form action="/toggle_favourite" method="POST" style="display:inline;">
+                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
+                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="view-card">View</a>
+                                    </li>
+                            </ul>
                             <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
                             <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>

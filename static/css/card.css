@@ -117,6 +117,7 @@
   .btn:hover {
     background: #0056b3;
   }
+}
   
   @media screen and (max-width: 768px) {
     .blog-slider__item {
