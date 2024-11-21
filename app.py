@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root123'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -223,7 +223,7 @@ def logout():
     # Remove the username from the session
     session.pop('username', None)
     flash("You have been logged out.", "info")
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 
 def toggle_favorite(hospital_id, action):
