@@ -39,7 +39,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #0463FA;
+            background-color: #512888 !important;
             color: white;
             border: none;
             padding: 15px;
@@ -51,7 +51,7 @@
         }
 
         #chat-toggle-btn:hover {
-            background-color: #0463FA;
+            background-color: #9462d5 !important;
         }
 
         /* Chat Container */
@@ -72,7 +72,7 @@
 
         /* Chat Header */
         .chat-header {
-            background-color: #0463FA;
+            background-color: #512888 !important;
             color: white;
             padding: 20px;
             display: flex;
@@ -114,7 +114,7 @@
         }
 
         .bot-message {
-            background-color: #0463FA;
+            background-color: #512888 !important;
             color: white;
             align-self: flex-start;
             animation: fadeIn 0.3s;
@@ -144,7 +144,7 @@
         }
 
         #send-btn {
-            background-color: #0463FA;
+            background-color: #512888 !important;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -155,7 +155,7 @@
         }
 
         #send-btn:hover {
-            background-color: #0463FA;
+            background-color: #9a66df !important;
         }
 
         /* Animations */
@@ -341,8 +341,26 @@
                 return "I'm here to help. Please provide more details.";
             }
         }
+        
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+            const currentPath = window.location.pathname;
+    
+            navLinks.forEach(link => {
+                // Remove 'active' from all links
+                link.classList.remove("active");
+    
+                // Add 'active' to the matching link
+                if (link.getAttribute("href") === currentPath) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
