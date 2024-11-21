@@ -405,7 +405,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         const container = document.querySelector('.container');
         const registerBtn = document.querySelector('.register-btn');
         const loginBtn = document.querySelector('.login-btn');
@@ -458,7 +458,49 @@
             })
             .catch(error => console.error('Error:', error));
         });
+    </script> -->
+    <script>
+        const container = document.querySelector('.container');
+        const registerBtn = document.querySelector('.register-btn');
+        const loginBtn = document.querySelector('.login-btn');
+    
+        // Toggle between Login and Register Form
+        registerBtn.addEventListener('click', () => {
+            container.classList.add('active');
+        });
+    
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+        });
+    
+        // Handle Registration form submission via AJAX (remains the same)
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent page reload
+            const formData = new FormData(this);
+    
+            fetch('/signup', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  // Show success/failure message
+                if (data.success) {
+                    document.getElementById('register-form').reset();  // Clear the form fields
+                    container.classList.remove('active');  // Switch to login view
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    
+        // For Login, remove AJAX and let the form submission trigger backend redirect
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(event) {
+            // No JavaScript required for redirection since the backend handles it
+            console.log('Login form submitted, backend will handle redirection.');
+        });
     </script>
+    
 </body>
 
 
