@@ -172,6 +172,11 @@ def remove_favourite():
     return jsonify({'success': True})
 
 
+@app.route('/header')
+def header():
+    return render_template('header.html')
+
+
 
 @app.route('/favourite')
 def favourite():
