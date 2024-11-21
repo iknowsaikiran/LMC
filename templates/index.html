@@ -402,6 +402,14 @@
         padding-left: 30px;
     }
 }
+@media (max-width: 768px) {
+    .callbutton {
+        display: flex;
+    }
+    .chat-btn{
+        margin-left: 10px;
+    }
+}
     </style>
 
 
@@ -1247,8 +1255,10 @@
                             </p>
                         </div>
                         <div class="button-group col-12 col-md-3 text-center text-md-left">
-                            <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
+                            <div class="callbutton">
+                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                               <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
+                            </div>
                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
                         </div>
                     </div>
@@ -1264,7 +1274,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="text-center">
-                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}">New Patient</button>
+                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
                                 <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
                             </div>
                             <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
@@ -1306,6 +1316,9 @@
                     </div>
                 </div>
             </div>`;
+            function navigateToNewPage() {
+        window.location.href = "appointments.html"; // Redirect to the new page
+    }
 
                         hospitalList.innerHTML += hospitalItem;
                     });
