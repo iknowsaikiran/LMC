@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Navyasree@123'
+app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -186,7 +186,7 @@ def favourite():
             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
             FROM favourites f 
             JOIN hospitals h ON f.hospital_id = h.hospital_id
-            WHERE f.username = %s
+            WHERE f.username = %s 
         """, (username,))
         favourite_hospitals = cur.fetchall()
         cur.close()

@@ -368,46 +368,47 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         @media (max-width: 1024px) {
-    .button24 {
-        width: 45%; /* Adjust width to 45% for medium screens */
-        font-size: 14px; /* Reduce font size on medium screens */
-    }
-}
+            .button24 {
+                width: 45%;
+                /* Adjust width to 45% for medium screens */
+                font-size: 14px;
+                /* Reduce font size on medium screens */
+            }
+        }
 
-@media (max-width: 768px) {
-    .button24 {
-        width: 45%; /* Adjust to 45% for smaller tablets */
-        font-size: 14px; /* Slightly reduce font size */
-    }
-}
+        @media (max-width: 768px) {
+            .button24 {
+                width: 45%;
+                /* Adjust to 45% for smaller tablets */
+                font-size: 14px;
+                /* Slightly reduce font size */
+            }
+        }
 
-@media (max-width: 480px) {
-    .button24 {
-        width: 48%; /* Adjust to 48% for small mobile screens */
-        font-size: 13px; /* Reduce font size further */
-        margin-bottom: 10px;
-    }
-}
-@media (max-width: 991px) and (min-width: 768px) {
-    .col-md-4 {
-        flex: 1 1 33.33%; /* Each card will take 1/3rd of the row */
-        max-width: 33.33%;
-    }
-}
+        @media (max-width: 480px) {
+            .button24 {
+                width: 48%;
+                /* Adjust to 48% for small mobile screens */
+                font-size: 13px;
+                /* Reduce font size further */
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 991px) and (min-width: 768px) {
+            .col-md-4 {
+                flex: 1 1 33.33%;
+                /* Each card will take 1/3rd of the row */
+                max-width: 33.33%;
+            }
+        }
 
 /* For small screens (Mobile devices) */
 @media (max-width: 768px) {
     .mobilecard {
         padding-left: 30px;
-    }
-}
-@media (max-width: 768px) {
-    .callbutton {
-        display: flex;
-    }
-    .chat-btn{
-        margin-left: 10px;
     }
 }
     </style>
@@ -743,7 +744,7 @@
     </div>
 
     <!--24/7 buttons-->
-    <div class=" mb-3 text-center mt-3" >
+    <div class=" mb-3 text-center mt-3">
         <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
         <button class=" button24" onclick="filterHospitals('8to8')">Snake Bites</button>
         <button class=" button24" onclick="filterHospitals('all')">Rat Bites</button>
@@ -839,59 +840,59 @@
 
     <!--based on the location-->
     <!-- Start post Area -->
-		<section class="">
-			<div class="container">
-				<div class="row justify-content-center d-flex">
-					<div class="col-lg-12 post-list">
-						<div class="hospital-list">
-							<!-- Hospitals will be dynamically inserted here -->
-						</div>
+    <section class="">
+        <div class="container">
+            <div class="row justify-content-center d-flex">
+                <div class="col-lg-12 post-list">
+                    <div class="hospital-list">
+                        <!-- Hospitals will be dynamically inserted here -->
+                    </div>
 
-						<a class="text-uppercase loadmore-btn mx-auto d-block" href="#">Load More hospitals</a>
-					</div>
-				</div>
-			</div>
-		</section>
-
-        <!--Hospital End-->
-        <div id="customModal" class="custom-modal">
-            <div class="custom-modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <h2>Book Appointment - Saty Kiran babu Hospitals</h2>
-                <div class="text-center mb-3">
-                    <button class="btn m-2" onclick="navigateToNewPage()">New Patient</button>
-                    <button class="btn m-2" onclick="toggleForm('existing')">Already a Patient</button>
+                    <a class="text-uppercase loadmore-btn mx-auto d-block" href="#">Load More hospitals</a>
                 </div>
-
-                <!-- New Patient Form -->
-                <form id="newPatientForm" class="modal-form" style="display: none;">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" name="firstName" class="form-control" required>
-
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" name="lastName" class="form-control" required>
-
-                    <label for="number">Phone Number:</label>
-                    <input type="text" name="number" class="form-control" required>
-
-                    <button type="submit" class="btn mt-3">Book Appointment</button>
-                </form>
-
-
-                <!-- Existing Patient Form -->
-                <form id="existingPatientForm" class="modal-form" style="display: none;">
-                    <label for="opName">Name on OP Card:</label>
-                    <input type="text" name="opName" class="form-control" required>
-
-                    <label for="opNumber">OP Number:</label>
-                    <input type="text" name="opNumber" class="form-control" required>
-
-                    <button type="submit" class="btn mt-3 button">Book Appointment</button>
-
-                    <button type="submit" class="btn mt-3">Book Appointment</button>
-                </form>
             </div>
         </div>
+    </section>
+
+    <!--Hospital End-->
+    <div id="customModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Book Appointment - Saty Kiran babu Hospitals</h2>
+            <div class="text-center mb-3">
+                <button class="btn m-2" onclick="navigateToNewPage()">New Patient</button>
+                <button class="btn m-2" onclick="toggleForm('existing')">Already a Patient</button>
+            </div>
+
+            <!-- New Patient Form -->
+            <form id="newPatientForm" class="modal-form" style="display: none;">
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" class="form-control" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" class="form-control" required>
+
+                <label for="number">Phone Number:</label>
+                <input type="text" name="number" class="form-control" required>
+
+                <button type="submit" class="btn mt-3">Book Appointment</button>
+            </form>
+
+
+            <!-- Existing Patient Form -->
+            <form id="existingPatientForm" class="modal-form" style="display: none;">
+                <label for="opName">Name on OP Card:</label>
+                <input type="text" name="opName" class="form-control" required>
+
+                <label for="opNumber">OP Number:</label>
+                <input type="text" name="opNumber" class="form-control" required>
+
+                <button type="submit" class="btn mt-3 button">Book Appointment</button>
+
+                <button type="submit" class="btn mt-3">Book Appointment</button>
+            </form>
+        </div>
+    </div>
 
 
 
@@ -900,183 +901,115 @@
 
 
 
-        
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
-                class="bi bi-arrow-up"></i></a>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="/static/lib/wow/wow.min.js"></script>
-        <script src="/static/lib/easing/easing.min.js"></script>
-        <script src="/static/lib/waypoints/waypoints.min.js"></script>
-        <script src="/static/lib/counterup/counterup.min.js"></script>
-        <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="/static/lib/tempusdominus/js/moment.min.js"></script>
-        <script src="/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/wow/wow.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="/static/js/main.js"></script>
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
 
-        <script>
-            // Function to detect user's location and update the input field
-            //function getLocation() {
-            //  if (navigator.geolocation) {
-            //        navigator.geolocation.getCurrentPosition(function (position) {
-            //            var lat = position.coords.latitude;
-            //            var lon = position.coords.longitude;
-            //
-            //           // Update the location input field with latitude and longitude
-            //            document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
-            //
-            //            // Optionally, you can use reverse geocoding to get the city name using the coordinates
-            //        }, function (error) {
-            //            document.getElementById("location-input").value = "Location not available";
-            //        });
-            //    } else {
-            //        document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
-            //    }
-            //}
+    <script>
+        // Function to detect user's location and update the input field
+        //function getLocation() {
+        //  if (navigator.geolocation) {
+        //        navigator.geolocation.getCurrentPosition(function (position) {
+        //            var lat = position.coords.latitude;
+        //            var lon = position.coords.longitude;
+        //
+        //           // Update the location input field with latitude and longitude
+        //            document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
+        //
+        //            // Optionally, you can use reverse geocoding to get the city name using the coordinates
+        //        }, function (error) {
+        //            document.getElementById("location-input").value = "Location not available";
+        //        });
+        //    } else {
+        //        document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
+        //    }
+        //}
 
-            // Function to redirect to the selected problem category
+        // Function to redirect to the selected problem category
 
 
-            document.getElementById('showbtn').addEventListener('click', function () {
-                var hiddenCategories = document.getElementById('category-2');
-                if (hiddenCategories.style.display === 'none') {
-                    hiddenCategories.style.display = 'flex'; // Shows the hidden categories
-                    this.textContent = 'Show Less'; // Changes button text
-                } else {
-                    hiddenCategories.style.display = 'none'; // Hides the categories again
-                    this.textContent = 'Show All'; // Resets button text
+        document.getElementById('showbtn').addEventListener('click', function () {
+            var hiddenCategories = document.getElementById('category-2');
+            if (hiddenCategories.style.display === 'none') {
+                hiddenCategories.style.display = 'flex'; // Shows the hidden categories
+                this.textContent = 'Show Less'; // Changes button text
+            } else {
+                hiddenCategories.style.display = 'none'; // Hides the categories again
+                this.textContent = 'Show All'; // Resets button text
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleButton = document.getElementById("toggle-button");
+            const cardItems = document.querySelectorAll(".card-item");
+            const initialVisibleCount = 3; // Number of cards visible initially
+            let showingAll = false;
+
+            // Show only the first 3 cards initially
+            cardItems.forEach((card, index) => {
+                if (index >= initialVisibleCount) {
+                    card.classList.add("hidden");
                 }
             });
 
-            document.addEventListener("DOMContentLoaded", () => {
-                const toggleButton = document.getElementById("toggle-button");
-                const cardItems = document.querySelectorAll(".card-item");
-                const initialVisibleCount = 3; // Number of cards visible initially
-                let showingAll = false;
+            toggleButton.addEventListener("click", (event) => {
+                event.preventDefault(); // Prevent default behavior to avoid refresh
 
-                // Show only the first 3 cards initially
-                cardItems.forEach((card, index) => {
-                    if (index >= initialVisibleCount) {
-                        card.classList.add("hidden");
-                    }
-                });
+                // Save the current scroll position
+                const currentScrollPosition = window.scrollY;
 
-                toggleButton.addEventListener("click", (event) => {
-                    event.preventDefault(); // Prevent default behavior to avoid refresh
-
-                    // Save the current scroll position
-                    const currentScrollPosition = window.scrollY;
-
-                    if (!showingAll) {
-                        // Show all cards
-                        cardItems.forEach(card => card.classList.remove("hidden"));
-                        toggleButton.textContent = "Show Less";
-                    } else {
-                        // Show only the first 3 cards
-                        cardItems.forEach((card, index) => {
-                            if (index >= initialVisibleCount) {
-                                card.classList.add("hidden");
-                            }
-                        });
-                        toggleButton.textContent = "Show All";
-                    }
-                    showingAll = !showingAll;
-
-                    // Restore the scroll position
-                    window.scrollTo(0, currentScrollPosition);
-                });
-            });
-
-        </script>
-        <script>
-            function openModal() {
-                document.getElementById("customModal").style.display = "flex";
-            }
-
-            function closeModal() {
-                document.getElementById("customModal").style.display = "none";
-                toggleForm(); // Reset forms
-            }
-
-            function toggleForm(type) {
-                const newPatientForm = document.getElementById("newPatientForm");
-                const existingPatientForm = document.getElementById("existingPatientForm");
-
-                if (type === "new") {
-                    newPatientForm.style.display = "block";
-                    existingPatientForm.style.display = "none";
-                } else if (type === "existing") {
-                    newPatientForm.style.display = "none";
-                    existingPatientForm.style.display = "block";
+                if (!showingAll) {
+                    // Show all cards
+                    cardItems.forEach(card => card.classList.remove("hidden"));
+                    toggleButton.textContent = "Show Less";
                 } else {
-                    newPatientForm.style.display = "none";
-                    existingPatientForm.style.display = "none";
-                }
-            }
-        </script>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const favoriteButtons = document.querySelectorAll('.toggle-favourite');
-
-                favoriteButtons.forEach(button => {
-                    button.addEventListener('click', function (event) {
-                        event.preventDefault(); // Prevent default form submission
-
-                        const form = this.closest('form'); // Get the form element
-                        const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
-                        const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
-                        const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
-                        const action = isActive ? 'remove' : 'add'; // Determine action
-
-                        const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-
-                        fetch(endpoint, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams({
-                                'hospital_id': hospitalId
-                            })
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.success) {
-                                    heartIcon.classList.toggle('active'); // Toggle the heart icon state
-
-                                    // Change the color of the heart icon based on active state
-                                    if (heartIcon.classList.contains('active')) {
-                                        heartIcon.style.color = 'red'; // Change to orange
-                                        this.setAttribute('aria-label', 'Remove from favorites');
-                                    } else {
-                                        heartIcon.style.color = 'gray'; // Change to gray
-                                        this.setAttribute('aria-label', 'Add to favorites');
-                                    }
-                                } else {
-                                    console.error('Error toggling favorite:', data.message);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('There was a problem with the fetch operation:', error);
-                            });
+                    // Show only the first 3 cards
+                    cardItems.forEach((card, index) => {
+                        if (index >= initialVisibleCount) {
+                            card.classList.add("hidden");
+                        }
                     });
-                });
+                    toggleButton.textContent = "Show All";
+                }
+                showingAll = !showingAll;
+
+                // Restore the scroll position
+                window.scrollTo(0, currentScrollPosition);
             });
-        </script>
-        <script>
+        });
+
+    </script>
+    <script>
+        function openModal() {
+            document.getElementById("customModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("customModal").style.display = "none";
+            toggleForm(); // Reset forms
+        }
+
+        function toggleForm(type) {
+            const newPatientForm = document.getElementById("newPatientForm");
+            const existingPatientForm = document.getElementById("existingPatientForm");
+
             if (type === "new") {
                 newPatientForm.style.display = "block";
                 existingPatientForm.style.display = "none";
@@ -1087,155 +1020,223 @@
                 newPatientForm.style.display = "none";
                 existingPatientForm.style.display = "none";
             }
+        }
+    </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
 
-        </script>
-        <script>
-            document.getElementById("appointmentForm").addEventListener("submit", function (event) {
-                event.preventDefault();
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default form submission
 
-                const formData = new FormData(event.target);
-                const firstName = formData.get("firstName");
-                const lastName = formData.get("lastName");
-                const gender = formData.get("gender");
-                const number = formData.get("number");
-                const department = formData.get("department");
-                const appointmentDate = formData.get("appointmentDate");
-                const appointmentTime = formData.get("appointmentTime");
+                    const form = this.closest('form'); // Get the form element
+                    const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                    const action = isActive ? 'remove' : 'add'; // Determine action
 
-                // Simulate appointment booking confirmation
-                alert(`Thank you, ${firstName} ${lastName}! Your appointment for ${department} on ${appointmentDate} at ${appointmentTime} has been booked. We have noted your gender as ${gender} and will contact you at ${number}.`);
+                    const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
 
-                // Clear the form after submission
-                event.target.reset();
-            });
-
-        </script>
-        <script>
-            // Function to close the modal
-            function closeModal() {
-                document.getElementById("customModal").style.display = "none";
-            }
-
-            // Function to navigate to a new page for new patients
-            function navigateToNewPage() {
-                window.location.href = "/appointment"; // Redirect to the new page
-            }
-
-            // Function for existing patient functionality
-            //24/7 and 8am to 8pm hospitals
-            function filterHospitals(timing) {
-                const hospitalContainer = document.getElementById('hospitalContainer');
-                const hospitals = document.querySelectorAll('.hospital');
-
-                // Show the hospital container
-                hospitalContainer.style.display = 'block';
-
-                // Filter hospitals based on the selected timing
-                hospitals.forEach(hospital => {
-                    if (timing === 'all' || hospital.dataset.timing === timing) {
-                        hospital.style.display = 'block'; // Show matching hospitals
-                    } else {
-                        hospital.style.display = 'none'; // Hide others
-                    }
-                });
-            }
-
-
-
-        </script>
-
-        <!--CODE FROM INDEX.HTML-->
-        <script>
-            window.onload = function () {
-                getLocation();
-            };
-
-            // Function to get user's current location
-            function getLocation() {
-                const locationInput = document.getElementById('location-input');
-
-                if (navigator.geolocation) {
-                    console.log('Geolocation is supported. Fetching location...');
-                    navigator.geolocation.getCurrentPosition(success, showError, { enableHighAccuracy: true });
-                } else {
-                    alert("Geolocation is not supported by this browser.");
-                    locationInput.value = 'Geolocation not supported';
-                }
-
-                function success(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-
-                    // Reverse geocoding to get area name
-                    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+                    fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'hospital_id': hospitalId
+                        })
+                    })
                         .then(response => {
                             if (!response.ok) {
-                                throw new Error('Failed to fetch location details.');
+                                throw new Error('Network response was not ok');
                             }
                             return response.json();
                         })
                         .then(data => {
-                            console.log("Geocoding API response:", data);  // Log the full response for debugging
-                            const locality = data.locality || 'Unknown locality';
-                            const principalSubdivision = data.principalSubdivision || 'Unknown region';
-                            locationInput.value = `${locality}, ${principalSubdivision}`;  // Display the area name
+                            if (data.success) {
+                                heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
-                            // Send user location to the backend
-                            return fetch('/', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    latitude: latitude,
-                                    longitude: longitude
-                                })
-                            });
+                                // Change the color of the heart icon based on active state
+                                if (heartIcon.classList.contains('active')) {
+                                    heartIcon.style.color = 'red'; // Change to orange
+                                    this.setAttribute('aria-label', 'Remove from favorites');
+                                } else {
+                                    heartIcon.style.color = 'gray'; // Change to gray
+                                    this.setAttribute('aria-label', 'Add to favorites');
+                                }
+                            } else {
+                                console.error('Error toggling favorite:', data.message);
+                            }
                         })
-                        .then(response => response.json()) // Assuming server returns a JSON array of hospitals
-                        .then(hospitals => {
-                            console.log("Received data from server:", hospitals);
-                            displayHospitals(hospitals);  // Update the UI with hospital data
-                        })
-                        .catch(error => console.error('Error:', error));
-                }
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                });
+            });
+        });
+    </script>
+    <script>
+        if (type === "new") {
+            newPatientForm.style.display = "block";
+            existingPatientForm.style.display = "none";
+        } else if (type === "existing") {
+            newPatientForm.style.display = "none";
+            existingPatientForm.style.display = "block";
+        } else {
+            newPatientForm.style.display = "none";
+            existingPatientForm.style.display = "none";
+        }
 
-                // Handle errors in geolocation
-                function showError(error) {
-                    const locationInput = document.getElementById('location-input');
-                    switch (error.code) {
-                        case error.PERMISSION_DENIED:
-                            alert("User denied the request for Geolocation.");
-                            locationInput.value = 'Permission denied';
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            alert("Location information is unavailable.");
-                            locationInput.value = 'Location unavailable';
-                            break;
-                        case error.TIMEOUT:
-                            alert("The request to get user location timed out.");
-                            locationInput.value = 'Request timed out';
-                            break;
-                        case error.UNKNOWN_ERROR:
-                            alert("An unknown error occurred.");
-                            locationInput.value = 'Unknown error';
-                            break;
-                    }
+
+    </script>
+    <script>
+        document.getElementById("appointmentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const firstName = formData.get("firstName");
+            const lastName = formData.get("lastName");
+            const gender = formData.get("gender");
+            const number = formData.get("number");
+            const department = formData.get("department");
+            const appointmentDate = formData.get("appointmentDate");
+            const appointmentTime = formData.get("appointmentTime");
+
+            // Simulate appointment booking confirmation
+            alert(`Thank you, ${firstName} ${lastName}! Your appointment for ${department} on ${appointmentDate} at ${appointmentTime} has been booked. We have noted your gender as ${gender} and will contact you at ${number}.`);
+
+            // Clear the form after submission
+            event.target.reset();
+        });
+
+    </script>
+    <script>
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("customModal").style.display = "none";
+        }
+
+        // Function to navigate to a new page for new patients
+        function navigateToNewPage() {
+            window.location.href = "/appointment"; // Redirect to the new page
+        }
+
+        // Function for existing patient functionality
+        //24/7 and 8am to 8pm hospitals
+        function filterHospitals(timing) {
+            const hospitalContainer = document.getElementById('hospitalContainer');
+            const hospitals = document.querySelectorAll('.hospital');
+
+            // Show the hospital container
+            hospitalContainer.style.display = 'block';
+
+            // Filter hospitals based on the selected timing
+            hospitals.forEach(hospital => {
+                if (timing === 'all' || hospital.dataset.timing === timing) {
+                    hospital.style.display = 'block'; // Show matching hospitals
+                } else {
+                    hospital.style.display = 'none'; // Hide others
                 }
+            });
+        }
+
+
+
+    </script>
+
+    <!--CODE FROM INDEX.HTML-->
+    <script>
+        window.onload = function () {
+            getLocation();
+        };
+
+        // Function to get user's current location
+        function getLocation() {
+            const locationInput = document.getElementById('location-input');
+
+            if (navigator.geolocation) {
+                console.log('Geolocation is supported. Fetching location...');
+                navigator.geolocation.getCurrentPosition(success, showError, { enableHighAccuracy: true });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                locationInput.value = 'Geolocation not supported';
             }
 
-            function displayHospitals(hospitals) {
-                const hospitalList = document.querySelector('.hospital-list');
-                hospitalList.innerHTML = ''; // Clear the list before adding new items
+            function success(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
 
-                if (!hospitals || hospitals.length === 0) {
-                    hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
-                } else {
-                    hospitals.forEach(hospital => {
-                        const hospitalItem = `
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+                // Reverse geocoding to get area name
+                fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch location details.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Geocoding API response:", data);  // Log the full response for debugging
+                        const locality = data.locality || 'Unknown locality';
+                        const principalSubdivision = data.principalSubdivision || 'Unknown region';
+                        locationInput.value = `${locality}, ${principalSubdivision}`;  // Display the area name
+
+                        // Send user location to the backend
+                        return fetch('/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                latitude: latitude,
+                                longitude: longitude
+                            })
+                        });
+                    })
+                    .then(response => response.json()) // Assuming server returns a JSON array of hospitals
+                    .then(hospitals => {
+                        console.log("Received data from server:", hospitals);
+                        displayHospitals(hospitals);  // Update the UI with hospital data
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Handle errors in geolocation
+            function showError(error) {
+                const locationInput = document.getElementById('location-input');
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert("User denied the request for Geolocation.");
+                        locationInput.value = 'Permission denied';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Location information is unavailable.");
+                        locationInput.value = 'Location unavailable';
+                        break;
+                    case error.TIMEOUT:
+                        alert("The request to get user location timed out.");
+                        locationInput.value = 'Request timed out';
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        alert("An unknown error occurred.");
+                        locationInput.value = 'Unknown error';
+                        break;
+                }
+            }
+        }
+
+        function displayHospitals(hospitals) {
+            const hospitalList = document.querySelector('.hospital-list');
+            hospitalList.innerHTML = ''; // Clear the list before adding new items
+
+            if (!hospitals || hospitals.length === 0) {
+                hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
+            } else {
+                hospitals.forEach(hospital => {
+                    const hospitalItem = `
             <div class="blog-slider">
                 <div class="blog-slider__wrp swiper-wrapper">
                     <div class="blog-slider__item swiper-slide d-flex">
@@ -1254,11 +1255,22 @@
                                 <span onclick="alert('Please login to see the current OP count.')">**</span>
                             </p>
                         </div>
-                        <div class="button-group col-12 col-md-3 text-center text-md-left">
-                            <div class="callbutton">
-                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-                               <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
-                            </div>
+                        <div class="button-group col-3 btnt">
+                            <ul class="btns ">
+                                    <li>
+                                        <form action="/toggle_favourite" method="POST" style="display:inline;">
+                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
+                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="view-card">View</a>
+                                    </li>
+                            </ul>
+                            <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
                         </div>
                     </div>
@@ -1320,141 +1332,197 @@
         window.location.href = "appointments.html"; // Redirect to the new page
     }
 
-                        hospitalList.innerHTML += hospitalItem;
+                    hospitalList.innerHTML += hospitalItem;
+                });
+
+                // Add event listeners for Call and Chat buttons to display "coming soon" modals
+                document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('This feature is coming soon.');
                     });
+                });
 
-                    // Add event listeners for Call and Chat buttons to display "coming soon" modals
-                    document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            alert('This feature is coming soon.');
-                        });
-                    });
-
-                    // Toggle between New Patient and Existing Patient forms in the modal
-                    hospitalList.addEventListener('click', function (event) {
-                        const target = event.target;
-                        const hospitalId = target.dataset.hospitalId;
-                        if (target.classList.contains('new-patient-btn')) {
-                            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
-                            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
-                        }
-                        if (target.classList.contains('existing-patient-btn')) {
-                            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
-                            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
-                        }
-                    });
-                }
+                // Toggle between New Patient and Existing Patient forms in the modal
+                hospitalList.addEventListener('click', function (event) {
+                    const target = event.target;
+                    const hospitalId = target.dataset.hospitalId;
+                    if (target.classList.contains('new-patient-btn')) {
+                        document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
+                        document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
+                    }
+                    if (target.classList.contains('existing-patient-btn')) {
+                        document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
+                        document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                    }
+                });
             }
+        }
 
-        </script>
-        <script>
-            //document.getElementById('showbtn').addEventListener('click', function () {
-            //	var hiddenCategories = document.getElementById('category-2');
-            //	if (hiddenCategories.style.display === 'none') {
-            //		hiddenCategories.style.display = 'flex'; // Shows the hidden categories
-            //		this.textContent = 'Show Less'; // Changes button text
-            //	} else {
-            //		hiddenCategories.style.display = 'none'; // Hides the categories again
-            //		this.textContent = 'Show All'; // Resets button text
-            //	}
-            //});
+    </script>
+    <script>
+        //document.getElementById('showbtn').addEventListener('click', function () {
+        //	var hiddenCategories = document.getElementById('category-2');
+        //	if (hiddenCategories.style.display === 'none') {
+        //		hiddenCategories.style.display = 'flex'; // Shows the hidden categories
+        //		this.textContent = 'Show Less'; // Changes button text
+        //	} else {
+        //		hiddenCategories.style.display = 'none'; // Hides the categories again
+        //		this.textContent = 'Show All'; // Resets button text
+        //	}
+        //});
 
 
-            // Header links by problem
-            function navigateToPage() {
-                var select = document.getElementById("problemSelect");
-                var selectedValue = select.options[select.selectedIndex].value;
-                if (selectedValue) {
-                    window.location.href = selectedValue;
-                }
+        // Header links by problem
+        function navigateToPage() {
+            var select = document.getElementById("problemSelect");
+            var selectedValue = select.options[select.selectedIndex].value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
             }
-        </script>
-        <script>
-            // Add this script to your HTML
-            window.addEventListener('scroll', function () {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) { // Change this value to control when the effect starts
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-        </script>
-
-        <!-- Modal JavaScript -->
-        <script>
-            // Get modal element
-            var modal = document.getElementById('featureModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById('openModalBtn');
-
-            // Get the close button element
-            var closeBtn = document.getElementsByClassName('close-btn')[0];
-
-            // When the user clicks the button, open the modal
-            btn.onclick = function () {
-                modal.style.display = 'flex'; // Display the modal
+        }
+    </script>
+    <script>
+        // Add this script to your HTML
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Change this value to control when the effect starts
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
+        });
+    </script>
 
-            // When the user clicks on close button (x), close the modal
-            closeBtn.onclick = function () {
-                modal.style.display = 'none'; // Hide the modal
+    <!-- Modal JavaScript -->
+    <script>
+        // Get modal element
+        var modal = document.getElementById('featureModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById('openModalBtn');
+
+        // Get the close button element
+        var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = 'flex'; // Display the modal
+        }
+
+        // When the user clicks on close button (x), close the modal
+        closeBtn.onclick = function () {
+            modal.style.display = 'none'; // Hide the modal
+        }
+
+        // Close the modal if the user clicks outside the modal content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
             }
-
-            // Close the modal if the user clicks outside the modal content
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
+        }
 
 
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Check if modal button exists (only after login)
-                const openModalBtn = document.getElementById("openModalBtn");
-                if (openModalBtn) {
-                    const modal = document.getElementById("featureModal");
-                    const closeBtn = document.querySelector(".close-btn");
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if modal button exists (only after login)
+            const openModalBtn = document.getElementById("openModalBtn");
+            if (openModalBtn) {
+                const modal = document.getElementById("featureModal");
+                const closeBtn = document.querySelector(".close-btn");
 
-                    // Open modal when button is clicked
-                    openModalBtn.addEventListener("click", function () {
-                        modal.style.display = "flex"; // Show modal
-                    });
+                // Open modal when button is clicked
+                openModalBtn.addEventListener("click", function () {
+                    modal.style.display = "flex"; // Show modal
+                });
 
-                    // Close modal when the close button is clicked
-                    closeBtn.addEventListener("click", function () {
+                // Close modal when the close button is clicked
+                closeBtn.addEventListener("click", function () {
+                    modal.style.display = "none"; // Hide modal
+                });
+
+                // Close modal when clicking outside the modal content
+                window.addEventListener("click", function (event) {
+                    if (event.target === modal) {
                         modal.style.display = "none"; // Hide modal
-                    });
+                    }
+                });
+            }
+        });
 
-                    // Close modal when clicking outside the modal content
-                    window.addEventListener("click", function (event) {
-                        if (event.target === modal) {
-                            modal.style.display = "none"; // Hide modal
-                        }
-                    });
-                }
-            });
+    </script>
+    <script>
+        var swiper = new Swiper('.blog-slider', {
+            spaceBetween: 30,
+            effect: 'fade',
+            loop: true,
+            mousewheel: {
+                invert: false,
+            },
+            // autoHeight: true,
+            pagination: {
+                el: '.blog-slider__pagination',
+                clickable: true,
+            }
+        });
+    </script>
 
-        </script>
-        <script>
-            var swiper = new Swiper('.blog-slider', {
-                spaceBetween: 30,
-                effect: 'fade',
-                loop: true,
-                mousewheel: {
-                    invert: false,
-                },
-                // autoHeight: true,
-                pagination: {
-                    el: '.blog-slider__pagination',
-                    clickable: true,
-                }
+    <!--Favourites-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
+
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    const form = this.closest('form'); // Get the form element
+                    const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                    const action = isActive ? 'remove' : 'add'; // Determine action
+
+                    const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                    fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'hospital_id': hospitalId
+                        })
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                heartIcon.classList.toggle('active'); // Toggle the heart icon state
+
+                                // Change the color of the heart icon based on active state
+                                if (heartIcon.classList.contains('active')) {
+                                    heartIcon.style.color = 'red'; // Change to orange
+                                    this.setAttribute('aria-label', 'Remove from favorites');
+                                } else {
+                                    heartIcon.style.color = 'gray'; // Change to gray
+                                    this.setAttribute('aria-label', 'Add to favorites');
+                                }
+                            } else {
+                                console.error('Error toggling favorite:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                });
             });
-        </script>
+        });
+    </script>
 
 
 
