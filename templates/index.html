@@ -410,6 +410,9 @@
     .mobilecard {
         padding-left: 30px;
     }
+    .button-group{
+        margin-left: 10px;
+    }
 }
     </style>
 
@@ -1240,10 +1243,10 @@
             <div class="blog-slider">
                 <div class="blog-slider__wrp swiper-wrapper">
                     <div class="blog-slider__item swiper-slide d-flex">
-                        <div class="blog-slider__img col-4">
+                        <div class="blog-slider__img col-lg-3">
                             <img src="/static/img/apollo.jfif" alt="Hospital Image">
                         </div>
-                        <div class="blog-slider__content col-5">
+                        <div class="blog-slider__content col-lg-3">
                             <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
                             <p class="availability-status" style="color: green;">Available Now</p>
                             <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
@@ -1255,18 +1258,18 @@
                                 <span onclick="alert('Please login to see the current OP count.')">**</span>
                             </p>
                         </div>
-                        <div class="button-group col-3 btnt">
-                            <ul class="btns ">
-                                    <li>
+                        <div class="button-group col-lg-3 btnt">
+                            <ul class="btns d-flex" style="list-style-type:none">
+                                    <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
                                             </button>
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="#" class="view-card">View</a>
+                                        <a href="#" class="view-card" style="margin-left:10px">View</a>
                                     </li>
                             </ul>
                             <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
