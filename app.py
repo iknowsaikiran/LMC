@@ -172,6 +172,11 @@ def remove_favourite():
     return jsonify({'success': True})
 
 
+@app.route('/header')
+def header():
+    return render_template('header.html')
+
+
 
 @app.route('/favourite')
 def favourite():
@@ -186,7 +191,7 @@ def favourite():
             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
             FROM favourites f 
             JOIN hospitals h ON f.hospital_id = h.hospital_id
-            WHERE f.username = %s
+            WHERE f.username = %s 
         """, (username,))
         favourite_hospitals = cur.fetchall()
         cur.close()
