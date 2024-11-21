@@ -737,8 +737,9 @@
     <!--24/7 buttons-->
     <div class=" mb-3 text-center mt-3" >
         <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('8to8')">8 AM to 8 PM Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('all')">All</button>
+        <button class=" button24" onclick="filterHospitals('8to8')">Snake Bites</button>
+        <button class=" button24" onclick="filterHospitals('all')">Rat Bites</button>
+        <button class=" button24" onclick="filterHospitals('all')">Cat Bites</button>
         <!--Hospital Card Start-->
         <!-- <div id="hospitalContainer" style="display: none;">
             <div class="blog-slider hospital" data-timing="247">
@@ -1245,7 +1246,7 @@
                                 <span onclick="alert('Please login to see the current OP count.')">**</span>
                             </p>
                         </div>
-                        <div class="button-group col-3 btnt">
+                        <div class="button-group col-12 col-md-3 text-center text-md-left">
                             <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
                             <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
