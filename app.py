@@ -223,7 +223,7 @@ def logout():
     # Remove the username from the session
     session.pop('username', None)
     flash("You have been logged out.", "info")
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 
 def toggle_favorite(hospital_id, action):
