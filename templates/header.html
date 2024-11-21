@@ -341,8 +341,26 @@
                 return "I'm here to help. Please provide more details.";
             }
         }
+        
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+            const currentPath = window.location.pathname;
+    
+            navLinks.forEach(link => {
+                // Remove 'active' from all links
+                link.classList.remove("active");
+    
+                // Add 'active' to the matching link
+                if (link.getAttribute("href") === currentPath) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
