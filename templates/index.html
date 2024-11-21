@@ -100,18 +100,20 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f4f7fa;
             color: #333;
+            
         }
 
         .form-wrap {
             margin-top: 50px;
+            margin-bottom:40px;
             padding: 20px;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-cols {
-            display: flex;
+            text-align: center;
             align-items: center;
         }
 
@@ -263,7 +265,6 @@
         textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
@@ -286,6 +287,9 @@
         .form-group .form-control {
             flex: 1;
             min-width: 200px;
+        }
+        .form-wrap{
+            width: 95%;
         }
 
         textarea {
@@ -310,6 +314,9 @@
         @media (max-width: 768px) {
             .form-group {
                 flex-direction: column;
+            }
+            .form-media{
+                margin: 10px;
             }
         }
 
@@ -425,26 +432,30 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>123 Street, New York, USA</small>
+                    <small>Madhapur</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
+                    <small class="far  text-primary me-2"></small>
+                    <small></small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+012 345 6789</small>
+                    <small>+91 &nbsp; 8341322771</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
+                        href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
+                        href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
+                        target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
+                        href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0"
+                        href="https://www.instagram.com/batalkspvtltd/" target="_blank"><i
                             class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -540,18 +551,18 @@
 
 
     <!-- About Start -->
-    <form action="search.html" class="search-form-area" id="search-form">
+    <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form" >
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
-                <input type="text" class="form-control shadow-sm border-0 rounded-pill" name="search" id="search-input"
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
+                <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" name="search" id="search-input"
                     placeholder="Search Hospitals near your location">
             </div>
 
             <!-- Location Detection -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols">
                 <div class="input-group">
-                    <input type="text" class="form-control shadow-sm border-0 rounded-pill" id="location-input"
+                    <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" id="location-input"
                         placeholder="Detecting location..." readonly>
                     <!-- <span class="input-group-text location-icon" onclick="getLocation()">
                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
@@ -562,9 +573,9 @@
             </div>
 
             <!-- Problem Dropdown -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
                 <div class="dropdown">
-                    <select class="form-select shadow-sm border-0 rounded-pill" id="problemSelect"
+                    <select class="form-select shadow-sm border-0 rounded-pill form-media" id="problemSelect"
                         onchange="navigateToPage()">
                         <option value="">By Problem</option>
                         <option value="/category?problem=fever">Fever</option>
@@ -576,8 +587,8 @@
             </div>
 
             <!-- Search Button -->
-            <div class="col-lg-2 col-md-3 col-sm-6 form-cols mb-3">
-                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill">
+            <div class="col-lg-2 col-md-3 col-sm-6 form-col">
+                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill form-media">
                     <span class="lnr lnr-magnifier"></span> Search
                 </button>
             </div>
