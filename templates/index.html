@@ -35,6 +35,9 @@
     <!-- Template Stylesheet -->
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
 
@@ -406,23 +409,27 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+
             .button24 {
-       /* Increase padding for larger clickable area */
-        font-size: 18px;    /* Larger font size for readability */
-        width: 100%;        /* Make buttons take up the full width */
-        margin-bottom: 10px; /* Add spacing between buttons */
-    }
+                /* Increase padding for larger clickable area */
+                font-size: 18px;
+                /* Larger font size for readability */
+                width: 100%;
+                /* Make buttons take up the full width */
+                margin-bottom: 10px;
+                /* Add spacing between buttons */
+            }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 50% ;
+                width: 50%;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-               
+
             }
-            
+
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -468,37 +475,37 @@
 .chat-btn {
     margin-left: 10px; /* Adds space between the buttons */
 }
+/* Styling for the dropdown */
 .dropdown-menu-custom {
-    display: none; /* Hidden by default */
-    position: absolute;
-    margin-top: 5px;
-    list-style: none;
-    padding: 0;
-    background-color: white; /* Set background to black */
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    width: auto;
+    position: absolute; /* Ensure proper placement */
+    display: none; /* Initially hidden */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align to the button's left */
+    background-color: white; /* Professional background */
+    color: black; /* Black text for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 8px; /* Rounded corners for a sleek look */
+    list-style: none; /* Remove bullets */
+    padding: 10px 0; /* Add spacing */
+    z-index: 1000; /* Ensure it appears above other elements */
+    min-width: 150px; /* Maintain a decent width */
 }
 
+/* Styling for dropdown items */
 .dropdown-menu-custom li {
-    margin: 0;
+    padding: 8px 20px; /* Comfortable padding */
+    cursor: pointer; /* Show pointer on hover */
 }
 
-.dropdown-menu-custom .dropdown-item {
-    padding: 10px 20px;
-    text-align: left;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: black; /* Set text color to white for contrast */
-    width: 100%;
-    border-radius: 10px;
+.dropdown-menu-custom li:hover {
+    background-color: #f8f9fa; /* Highlight on hover */
 }
 
-.dropdown-menu-custom .dropdown-item:hover {
-    background-color: #444; /* Slightly lighter black on hover */
-    color: #fff; /* Ensure text stays white on hover */
+/* Responsive styling */
+@media (max-width: 768px) {
+    .dropdown-menu-custom {
+        min-width: 100%; /* Full width in smaller screens */
+    }
 }
 
 
@@ -769,7 +776,7 @@
 
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
-        
+        <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
     
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
@@ -780,7 +787,7 @@
                 <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
-        
+
     </div>
 
 
@@ -1409,9 +1416,9 @@
                     </div>
                 </div>
             </div>`;
-            function navigateToNewPage() {
-        window.location.href = "appointments.html"; // Redirect to the new page
-    }
+                    function navigateToNewPage() {
+                        window.location.href = "appointments.html"; // Redirect to the new page
+                    }
 
                     hospitalList.innerHTML += hospitalItem;
                 });
