@@ -1346,7 +1346,7 @@
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
                                             </button>
                                         </form>
