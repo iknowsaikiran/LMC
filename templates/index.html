@@ -472,59 +472,43 @@
             justify-content: space-between;
         }
 
-        .chat-btn {
-            margin-left: 10px;
-            /* Adds space between the buttons */
-        }
+.chat-btn {
+    margin-left: 10px; /* Adds space between the buttons */
+}
+/* Styling for the dropdown */
+.dropdown-menu-custom {
+    position: absolute; /* Ensure proper placement */
+    display: none; /* Initially hidden */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align to the button's left */
+    background-color: white; /* Professional background */
+    color: black; /* Black text for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 8px; /* Rounded corners for a sleek look */
+    list-style: none; /* Remove bullets */
+    padding: 10px 0; /* Add spacing */
+    z-index: 1000; /* Ensure it appears above other elements */
+    min-width: 150px; /* Maintain a decent width */
+}
 
-        /* Styling for the dropdown */
-        .dropdown-menu-custom {
-            position: absolute;
-            /* Ensure proper placement */
-            display: none;
-            /* Initially hidden */
-            top: 100%;
-            /* Position below the button */
-            left: 0;
-            /* Align to the button's left */
-            background-color: white;
-            /* Professional background */
-            color: black;
-            /* Black text for readability */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Add a subtle shadow */
-            border-radius: 8px;
-            /* Rounded corners for a sleek look */
-            list-style: none;
-            /* Remove bullets */
-            padding: 10px 0;
-            /* Add spacing */
-            z-index: 1000;
-            /* Ensure it appears above other elements */
-            min-width: 150px;
-            /* Maintain a decent width */
-        }
+/* Styling for dropdown items */
+.dropdown-menu-custom li {
+    padding: 8px 20px; /* Comfortable padding */
+    cursor: pointer; /* Show pointer on hover */
+}
 
-        /* Styling for dropdown items */
-        .dropdown-menu-custom li {
-            padding: 8px 20px;
-            /* Comfortable padding */
-            cursor: pointer;
-            /* Show pointer on hover */
-        }
+.dropdown-menu-custom li:hover {
+    background-color: #f8f9fa; /* Highlight on hover */
+}
 
-        .dropdown-menu-custom li:hover {
-            background-color: #f8f9fa;
-            /* Highlight on hover */
-        }
+/* Responsive styling */
+@media (max-width: 768px) {
+    .dropdown-menu-custom {
+        min-width: 100%; /* Full width in smaller screens */
+    }
+}
 
-        /* Responsive styling */
-        @media (max-width: 768px) {
-            .dropdown-menu-custom {
-                min-width: 100%;
-                /* Full width in smaller screens */
-            }
-        }
+
     </style>
 
 
@@ -792,15 +776,15 @@
 
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
-
-
+       
+    
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li><button class=" dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
-                <li><button class=" dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
-                <li><button class=" dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+            <ul id="animalDropdown" class="dropdown-menu-custom" >
+                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
 
@@ -1123,7 +1107,7 @@
             }
         }
     </script>
-
+    <!-- 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const favoriteButtons = document.querySelectorAll('.toggle-favourite');
@@ -1177,7 +1161,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
     <script>
         if (type === "new") {
             newPatientForm.style.display = "block";
@@ -1328,7 +1312,8 @@
                 }
             }
         }
-
+    </script>
+    <script>
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
@@ -1361,7 +1346,7 @@
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class=" toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
                                             </button>
                                         </form>
@@ -1450,13 +1435,47 @@
                 hospitalList.addEventListener('click', function (event) {
                     const target = event.target;
                     const hospitalId = target.dataset.hospitalId;
+
                     if (target.classList.contains('new-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
                     }
+
                     if (target.classList.contains('existing-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                    }
+
+                    // Handle favorite button click using event delegation
+                    if (target.classList.contains('toggle-favourite')) {
+                        event.preventDefault();
+                        const hospitalId = target.dataset.hospitalId;
+                        const heartIcon = target.querySelector('.fas.fa-heart');
+                        const isActive = heartIcon.classList.contains('active');
+                        const action = isActive ? 'remove' : 'add';
+
+                        const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                        fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({ 'hospital_id': hospitalId })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    heartIcon.classList.toggle('active');
+                                    heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
+                                    target.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                                } else {
+                                    console.error("Error toggling favorite:", data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Fetch operation error:", error);
+                            });
                     }
                 });
             }
@@ -1572,59 +1591,81 @@
     </script>
 
     <!--Favourites-->
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            displayHospitals(hospitals); // Call this to initialize with available hospitals
+            // Select all favorite buttons by their IDs
             const favoriteButtons = document.querySelectorAll('.toggle-favourite');
 
             favoriteButtons.forEach(button => {
                 button.addEventListener('click', function (event) {
+                    // Debugging to ensure the event listener is attached
+                    console.log("Favorite button clicked.");
+
                     event.preventDefault(); // Prevent default form submission
+                    console.log("Default form submission prevented.");
 
                     const form = this.closest('form'); // Get the form element
+                    if (!form) {
+                        console.error("Form not found for the favorite button.");
+                        return;
+                    }
+
                     const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                    console.log("Hospital ID:", hospitalId);
+
                     const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                    if (!heartIcon) {
+                        console.error("Heart icon not found.");
+                        return;
+                    }
+
                     const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                    console.log("Heart icon active state:", isActive);
+
                     const action = isActive ? 'remove' : 'add'; // Determine action
+                    console.log("Action to perform:", action);
 
                     const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                    // Debugging the endpoint and data being sent
+                    console.log("Endpoint:", endpoint);
 
                     fetch(endpoint, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
-                        body: new URLSearchParams({
-                            'hospital_id': hospitalId
-                        })
+                        body: new URLSearchParams({ 'hospital_id': hospitalId })
                     })
                         .then(response => {
+                            console.log("Fetch response:", response); // Debug the fetch response
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
                             }
                             return response.json();
                         })
                         .then(data => {
+                            console.log("Response data:", data); // Debug the data received from the server
                             if (data.success) {
                                 heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
                                 // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
+                                heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
+                                this.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                                console.log("Heart icon state toggled successfully.");
                             } else {
-                                console.error('Error toggling favorite:', data.message);
+                                console.error("Error toggling favorite:", data.message);
                             }
                         })
                         .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
+                            console.error("Fetch operation error:", error); // Debug fetch errors
                         });
                 });
             });
         });
+
     </script>
     <script>
         function toggleDropdown() {
