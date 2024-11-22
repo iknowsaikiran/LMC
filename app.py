@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'varma'
+app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -42,64 +42,56 @@ def haversine(lat1, lon1, lat2, lon2):
     
     return distance
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    # Check if user is logged in
+    if 'username' not in session:
+        return redirect(url_for('login'))  # Redirect to login if not logged in
+
+    username = session['username']  # Get the username from the session
+    print(f"Logged in user: {username}")  # Debugging
+
     if request.method == 'POST':
         # Handle POST request (when the geolocation data is sent)
-        data = request.get_json()
-        print("Received data:", data)  # Add this line to verify if the data is being received
+        data = request.get_json()  # Parse the JSON data
+        print("Received data:", data)  # Debugging to verify received data
+
         user_latitude = float(data.get('latitude'))
         user_longitude = float(data.get('longitude'))
 
-        # Debugging: print the received values
-        print(f"Received Latitude: {user_latitude}")
-        print(f"Received Longitude: {user_longitude}")
+        # Debugging: Print the latitude and longitude
+        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
 
+        # Fetch hospital data from the database
         cur = mysql.connection.cursor()
-        cur.execute("SELECT hospital_id,hospital_name, timings, years_since_established, opcard_price, latitude, longitude FROM hospitals")
+        cur.execute("SELECT hospital_id, hospital_name, timings, years_since_established, opcard_price, latitude, longitude FROM hospitals")
         hospitals = cur.fetchall()
-        print(hospitals)
+        cur.close()
 
+        print("Fetched hospitals from database:", hospitals)  # Debugging
+
+        # Compute nearby hospitals
         nearby_hospitals = []
         for hospital in hospitals:
-            hospital_id,hospital_name, timings, years_since_established, opcard_price, lat, lon = hospital
+            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon = hospital
             distance = haversine(user_latitude, user_longitude, lat, lon)
-            if distance <= 5:
+            if distance <= 5:  # Check if the hospital is within 5 km
                 nearby_hospitals.append({
                     'hospital_id': hospital_id,
                     'hospital_name': hospital_name,
                     'timings': timings,
                     'years_since_established': years_since_established,
                     'opcard_price': opcard_price,
-                    'distance': round(distance, 2)
+                    'distance': round(distance, 2)  # Round distance to 2 decimal places
                 })
 
-        print("Nearby hospitals:", nearby_hospitals)
+        print("Nearby hospitals:", nearby_hospitals)  # Debugging
 
-        return jsonify(nearby_hospitals)  # Return hospitals as JSON to the frontend    
-    
+        # Return nearby hospitals as JSON response
+        return jsonify(nearby_hospitals)
+
     # If GET request (when the page is first loaded)
-    return render_template('index.html', hospitals=[])
-    # try:
-    #     # Connect to the database
-    #     cur = mysql.connection.cursor()
-
-    #     # Fetch data from the 'hospitals' table
-    #     query = """
-    #         SELECT * FROM hospitals
-    #     """
-    #     cur.execute(query)
-    #     hospitals = cur.fetchall()
-
-    #     # Close the database connection
-    #     cur.close()
-
-    #     # Render the index.html template with the fetched hospital data
-    #     return render_template('index.html', hospitals=hospitals)
-
-    # except Exception as e:
-    #     print(f"An error occurred: {e}")
-    #     return "An error occurred while fetching hospital data. {e}"
+    return render_template('index.html', hospitals=[])    
 
 @app.route('/about_us')
 def about_us():
@@ -108,6 +100,109 @@ def about_us():
 @app.route('/appointment')
 def appointment():
     return render_template('appointment.html') 
+
+# @app.route('/signup', methods=['GET','POST'])
+# def signup():
+#     return render_template('signup.html') 
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        mail = request.form['email']
+        password = request.form['password']
+
+        # Check if username or email already exists
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM signup WHERE username = %s OR mail = %s", (username, mail))
+        existing_user = cursor.fetchone()
+        
+        if existing_user:
+            return jsonify({'success': False, 'message': 'Username or Email already exists!'})
+
+        # Hash password and save the new user
+        # hashed_password = generate_password_hash(password, method='sha256')
+        cursor.execute("INSERT INTO signup (username, mail, password) VALUES (%s, %s, %s)", (username, mail, password))
+        mysql.connection.commit()
+
+        cursor.close()
+
+        return jsonify({'success': True, 'message': 'Registration successful! Please log in.'})
+
+    return render_template('signup.html')
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM signup WHERE username = %s", (username,))
+        user = cursor.fetchone()
+        if not user or user[2] != password:  # Assuming user[2] is password
+            return jsonify({'success': False, 'message': 'Invalid username or password.'})
+        cursor.close()
+        session['username'] = username
+        print(username)
+        print(f"Logged in as: {session.get('username')}")
+        return redirect(url_for('index'))  # This should redirect to index
+    return render_template('signup.html')
+
+
+# @app.route('/signup_login', methods=['GET', 'POST'])
+# def signup_login():
+#     if request.method == 'POST':
+#         # Check if it's a signup or login attempt by checking which form field is present
+#         if 'signup' in request.form:  # This indicates the signup form was submitted
+#             username = request.form['username']
+#             mail = request.form['email']
+#             password = request.form['password']
+
+#             # Check if username or email already exists
+#             cursor = mysql.connection.cursor()
+#             cursor.execute("SELECT * FROM signup WHERE username = %s OR mail = %s", (username, mail))
+#             existing_user = cursor.fetchone()
+
+#             if existing_user:
+#                 return jsonify({'success': False, 'message': 'Username or Email already exists!'})
+
+#             # Insert the new user into the database
+#             cursor.execute("INSERT INTO signup (username, mail, password) VALUES (%s, %s, %s)", (username, mail, password))
+#             mysql.connection.commit()
+
+#             cursor.close()
+
+#             return jsonify({'success': True, 'message': 'Registration successful! Please log in.'})
+
+#         elif 'login' in request.form:  # This indicates the login form was submitted
+#             username = request.form['username']
+#             password = request.form['password']
+
+#             # Find the user by username
+#             cursor = mysql.connection.cursor()
+#             cursor.execute("SELECT * FROM signup WHERE username = %s", (username,))
+#             user = cursor.fetchone()
+
+#             if not user or user[2] != password:  # user[2] is assumed to be the password
+#                 return jsonify({'success': False, 'message': 'Invalid username or password.'})
+
+#             cursor.close()
+
+#             # Store the username in session
+#             session['username'] = username  # Set the session variable
+
+#             # Debug: Print the session to verify it's set
+#             print(f"Logged in as: {session.get('username')}")
+
+#             # Redirect to the index page after successful login
+#             return redirect(url_for('index'))
+
+#     # If it's a GET request, render the signup/login page
+#     return render_template('signup.html')
+
+
 
 
 
@@ -122,6 +217,13 @@ def team():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/logout')
+def logout():
+    # Remove the username from the session
+    session.pop('username', None)
+    flash("You have been logged out.", "info")
+    return redirect(url_for('index'))
 
 
 def toggle_favorite(hospital_id, action):
@@ -172,6 +274,15 @@ def remove_favourite():
     return jsonify({'success': True})
 
 
+@app.route('/header')
+def header():
+    return render_template('header.html')
+
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
+
 
 @app.route('/favourite')
 def favourite():
@@ -186,7 +297,7 @@ def favourite():
             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
             FROM favourites f 
             JOIN hospitals h ON f.hospital_id = h.hospital_id
-            WHERE f.username = %s
+            WHERE f.username = %s 
         """, (username,))
         favourite_hospitals = cur.fetchall()
         cur.close()

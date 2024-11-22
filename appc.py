@@ -7,7 +7,7 @@ import os
 from werkzeug.utils import secure_filename
 
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # MySQL configurations
@@ -564,5 +564,5 @@ def update_profile():
 
 
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(host='0.0.0.0', port=8520, debug=True)
