@@ -403,16 +403,23 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+            .button24 {
+       /* Increase padding for larger clickable area */
+        font-size: 18px;    /* Larger font size for readability */
+        width: 100%;        /* Make buttons take up the full width */
+        margin-bottom: 10px; /* Add spacing between buttons */
+    }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 48%;
+                width: 50% ;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-                margin-bottom: 10px;
+               
             }
+            
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -824,9 +831,10 @@
 
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
-        <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
+       
     
         <div class="btn-group">
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
             <ul id="animalDropdown" class="dropdown-menu-custom" >
                 <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
