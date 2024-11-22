@@ -406,16 +406,23 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+            .button24 {
+       /* Increase padding for larger clickable area */
+        font-size: 18px;    /* Larger font size for readability */
+        width: 100%;        /* Make buttons take up the full width */
+        margin-bottom: 10px; /* Add spacing between buttons */
+    }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 48%;
+                width: 50% ;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-                margin-bottom: 10px;
+               
             }
+            
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -458,48 +465,43 @@
             justify-content: space-between;
         }
 
-        .chat-btn {
-            margin-left: 10px;
-            /* Adds space between the buttons */
-        }
+.chat-btn {
+    margin-left: 10px; /* Adds space between the buttons */
+}
+.dropdown-menu-custom {
+    display: none; /* Hidden by default */
+    position: absolute;
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+    background-color: white; /* Set background to black */
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: auto;
+}
 
-        .dropdown-menu-custom {
-            display: none;
-            /* Hidden by default */
-            position: absolute;
-            margin-top: 5px;
-            list-style: none;
-            padding: 0;
-            background-color: white;
-            /* Set background to black */
-            border: 1px solid #ddd;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            width: auto;
-        }
+.dropdown-menu-custom li {
+    margin: 0;
+}
 
-        .dropdown-menu-custom li {
-            margin: 0;
-        }
+.dropdown-menu-custom .dropdown-item {
+    padding: 10px 20px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black; /* Set text color to white for contrast */
+    width: 100%;
+    border-radius: 10px;
+}
 
-        .dropdown-menu-custom .dropdown-item {
-            padding: 10px 20px;
-            text-align: left;
-            border: none;
-            background: none;
-            cursor: pointer;
-            color: black;
-            /* Set text color to white for contrast */
-            width: 100%;
-            border-radius: 10px;
-        }
+.dropdown-menu-custom .dropdown-item:hover {
+    background-color: #444; /* Slightly lighter black on hover */
+    color: #fff; /* Ensure text stays white on hover */
+}
 
-        .dropdown-menu-custom .dropdown-item:hover {
-            background-color: #444;
-            /* Slightly lighter black on hover */
-            color: #fff;
-            /* Ensure text stays white on hover */
-        }
+
     </style>
 
 
@@ -516,78 +518,6 @@
         </div>
     </div>
     <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-    <!-- <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>Madhapur</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far  text-primary me-2"></small>
-                    <small></small>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+91 &nbsp; 8341322771</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
-                        href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
-                        href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
-                        target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1"
-                        href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0"
-                        href="https://www.instagram.com/batalkspvtltd/" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <!-- <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" class="nav-item nav-link active">Home</a>
-                <a href="/about_us" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="/team" class="dropdown-item">Our Doctor</a>
-                        <a href="/appointment" class="dropdown-item">Appointment</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="/contact" class="nav-item nav-link">Contact</a>
-                <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a>
-            </div>
-            <a href="/appointment" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-flex">Appointment
-                    </a>
-        </div>
-    </nav> -->
-    <!-- Navbar End -->
-
 
     <!-- Header Start -->
     <div class="container-fluid header bg-primary p-0 mb-5">
@@ -840,16 +770,17 @@
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
         <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
-
+    
         <div class="btn-group">
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li style="color: black;"><button class="button24 dropdown-item"
-                        onclick="filterHospitals('snake')">Snake Bites</button></li>
+            <ul id="animalDropdown" class="dropdown-menu-custom" >
+                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
                 <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
                 <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
+        
     </div>
 
 
@@ -1385,99 +1316,102 @@
             } else {
                 hospitals.forEach(hospital => {
                     const hospitalItem = `
-                    <div class="blog-slider">
-                        <div class="blog-slider__wrp swiper-wrapper">
-                            <div class="blog-slider__item swiper-slide d-flex">
-                                <div class="blog-slider__img col-lg-3">
-                                    <img src="/static/img/apollo.jfif" alt="Hospital Image">
-                                </div>
-                                <div class="blog-slider__content col-lg-3" style="margin-left:20px">
-                                    <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
-                                    <p class="availability-status" style="color: green;">Available Now</p>
-                                    <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
-                                    <p>${hospital.years_since_established} years in healthcare</p>
-                                    <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
-                                    <p>Op price: ₹${hospital.opcard_price}</p>
-                                    <p class="current-op-count">
-                                        <strong>Current OP count:</strong> 
-                                        <span onclick="alert('Please login to see the current OP count.')">**</span>
-                                    </p>
-                                </div>
-                                <div class="button-group col-lg-4 btnt">
-                                    <ul class="btns d-flex" style="list-style-type:none">
-                                            <li >
-                                                <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                                    <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
-                                                    <button type="button" class="btn toggle-favourite" data-hospital-id="${hospital.hospital_id}">
-                                                        <i class="fas fa-heart"></i>
-                                                    </button>
-                                                </form>
-                                            </li>
-                                            <li style="padding-top:10px">
-                                                <a href="#" class="view-card" style="margin-left:10px">View</a>
-                                            </li>
-                                    </ul>
-                                    <div class="callbuttons col-lg-4">
-                                        <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-                                        <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
-                                    </div>
-                                    <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
-                                </div>
+            <div class="blog-slider">
+                <div class="blog-slider__wrp swiper-wrapper">
+                    <div class="blog-slider__item swiper-slide d-flex">
+                        <div class="blog-slider__img col-lg-3">
+                            <img src="/static/img/apollo.jfif" alt="Hospital Image">
+                        </div>
+                        <div class="blog-slider__content col-lg-3" style="margin-left:20px">
+                            <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
+                            <p class="availability-status" style="color: green;">Available Now</p>
+                            <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
+                            <p>${hospital.years_since_established} years in healthcare</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
+                            <p>Op price: ₹${hospital.opcard_price}</p>
+                            <p class="current-op-count">
+                                <strong>Current OP count:</strong> 
+                                <span onclick="alert('Please login to see the current OP count.')">**</span>
+                            </p>
+                        </div>
+                        <div class="button-group col-lg-4 btnt">
+                            <ul class="btns d-flex" style="list-style-type:none">
+                                    <li >
+                                        <form action="/toggle_favourite" method="POST" style="display:inline;">
+                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
+                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li style="padding-top:10px">
+                                        <a href="#" class="view-card" style="margin-left:10px">View</a>
+                                    </li>
+                            </ul>
+                            <div class="callbuttons col-lg-4">
+                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
                             </div>
+                            <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
                         </div>
                     </div>
-                    <!-- Appointment Modal -->
-                    <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="text-center">
-                                        <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
-                                        <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
-                                    </div>
-                                    <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                              <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                              <label for="firstName">First Name:</label>
-                                              <input type="text" name="firstName" placeholder="First name" class="form-control" required>
-          
-                                              <label for="lastName">Last Name:</label>
-                                              <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
-          
-                                              <label for="number">Phone Number:</label>
-                                              <input type="text" name="number" placeholder="Phone number" class="form-control" required>
-          
-                                              <label for="address">Address:</label>
-                                              <input type="text" name="address" placeholder="Your address" class="form-control" required>
-          
-                                              <label for="reason">Reason for your Appointment:</label>
-                                              <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
-          
-                                              <label for="appointmentDate">Select Date:</label>
-                                              <input type="date" name="appointmentDate" class="form-control" required>
-          
-                                              <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-                                          </form>
-                                         <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                              <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                              <label for="opName">Name on OP Card:</label>
-                                              <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
-          
-                                              <label for="opPhone">Phone Number on OP Card:</label>
-                                              <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
-          
-                                              <label for="opNumber">OP Number:</label>
-                                              <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
-          
-                                              <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-                                          </form>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <!-- Appointment Modal -->
+            <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>`;
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
+                                <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
+                            </div>
+                            <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="firstName">First Name:</label>
+                                      <input type="text" name="firstName" placeholder="First name" class="form-control" required>
+  
+                                      <label for="lastName">Last Name:</label>
+                                      <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
+  
+                                      <label for="number">Phone Number:</label>
+                                      <input type="text" name="number" placeholder="Phone number" class="form-control" required>
+  
+                                      <label for="address">Address:</label>
+                                      <input type="text" name="address" placeholder="Your address" class="form-control" required>
+  
+                                      <label for="reason">Reason for your Appointment:</label>
+                                      <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
+  
+                                      <label for="appointmentDate">Select Date:</label>
+                                      <input type="date" name="appointmentDate" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                                 <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="opName">Name on OP Card:</label>
+                                      <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
+  
+                                      <label for="opPhone">Phone Number on OP Card:</label>
+                                      <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
+  
+                                      <label for="opNumber">OP Number:</label>
+                                      <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            function navigateToNewPage() {
+        window.location.href = "appointments.html"; // Redirect to the new page
+    }
 
                     hospitalList.innerHTML += hospitalItem;
                 });
