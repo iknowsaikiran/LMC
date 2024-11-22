@@ -153,14 +153,7 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
-    
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    
-    <!-- Navbar End -->
+   
 
 
     <!-- Page Header Start -->
@@ -211,7 +204,7 @@
                 
                         <div class="form-container">
                             <h1>Book Your Appointment</h1>
-                            <form id="appointmentForm ">
+                            <form id="appointmentForm " method="POST" action="/appointment">
                                 <!-- First and Last Name -->
                                 <div class="form-group ">
                                     <div class="">
@@ -221,6 +214,10 @@
                                     <div class="">
                                         <label for="lastName">Last Name:</label>
                                         <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" class="form-control" required>
+                                    </div>
+                                    <div class="">
+                                        <label for="email">Mail ID:</label>
+                                        <input type="email" id="email" name="email" placeholder="Enter your mail" class="form-control" required>
                                     </div>
                                 </div>
                     
