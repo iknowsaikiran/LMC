@@ -403,16 +403,23 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+            .button24 {
+       /* Increase padding for larger clickable area */
+        font-size: 18px;    /* Larger font size for readability */
+        width: 100%;        /* Make buttons take up the full width */
+        margin-bottom: 10px; /* Add spacing between buttons */
+    }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 48%;
+                width: 50% ;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-                margin-bottom: 10px;
+               
             }
+            
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -450,6 +457,38 @@
 
 .chat-btn {
     margin-left: 10px; /* Adds space between the buttons */
+}
+.dropdown-menu-custom {
+    display: none; /* Hidden by default */
+    position: absolute;
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+    background-color: white; /* Set background to black */
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: auto;
+}
+
+.dropdown-menu-custom li {
+    margin: 0;
+}
+
+.dropdown-menu-custom .dropdown-item {
+    padding: 10px 20px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black; /* Set text color to white for contrast */
+    width: 100%;
+    border-radius: 10px;
+}
+
+.dropdown-menu-custom .dropdown-item:hover {
+    background-color: #444; /* Slightly lighter black on hover */
+    color: #fff; /* Ensure text stays white on hover */
 }
 
 
@@ -719,11 +758,21 @@
     </div>
 
     <!--24/7 buttons-->
-    <div class=" mb-3 text-center mt-3">
-        <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('8to8')">Snake Bites</button>
-        <button class=" button24" onclick="filterHospitals('all')">Rat Bites</button>
-        <button class=" button24" onclick="filterHospitals('all')">Cat Bites</button>
+    <div class="mb-3 text-center mt-3">
+       
+    
+        <div class="btn-group">
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
+            <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
+            <ul id="animalDropdown" class="dropdown-menu-custom" >
+                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+            </ul>
+        </div>
+    </div>
+    
+        
         <!--Hospital Card Start-->
         <!-- <div id="hospitalContainer" style="display: none;">
             <div class="blog-slider hospital" data-timing="247">
@@ -1542,7 +1591,23 @@
             });
         });
     </script>
+    <script>
+        function toggleDropdown() {
+    const dropdown = document.getElementById('animalDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
 
+// Close the dropdown if the user clicks outside
+document.addEventListener('click', function (event) {
+    const dropdown = document.getElementById('animalDropdown');
+    const button = event.target.closest('#animalBitesButton');
+    
+    if (!dropdown.contains(event.target) && !button) {
+        dropdown.style.display = 'none';
+    }
+});
+
+    </script>
 
 
 
