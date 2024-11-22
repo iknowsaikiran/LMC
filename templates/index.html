@@ -458,37 +458,37 @@
 .chat-btn {
     margin-left: 10px; /* Adds space between the buttons */
 }
+/* Styling for the dropdown */
 .dropdown-menu-custom {
-    display: none; /* Hidden by default */
-    position: absolute;
-    margin-top: 5px;
-    list-style: none;
-    padding: 0;
-    background-color: white; /* Set background to black */
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    width: auto;
+    position: absolute; /* Ensure proper placement */
+    display: none; /* Initially hidden */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align to the button's left */
+    background-color: white; /* Professional background */
+    color: black; /* Black text for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 8px; /* Rounded corners for a sleek look */
+    list-style: none; /* Remove bullets */
+    padding: 10px 0; /* Add spacing */
+    z-index: 1000; /* Ensure it appears above other elements */
+    min-width: 150px; /* Maintain a decent width */
 }
 
+/* Styling for dropdown items */
 .dropdown-menu-custom li {
-    margin: 0;
+    padding: 8px 20px; /* Comfortable padding */
+    cursor: pointer; /* Show pointer on hover */
 }
 
-.dropdown-menu-custom .dropdown-item {
-    padding: 10px 20px;
-    text-align: left;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: black; /* Set text color to white for contrast */
-    width: 100%;
-    border-radius: 10px;
+.dropdown-menu-custom li:hover {
+    background-color: #f8f9fa; /* Highlight on hover */
 }
 
-.dropdown-menu-custom .dropdown-item:hover {
-    background-color: #444; /* Slightly lighter black on hover */
-    color: #fff; /* Ensure text stays white on hover */
+/* Responsive styling */
+@media (max-width: 768px) {
+    .dropdown-menu-custom {
+        min-width: 100%; /* Full width in smaller screens */
+    }
 }
 
 
@@ -836,12 +836,13 @@
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom" >
-                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+            <ul id="animalDropdown" class="dropdown-menu-custom">
+                <li><button class=" dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+                <li><button class=" dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
+                <li><button class=" dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
+        
     </div>
     
         
