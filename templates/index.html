@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    
+
 
     <!-- Favicon -->
     <link href="/static/img/favicon.ico" rel="icon">
@@ -35,6 +35,9 @@
     <!-- Template Stylesheet -->
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
 
@@ -102,12 +105,12 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f4f7fa;
             color: #333;
-            
+
         }
 
         .form-wrap {
             margin-top: 50px;
-            margin-bottom:40px;
+            margin-bottom: 40px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 20px;
@@ -147,7 +150,7 @@
         }
 
         .btn-primary {
-            background-color:#512888;
+            background-color: #512888;
             border: none;
             color: white;
             font-weight: 500;
@@ -219,7 +222,7 @@
 
         .btn:hover {
             background: white;
-            color:#512888;
+            color: #512888;
         }
 
         /* Form Styling */
@@ -291,7 +294,8 @@
             flex: 1;
             min-width: 200px;
         }
-        .form-wrap{
+
+        .form-wrap {
             width: 95%;
         }
 
@@ -312,14 +316,15 @@
 
         .button:hover {
             background-color: white;
-            color:#512888;
+            color: #512888;
         }
 
         @media (max-width: 768px) {
             .form-group {
                 flex-direction: column;
             }
-            .form-media{
+
+            .form-media {
                 margin: 10px;
             }
         }
@@ -345,7 +350,7 @@
                 border-radius: 10px;
             }
         }
-        
+
 
         .button24 {
             padding: 10px 20px;
@@ -358,7 +363,7 @@
 
         .button24:hover {
             background: white;
-            color:#512888;
+            color: #512888;
         }
 
         #hospitalContainer {
@@ -368,11 +373,15 @@
         .showallbutton {
             border-radius: 10px;
         }
+
         .showallbutton:hover {
             background-color: #fff;
-            color:#512888;
+            color: #512888;
         }
-        
+        .button24{
+            margin-left: 10px;
+        }
+
 
         .modal-form label {
             display: block;
@@ -403,23 +412,27 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+
             .button24 {
-       /* Increase padding for larger clickable area */
-        font-size: 18px;    /* Larger font size for readability */
-        width: 100%;        /* Make buttons take up the full width */
-        margin-bottom: 10px; /* Add spacing between buttons */
-    }
+                /* Increase padding for larger clickable area */
+                font-size: 18px;
+                /* Larger font size for readability */
+                width: 100%;
+                /* Make buttons take up the full width */
+                margin-bottom: 10px;
+                /* Add spacing between buttons */
+            }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 50% ;
+                width: 50%;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-               
+
             }
-            
+
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -430,30 +443,37 @@
             }
         }
 
-/* For small screens (Mobile devices) */
-@media (max-width: 768px) {
-    .mobilecard {
-        padding-left: 30px;
-    }
-    .button-group{
-        margin-left: 10px;
-    }
-}
-@media (max-width: 768px){
-    .callbuttons {
-        display: flex; /* Ensures buttons are in a row */
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .chat-btn {
-        margin-left: 10px; /* Adds space between the buttons */
-    }
-}
-.callbuttons {
-    display: flex; /* Ensures buttons are in a row */
-    flex-direction: row;
-    justify-content: space-between;
-}
+        /* For small screens (Mobile devices) */
+        @media (max-width: 768px) {
+            .mobilecard {
+                padding-left: 30px;
+            }
+
+            .button-group {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .callbuttons {
+                display: flex;
+                /* Ensures buttons are in a row */
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .chat-btn {
+                margin-left: 10px;
+                /* Adds space between the buttons */
+            }
+        }
+
+        .callbuttons {
+            display: flex;
+            /* Ensures buttons are in a row */
+            flex-direction: row;
+            justify-content: space-between;
+        }
 
 .chat-btn {
     margin-left: 10px; /* Adds space between the buttons */
@@ -499,7 +519,7 @@
 </head>
 
 <body>
-    
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -563,19 +583,19 @@
 
 
     <!-- About Start -->
-    <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form" >
+    <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form">
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
             <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
-                <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" name="search" id="search-input"
-                    placeholder="Search Hospitals near your location">
+                <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" name="search"
+                    id="search-input" placeholder="Search Hospitals near your location">
             </div>
 
             <!-- Location Detection -->
             <div class="col-lg-3 col-md-4 col-sm-6 form-cols">
                 <div class="input-group">
-                    <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" id="location-input"
-                        placeholder="Detecting location..." readonly>
+                    <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media"
+                        id="location-input" placeholder="Detecting location..." readonly>
                     <!-- <span class="input-group-text location-icon" onclick="getLocation()">
                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
                     </span> -->
@@ -764,18 +784,18 @@
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li><button class=" dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
-                <li><button class=" dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
-                <li><button class=" dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+            <ul id="animalDropdown" class="dropdown-menu-custom" >
+                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
-        
+
     </div>
-    
-        
-        <!--Hospital Card Start-->
-        <!-- <div id="hospitalContainer" style="display: none;">
+
+
+    <!--Hospital Card Start-->
+    <!-- <div id="hospitalContainer" style="display: none;">
             <div class="blog-slider hospital" data-timing="247">
                 {% if hospitals %}
                 <div class="blog-slider">
@@ -873,7 +893,8 @@
                         <!-- Hospitals will be dynamically inserted here -->
                     </div>
 
-                    <a class="text-uppercase text-align-center loadmore-btn mx-auto d-block" href="#">Load More hospitals</a>
+                    <a class="text-uppercase text-align-center loadmore-btn mx-auto d-block" href="#">Load More
+                        hospitals</a>
                 </div>
             </div>
         </div>
@@ -938,7 +959,7 @@
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
                             <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
                         </a>
-                      
+
                     </div>
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
@@ -971,7 +992,7 @@
 
     <!-- Back to Top -->
     <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i -->
-            <!-- class="bi bi-arrow-up"></i></a> -->
+    <!-- class="bi bi-arrow-up"></i></a> -->
 
 
     <!-- JavaScript Libraries -->
@@ -1089,7 +1110,7 @@
             }
         }
     </script>
-
+    <!-- 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const favoriteButtons = document.querySelectorAll('.toggle-favourite');
@@ -1143,7 +1164,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
     <script>
         if (type === "new") {
             newPatientForm.style.display = "block";
@@ -1294,7 +1315,8 @@
                 }
             }
         }
-
+    </script>
+    <script>
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
@@ -1327,7 +1349,7 @@
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class=" toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
                                             </button>
                                         </form>
@@ -1397,9 +1419,9 @@
                     </div>
                 </div>
             </div>`;
-            function navigateToNewPage() {
-        window.location.href = "appointments.html"; // Redirect to the new page
-    }
+                    function navigateToNewPage() {
+                        window.location.href = "appointments.html"; // Redirect to the new page
+                    }
 
                     hospitalList.innerHTML += hospitalItem;
                 });
@@ -1416,13 +1438,47 @@
                 hospitalList.addEventListener('click', function (event) {
                     const target = event.target;
                     const hospitalId = target.dataset.hospitalId;
+
                     if (target.classList.contains('new-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
                     }
+
                     if (target.classList.contains('existing-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                    }
+
+                    // Handle favorite button click using event delegation
+                    if (target.classList.contains('toggle-favourite')) {
+                        event.preventDefault();
+                        const hospitalId = target.dataset.hospitalId;
+                        const heartIcon = target.querySelector('.fas.fa-heart');
+                        const isActive = heartIcon.classList.contains('active');
+                        const action = isActive ? 'remove' : 'add';
+
+                        const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                        fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({ 'hospital_id': hospitalId })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    heartIcon.classList.toggle('active');
+                                    heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
+                                    target.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                                } else {
+                                    console.error("Error toggling favorite:", data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Fetch operation error:", error);
+                            });
                     }
                 });
             }
@@ -1538,75 +1594,97 @@
     </script>
 
     <!--Favourites-->
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            displayHospitals(hospitals); // Call this to initialize with available hospitals
+            // Select all favorite buttons by their IDs
             const favoriteButtons = document.querySelectorAll('.toggle-favourite');
 
             favoriteButtons.forEach(button => {
                 button.addEventListener('click', function (event) {
+                    // Debugging to ensure the event listener is attached
+                    console.log("Favorite button clicked.");
+
                     event.preventDefault(); // Prevent default form submission
+                    console.log("Default form submission prevented.");
 
                     const form = this.closest('form'); // Get the form element
+                    if (!form) {
+                        console.error("Form not found for the favorite button.");
+                        return;
+                    }
+
                     const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                    console.log("Hospital ID:", hospitalId);
+
                     const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                    if (!heartIcon) {
+                        console.error("Heart icon not found.");
+                        return;
+                    }
+
                     const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                    console.log("Heart icon active state:", isActive);
+
                     const action = isActive ? 'remove' : 'add'; // Determine action
+                    console.log("Action to perform:", action);
 
                     const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                    // Debugging the endpoint and data being sent
+                    console.log("Endpoint:", endpoint);
 
                     fetch(endpoint, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
-                        body: new URLSearchParams({
-                            'hospital_id': hospitalId
-                        })
+                        body: new URLSearchParams({ 'hospital_id': hospitalId })
                     })
                         .then(response => {
+                            console.log("Fetch response:", response); // Debug the fetch response
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
                             }
                             return response.json();
                         })
                         .then(data => {
+                            console.log("Response data:", data); // Debug the data received from the server
                             if (data.success) {
                                 heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
                                 // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
+                                heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
+                                this.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                                console.log("Heart icon state toggled successfully.");
                             } else {
-                                console.error('Error toggling favorite:', data.message);
+                                console.error("Error toggling favorite:", data.message);
                             }
                         })
                         .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
+                            console.error("Fetch operation error:", error); // Debug fetch errors
                         });
                 });
             });
         });
+
     </script>
     <script>
         function toggleDropdown() {
-    const dropdown = document.getElementById('animalDropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
+            const dropdown = document.getElementById('animalDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
 
-// Close the dropdown if the user clicks outside
-document.addEventListener('click', function (event) {
-    const dropdown = document.getElementById('animalDropdown');
-    const button = event.target.closest('#animalBitesButton');
-    
-    if (!dropdown.contains(event.target) && !button) {
-        dropdown.style.display = 'none';
-    }
-});
+        // Close the dropdown if the user clicks outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('animalDropdown');
+            const button = event.target.closest('#animalBitesButton');
+
+            if (!dropdown.contains(event.target) && !button) {
+                dropdown.style.display = 'none';
+            }
+        });
 
     </script>
 
