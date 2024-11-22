@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -329,7 +329,7 @@ def service():
 def favourite():
     if 'username' not in session:
         flash("Please log in to view your favorites.", "info")
-        return redirect(url_for('signuplogin'))
+        return redirect(url_for('signup'))
 
     username = session['username']
     try:
