@@ -8,8 +8,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
-
     <!-- Favicon -->
     <link href="/static/img/favicon.ico" rel="icon">
 
@@ -476,47 +474,69 @@
             justify-content: space-between;
         }
 
-.chat-btn {
-    margin-left: 10px; /* Adds space between the buttons */
-}
-/* Styling for the dropdown */
-.dropdown-menu-custom {
-    position: absolute; /* Ensure proper placement */
-    display: none; /* Initially hidden */
-    top: 100%; /* Position below the button */
-    left: 0; /* Align to the button's left */
-    background-color: white; /* Professional background */
-    color: black; /* Black text for readability */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    border-radius: 8px; /* Rounded corners for a sleek look */
-    list-style: none; /* Remove bullets */
-    padding: 10px 0; /* Add spacing */
-    z-index: 1000; /* Ensure it appears above other elements */
-    min-width: 150px; /* Maintain a decent width */
-}
+        .chat-btn {
+            margin-left: 10px;
+            /* Adds space between the buttons */
+        }
 
-/* Styling for dropdown items */
-.dropdown-menu-custom li {
-    padding: 8px 20px; /* Comfortable padding */
-    cursor: pointer; /* Show pointer on hover */
-}
+        /* Styling for the dropdown */
+        .dropdown-menu-custom {
+            position: absolute;
+            /* Ensure proper placement */
+            display: none;
+            /* Initially hidden */
+            top: 100%;
+            /* Position below the button */
+            left: 0;
+            /* Align to the button's left */
+            background-color: white;
+            /* Professional background */
+            color: black;
+            /* Black text for readability */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+            border-radius: 8px;
+            /* Rounded corners for a sleek look */
+            list-style: none;
+            /* Remove bullets */
+            padding: 10px 0;
+            /* Add spacing */
+            z-index: 1000;
+            /* Ensure it appears above other elements */
+            min-width: 150px;
+            /* Maintain a decent width */
+        }
 
-.dropdown-menu-custom li:hover {
-    background-color: #f8f9fa; /* Highlight on hover */
-}
+        .dropdown-menu-custom li:hover {
+            background-color: #f8f9fa;
+            /* Highlight on hover */
+        }
 
-/* Responsive styling */
-@media (max-width: 768px) {
-    .dropdown-menu-custom {
-        min-width: 100%; /* Full width in smaller screens */
-    }
-}
-.ambulance{
-    border-radius: 7px;
-    margin-left:10px
-}
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .dropdown-menu-custom {
+                min-width: 100%;
+                /* Full width in smaller screens */
+            }
+        }
 
+        .ambulance {
+            border-radius: 7px;
+            margin-left: 10px
+        }
 
+        .dropdown-menu-custom li:hover {
+            background-color: #f8f9fa;
+            /* Highlight on hover */
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .dropdown-menu-custom {
+                min-width: 100%;
+                /* Full width in smaller screens */
+            }
+        }
     </style>
 
 
@@ -782,23 +802,25 @@
         <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
         <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
             Ambulance Services
-          </button>
-          <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel" aria-hidden="true">
+        </button>
+        <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>We are trying very hard to get you the best ambulance services. Please wait while we connect
+                            you to a provider.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>We are trying very hard to get you the best ambulance services. Please wait while we connect you to a provider.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
 
     <!--24/7 buttons-->
@@ -808,13 +830,14 @@
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom" >
-                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+            <ul id="animalDropdown" class="dropdown-menu-custom">
+                <li style="color: black;"><button class="button24 dropdown-item"
+                        onclick="filterHospitals('snake')">Snake Bites</button></li>
                 <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
                 <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
             </ul>
         </div>
-          
+
     </div>
 
 
@@ -920,19 +943,9 @@
             </div>
         </div>
     </footer>
-
-
-
-
-
-
-
-
     <!-- Back to Top -->
     <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i -->
     <!-- class="bi bi-arrow-up"></i></a> -->
-
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1022,7 +1035,7 @@
         });
 
     </script>
-     <script> 
+    <script>
         function openModal() {
             document.getElementById("customModal").style.display = "flex";
         }
@@ -1103,20 +1116,6 @@
             });
         });
     </script> -->
-    <script>
-        if (type === "new") {
-            newPatientForm.style.display = "block";
-            existingPatientForm.style.display = "none";
-        } else if (type === "existing") {
-            newPatientForm.style.display = "none";
-            existingPatientForm.style.display = "block";
-        } else {
-            newPatientForm.style.display = "none";
-            existingPatientForm.style.display = "none";
-        }
-
-
-    </script>
     <script>
         document.getElementById("appointmentForm").addEventListener("submit", function (event) {
             event.preventDefault();
@@ -1637,11 +1636,29 @@
                         alert('This feature is coming soon.');
                     });
                 });
+
             }
         }
 
-        // OnClick function to toggle between add/remove from favorites
 
+
+        // Toggle between New Patient and Existing Patient forms in the modal
+        hospitalList.addEventListener('click', function (event) {
+            const target = event.target;
+            const hospitalId = target.dataset.hospitalId;
+
+            if (target.classList.contains('new-patient-btn')) {
+                document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
+                document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
+            }
+
+            if (target.classList.contains('existing-patient-btn')) {
+                document.getElementById('newPatientForm${hospitalId}').style.display = 'none';
+                document.getElementById('existingPatientForm${hospitalId}').style.display = 'block';
+            }
+        });
+
+        // OnClick function to toggle between add/remove from favorites
         function toggleFavourite(hospitalId, button) {
             const heartIcon = button.querySelector('.fas.fa-heart');
             const isActive = heartIcon.classList.contains('active');
@@ -1673,32 +1690,25 @@
         document.addEventListener("DOMContentLoaded", function () {
             displayHospitals(hospitals); // Call this to initialize with available hospitals
         });
-
-
-
     </script>
 
     <!--fav-->
     <script>
-   function toggleDropdown() {
-    const dropdown = document.getElementById('animalDropdown');
-    dropdown.classList.toggle('show');
-}
+        function toggleDropdown() {
+            const dropdown = document.getElementById('animalDropdown');
+            dropdown.classList.toggle('show');
+        }
 
-// Close dropdown if clicked outside
-document.addEventListener('click', (event) => {
-    const dropdown = document.getElementById('animalDropdown');
-    const button = document.getElementById('animalBitesButton');
+        // Close dropdown if clicked outside
+        document.addEventListener('click', (event) => {
+            const dropdown = document.getElementById('animalDropdown');
+            const button = document.getElementById('animalBitesButton');
 
-    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-        dropdown.classList.remove('show');
-    }
-});
-</script>
-
-
-
-
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 
 </html>

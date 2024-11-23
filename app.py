@@ -113,6 +113,12 @@ def index():
 def about_us():
     return render_template('about.html')
 
+
+
+
+
+
+# @app.route('/appointment', methods=['GET', 'POST'])
 @app.route('/appointment')
 def appointment():
     return render_template('appointment.html') 
