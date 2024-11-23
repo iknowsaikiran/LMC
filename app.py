@@ -304,6 +304,10 @@ def header():
 def service():
     return render_template('service.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboardindex.html')
+
 
 
 @app.route('/favourite')
