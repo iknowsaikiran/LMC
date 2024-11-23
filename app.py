@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, json, jsonify
 from flask_mysqldb import MySQL
 from math import radians, cos, sin, asin, sqrt
-from flask_mysqldb import MySQL
 import logging
 import os
 from werkzeug.utils import secure_filename
@@ -13,7 +12,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'root123'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -329,7 +328,7 @@ def service():
 def favourite():
     if 'username' not in session:
         flash("Please log in to view your favorites.", "info")
-        return redirect(url_for('signuplogin'))
+        return redirect(url_for('signup'))
 
     username = session['username']
     try:
