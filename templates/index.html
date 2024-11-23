@@ -1346,7 +1346,7 @@
                                     <div class="modal-body">
                                         <div class="text-center">
                                             <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
-                                            <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="toggleForm('existing')">Already a Patient</button>
+                                            <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
                                         </div>
                                         <!-- New Patient Form -->
                                         <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
