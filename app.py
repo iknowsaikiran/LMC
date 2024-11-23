@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root123'
+app.config['MYSQL_PASSWORD'] = '1210'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -331,7 +331,7 @@ def favourite():
         flash(f"An error occurred: {e}", "error")
         favourite_hospitals = []
 
-    return render_template('favourite.html', hospitals=favourite_hospitals)
+    return render_template('favourite.html', hospitals=favourite_hospitals)-
 
 
 #####################################################################################
