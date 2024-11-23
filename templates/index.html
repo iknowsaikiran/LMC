@@ -378,7 +378,8 @@
             background-color: #fff;
             color: #512888;
         }
-        .button24{
+
+        .button24 {
             margin-left: 10px;
         }
 
@@ -479,70 +480,35 @@
     margin-left: 10px; /* Adds space between the buttons */
 }
 /* Styling for the dropdown */
-/* General button style */
-.button24 {
-    background-color: #512888;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 7px;
-}
-
-.button24:hover {
-    background-color: white;
-}
-
-/* Dropdown menu styling */
 .dropdown-menu-custom {
+    position: absolute; /* Ensure proper placement */
     display: none; /* Initially hidden */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    padding: 5px 0;
-    z-index: 1000;
+    top: 100%; /* Position below the button */
+    left: 0; /* Align to the button's left */
+    background-color: white; /* Professional background */
+    color: black; /* Black text for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 8px; /* Rounded corners for a sleek look */
+    list-style: none; /* Remove bullets */
+    padding: 10px 0; /* Add spacing */
+    z-index: 1000; /* Ensure it appears above other elements */
+    min-width: 150px; /* Maintain a decent width */
 }
 
-/* Individual dropdown items */
+/* Styling for dropdown items */
 .dropdown-menu-custom li {
-    list-style: none;
+    padding: 8px 20px; /* Comfortable padding */
+    cursor: pointer; /* Show pointer on hover */
 }
 
-.dropdown-menu-custom a {
-    display: block;
-    padding: 10px 15px;
-    color: #333;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.dropdown-menu-custom li:hover {
+    background-color: #f8f9fa; /* Highlight on hover */
 }
 
-.dropdown-menu-custom a:hover {
-    background-color: #f8f9fa;
-    color: #512888;
-}
-
-/* Active dropdown menu */
-.dropdown-menu-custom.show {
-    display: block;
-}
-
-/* Ensure dropdown is responsive */
+/* Responsive styling */
 @media (max-width: 768px) {
-    .button24 {
-        width: 100%;
-        text-align: left;
-    }
     .dropdown-menu-custom {
-        min-width: 100%;
+        min-width: 100%; /* Full width in smaller screens */
     }
 }
 .ambulance{
@@ -837,27 +803,22 @@
 
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
-       
-    
+
+
         <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
-            
-                <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-                <ul id="animalDropdown" class="dropdown-menu-custom">
-                    <li><a href="#" class="dropdown-item" onclick="filterHospitals('snake')">Snake Bites</a></li>
-                    <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
-                    <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
-                </ul>
-            
-            
-            
-                
+            <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
+            <ul id="animalDropdown" class="dropdown-menu-custom" >
+                <li style="color: black;"><button class="button24 dropdown-item" onclick="filterHospitals('snake')">Snake Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
+                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+            </ul>
         </div>
           
     </div>
 
 
-    
+
     </div>
 
     <!--based on the location-->
@@ -1086,7 +1047,7 @@
                 existingPatientForm.style.display = "none";
             }
         }
-     </script>
+    </script>
     <!-- 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -1293,7 +1254,7 @@
             }
         }
     </script>
-   
+
     <script>
         //document.getElementById('showbtn').addEventListener('click', function () {
         //	var hiddenCategories = document.getElementById('category-2');
@@ -1408,7 +1369,7 @@
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
-        
+
             if (!hospitals || hospitals.length === 0) {
                 hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
             } else {
@@ -1427,21 +1388,18 @@
                                         <p>${hospital.years_since_established} years in healthcare</p>
                                         <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
                                         <p>Op price: ₹${hospital.opcard_price}</p>
-                                        <p class="current-op-count">
-                                            <strong>Current OP count:</strong> 
-                                            <span onclick="alert('Please login to see the current OP count.')">**</span>
-                                        </p>
                                     </div>
                                     <div class="button-group col-lg-4 btnt">
                                         <ul class="btns d-flex" style="list-style-type:none">
                                             <li>
                                                 <form action="/toggle_favourite" method="POST" class="favourite-form" style="display:inline;">
                                                     <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
-                                                    <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
-                                                        <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
+                                                    <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favourite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                        <i class="fas fa-heart ${hospital.is_favourite ? 'active' : ''}" style="color: ${hospital.is_favourite ? 'red' : 'gray'};"></i>
                                                     </button>
                                                 </form>
                                             </li>
+    
                                             <li style="padding-top:10px">
                                                 <a href="#" class="view-card" style="margin-left:10px">View</a>
                                             </li>
@@ -1500,10 +1458,10 @@
                                 </div>
                             </div>
                         </div>`;
-        
+
                     hospitalList.innerHTML += hospitalItem;
                 });
-        
+
                 // Add event listeners for Call and Chat buttons to display "coming soon" modals
                 document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
@@ -1513,18 +1471,19 @@
                 });
             }
         }
-        
+
         // OnClick function to toggle between add/remove from favorites
+
         function toggleFavourite(hospitalId, button) {
             const heartIcon = button.querySelector('.fas.fa-heart');
             const isActive = heartIcon.classList.contains('active');
             const action = isActive ? 'remove' : 'add';
             const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-        
+
             fetch(endpoint, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({ 'hospital_id': hospitalId })
             })
@@ -1542,13 +1501,15 @@
                     console.error("Fetch operation error:", error);
                 });
         }
-        
+
         document.addEventListener("DOMContentLoaded", function () {
             displayHospitals(hospitals); // Call this to initialize with available hospitals
         });
-        
+
+
+
     </script>
-    
+
     <!--fav-->
     <script>
    function toggleDropdown() {
