@@ -222,14 +222,14 @@
         <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="/" class="nav-item nav-link active">Home</a>
                 <a href="/about_us" class="nav-item nav-link">About</a>
-                <!-- <a href="/service" class="nav-item nav-link">Service</a> -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
@@ -246,8 +246,6 @@
                 <a href="/register" class="nav-item nav-link">Register for free</a>
                 <a href="/logout" class="nav-item nav-link">LOGOUT</a>
             </div>
-            <!-- <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i -->
-            <!-- class="fa fa-arrow-right ms-3"></i></a> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -349,22 +347,35 @@
 
 
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-            const currentPath = window.location.pathname;
+   <script>
+    // Ensure dropdown works on both hover and click
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdown = document.querySelector('.nav-item.dropdown');
+        const dropdownToggle = document.querySelector('#pagesDropdown');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
-            navLinks.forEach(link => {
-                // Remove 'active' from all links
-                link.classList.remove("active");
-
-                // Add 'active' to the matching link
-                if (link.getAttribute("href") === currentPath) {
-                    link.classList.add("active");
-                }
-            });
+        dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
         });
-    </script>
+
+        // Close dropdown on clicking outside
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+
+    // Navbar collapse toggle fix for mobile
+    document.addEventListener('click', function (e) {
+        const navbarCollapse = document.getElementById('navbarCollapse');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+            navbarCollapse.classList.remove('show');
+        }
+    });
+</script>
 
 </body>
 
