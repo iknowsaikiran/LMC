@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, json, jsonify
 from flask_mysqldb import MySQL
 from math import radians, cos, sin, asin, sqrt
+from flask_mysqldb import MySQL
 import logging
 import os
 from werkzeug.utils import secure_filename
@@ -112,76 +113,9 @@ def index():
 def about_us():
     return render_template('about.html')
 
-
-
-@app.route('/appointment', methods=['GET', 'POST'])
+@app.route('/appointment')
 def appointment():
-    if request.method == 'POST':
-        # Get form data
-        first_name = request.form.get('firstName')
-        last_name = request.form.get('lastName')        
-        email = request.form.get('email')
-        phone_number = request.form.get('number')
-        gender = request.form.get('gender')
-        #choose_doctor = request.form.get('choose_doctor')
-        department = request.form.get('department')
-        appointment_date = request.form.get('appointmentDate')
-        appointment_time = request.form.get('appointmentTime')
-        purpose = request.form.get('comments')
-        
-        # Validate form inputs
-        if not first_name or not email or not phone_number:
-            flash("All fields are required!")
-            return redirect(url_for('appointment'))
-        # Insert into database
-        try:
-            cur = mysql.connection.cursor()
-            cur.execute("""
-                INSERT INTO hospital_appointments 
-                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose))
-            mysql.connection.commit()
-            flash("Appointment successfully booked!")
-            cur.close()
-            return redirect(url_for('appointment_success'))            
-        except Exception as e:
-            print(f"Error occurred: {e}")
-            mysql.connection.rollback()
-            flash(f"An error occurred: {e}", "error")
-            return render_template('appointment.html')
-
     return render_template('appointment.html') 
-
-
-
-# @app.route('/bookappointment', methods=['GET', 'POST'])
-# def appointment():
-#     if request.method == 'POST':
-      
-#         # Insert into database
-#         try:
-#             conn = mysql.connector.connect(**db_config)
-#             cursor = conn.cursor()
-#             query = """
-#                 INSERT INTO hospital_appointments 
-#                 (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem) 
-#                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-#             """
-#             values = (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem)
-#             cursor.execute(query, values)
-#             conn.commit()
-#             flash("Appointment successfully booked!")
-#             return redirect(url_for('appointment_success'))
-#         except mysql.connector.Error as err:
-#             flash(f"Database Error: {err}")
-#             return render_template('error.html', message="Unable to book your appointment. Please try again later.")
-#         finally:
-#             if conn.is_connected():
-#                 cursor.close()
-#                 conn.close()
-
-#     return render_template('appointment.html')
 
 # @app.route('/signup', methods=['GET','POST'])
 # def signup():
@@ -233,33 +167,59 @@ def login():
     return render_template('signup.html')
 
 
+# @app.route('/signup_login', methods=['GET', 'POST'])
+# def signup_login():
+#     if request.method == 'POST':
+#         # Check if it's a signup or login attempt by checking which form field is present
+#         if 'signup' in request.form:  # This indicates the signup form was submitted
+#             username = request.form['username']
+#             mail = request.form['email']
+#             password = request.form['password']
+
+#             # Check if username or email already exists
+#             cursor = mysql.connection.cursor()
+#             cursor.execute("SELECT * FROM signup WHERE username = %s OR mail = %s", (username, mail))
+#             existing_user = cursor.fetchone()
+
+#             if existing_user:
+#                 return jsonify({'success': False, 'message': 'Username or Email already exists!'})
+
+#             # Insert the new user into the database
+#             cursor.execute("INSERT INTO signup (username, mail, password) VALUES (%s, %s, %s)", (username, mail, password))
+#             mysql.connection.commit()
+
+#             cursor.close()
+
+#             return jsonify({'success': True, 'message': 'Registration successful! Please log in.'})
+
+#         elif 'login' in request.form:  # This indicates the login form was submitted
+#             username = request.form['username']
+#             password = request.form['password']
+
+#             # Find the user by username
+#             cursor = mysql.connection.cursor()
+#             cursor.execute("SELECT * FROM signup WHERE username = %s", (username,))
+#             user = cursor.fetchone()
+
+#             if not user or user[2] != password:  # user[2] is assumed to be the password
+#                 return jsonify({'success': False, 'message': 'Invalid username or password.'})
+
+#             cursor.close()
+
+#             # Store the username in session
+#             session['username'] = username  # Set the session variable
+
+#             # Debug: Print the session to verify it's set
+#             print(f"Logged in as: {session.get('username')}")
+
+#             # Redirect to the index page after successful login
+#             return redirect(url_for('index'))
+
+#     # If it's a GET request, render the signup/login page
+#     return render_template('signup.html')
 
 
-##################################################################
 
-@app.route('/category')
-def category():
-    category_type = request.args.get('type')
-    
-    if category_type is None:
-        return render_template('category.html', hospitals=[])
-    
-    username = session.get('username')
-    
-    # Fetch hospitals and check if they're favorites for the logged-in user
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
-               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-        FROM hospitals h
-        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-        WHERE h.category = %s
-    """, (username, category_type))
-    
-    hospitals = cur.fetchall()
-    cur.close()
-    
-    return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 @app.route('/referafriend')
