@@ -331,7 +331,7 @@ def favourite():
         flash(f"An error occurred: {e}", "error")
         favourite_hospitals = []
 
-    return render_template('favourite.html', hospitals=favourite_hospitals)-
+    return render_template('favourite.html', hospitals=favourite_hospitals)
 
 
 #####################################################################################
