@@ -1394,26 +1394,29 @@
                         alert('This feature is coming soon.');
                     });
                 });
-                // Toggle between New Patient and Existing Patient forms in the modal
-                hospitalList.addEventListener('click', function (event) {
-                    const target = event.target;
-                    const hospitalId = target.dataset.hospitalId;
 
-                    if (target.classList.contains('new-patient-btn')) {
-                        document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
-                        document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
-                    }
-
-                    if (target.classList.contains('existing-patient-btn')) {
-                        document.getElementById('newPatientForm${hospitalId}').style.display = 'none';
-                        document.getElementById('existingPatientForm${hospitalId}').style.display = 'block';
-                    }
-                });
             }
         }
 
-        // OnClick function to toggle between add/remove from favorites
+        
+        
+        // Toggle between New Patient and Existing Patient forms in the modal
+        hospitalList.addEventListener('click', function (event) {
+            const target = event.target;
+            const hospitalId = target.dataset.hospitalId;
 
+            if (target.classList.contains('new-patient-btn')) {
+                document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
+                document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
+            }
+
+            if (target.classList.contains('existing-patient-btn')) {
+                document.getElementById('newPatientForm${hospitalId}').style.display = 'none';
+                document.getElementById('existingPatientForm${hospitalId}').style.display = 'block';
+            }
+        });
+
+        // OnClick function to toggle between add/remove from favorites
         function toggleFavourite(hospitalId, button) {
             const heartIcon = button.querySelector('.fas.fa-heart');
             const isActive = heartIcon.classList.contains('active');
