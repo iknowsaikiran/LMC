@@ -545,6 +545,10 @@
         min-width: 100%;
     }
 }
+.ambulance{
+    border-radius: 7px;
+    margin-left:10px
+}
 
 
     </style>
@@ -810,6 +814,25 @@
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
         <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
+        <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
+            Ambulance Services
+          </button>
+          <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>We are trying very hard to get you the best ambulance services. Please wait while we connect you to a provider.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
 
     <!--24/7 buttons-->
@@ -1063,7 +1086,7 @@
                 existingPatientForm.style.display = "none";
             }
         }
-    </script>
+     </script>
     <!-- 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
