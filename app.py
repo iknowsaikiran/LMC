@@ -13,6 +13,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Saty@136'
+
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -60,28 +61,44 @@ def index():
 
         # Debugging: Print the latitude and longitude
         print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
-
-        # Fetch hospital data from the database
+        # Fetch hospital data from the database with favorite status
         cur = mysql.connection.cursor()
-        cur.execute("SELECT hospital_id, hospital_name, timings, years_since_established, opcard_price, latitude, longitude FROM hospitals")
+        cur.execute("""
+            SELECT 
+                h.hospital_id, 
+                h.hospital_name, 
+                h.timings, 
+                h.years_since_established, 
+                h.opcard_price, 
+                h.latitude, 
+                h.longitude, 
+                CASE 
+                    WHEN f.username IS NOT NULL THEN TRUE 
+                    ELSE FALSE 
+                END AS is_favorite
+            FROM hospitals h
+            LEFT JOIN favourites f 
+            ON h.hospital_id = f.hospital_id AND f.username = %s
+        """, (username,))
         hospitals = cur.fetchall()
         cur.close()
-
-        print("Fetched hospitals from database:", hospitals)  # Debugging
 
         # Compute nearby hospitals
         nearby_hospitals = []
         for hospital in hospitals:
-            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon = hospital
+        
+            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favourite = hospital
             distance = haversine(user_latitude, user_longitude, lat, lon)
             if distance <= 5:  # Check if the hospital is within 5 km
                 nearby_hospitals.append({
+                    
                     'hospital_id': hospital_id,
                     'hospital_name': hospital_name,
                     'timings': timings,
                     'years_since_established': years_since_established,
                     'opcard_price': opcard_price,
-                    'distance': round(distance, 2)  # Round distance to 2 decimal places
+                    'distance': round(distance, 2),
+                    'is_favourite': is_favourite # Round distance to 2 decimal places
                 })
 
         print("Nearby hospitals:", nearby_hospitals)  # Debugging
@@ -333,13 +350,22 @@ def favourite():
     username = session['username']
     try:
         cur = mysql.connection.cursor()
-        cur.execute(""" 
-            SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
-            FROM favourites f 
-            JOIN hospitals h ON f.hospital_id = h.hospital_id
-            WHERE f.username = %s 
+        # cur.execute(""" 
+        #     SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
+        #     FROM favourites f 
+        #     JOIN hospitals h ON f.hospital_id = h.hospital_id
+        #     WHERE f.username = %s 
+        # """, (username,))
+        # favourite_hospitals = cur.fetchall()
+        # Inside your /favourite route or where you're fetching hospitals for the user:
+        cur.execute("""
+            SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+                (CASE WHEN f.username IS NOT NULL THEN TRUE ELSE FALSE END) AS is_favorite
+            FROM hospitals h
+            LEFT JOIN favourites f ON f.hospital_id = h.hospital_id AND f.username = %s
         """, (username,))
         favourite_hospitals = cur.fetchall()
+
         cur.close()
     except Exception as e:
         logging.error(f"Error fetching favorites: {e}")
