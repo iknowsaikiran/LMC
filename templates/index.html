@@ -179,7 +179,7 @@
         .custom-modal {
             display: none;
             /* Hidden by default */
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -226,6 +226,7 @@
         /* Form Styling */
         .modal-form {
             margin-top: 20px;
+            
         }
 
         .modal-form label {
@@ -537,6 +538,21 @@
                 /* Full width in smaller screens */
             }
         }
+        .dropdown-menu-custom {
+    display: none;
+    position: absolute;
+    top: 100%; /* Adjust according to placement */
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.dropdown-menu-custom.show {
+    display: block;
+}
+
+
     </style>
 
 
@@ -830,11 +846,11 @@
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
             <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li style="color: black;"><button class="button24 dropdown-item"
-                        onclick="filterHospitals('snake')">Snake Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
             </ul>
+            
         </div>
 
     </div>
@@ -990,7 +1006,7 @@
                 this.textContent = 'Show Less'; // Changes button text
             } else {
                 hiddenCategories.style.display = 'none'; // Hides the categories again
-                this.textContent = 'Show All'; // Resets button text
+                this.textContent = 'Show All Features'; // Resets button text
             }
         });
 
