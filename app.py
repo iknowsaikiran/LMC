@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root123'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -303,6 +303,10 @@ def header():
 @app.route('/service')
 def service():
     return render_template('service.html')
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboardindex.html')
 
 
 
