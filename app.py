@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Navyasree@123'
+app.config['MYSQL_PASSWORD'] = '1210'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -113,10 +113,9 @@ def index():
 def about_us():
     return render_template('about.html')
 
-
-
-
-
+@app.route('/favourites')
+def favourites():
+    return render_template('favourites.html')
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -317,6 +316,10 @@ def header():
 def service():
     return render_template('service.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboardindex.html')
+
 
 
 @app.route('/favourite')
@@ -355,7 +358,7 @@ def favourite():
 
 #####################################################################################
 
-# Set the folder where uploaded images will be saved
+# Set the folder where uploaded images will be savedzzz
 UPLOAD_FOLDER = 'static/uploads/hospitals'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
