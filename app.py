@@ -239,97 +239,97 @@ def category():
 
 
 
-###############################
-@app.route('/category')
-def category():
-    category_type = request.args.get('type')
+# ###############################
+# @app.route('/category')
+# def category():
+#     category_type = request.args.get('type')
     
-    if category_type is None:
-        return render_template('category.html', hospitals=[])
+#     if category_type is None:
+#         return render_template('category.html', hospitals=[])
     
-    username = session.get('username')
+#     username = session.get('username')
     
-    # Fetch hospitals and check if they're favorites for the logged-in user
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
-               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-        FROM hospitals h
-        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-        WHERE h.category = %s
-    """, (username, category_type))
+#     # Fetch hospitals and check if they're favorites for the logged-in user
+#     cur = mysql.connection.cursor()
+#     cur.execute("""
+#         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+#                CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+#         FROM hospitals h
+#         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+#         WHERE h.category = %s
+#     """, (username, category_type))
     
-    hospitals = cur.fetchall()
-    cur.close()
-    if 'username' not in session:
-        return redirect(url_for('login'))  # Redirect to login if not logged in
+#     hospitals = cur.fetchall()
+#     cur.close()
+#     if 'username' not in session:
+#         return redirect(url_for('login'))  # Redirect to login if not logged in
 
-    username = session['username']  # Get the username from the session
-    print(f"Logged in user: {username}")  # Debugging
+#     username = session['username']  # Get the username from the session
+#     print(f"Logged in user: {username}")  # Debugging
 
-    if request.method == 'POST':
-        # Handle POST request (when the geolocation data is sent)
-        data = request.get_json()  # Parse the JSON data
-        print("Received data:", data)  # Debugging to verify received data
+#     if request.method == 'POST':
+#         # Handle POST request (when the geolocation data is sent)
+#         data = request.get_json()  # Parse the JSON data
+#         print("Received data:", data)  # Debugging to verify received data
 
-        user_latitude = float(data.get('latitude'))
-        user_longitude = float(data.get('longitude'))
+#         user_latitude = float(data.get('latitude'))
+#         user_longitude = float(data.get('longitude'))
 
-        # Debugging: Print the latitude and longitude
-        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
-        # Fetch hospital data from the database with favorite status
-        cur = mysql.connection.cursor()
-        cur.execute("""
-            SELECT 
-                h.hospital_id, 
-                h.hospital_name, 
-                h.timings, 
-                h.years_since_established, 
-                h.opcard_price, 
-                h.latitude, 
-                h.longitude, 
-                h.category,
-                CASE 
-                    WHEN f.username IS NOT NULL THEN TRUE 
-                    ELSE FALSE 
-                END AS is_favorite
-            FROM hospitals h
-            LEFT JOIN favourites f 
-            ON h.hospital_id = f.hospital_id AND f.username = %s
-            WHERE h.category = %s
-        """, (username,category_type ))
-        hospitals = cur.fetchall()
-        cur.close()
+#         # Debugging: Print the latitude and longitude
+#         print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
+#         # Fetch hospital data from the database with favorite status
+#         cur = mysql.connection.cursor()
+#         cur.execute("""
+#             SELECT 
+#                 h.hospital_id, 
+#                 h.hospital_name, 
+#                 h.timings, 
+#                 h.years_since_established, 
+#                 h.opcard_price, 
+#                 h.latitude, 
+#                 h.longitude, 
+#                 h.category,
+#                 CASE 
+#                     WHEN f.username IS NOT NULL THEN TRUE 
+#                     ELSE FALSE 
+#                 END AS is_favorite
+#             FROM hospitals h
+#             LEFT JOIN favourites f 
+#             ON h.hospital_id = f.hospital_id AND f.username = %s
+#             WHERE h.category = %s
+#         """, (username,category_type ))
+#         hospitals = cur.fetchall()
+#         cur.close()
 
-        # Compute nearby hospitals
-        nearby_hospitals = []
-        for hospital in hospitals:
+#         # Compute nearby hospitals
+#         nearby_hospitals = []
+#         for hospital in hospitals:
         
-            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, category, is_favourite = hospital
-            distance = haversine(user_latitude, user_longitude, lat, lon)
-            if distance <= 5:  # Check if the hospital is within 5 km
-                nearby_hospitals.append({
+#             hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, category, is_favourite = hospital
+#             distance = haversine(user_latitude, user_longitude, lat, lon)
+#             if distance <= 5:  # Check if the hospital is within 5 km
+#                 nearby_hospitals.append({
                     
-                    'hospital_id': hospital_id,
-                    'hospital_name': hospital_name,
-                    'timings': timings,
-                    'years_since_established': years_since_established,
-                    'opcard_price': opcard_price,
-                    'distance': round(distance, 2),
-                    'is_favourite': is_favourite,
-                     'category': category# Round distance to 2 decimal places
-                })
+#                     'hospital_id': hospital_id,
+#                     'hospital_name': hospital_name,
+#                     'timings': timings,
+#                     'years_since_established': years_since_established,
+#                     'opcard_price': opcard_price,
+#                     'distance': round(distance, 2),
+#                     'is_favourite': is_favourite,
+#                      'category': category# Round distance to 2 decimal places
+#                 })
 
-        print("Nearby hospitals:", nearby_hospitals)  # Debugging
+#         print("Nearby hospitals:", nearby_hospitals)  # Debugging
 
-        # Return nearby hospitals as JSON response
-        return jsonify(nearby_hospitals)
+#         # Return nearby hospitals as JSON response
+#         return jsonify(nearby_hospitals)
 
-    # If GET request (when the page is first loaded)
-    return render_template('category.html', hospitals=[],category=category_type)    
+#     # If GET request (when the page is first loaded)
+#     return render_template('category.html', hospitals=[],category=category_type)    
 
     
-    # return render_template('category.html', hospitals=hospitals, category=category_type)
+#     # return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
