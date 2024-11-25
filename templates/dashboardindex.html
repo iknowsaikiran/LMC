@@ -22,6 +22,142 @@
     <link rel="stylesheet" href="static/assets/dbcss/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="static/assets/dbimages/favicon.png" />
+    <style>
+      footer {
+          font-family: 'Arial', sans-serif;
+      }
+
+      footer .footer-bottom {
+          padding-top: 15px;
+      }
+
+      footer .footer-text {
+          font-size: 14px;
+          line-height: 1.5;
+      }
+
+      footer a {
+          transition: color 0.3s, transform 0.3s;
+      }
+
+      footer a:hover {
+          color: #17a2b8;
+          /* Bootstrap teal */
+          transform: scale(1.1);
+      }
+
+      footer .fa {
+          transition: transform 0.3s ease-in-out;
+      }
+
+      footer .fa:hover {
+          transform: rotate(10deg);
+      }
+
+      footer .d-flex a {
+          font-size: 20px;
+          margin: 0 8px;
+      }
+
+      @media (max-width: 768px) {
+          footer .footer-bottom {
+              text-align: center;
+          }
+
+          footer .col-md-4 {
+              margin-bottom: 15px;
+          }
+      }
+      .containerrefer {
+          max-width: 500px;
+          margin: 50px auto;
+          background: #fff;
+          border-radius: 8px;
+          padding: 20px;
+          /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+          text-align: center;
+      }
+      h1 {
+          font-size: 24px;
+          color: black;
+          margin-bottom: 10px;
+      }
+
+      p {
+          color: #666;
+          margin-bottom: 20px;
+          font-size: 16px;
+      }
+
+      input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 16px;
+      }
+
+      .button1 {
+          width: 100%;
+          padding: 12px;
+          background: #512888;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      .button1:hover {
+          background: #512888;
+      }
+
+     
+
+      .referral-code {
+          font-weight: bold;
+          color: #333;
+          font-size: 20px;
+          margin: 10px 0;
+      }
+
+      .referral-link {
+          background: #f4f4f9;
+          color: #512888;
+          border: 1px dashed #512888;
+          text-align: center;
+          padding: 10px;
+          border-radius: 5px;
+          display: block;
+          text-decoration: none;
+          margin-bottom: 20px;
+      }
+
+      .referral-link:hover {
+          background: #e6f0ff;
+      }
+
+      hr {
+          border: 0.5px solid #ddd;
+          margin: 20px 0;
+      }
+
+      /* Responsive design */
+      @media (max-width: 600px) {
+          h1 {
+              font-size: 20px;
+          }
+
+          button, input {
+              font-size: 14px;
+              padding: 10px;
+          }
+      }
+          
+      
+      
+  </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -115,7 +251,7 @@
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item">
             <i class="ti-settings text-primary"></i> Settings </a>
-          <a class="dropdown-item">
+          <a class="dropdown-item" href="/logout">
             <i class="ti-power-off text-primary"></i> Logout </a>
         </div>
       </li>
@@ -195,9 +331,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../../../docs/documentation.html">
+      <a class="nav-link" href="#referfriend">
         <i class="icon-paper menu-icon"></i>
-        <span class="menu-title">Documentation</span>
+        <span class="menu-title">Refer a Friend</span>
       </a>
     </li>
   </ul>
@@ -263,9 +399,9 @@
                   <div class="col-md-6 mb-4 stretch-card transparent">
                     <div class="card card-dark-blue">
                       <div class="card-body">
-                        <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
+                        <h3 class="mb-4">No of Hospitals in List </h3>
+                        <p class="mb-2">61344</p>
+                        <p></p>
                       </div>
                     </div>
                   </div>
@@ -274,18 +410,18 @@
                   <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                     <div class="card card-light-blue">
                       <div class="card-body">
-                        <p class="mb-4">Number of Meetings</p>
-                        <p class="fs-30 mb-2">34040</p>
-                        <p>2.00% (30 days)</p>
+                        <p class="mb-4"></p>
+                        <h3 class="mb-2">My favourites</h3>
+                        <p></p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6 stretch-card transparent">
                     <div class="card card-light-danger">
                       <div class="card-body">
-                        <p class="mb-4">Number of Clients</p>
-                        <p class="fs-30 mb-2">47033</p>
-                        <p>0.22% (30 days)</p>
+                        <p class="mb-4"></p>
+                        <p class="fs-30 mb-2">Referrals</p>
+                        <p class="text">0</p>
                       </div>
                     </div>
                   </div>
@@ -421,252 +557,66 @@
                 </div>
               </div> -->
             </div>
-            <div class="row">
+            <div class="row" id="referfriend">
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Order Details</p>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                    <div class="d-flex flex-wrap mb-5">
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Order value</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                      </div>
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Orders</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
-                      </div>
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Users</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                      </div>
-                      <div class="mt-3">
-                        <p class="text-muted">Downloads</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
-                      </div>
+                  <div class="col-lg-12 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="containerrefer">
+                        <h1>Refer a Friend</h1>
+                        <p>Invite your friends and earn exciting rewards!</p>
+                
+                        <!-- Generate Referral Code -->
+                        <button onclick="generateReferralCode()" class="button1">Generate Referral Code</button>
+                        <div id="referral-code-display"></div>
+                
+                        <!-- Referral Link -->
+                        <div id="referral-link-section" style="display: none;">
+                            <p>Share your unique referral link:</p>
+                            <a href="#" id="referral-link" class="referral-link" onclick="event.preventDefault()">Your Referral Link</a>
+                            <button onclick="copyReferralLink()" class="button1">Copy Referral Link</button>
+                        </div>
+                        </div>
                     </div>
-                    <canvas id="order-chart"></canvas>
-                  </div>
                 </div>
               </div>
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <p class="card-title">Sales Report</p>
-                      <a href="#" class="text-info">View all</a>
+                    <div class="col-lg-12 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="containerrefer">
+                            <h2>Send an Invitation</h2>
+                            <p>Send a personalized invitation to your friend:</p>
+                            <form id="send-invitation-form" onsubmit="handleInvitation(event)">
+                                <input type="email" id="friend-email" placeholder="Friend's Email" required>
+                                <button type="submit" class="button1">Send Invitation</button>
+                            </form>
+                        </div>
                     </div>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                    <canvas id="sales-chart"></canvas>
-                  </div>
                 </div>
-              </div>
+            </div>
+            
+            <!-- Modal -->
+            <div id="invitationModal" class="modal fade" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalTitle">Success</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Invitation Sent!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             </div>
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card position-relative">
-                  <div class="card-body">
-                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-bs-ride="carousel">
-                      <div class="carousel-inner">
-                        <div class="carousel-item active">
-                          <div class="row">
-                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                              <div class="ml-xl-4 mt-3">
-                                <p class="card-title">Detailed Reports</p>
-                                <h1 class="text-primary">$34040</h1>
-                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                              </div>
-                            </div>
-                            <div class="col-md-12 col-xl-9">
-                              <div class="row">
-                                <div class="col-md-6 border-right">
-                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                    <table class="table table-borderless report-table">
-                                      <tr>
-                                        <td class="text-muted">Illinois</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">713</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Washington</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">583</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Mississippi</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">924</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">California</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">664</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Maryland</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">560</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Alaska</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">793</h5>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                  <div class="daoughnutchart-wrapper">
-                                    <canvas id="north-america-chart"></canvas>
-                                  </div>
-                                  <div id="north-america-chart-legend">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="row">
-                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                              <div class="ml-xl-4 mt-3">
-                                <p class="card-title">Detailed Reports</p>
-                                <h1 class="text-primary">$34040</h1>
-                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                              </div>
-                            </div>
-                            <div class="col-md-12 col-xl-9">
-                              <div class="row">
-                                <div class="col-md-6 border-right">
-                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                    <table class="table table-borderless report-table">
-                                      <tr>
-                                        <td class="text-muted">Illinois</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">713</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Washington</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">583</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Mississippi</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">924</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">California</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">664</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Maryland</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">560</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Alaska</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">793</h5>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                  <div class="daoughnutchart-wrapper">
-                                    <canvas id="south-america-chart"></canvas>
-                                  </div>
-                                  <div id="south-america-chart-legend"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="carousel-control-prev" href="#detailedReports" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      </a>
-                      <a class="carousel-control-next" href="#detailedReports" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      </a>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -931,5 +881,53 @@
     <script src="static/assets/dbjs/dashboard.js"></script>
     <!-- <script src="static/assets/dbjs/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+    <script>
+      // Generate a random referral code
+      function generateReferralCode() {
+          const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+          document.getElementById("referral-code-display").innerHTML = `<p>Your Referral Code: <span class="referral-code">${code}</span></p>`;
+          const referralLink = `${window.location.href}?ref=${code}`;
+          document.getElementById("referral-link").textContent = referralLink;
+          document.getElementById("referral-link").href = referralLink;
+          document.getElementById("referral-link-section").style.display = "block";
+      }
+
+      // Copy the referral link
+      function copyReferralLink() {
+          const referralLink = document.getElementById("referral-link").href;
+          navigator.clipboard.writeText(referralLink).then(() => {
+              alert("Referral link copied to clipboard!");
+          });
+      }
+
+      // Handle sending invitation
+      document.getElementById("send-invitation-form").addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent page reload
+          
+          // Get input values
+          const email = document.getElementById("friend-email").value;
+          const message = document.getElementById("invitation-message").value || "Check out this amazing app and join now using my referral!";
+
+          // Simulate sending email (this would be a server call in a real app)
+          alert(`Invitation sent to ${email} with the message:\n\n"${message}"`);
+
+          // Reset the form fields
+          document.getElementById("friend-email").value = "";
+          document.getElementById("invitation-message").value = "";
+      });
+      // Handle form submission
+function handleInvitation(event) {
+    event.preventDefault(); // Prevent form from refreshing the page
+
+    // Simulate sending invitation (you can add your backend logic here)
+    const email = document.getElementById("friend-email").value;
+    if (email) {
+        // Show the modal
+        const modal = new bootstrap.Modal(document.getElementById("invitationModal"));
+        modal.show();
+    }
+}
+
+  </script>
   </body>
 </html>
