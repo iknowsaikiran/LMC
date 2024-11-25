@@ -1469,63 +1469,7 @@
     </script>
 
     <!--Favourites-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
-
-            favoriteButtons.forEach(button => {
-                button.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default form submission
-
-                    const form = this.closest('form'); // Get the form element
-                    const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
-                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
-                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
-                    const action = isActive ? 'remove' : 'add'; // Determine action
-
-                    const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-
-                    fetch(endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            'hospital_id': hospitalId
-                        })
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                heartIcon.classList.toggle('active'); // Toggle the heart icon state
-
-                                // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
-                            } else {
-                                console.error('Error toggling favorite:', data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
-                });
-            });
-        });
-    </script>
-
-
-
+   
 
 </body>
 
