@@ -44,9 +44,9 @@ def haversine(lat1, lon1, lat2, lon2):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # Check if user is logged in
+    #Check if user is logged in
     if 'username' not in session:
-        return redirect(url_for('login'))  # Redirect to login if not logged in
+        return redirect(url_for('login'))
 
     username = session['username']  # Get the username from the session
     print(f"Logged in user: {username}")  # Debugging
@@ -117,14 +117,175 @@ def about_us():
 def favourites():
     return render_template('favourites.html')
 
-# @app.route('/appointment', methods=['GET', 'POST'])
-@app.route('/appointment')
+@app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
-    return render_template('appointment.html') 
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        email = request.form.get('email')
+        phone_number = request.form.get('number')
+        gender = request.form.get('gender')
+        department = request.form.get('department')
+        appointmentDate = request.form.get('appointmentDate')
+        appointmentTime = request.form.get('appointmentTime')
+        purpose = request.form.get('comments')
+
+        #Validate form inputs
+        if not first_name or not last_name or not phone_number:
+            flash("All fields are required!")
+            return redirect(url_for('appointment'))
+
+        #Insert into database
+        try:
+            cur = mysql.connection.cursor()
+            query = """
+                INSERT INTO hospital_appointments 
+                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose)
+            cur.execute(query, values)  # Execute the query
+            mysql.connection.commit()  # Commit the changes
+            cur.close()  # Close the cursor
+            flash("Appointment successfully booked!")
+            return redirect(url_for('appointment_success'))
+        except Exception as e:
+            flash(f"An error occurred: {str(e)}")
+            return redirect(url_for('appointment'))
+
+    # Handle GET request
+    return render_template('appointment.html')
+
+
+
+############################
+@app.route('/category')
+def category():
+    category_type = request.args.get('type')
+    
+    if category_type is None:
+        return render_template('category.html', hospitals=[])
+    
+    username = session.get('username')
+    
+    # Fetch hospitals and check if they're favorites for the logged-in user
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+        FROM hospitals h
+        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+        WHERE h.category = %s
+    """, (username, category_type))
+    
+    hospitals = cur.fetchall()
+    cur.close()
+    
+    return render_template('category.html', hospitals=hospitals, category=category_type)
+
+
+
+
 
 # @app.route('/signup', methods=['GET','POST'])
 # def signup():
 #     return render_template('signup.html') 
+
+
+###############################
+@app.route('/category')
+def category():
+    category_type = request.args.get('type')
+    
+    if category_type is None:
+        return render_template('category.html', hospitals=[])
+    
+    username = session.get('username')
+    
+    # Fetch hospitals and check if they're favorites for the logged-in user
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+        FROM hospitals h
+        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+        WHERE h.category = %s
+    """, (username, category_type))
+    
+    hospitals = cur.fetchall()
+    cur.close()
+    if 'username' not in session:
+        return redirect(url_for('login'))  # Redirect to login if not logged in
+
+    username = session['username']  # Get the username from the session
+    print(f"Logged in user: {username}")  # Debugging
+
+    if request.method == 'POST':
+        # Handle POST request (when the geolocation data is sent)
+        data = request.get_json()  # Parse the JSON data
+        print("Received data:", data)  # Debugging to verify received data
+
+        user_latitude = float(data.get('latitude'))
+        user_longitude = float(data.get('longitude'))
+
+        # Debugging: Print the latitude and longitude
+        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
+        # Fetch hospital data from the database with favorite status
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            SELECT 
+                h.hospital_id, 
+                h.hospital_name, 
+                h.timings, 
+                h.years_since_established, 
+                h.opcard_price, 
+                h.latitude, 
+                h.longitude, 
+                h.category,
+                CASE 
+                    WHEN f.username IS NOT NULL THEN TRUE 
+                    ELSE FALSE 
+                END AS is_favorite
+            FROM hospitals h
+            LEFT JOIN favourites f 
+            ON h.hospital_id = f.hospital_id AND f.username = %s
+            WHERE h.category = %s
+        """, (username,category_type ))
+        hospitals = cur.fetchall()
+        cur.close()
+
+        # Compute nearby hospitals
+        nearby_hospitals = []
+        for hospital in hospitals:
+        
+            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, category, is_favourite = hospital
+            distance = haversine(user_latitude, user_longitude, lat, lon)
+            if distance <= 5:  # Check if the hospital is within 5 km
+                nearby_hospitals.append({
+                    
+                    'hospital_id': hospital_id,
+                    'hospital_name': hospital_name,
+                    'timings': timings,
+                    'years_since_established': years_since_established,
+                    'opcard_price': opcard_price,
+                    'distance': round(distance, 2),
+                    'is_favourite': is_favourite,
+                     'category': category# Round distance to 2 decimal places
+                })
+
+        print("Nearby hospitals:", nearby_hospitals)  # Debugging
+
+        # Return nearby hospitals as JSON response
+        return jsonify(nearby_hospitals)
+
+    # If GET request (when the page is first loaded)
+    return render_template('category.html', hospitals=[],category=category_type)    
+
+    
+    # return render_template('category.html', hospitals=hospitals, category=category_type)
+
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -170,59 +331,6 @@ def login():
         print(f"Logged in as: {session.get('username')}")
         return redirect(url_for('index'))  # This should redirect to index
     return render_template('signup.html')
-
-
-# @app.route('/signup_login', methods=['GET', 'POST'])
-# def signup_login():
-#     if request.method == 'POST':
-#         # Check if it's a signup or login attempt by checking which form field is present
-#         if 'signup' in request.form:  # This indicates the signup form was submitted
-#             username = request.form['username']
-#             mail = request.form['email']
-#             password = request.form['password']
-
-#             # Check if username or email already exists
-#             cursor = mysql.connection.cursor()
-#             cursor.execute("SELECT * FROM signup WHERE username = %s OR mail = %s", (username, mail))
-#             existing_user = cursor.fetchone()
-
-#             if existing_user:
-#                 return jsonify({'success': False, 'message': 'Username or Email already exists!'})
-
-#             # Insert the new user into the database
-#             cursor.execute("INSERT INTO signup (username, mail, password) VALUES (%s, %s, %s)", (username, mail, password))
-#             mysql.connection.commit()
-
-#             cursor.close()
-
-#             return jsonify({'success': True, 'message': 'Registration successful! Please log in.'})
-
-#         elif 'login' in request.form:  # This indicates the login form was submitted
-#             username = request.form['username']
-#             password = request.form['password']
-
-#             # Find the user by username
-#             cursor = mysql.connection.cursor()
-#             cursor.execute("SELECT * FROM signup WHERE username = %s", (username,))
-#             user = cursor.fetchone()
-
-#             if not user or user[2] != password:  # user[2] is assumed to be the password
-#                 return jsonify({'success': False, 'message': 'Invalid username or password.'})
-
-#             cursor.close()
-
-#             # Store the username in session
-#             session['username'] = username  # Set the session variable
-
-#             # Debug: Print the session to verify it's set
-#             print(f"Logged in as: {session.get('username')}")
-
-#             # Redirect to the index page after successful login
-#             return redirect(url_for('index'))
-
-#     # If it's a GET request, render the signup/login page
-#     return render_template('signup.html')
-
 
 
 
@@ -345,7 +453,7 @@ def favourite():
 
 #####################################################################################
 
-# Set the folder where uploaded images will be saved
+# Set the folder where uploaded images will be savedzzz
 UPLOAD_FOLDER = 'static/uploads/hospitals'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
