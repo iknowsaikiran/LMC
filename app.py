@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1210'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -46,7 +46,7 @@ def haversine(lat1, lon1, lat2, lon2):
 def index():
     # Check if user is logged in
     if 'username' not in session:
-        return redirect(url_for('login'))  # Redirect to login if not logged in
+        return redirect(url_for('login'))
 
     username = session['username']  # Get the username from the session
     print(f"Logged in user: {username}")  # Debugging
@@ -107,7 +107,7 @@ def index():
         return jsonify(nearby_hospitals)
 
     # If GET request (when the page is first loaded)
-    return render_template('index.html', hospitals=[])    
+    return render_template('index.html', hospitals=[],username=username)    
 
 @app.route('/about_us')
 def about_us():
@@ -118,10 +118,76 @@ def about_us():
 
 
 
-# @app.route('/appointment', methods=['GET', 'POST'])
-@app.route('/appointment')
+@app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
-    return render_template('appointment.html') 
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        email = request.form.get('email')
+        phone_number = request.form.get('number')
+        gender = request.form.get('gender')
+        department = request.form.get('department')
+        appointmentDate = request.form.get('appointmentDate')
+        appointmentTime = request.form.get('appointmentTime')
+        purpose = request.form.get('comments')
+
+        #Validate form inputs
+        if not first_name or not last_name or not phone_number:
+            flash("All fields are required!")
+            return redirect(url_for('appointment'))
+
+        #Insert into database
+        try:
+            cur = mysql.connection.cursor()
+            query = """
+                INSERT INTO hospital_appointments 
+                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose)
+            cur.execute(query, values)  # Execute the query
+            mysql.connection.commit()  # Commit the changes
+            cur.close()  # Close the cursor
+            flash("Appointment successfully booked!")
+            return redirect(url_for('appointment_success'))
+        except Exception as e:
+            flash(f"An error occurred: {str(e)}")
+            return redirect(url_for('appointment'))
+
+    # Handle GET request
+    return render_template('appointment.html')
+
+
+
+############################
+@app.route('/category')
+def category():
+    category_type = request.args.get('type')
+    
+    if category_type is None:
+        return render_template('category.html', hospitals=[])
+    
+    username = session.get('username')
+    
+    # Fetch hospitals and check if they're favorites for the logged-in user
+    cur = mysql.connection.cursor()
+    cur.execute("""
+        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+        FROM hospitals h
+        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+        WHERE h.category = %s
+    """, (username, category_type))
+    
+    hospitals = cur.fetchall()
+    cur.close()
+    
+    return render_template('category.html', hospitals=hospitals, category=category_type)
+
+
+
+
 
 # @app.route('/signup', methods=['GET','POST'])
 # def signup():
