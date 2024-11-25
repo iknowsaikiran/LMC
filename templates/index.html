@@ -226,7 +226,7 @@
         /* Form Styling */
         .modal-form {
             margin-top: 20px;
-            
+
         }
 
         .modal-form label {
@@ -538,21 +538,21 @@
                 /* Full width in smaller screens */
             }
         }
+
         .dropdown-menu-custom {
-    display: none;
-    position: absolute;
-    top: 100%; /* Adjust according to placement */
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1000;
-}
+            display: none;
+            position: absolute;
+            top: 100%;
+            /* Adjust according to placement */
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
 
-.dropdown-menu-custom.show {
-    display: block;
-}
-
-
+        .dropdown-menu-custom.show {
+            display: block;
+        }
     </style>
 
 
@@ -822,18 +822,19 @@
         <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>We are trying very hard to get you the best ambulance services. Please wait while we connect
+                            you to a provider.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>We are trying very hard to get you the best ambulance services. Please wait while we connect you to a provider.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
             </div>
         </div>
     </div>
@@ -846,11 +847,12 @@
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
             <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake Bites</a></li>
+                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake
+                        Bites</a></li>
                 <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
                 <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
             </ul>
-            
+
         </div>
 
     </div>
