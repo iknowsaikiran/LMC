@@ -345,7 +345,7 @@
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Welcome John</h3>
+                    <h3 class="font-weight-bold">Welcome Rakesh</h3>
                     <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                   </div>
                   <div class="col-12 col-xl-4">
@@ -391,8 +391,8 @@
                       <div class="card-body">
                         <p class="mb-4"></p>
                         <h3>My Appointments</h3>
-                        <!--   -->
-                        <p></p>
+                        <!-- Display OP Count -->
+                        <p id="op-count" class="op-count-text">Loading...</p>
                       </div>
                     </div>
                   </div>
@@ -404,6 +404,7 @@
                         <p></p>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
                 <div class="row">
@@ -928,6 +929,20 @@ function handleInvitation(event) {
     }
 }
 
+  </script>
+
+  <script>
+            // Example: Fetch OP count from server
+          function fetchOPCount() {
+            // Mocking a fetch call (Replace this with actual API call)
+            setTimeout(() => {
+              const opCount = 120; // Example count
+              document.getElementById("op-count").textContent = `Hospital OP Count: ${opCount}`;
+            }, 1000); // Simulate server delay
+          }
+
+          // Call function to fetch and display OP count
+          fetchOPCount();
   </script>
   </body>
 </html>
