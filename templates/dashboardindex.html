@@ -382,8 +382,8 @@
                       <div class="card-body">
                         <p class="mb-4"></p>
                         <h3>My Appointments</h3>
-                        <!--   -->
-                        <p></p>
+                        <!-- Display OP Count -->
+                        <p id="op-count" class="op-count-text">Loading...</p>
                       </div>
                     </div>
                   </div>
@@ -929,5 +929,20 @@
     }
 
   </script>
+
+<script>
+  // Example: Fetch OP count from server
+  function fetchOPCount() {
+    // Mocking a fetch call (Replace this with actual API call)
+    setTimeout(() => {
+      const opCount = 120; // Example count
+      document.getElementById("op-count").textContent = `Hospital OP Count: ${opCount}`;
+    }, 1000); // Simulate server delay
+  }
+
+  // Call function to fetch and display OP count
+  fetchOPCount();
+</script>
+
   </body>
 </html>
