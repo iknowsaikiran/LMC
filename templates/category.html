@@ -404,6 +404,24 @@
     <script src="/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <script>
+        document.querySelectorAll('.single-fcat').forEach(card => {
+            card.addEventListener('click', function() {
+                const categoryType = this.parentElement.getAttribute('href').split('=')[1]; // Extract category type from href
+                fetchHospitalsByCategory(categoryType);
+            });
+        });
+        function fetchHospitalsByCategory(category) {
+            // Example API endpoint - replace with your actual endpoint
+            fetch(`/category?type=${category}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayHospitals(data);
+                })
+                .catch(error => console.error('Error fetching hospitals:', error));
+        }
+    </script>
+
     <!-- Template Javascript -->
     <script src="/static/js/main.js"></script>
     <script>
@@ -585,8 +603,8 @@
                                         <li>
                                             <form action="/toggle_favourite" method="POST" class="favourite-form" style="display:inline;">
                                                 <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
-                                                <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favourite ? 'Remove from favorites' : 'Add to favorites'}">
-                                                    <i class="fas fa-heart ${hospital.is_favourite ? 'active' : ''}" style="color: ${hospital.is_favourite ? 'red' : 'gray'};"></i>
+                                                <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                    <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
                                                 </button>
                                             </form>
                                         </li>

@@ -44,14 +44,31 @@ def haversine(lat1, lon1, lat2, lon2):
     
     return distance
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # Check if user is logged in
-    if 'username' not in session:
-        return redirect(url_for('login'))
+    # Ensure the user is logged in
+    if 'username' not in session:  # Check if the session has the username
+        return redirect(url_for('home'))
 
-    username = session['username']  # Get the username from the session
-    print(f"Logged in user: {username}")  # Debugging
+    user_id = session['username']  # Get the logged-in user's username from the session
+    print(f"Logged in user_id (from session): {user_id}")  # Debugging
+
+    # Fetch the username from the signup table
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT username FROM signup WHERE username = %s", (user_id,))
+    result = cur.fetchone()
+    cur.close()
+
+    if not result:
+        print("User not found in the signup table.")  # Debugging
+        return redirect(url_for('login'))  # Redirect if the user does not exist
+
+    username = result[0]  # Extract the username string from the result tuple
+    print(f"Fetched username: {username}")  # Debugging
 
     if request.method == 'POST':
         # Handle POST request (when the geolocation data is sent)
@@ -61,8 +78,8 @@ def index():
         user_latitude = float(data.get('latitude'))
         user_longitude = float(data.get('longitude'))
 
-        # Debugging: Print the latitude and longitude
-        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
+        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
+
         # Fetch hospital data from the database with favorite status
         cur = mysql.connection.cursor()
         cur.execute("""
@@ -88,19 +105,17 @@ def index():
         # Compute nearby hospitals
         nearby_hospitals = []
         for hospital in hospitals:
-        
-            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favourite = hospital
+            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
             distance = haversine(user_latitude, user_longitude, lat, lon)
             if distance <= 5:  # Check if the hospital is within 5 km
                 nearby_hospitals.append({
-                    
                     'hospital_id': hospital_id,
                     'hospital_name': hospital_name,
                     'timings': timings,
                     'years_since_established': years_since_established,
                     'opcard_price': opcard_price,
-                    'distance': round(distance, 2),
-                    'is_favourite': is_favourite # Round distance to 2 decimal places
+                    'distance': round(distance, 2),  # Round distance to 2 decimal places
+                    'is_favorite': is_favorite
                 })
 
         print("Nearby hospitals:", nearby_hospitals)  # Debugging
@@ -109,15 +124,15 @@ def index():
         return jsonify(nearby_hospitals)
 
     # If GET request (when the page is first loaded)
-    return render_template('index.html', hospitals=[],username=username)    
+    return render_template('index.html', hospitals=[])
 
 @app.route('/about_us')
 def about_us():
     return render_template('about.html')
 
-@app.route('/favourites')
-def favourites():
-    return render_template('favourites.html')
+# @app.route('/favourites')
+# def favourites():
+#     return render_template('favourites.html')
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -162,37 +177,66 @@ def appointment():
 
 
 ############################
+# @app.route('/category')
+# def category():
+#     category_type = request.args.get('type')
+    
+#     if category_type is None:
+#         return render_template('category.html', hospitals=[])
+    
+#     username = session.get('username')
+    
+#     # Fetch hospitals and check if they're favorites for the logged-in user
+#     cur = mysql.connection.cursor()
+#     cur.execute("""
+#         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+#                CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+#         FROM hospitals h
+#         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+#         WHERE h.category = %s
+#     """, (username, category_type))
+    
+#     hospitals = cur.fetchall()
+#     cur.close()
+    
+#     return render_template('category.html', hospitals=hospitals, category=category_type)
+
 @app.route('/category')
 def category():
     category_type = request.args.get('type')
-    
+        
     if category_type is None:
-        return render_template('category.html', hospitals=[])
-    
+        # If category is not provided, return a page without hospitals
+         render_template('category.html', hospitals=[], category=None)
+        
     username = session.get('username')
-    
+    if username is None:
+        # If no user is logged in, handle appropriately (maybe redirect to login page)
+        return redirect(url_for('login'))
+
     # Fetch hospitals and check if they're favorites for the logged-in user
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
-               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-        FROM hospitals h
-        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-        WHERE h.category = %s
-    """, (username, category_type))
-    
-    hospitals = cur.fetchall()
-    cur.close()
-    
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price
+            FROM hospitals h
+            JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+            WHERE h.category = %s
+        """, (username, category_type))
+            
+        hospitals = cur.fetchall()
+        print(hospitals)
+        cur.close()
+    except Exception as e:
+        print(f"Error fetching hospitals: {e}")
+        hospitals = []
+
     return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
 
 
-# @app.route('/signup', methods=['GET','POST'])
-# def signup():
-#     return render_template('signup.html') 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -382,25 +426,20 @@ def favourite():
     if 'username' not in session:
         flash("Please log in to view your favorites.", "info")
         return redirect(url_for('signup'))
-
+    
     username = session['username']
     try:
         cur = mysql.connection.cursor()
-        # cur.execute(""" 
-        #     SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price 
-        #     FROM favourites f 
-        #     JOIN hospitals h ON f.hospital_id = h.hospital_id
-        #     WHERE f.username = %s 
-        # """, (username,))
-        # favourite_hospitals = cur.fetchall()
-        # Inside your /favourite route or where you're fetching hospitals for the user:
+        # Only select hospitals that are in the user's favorites
         cur.execute("""
-            SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
-                (CASE WHEN f.username IS NOT NULL THEN TRUE ELSE FALSE END) AS is_favorite
+            SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price
             FROM hospitals h
-            LEFT JOIN favourites f ON f.hospital_id = h.hospital_id AND f.username = %s
+            JOIN favourites f ON f.hospital_id = h.hospital_id
+            WHERE f.username = %s
         """, (username,))
+        
         favourite_hospitals = cur.fetchall()
+        print(favourite_hospitals)
 
         cur.close()
     except Exception as e:
@@ -408,7 +447,7 @@ def favourite():
         flash(f"An error occurred: {e}", "error")
         favourite_hospitals = []
 
-    return render_template('favourite.html', hospitals=favourite_hospitals)
+    return render_template('favourites.html', hospitals=favourite_hospitals)
 
 
 #####################################################################################
