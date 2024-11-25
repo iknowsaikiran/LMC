@@ -48,7 +48,7 @@
 }
 
 .call-btn {
-  background-color: #007bff;
+  background-color: #512888;
   color: #fff;
 }
 
@@ -118,7 +118,7 @@
   .btn:hover {
     background: #0056b3;
   }
-}
+
   
   @media screen and (max-width: 768px) {
     .blog-slider__item {

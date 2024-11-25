@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Klinik - Clinic Website Template</title>
+    {%include 'header.html'%}
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
     <!-- Favicon -->
     <link href="/static/img/favicon.ico" rel="icon">
 
@@ -33,6 +33,9 @@
     <!-- Template Stylesheet -->
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
 
@@ -100,18 +103,20 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f4f7fa;
             color: #333;
+
         }
 
         .form-wrap {
             margin-top: 50px;
+            margin-bottom: 40px;
             padding: 20px;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-cols {
-            display: flex;
+            text-align: center;
             align-items: center;
         }
 
@@ -138,12 +143,12 @@
 
         .location-icon {
             font-size: 20px;
-            color: #007bff;
+            color: #512888;
             cursor: pointer;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #512888;
             border: none;
             color: white;
             font-weight: 500;
@@ -152,7 +157,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #512888;
             transition: background-color 0.3s ease;
         }
 
@@ -174,7 +179,7 @@
         .custom-modal {
             display: none;
             /* Hidden by default */
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -207,19 +212,21 @@
         .btn {
             padding: 10px 20px;
             border: none;
-            background: #007bff;
+            background: #512888;
             color: white;
             border-radius: 3px;
             cursor: pointer;
         }
 
         .btn:hover {
-            background: #0056b3;
+            background: white;
+            color: #512888;
         }
 
         /* Form Styling */
         .modal-form {
             margin-top: 20px;
+            
         }
 
         .modal-form label {
@@ -263,7 +270,6 @@
         textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
@@ -288,12 +294,16 @@
             min-width: 200px;
         }
 
+        .form-wrap {
+            width: 95%;
+        }
+
         textarea {
             resize: vertical;
         }
 
         .button {
-            background-color: #4A90E2;
+            background-color: #512888;
             color: #fff;
             border: none;
             padding: 15px 20px;
@@ -304,12 +314,17 @@
         }
 
         .button:hover {
-            background-color: #357ABD;
+            background-color: white;
+            color: #512888;
         }
 
         @media (max-width: 768px) {
             .form-group {
                 flex-direction: column;
+            }
+
+            .form-media {
+                margin: 10px;
             }
         }
 
@@ -335,17 +350,19 @@
             }
         }
 
+
         .button24 {
             padding: 10px 20px;
             border: none;
-            background: #007bff;
+            background: #512888;
             color: white;
             border-radius: 10px;
             cursor: pointer;
         }
 
         .button24:hover {
-            background: #0056b3;
+            background: white;
+            color: #512888;
         }
 
         #hospitalContainer {
@@ -355,6 +372,16 @@
         .showallbutton {
             border-radius: 10px;
         }
+
+        .showallbutton:hover {
+            background-color: #fff;
+            color: #512888;
+        }
+
+        .button24 {
+            margin-left: 10px;
+        }
+
 
         .modal-form label {
             display: block;
@@ -385,16 +412,27 @@
                 font-size: 14px;
                 /* Slightly reduce font size */
             }
+
+            .button24 {
+                /* Increase padding for larger clickable area */
+                font-size: 18px;
+                /* Larger font size for readability */
+                width: 100%;
+                /* Make buttons take up the full width */
+                margin-bottom: 10px;
+                /* Add spacing between buttons */
+            }
         }
 
         @media (max-width: 480px) {
             .button24 {
-                width: 48%;
+                width: 50%;
                 /* Adjust to 48% for small mobile screens */
                 font-size: 13px;
                 /* Reduce font size further */
-                margin-bottom: 10px;
+
             }
+
         }
 
         @media (max-width: 991px) and (min-width: 768px) {
@@ -405,12 +443,116 @@
             }
         }
 
-/* For small screens (Mobile devices) */
-@media (max-width: 768px) {
-    .mobilecard {
-        padding-left: 30px;
-    }
+        /* For small screens (Mobile devices) */
+        @media (max-width: 768px) {
+            .mobilecard {
+                padding-left: 30px;
+            }
+
+            .button-group {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .callbuttons {
+                display: flex;
+                /* Ensures buttons are in a row */
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .chat-btn {
+                margin-left: 10px;
+                /* Adds space between the buttons */
+            }
+        }
+
+        .callbuttons {
+            display: flex;
+            /* Ensures buttons are in a row */
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .chat-btn {
+            margin-left: 10px;
+            /* Adds space between the buttons */
+        }
+
+        /* Styling for the dropdown */
+        .dropdown-menu-custom {
+            position: absolute;
+            /* Ensure proper placement */
+            display: none;
+            /* Initially hidden */
+            top: 100%;
+            /* Position below the button */
+            left: 0;
+            /* Align to the button's left */
+            background-color: white;
+            /* Professional background */
+            color: black;
+            /* Black text for readability */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+            border-radius: 8px;
+            /* Rounded corners for a sleek look */
+            list-style: none;
+            /* Remove bullets */
+            padding: 10px 0;
+            /* Add spacing */
+            z-index: 1000;
+            /* Ensure it appears above other elements */
+            min-width: 150px;
+            /* Maintain a decent width */
+        }
+
+        .dropdown-menu-custom li:hover {
+            background-color: #f8f9fa;
+            /* Highlight on hover */
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .dropdown-menu-custom {
+                min-width: 100%;
+                /* Full width in smaller screens */
+            }
+        }
+
+        .ambulance {
+            border-radius: 7px;
+            margin-left: 10px
+        }
+
+        .dropdown-menu-custom li:hover {
+            background-color: #f8f9fa;
+            /* Highlight on hover */
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .dropdown-menu-custom {
+                min-width: 100%;
+                /* Full width in smaller screens */
+            }
+        }
+        .dropdown-menu-custom {
+    display: none;
+    position: absolute;
+    top: 100%; /* Adjust according to placement */
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
 }
+
+.dropdown-menu-custom.show {
+    display: block;
+}
+
+
     </style>
 
 
@@ -418,6 +560,7 @@
 </head>
 
 <body>
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -427,79 +570,11 @@
     </div>
     <!-- Spinner End -->
 
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
-        <div class="row gx-0 d-none d-lg-flex">
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>123 Street, New York, USA</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
-                </div>
-            </div>
-            <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+012 345 6789</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
-                            class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i
-                            class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" class="nav-item nav-link active">Home</a>
-                <a href="/about_us" class="nav-item nav-link">About</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="/team" class="dropdown-item">Our Doctor</a>
-                        <a href="/appointment" class="dropdown-item">Appointment</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="/contact" class="nav-item nav-link">Contact</a>
-                <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a>
-            </div>
-            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i
-                    class="fa fa-arrow-right ms-3"></i></a>
-        </div>
-    </nav>
-    <!-- Navbar End -->
-
-
     <!-- Header Start -->
     <div class="container-fluid header bg-primary p-0 mb-5">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="display-4 text-white mb-5">Good Health Is The Root Of All Heppiness</h1>
+                <h1 class="display-4 text-white mb-5">HELLO WELCOME TO LOCATE MY CARE</h1>
                 <div class="row g-4">
                     <div class="col-sm-4">
                         <div class="border-start border-light ps-4">
@@ -549,19 +624,19 @@
 
 
     <!-- About Start -->
-    <form action="search.html" class="search-form-area" id="search-form">
+    <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form">
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
-                <input type="text" class="form-control shadow-sm border-0 rounded-pill" name="search" id="search-input"
-                    placeholder="Search Hospitals near your location">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
+                <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media" name="search"
+                    id="search-input" placeholder="Search Hospitals near your location">
             </div>
 
             <!-- Location Detection -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols">
                 <div class="input-group">
-                    <input type="text" class="form-control shadow-sm border-0 rounded-pill" id="location-input"
-                        placeholder="Detecting location..." readonly>
+                    <input type="text" class="form-control shadow-sm border-0 rounded-pill form-media"
+                        id="location-input" placeholder="Detecting location..." readonly>
                     <!-- <span class="input-group-text location-icon" onclick="getLocation()">
                         <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
                     </span> -->
@@ -571,9 +646,9 @@
             </div>
 
             <!-- Problem Dropdown -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols mb-3">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
                 <div class="dropdown">
-                    <select class="form-select shadow-sm border-0 rounded-pill" id="problemSelect"
+                    <select class="form-select shadow-sm border-0 rounded-pill form-media" id="problemSelect"
                         onchange="navigateToPage()">
                         <option value="">By Problem</option>
                         <option value="/category?problem=fever">Fever</option>
@@ -585,8 +660,8 @@
             </div>
 
             <!-- Search Button -->
-            <div class="col-lg-2 col-md-3 col-sm-6 form-cols mb-3">
-                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill">
+            <div class="col-lg-2 col-md-3 col-sm-6 form-col">
+                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded-pill form-media">
                     <span class="lnr lnr-magnifier"></span> Search
                 </button>
             </div>
@@ -741,100 +816,46 @@
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
         <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
+        <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
+            Ambulance Services
+        </button>
+        <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>We are trying very hard to get you the best ambulance services. Please wait while we connect you to a provider.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
 
     <!--24/7 buttons-->
-    <div class=" mb-3 text-center mt-3">
-        <button class=" button24 " onclick="filterHospitals('247')">24/7 Hospitals</button>
-        <button class=" button24" onclick="filterHospitals('8to8')">Snake Bites</button>
-        <button class=" button24" onclick="filterHospitals('all')">Rat Bites</button>
-        <button class=" button24" onclick="filterHospitals('all')">Cat Bites</button>
-        <!--Hospital Card Start-->
-        <!-- <div id="hospitalContainer" style="display: none;">
-            <div class="blog-slider hospital" data-timing="247">
-                {% if hospitals %}
-                <div class="blog-slider">
+    <div class="mb-3 text-center mt-3">
 
-                    <div class="blog-slider__wrp swiper-wrapper">
-                        <ul>
-                            {% for hospitals in hospitals%}
-                            <div class="blog-slider__item swiper-slide d-flex flex-wrap">
-                                <div class="blog-slider__img col-12 col-md-4">
-                                    <img src="/static/img/apollo.jfif" alt="Hospital Image" class="img-fluid">
-                                </div>
-                                <div class="blog-slider__content col-12 col-md-5">
-                                    <h3 class="blog-slider__title">{{ hospitals[2] }}</h3>
-                                    <p class="availability-status" style="color: green;">Available Now</p>
-                                    <p class="timings">Timings: {{ hospitals[6] }}</p>
-                                    <p>{{ hospitals[7] }} years in health care</p>
-                                    <p><i class="fas fa-map-marker-alt"></i>3rd floor MRLS hub, plot No:45, Jai Hind
-                                        Enclave, Gandhi
-                                        road</p>
-                                    <p>Op price: <i class="fa-solid fa-indian-rupee-sign"></i>{{ hospitals[8] }}</p>
-                                    <p><strong>Current OP count:</strong>
-                                        {% if 'username' in session %}
-                                        128
-                                        {% else %}
-                                        <span class="op-count" onclick="showLoginAlert()">**</span>
-                                    <p id="opcount">Login to see the current op count</p>
-                                    {% endif %}
-                                    </p>
-                                </div>
-                                <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
-                                    <ul class="btns ">
-                                        <li>
-                                            <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                                <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                                <button type="button" class="toggle-favourite"
-                                                    aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-                                                    <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="view-card">View</a>
-                                        </li>
-                                    </ul>
-                                    <button class="btn custom-btn mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#callModal{{ hospitals[0] }}">Call</button>
-                                    <button class="btn custom-btn mb-2" data-bs-toggle="modal"
-                                        data-bs-target="#chatModal{{ hospitals[0] }}">Chat</button>
-                                    <button class="btn custom-btn mb-2" onclick="openModal()">Book Appointment</button>
-                                </div>
 
-                            </div>
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                        <p>No hospitals near you.</p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="blog-slider hospital" data-timing="8to8" style="display: none;">
-                <div class="blog-slider__wrp swiper-wrapper">
-                    <div class="blog-slider__item swiper-slide d-flex flex-wrap">
-                        <div class="blog-slider__img col-12 col-md-4">
-                            <img src="/img/other-hospital.jfif" alt="" class="img-fluid">
-                        </div>
-                        <div class="blog-slider__content col-12 col-md-5">
-                            <h3 class="blog-slider__title">Other Hospital</h3>
-                            <p class="availability-status" style="color: orange;">Available 8 AM to 8 PM</p>
-                            <p>15 years in health care</p>
-                            <p><i class="fas fa-map-marker-alt"></i>1st floor, Health Plaza, City Center</p>
-                            <p>Op price: ₹800</p>
-                        </div>
-                        <div class="button-group col-md-6 col-md-3 d-flex justify-content-center">
-                            <div class="button5">
-                                <button class="btn custom-btn mb-2">Call</button>
-                                <button class="btn custom-btn mb-2">Chat</button>
-                            </div>
-                            <button class="btn custom-btn mb-2" onclick="openModal()">Book Appointment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        <div class="btn-group">
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
+            <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
+            <ul id="animalDropdown" class="dropdown-menu-custom">
+                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
+            </ul>
+            
+        </div>
+
+    </div>
+
+
 
     </div>
 
@@ -848,7 +869,8 @@
                         <!-- Hospitals will be dynamically inserted here -->
                     </div>
 
-                    <a class="text-uppercase loadmore-btn mx-auto d-block" href="#">Load More hospitals</a>
+                    <a class="text-uppercase text-align-center loadmore-btn mx-auto d-block" href="#">Load More
+                        hospitals</a>
                 </div>
             </div>
         </div>
@@ -893,20 +915,52 @@
             </form>
         </div>
     </div>
+    <footer>
+        <div class="bg-dark text-light py-3">
+            <div class="">
+                <div class="row footer-bottom align-items-center justify-content-between" style="margin-right:0px;">
+                    <div class="col-md-4 text-center text-md-start">
+                        <p class="footer-text mb-0">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved by <strong>BA Talks</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 ">
+                        <a href="mailto:contact@batalks.com"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                        </a>
+                        <a href="tel:+918341322771"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
+                        </a>
 
-
-
-
-
-
-
-
-
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
+                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
+                            target="_blank" class="text-light mx-2">
+                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
-
-
+    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i -->
+    <!-- class="bi bi-arrow-up"></i></a> -->
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -952,7 +1006,7 @@
                 this.textContent = 'Show Less'; // Changes button text
             } else {
                 hiddenCategories.style.display = 'none'; // Hides the categories again
-                this.textContent = 'Show All'; // Resets button text
+                this.textContent = 'Show All Features'; // Resets button text
             }
         });
 
@@ -1022,7 +1076,7 @@
             }
         }
     </script>
-
+    <!-- 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const favoriteButtons = document.querySelectorAll('.toggle-favourite');
@@ -1076,21 +1130,7 @@
                 });
             });
         });
-    </script>
-    <script>
-        if (type === "new") {
-            newPatientForm.style.display = "block";
-            existingPatientForm.style.display = "none";
-        } else if (type === "existing") {
-            newPatientForm.style.display = "none";
-            existingPatientForm.style.display = "block";
-        } else {
-            newPatientForm.style.display = "none";
-            existingPatientForm.style.display = "none";
-        }
-
-
-    </script>
+    </script> -->
     <script>
         document.getElementById("appointmentForm").addEventListener("submit", function (event) {
             event.preventDefault();
@@ -1227,7 +1267,8 @@
                 }
             }
         }
-
+    </script>
+    <script>
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
@@ -1240,10 +1281,10 @@
             <div class="blog-slider">
                 <div class="blog-slider__wrp swiper-wrapper">
                     <div class="blog-slider__item swiper-slide d-flex">
-                        <div class="blog-slider__img col-4">
+                        <div class="blog-slider__img col-lg-3">
                             <img src="/static/img/apollo.jfif" alt="Hospital Image">
                         </div>
-                        <div class="blog-slider__content col-5">
+                        <div class="blog-slider__content col-lg-3" style="margin-left:20px">
                             <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
                             <p class="availability-status" style="color: green;">Available Now</p>
                             <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
@@ -1255,22 +1296,24 @@
                                 <span onclick="alert('Please login to see the current OP count.')">**</span>
                             </p>
                         </div>
-                        <div class="button-group col-3 btnt">
-                            <ul class="btns ">
-                                    <li>
+                        <div class="button-group col-lg-4 btnt">
+                            <ul class="btns d-flex" style="list-style-type:none">
+                                    <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
+                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
                                             </button>
                                         </form>
                                     </li>
-                                    <li>
-                                        <a href="#" class="view-card">View</a>
+                                    <li style="padding-top:10px">
+                                        <a href="#" class="view-card" style="margin-left:10px">View</a>
                                     </li>
                             </ul>
-                            <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                            <div class="callbuttons col-lg-4">
+                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
                             <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
+                            </div>
                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
                         </div>
                     </div>
@@ -1328,9 +1371,9 @@
                     </div>
                 </div>
             </div>`;
-            function navigateToNewPage() {
-        window.location.href = "appointments.html"; // Redirect to the new page
-    }
+                    function navigateToNewPage() {
+                        window.location.href = "appointments.html"; // Redirect to the new page
+                    }
 
                     hospitalList.innerHTML += hospitalItem;
                 });
@@ -1347,13 +1390,47 @@
                 hospitalList.addEventListener('click', function (event) {
                     const target = event.target;
                     const hospitalId = target.dataset.hospitalId;
+
                     if (target.classList.contains('new-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
                     }
+
                     if (target.classList.contains('existing-patient-btn')) {
                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                    }
+
+                    // Handle favorite button click using event delegation
+                    if (target.classList.contains('toggle-favourite')) {
+                        event.preventDefault();
+                        const hospitalId = target.dataset.hospitalId;
+                        const heartIcon = target.querySelector('.fas.fa-heart');
+                        const isActive = heartIcon.classList.contains('active');
+                        const action = isActive ? 'remove' : 'add';
+
+                        const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                        fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({ 'hospital_id': hospitalId })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    heartIcon.classList.toggle('active');
+                                    heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
+                                    target.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                                } else {
+                                    console.error("Error toggling favorite:", data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Fetch operation error:", error);
+                            });
                     }
                 });
             }
@@ -1469,7 +1546,63 @@
     </script>
 
     <!--Favourites-->
-   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
+
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    const form = this.closest('form'); // Get the form element
+                    const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                    const action = isActive ? 'remove' : 'add'; // Determine action
+
+                    const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
+
+                    fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'hospital_id': hospitalId
+                        })
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                heartIcon.classList.toggle('active'); // Toggle the heart icon state
+
+                                // Change the color of the heart icon based on active state
+                                if (heartIcon.classList.contains('active')) {
+                                    heartIcon.style.color = 'red'; // Change to orange
+                                    this.setAttribute('aria-label', 'Remove from favorites');
+                                } else {
+                                    heartIcon.style.color = 'gray'; // Change to gray
+                                    this.setAttribute('aria-label', 'Add to favorites');
+                                }
+                            } else {
+                                console.error('Error toggling favorite:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                });
+            });
+        });
+    </script>
+
+
+
 
 </body>
 
