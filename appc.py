@@ -182,48 +182,8 @@ def success():
     return "Hospital registered successfully!"
 
 
-@app.route('/bookappointment', methods=['GET', 'POST'])
-def appointment():
-    if request.method == 'POST':
-        # Get form data
-        your_name = request.form.get('your_name')
-        your_email = request.form.get('your_email')
-        your_mobile = request.form.get('your_mobile')
-        gender = request.form.get('gender')
-        choose_doctor = request.form.get('choose_doctor')
-        department = request.form.get('department')
-        choose_date = request.form.get('choose_date')
-        choose_time = request.form.get('choose_time')
-        describe_your_problem = request.form.get('describe_your_problem')
 
-        # Validate form inputs
-        if not your_name or not your_email or not your_mobile:
-            flash("All fields are required!")
-            return redirect(url_for('appointment'))
 
-        # Insert into database
-        try:
-            conn = mysql.connector.connect(**db_config)
-            cursor = conn.cursor()
-            query = """
-                INSERT INTO hospital_appointments 
-                (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """
-            values = (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem)
-            cursor.execute(query, values)
-            conn.commit()
-            flash("Appointment successfully booked!")
-            return redirect(url_for('appointment_success'))
-        except mysql.connector.Error as err:
-            flash(f"Database Error: {err}")
-            return render_template('error.html', message="Unable to book your appointment. Please try again later.")
-        finally:
-            if conn.is_connected():
-                cursor.close()
-                conn.close()
-
-    return render_template('bookappointment.html')
 
 @app.route('/nearby_hospitals')
 def get_nearby_hospitals():
