@@ -304,7 +304,7 @@
         .toggle-box {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+           
         }
         .formlogin{
             margin-top:50px;
@@ -405,20 +405,20 @@
         </div>
         <!-- Forgot Password Form -->
         <div class="form-box forgot-password">
-            <form id="forgot-password-form">
+            <form id="forgot-password-form" style="padding-top: 70px;">
                 <h1>Forgot Password</h1>
                 <div class="input-box">
                     <label for="forgot-email">Enter your email address:</label>
                     <input type="email" id="forgot-email" name="email" placeholder="Email" required>
                 </div>
-                <button type="button" class="btn" onclick="sendPasswordReset()">Send Invitation</button>
+                <button type="button" class="btn" onclick="sendPasswordReset()">Send reset link</button>
             </form>
         </div>
         
 
         <!-- Registration Form -->
-        <div class="form-box register">
-            <form id="register-form">
+        <div class="form-box register active">
+            <form id="register-form" style="padding-top: 50px;">
                 <h1>Registration</h1>
                 <div class="input-box">
                     <input type="text" id="reg-username" name="username" placeholder="Username" required>
