@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = '1210'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -160,29 +160,29 @@ def appointment():
 
 
 ############################
-@app.route('/category')
-def category():
-    category_type = request.args.get('type')
+# @app.route('/category')
+# def category():
+#     category_type = request.args.get('type')
     
-    if category_type is None:
-        return render_template('category.html', hospitals=[])
+#     if category_type is None:
+#         return render_template('category.html', hospitals=[])
     
-    username = session.get('username')
+#      username = session.get('username')
     
-    # Fetch hospitals and check if they're favorites for the logged-in user
-    cur = mysql.connection.cursor()
-    cur.execute("""
-        SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
-               CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-        FROM hospitals h
-        LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-        WHERE h.category = %s
-    """, (username, category_type))
+#      # Fetch hospitals and check if they're favorites for the logged-in user
+#     cur = mysql.connection.cursor()
+#     cur.execute("""
+#         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
+#                CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
+#         FROM hospitals h
+#         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
+#         WHERE h.category = %s
+#     """, (username, category_type))
     
-    hospitals = cur.fetchall()
-    cur.close()
+#     hospitals = cur.fetchall()
+#     cur.close()
     
-    return render_template('category.html', hospitals=hospitals, category=category_type)
+#     return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
