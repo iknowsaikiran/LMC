@@ -519,6 +519,7 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+           
         }
 
         .ambulance {
@@ -537,6 +538,7 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+            
         }
 
         .dropdown-menu-custom {
@@ -553,6 +555,7 @@
         .dropdown-menu-custom.show {
             display: block;
         }
+        
     </style>
 
 
@@ -735,12 +738,12 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=orthopaedic">
+                <a href="/category?type=orthopedic">
                     <div class="single-fcat">
 
                         <img src="/static/img/ortho.png" alt="" width="60px" height="60px">
 
-                        <p>Orthopaedic</p>
+                        <p>Orthopedic</p>
                     </div>
                 </a>
             </div>
@@ -921,7 +924,7 @@
                         <p class="footer-text mb-0">
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script>
-                            All rights reserved by <strong>BA Talks</strong>
+                            All rights reserved by <strong>BAtalks</strong>
                         </p>
                     </div>
                     <div class="col-md-4 ">
@@ -929,9 +932,9 @@
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
                             <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
                         </a>
-                        <a href="tel:+918341322771"
+                        <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
+                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i>  +91 8341322771
                         </a>
 
                     </div>
@@ -1282,10 +1285,10 @@
                             <ul class="btns d-flex" style="list-style-type:none">
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
-                                            </button>
+                                             <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
+                                                <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                    <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
+                                                </button>
                                         </form>
                                     </li>
                                     <li style="padding-top:10px">
