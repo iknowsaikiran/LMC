@@ -1282,10 +1282,10 @@
                             <ul class="btns d-flex" style="list-style-type:none">
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
-                                            </button>
+                                            <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
+                                            <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                    <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
+                                             </button>
                                         </form>
                                     </li>
                                     <li style="padding-top:10px">
