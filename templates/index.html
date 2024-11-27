@@ -1409,24 +1409,22 @@
                     if (data.success) {
                         heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
-                                // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
-                            } else {
-                                console.error('Error toggling favorite:', data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
+                        // Change the color of the heart icon based on active state
+                        if (heartIcon.classList.contains('active')) {
+                            heartIcon.style.color = 'red'; // Change to red when active
+                            button.setAttribute('aria-label', 'Remove from favorites');
+                        } else {
+                            heartIcon.style.color = 'gray'; // Change to gray when inactive
+                            button.setAttribute('aria-label', 'Add to favorites');
+                        }
+                    } else {
+                        console.error('Error toggling favorite:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
                 });
-            });
-        });
+        }
     </script>
 
     <!--bites dropdown-->
