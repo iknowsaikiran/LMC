@@ -815,7 +815,7 @@
     <!-- End feature-cat Area -->
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
-        <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
+        <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
         <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
             Ambulance Services
         </button>
@@ -931,7 +931,7 @@
                         </a>
                         <a href="tel:+918341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
+                            <i class="fa fa-phone-alt me-2" style="font-size: 20px;"></i> +918341322771
                         </a>
 
                     </div>
@@ -982,7 +982,7 @@
                 this.textContent = 'Show Less'; // Changes button text
             } else {
                 hiddenCategories.style.display = 'none'; // Hides the categories again
-                this.textContent = 'Show All Features'; // Resets button text
+                this.textContent = 'Show All Categories'; // Resets button text
             }
         });
 
@@ -1282,9 +1282,9 @@
                             <ul class="btns d-flex" style="list-style-type:none">
                                     <li >
                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
+                                            <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
+                                            <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                    <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
                                             </button>
                                         </form>
                                     </li>
@@ -1373,10 +1373,10 @@
 
 
 
-                // Toggle between New Patient and Existing Patient forms in the modal
-                hospitalList.addEventListener('click', function (event) {
-                    const target = event.target;
-                    const hospitalId = target.dataset.hospitalId;
+        // Toggle between New Patient and Existing Patient forms in the modal
+        hospitalList.addEventListener('click', function (event) {
+            const target = event.target;
+            const hospitalId = target.dataset.hospitalId;
 
             if (target.classList.contains('new-patient-btn')) {
                 document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
@@ -1419,24 +1419,23 @@
                     if (data.success) {
                         heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
-                                // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
-                            } else {
-                                console.error('Error toggling favorite:', data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
+                        // Change the color of the heart icon based on active state
+                        if (heartIcon.classList.contains('active')) {
+                            heartIcon.style.color = 'red'; // Change to red when active
+                            button.setAttribute('aria-label', 'Remove from favorites');
+                        } else {
+                            heartIcon.style.color = 'gray'; // Change to gray when inactive
+                            button.setAttribute('aria-label', 'Add to favorites');
+                        }
+                    } else {
+                        console.error('Error toggling favorite:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
                 });
-            });
-        });
+        }
+
     </script>
 
     <!--bites dropdown-->
