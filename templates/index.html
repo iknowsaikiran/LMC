@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Klinik - Clinic Website Template</title>
@@ -35,10 +34,6 @@
     <link href="/static/css/card.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-
-
-
     <style>
         .fadeInLeft {
             -webkit-animation-name: fadeInLeft;
@@ -507,20 +502,18 @@
             min-width: 150px;
             /* Maintain a decent width */
         }
-
         .dropdown-menu-custom li:hover {
             background-color: #f8f9fa;
             /* Highlight on hover */
         }
-
         /* Responsive styling */
         @media (max-width: 768px) {
             .dropdown-menu-custom {
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+           
         }
-
         .ambulance {
             border-radius: 7px;
             margin-left: 10px
@@ -537,6 +530,7 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+            
         }
 
         .dropdown-menu-custom {
@@ -553,6 +547,7 @@
         .dropdown-menu-custom.show {
             display: block;
         }
+        
     </style>
 
 
@@ -571,10 +566,10 @@
     <!-- Spinner End -->
 
     <!-- Header Start -->
-    <div class="container-fluid header bg-primary p-0 mb-5">
+    <div class="container-fluid header bg-primary p-0 ">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="display-4 text-white mb-5">HELLO WELCOME TO LOCATE MY CARE</h1>
+                <h2 class="display-4 text-white ">HELLO WELCOME TO LOCATE MY CARE</h2>
                 <div class="row g-4">
                     <div class="col-sm-4">
                         <div class="border-start border-light ps-4">
@@ -596,7 +591,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <!-- <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="owl-carousel header-carousel">
                     <div class="owl-carousel-item position-relative">
                         <img class="img-fluid" src="/static/img/carousel-1.jpg" alt="">
@@ -617,13 +612,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Header End -->
 
 
-    <!-- About Start -->
+    <!-- search  -->
     <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form">
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
@@ -646,15 +641,15 @@
             </div>
 
             <!-- Problem Dropdown -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols m-2 ">
                 <div class="dropdown">
                     <select class="form-select shadow-sm border-0 rounded-pill form-media" id="problemSelect"
                         onchange="navigateToPage()">
                         <option value="">By Problem</option>
-                        <option value="/category?problem=fever">Fever</option>
-                        <option value="/category?problem=headache">Headache</option>
-                        <option value="/category?problem=emergency">Emergency</option>
-                        <option value="/category?problem=stomach-pain">Stomach Pain</option>
+                        <option value="">Fever</option>
+                        <option value="">Headache</option>
+                        <option value="">Emergency</option>
+                        <option value="">Stomach Pain</option>
                     </select>
                 </div>
             </div>
@@ -687,9 +682,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                 <a href="/category?type=general">
                     <div class="single-fcat">
-
                         <img src="/static/img/general.png" alt="" width="60px" height="60px">
-
                         <p>General Hospitals</p>
                     </div>
                 </a>
@@ -735,12 +728,12 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=orthopaedic">
+                <a href="/category?type=orthopedic">
                     <div class="single-fcat">
 
                         <img src="/static/img/ortho.png" alt="" width="60px" height="60px">
 
-                        <p>Orthopaedic</p>
+                        <p>Orthopedic</p>
                     </div>
                 </a>
             </div>
@@ -815,7 +808,7 @@
     <!-- End feature-cat Area -->
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
-        <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
+        <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
         <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
             Ambulance Services
         </button>
@@ -921,7 +914,7 @@
                         <p class="footer-text mb-0">
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script>
-                            All rights reserved by <strong>BA Talks</strong>
+                            All rights reserved by <strong>BAtalks</strong>
                         </p>
                     </div>
                     <div class="col-md-4 ">
@@ -929,7 +922,7 @@
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
                             <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
                         </a>
-                        <a href="tel:+918341322771"
+                        <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
                             <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
                         </a>
@@ -982,7 +975,7 @@
                 this.textContent = 'Show Less'; // Changes button text
             } else {
                 hiddenCategories.style.display = 'none'; // Hides the categories again
-                this.textContent = 'Show All Features'; // Resets button text
+                this.textContent = 'Show All Categories'; // Resets button text
             }
         });
 
@@ -1373,10 +1366,10 @@
 
 
 
-                // Toggle between New Patient and Existing Patient forms in the modal
-                hospitalList.addEventListener('click', function (event) {
-                    const target = event.target;
-                    const hospitalId = target.dataset.hospitalId;
+        // Toggle between New Patient and Existing Patient forms in the modal
+        hospitalList.addEventListener('click', function (event) {
+            const target = event.target;
+            const hospitalId = target.dataset.hospitalId;
 
             if (target.classList.contains('new-patient-btn')) {
                 document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
@@ -1419,24 +1412,22 @@
                     if (data.success) {
                         heartIcon.classList.toggle('active'); // Toggle the heart icon state
 
-                                // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
-                            } else {
-                                console.error('Error toggling favorite:', data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
+                        // Change the color of the heart icon based on active state
+                        if (heartIcon.classList.contains('active')) {
+                            heartIcon.style.color = 'red'; // Change to red when active
+                            button.setAttribute('aria-label', 'Remove from favorites');
+                        } else {
+                            heartIcon.style.color = 'gray'; // Change to gray when inactive
+                            button.setAttribute('aria-label', 'Add to favorites');
+                        }
+                    } else {
+                        console.error('Error toggling favorite:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
                 });
-            });
-        });
+        }
     </script>
 
     <!--bites dropdown-->
