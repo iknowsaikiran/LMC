@@ -50,7 +50,7 @@ def home():
 def index():
     #Check if user is logged in
     if 'username' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('signup'))
 
     user_id = session['username']  # Get the logged-in user's username from the session
     print(f"Logged in user_id (from session): {user_id}")  # Debugging
