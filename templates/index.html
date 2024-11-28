@@ -1377,23 +1377,23 @@
 
         // Toggle between New Patient and Existing Patient forms in the modal
         hospitalList.addEventListener('click', function (event) {
-            const target = event.target;
-            const hospitalId = target.dataset.hospitalId;
+    const target = event.target; // The clicked element
+    const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
 
-            if (target.classList.contains('new-patient-btn')) {
-                document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
-                document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
-            }
-            if (target.classList.contains('new-patient-btn')) {
-                document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
-                document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
-            }
+    if (hospitalId) {
+        if (target.classList.contains('new-patient-btn')) {
+            // Show the "New Patient" form and hide the "Existing Patient" form
+            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
+            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
+        }
 
-            if (target.classList.contains('existing-patient-btn')) {
-                document.getElementById('newPatientForm${hospitalId}').style.display = 'none';
-                document.getElementById('existingPatientForm${hospitalId}').style.display = 'block';
-            }
-        });
+        if (target.classList.contains('existing-patient-btn')) {
+            // Show the "Existing Patient" form and hide the "New Patient" form
+            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
+            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+        }
+    }
+});
 
         // OnClick function to toggle between add/remove from favorites
         function toggleFavourite(hospitalId, button) {

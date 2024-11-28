@@ -197,7 +197,7 @@
                 <a href="/" class="nav-item nav-link active">Home</a>
                 <a href="/about_us" class="nav-item nav-link">About</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="pagesDropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
                         <a href="feature.html" class="dropdown-item">Feature</a>
                         <a href="/team" class="dropdown-item">Home visit Doctors</a>
@@ -211,16 +211,13 @@
                 <a href="/category" class="nav-item nav-link">Category</a>
                 <a href="/favourite" class="nav-item nav-link">Favourites</a>
                 <a href="/dashboard" class="nav-item nav-link">My Profile</a>
-                <!-- <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a> -->
-                <!-- <a href="/logout" class="nav-item nav-link">LOGOUT</a> -->
-                
                 {% else %}
                 <a href="/signup" class="nav-item nav-link">SIGNUP/LOGIN</a>
                 {% endif %}
-                <!-- <a href="/register" class="nav-item nav-link">Register for free</a> -->
             </div>
         </div>
     </nav>
+    
     <!-- Navbar End -->
 
 
@@ -320,36 +317,38 @@
 
 
     </script>
-   <script>
-    // Ensure dropdown works on both hover and click
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const dropdown = document.querySelector('.nav-item.dropdown');
-        const dropdownToggle = document.querySelector('#pagesDropdown');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+    const dropdown = document.querySelector('.nav-item.dropdown');
+    const dropdownToggle = document.querySelector('#pagesDropdown');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
 
-        dropdownToggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('show');
-        });
-
-        // Close dropdown on clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
+    // Bootstrap's dropdown toggle works with the `data-bs-toggle="dropdown"` attribute, 
+    // but you can still manually toggle it if needed:
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();  // Prevent default behavior (e.g., navigating to href="#")
+        e.stopPropagation(); // Stop event propagation to prevent the document click handler from closing the dropdown immediately
+        dropdownMenu.classList.toggle('show'); // Toggle the visibility of the dropdown menu
     });
 
-    // Navbar collapse toggle fix for mobile
+    // Close dropdown when clicking outside
     document.addEventListener('click', function (e) {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-            navbarCollapse.classList.remove('show');
+        if (!dropdown.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
         }
-        
     });
-</script>
+});
+
+// Navbar collapse toggle fix for mobile
+document.addEventListener('click', function (e) {
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+        navbarCollapse.classList.remove('show');
+    }
+});
+
+  </script>
 
 </body>
 
