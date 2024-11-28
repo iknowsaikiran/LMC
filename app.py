@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 
 app.config['MYSQL_DB'] = 'hospital'
 
@@ -275,7 +275,7 @@ def category():
     hospitals = cur.fetchall()
     cur.close()
     
-#     return render_template('category.html', hospitals=hospitals, category=category_type)
+    return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
