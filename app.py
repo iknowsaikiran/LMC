@@ -13,7 +13,9 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
+
 app.config['MYSQL_PASSWORD'] = 'Saty@136'
+
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -48,8 +50,8 @@ def home():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # Ensure the user is logged in
-    if 'username' not in session:  # Check if the session has the username
+    #Check if user is logged in
+    if 'username' not in session:
         return redirect(url_for('signup'))
 
     user_id = session['username']  # Get the logged-in user's username from the session
@@ -246,21 +248,14 @@ def appointment():
 ############################
 @app.route('/category')
 def category():
-    if 'username' not in session:
-        return '''
-            <script type="text/javascript">
-                alert("Please log in to view categories.");
-                window.location.href = "/";  // Redirect to the desired page after alert
-            </script>
-        '''
     category_type = request.args.get('type')
     
-    if category_type is None:
-        return render_template('category.html', hospitals=[])
+#     if category_type is None:
+#         return render_template('category.html', hospitals=[])
     
-    username = session.get('username')
+#     username = session.get('username')
     
-    #Fetch hospitals and check if they're favorites for the logged-in user
+    # Fetch hospitals and check if they're favorites for the logged-in user
     cur = mysql.connection.cursor()
     cur.execute("""
         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
@@ -270,10 +265,10 @@ def category():
         WHERE h.category = %s
     """, (username, category_type))
     
-    hospitals = cur.fetchall()
-    cur.close()
+#     hospitals = cur.fetchall()
+#     cur.close()
     
-    return render_template('category.html', hospitals=hospitals, category=category_type)
+#     return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
@@ -488,6 +483,9 @@ def dashboard():
     return render_template('dashboardindex.html', appointments=appointments)
  
 
+@app.route('/viewcard')
+def viewcard():
+    return render_template('viewcard.html')
 
 
 @app.route('/favourite')
