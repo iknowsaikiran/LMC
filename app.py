@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'root123'
+app.config['MYSQL_PASSWORD'] = 'root'
 
 app.config['MYSQL_DB'] = 'hospital'
 
@@ -199,9 +199,7 @@ def index():
 def about_us():
     return render_template('about.html')
 
-# @app.route('/favourites')
-# def favourites():
-#     return render_template('favourites.html')
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -275,15 +273,12 @@ def category():
     hospitals = cur.fetchall()
     cur.close()
     
-#     return render_template('category.html', hospitals=hospitals, category=category_type)
+    return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
 
 
-# @app.route('/signup', methods=['GET','POST'])
-# def signup():
-#     return render_template('signup.html') 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -325,8 +320,8 @@ def login():
             return jsonify({'success': False, 'message': 'Invalid username or password.'})
         cursor.close()
         session['username'] = username
-        print(username)
-        print(f"Logged in as: {session.get('username')}")
+        # print(username)
+        # print(f"Logged in as: {session.get('username')}")
         return redirect(url_for('index'))  # This should redirect to index
     return render_template('signup.html')
 
