@@ -275,7 +275,7 @@ def category():
     hospitals = cur.fetchall()
     cur.close()
     
-#     return render_template('category.html', hospitals=hospitals, category=category_type)
+    return render_template('category.html', hospitals=hospitals, category=category_type)
 
 
 
