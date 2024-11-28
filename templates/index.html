@@ -353,6 +353,7 @@
             color: white;
             border-radius: 10px;
             cursor: pointer;
+            width: 160px;
         }
 
         .button24:hover {
@@ -515,8 +516,10 @@
            
         }
         .ambulance {
-            border-radius: 7px;
-            margin-left: 10px
+            border-radius: 10px !important;
+            margin-left: 10px !important;
+            height:60px;
+
         }
 
         .dropdown-menu-custom li:hover {
@@ -529,6 +532,9 @@
             .dropdown-menu-custom {
                 min-width: 100%;
                 /* Full width in smaller screens */
+            }
+            #animalBitesButton{
+                 margin-right: 10px;
             }
             
         }
@@ -804,15 +810,32 @@
         </div>
     </div>
     </div>
+      <div class="d-flex justify-content-center">
+        <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
+      </div>
     </section>
     <!-- End feature-cat Area -->
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
-        <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
-        <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
-            Ambulance Services
-        </button>
-        <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
+       
+        
+       
+    </div>
+
+    <!--24/7 buttons-->
+    <div class="mb-3 text-center mt-3">
+        <div class="btn-group">
+            <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
+            <ul id="animalDropdown" class="dropdown-menu-custom">
+                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake
+                        Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
+            </ul>
+            <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
+                Ambulance Services
+            </button>
+            <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -829,19 +852,9 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!--24/7 buttons-->
-    <div class="mb-3 text-center mt-3">
-        <div class="btn-group">
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
-            <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
-            <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake
-                        Bites</a></li>
-                <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
-                <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
-            </ul>
+           
+            
 
         </div>
     </div>
