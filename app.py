@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'root123'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 
 app.config['MYSQL_DB'] = 'hospital'
 
@@ -248,14 +248,21 @@ def appointment():
 ############################
 @app.route('/category')
 def category():
+    if 'username' not in session:
+        return '''
+            <script type="text/javascript">
+                alert("Please log in to view categories.");
+                window.location.href = "/";  // Redirect to the desired page after alert
+            </script>
+        '''
     category_type = request.args.get('type')
     
-#     if category_type is None:
-#         return render_template('category.html', hospitals=[])
+    if category_type is None:
+        return render_template('category.html', hospitals=[])
     
-#     username = session.get('username')
+    username = session.get('username')
     
-    # Fetch hospitals and check if they're favorites for the logged-in user
+    #Fetch hospitals and check if they're favorites for the logged-in user
     cur = mysql.connection.cursor()
     cur.execute("""
         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, h.opcard_price,
@@ -265,8 +272,8 @@ def category():
         WHERE h.category = %s
     """, (username, category_type))
     
-#     hospitals = cur.fetchall()
-#     cur.close()
+    hospitals = cur.fetchall()
+    cur.close()
     
 #     return render_template('category.html', hospitals=hospitals, category=category_type)
 
@@ -464,7 +471,24 @@ def service():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboardindex.html')
+    try:
+        cur = mysql.connection.cursor()
+        # Fetch data from the hospital_appointments table
+        cur.execute("""
+            SELECT * FROM hospital_appointments
+        """)
+        appointments = cur.fetchall()
+        cur.close()
+        print(f"appointments are {appointments}")
+    except Exception as e:
+        logging.error(f"Error fetching hospital appointments: {e}")
+        print(f"Error fetching hospital appointments: {e}")
+        flash(f"An error occurred: {e}", "error")
+        print(e)
+        appointments = []
+    
+    return render_template('dashboardindex.html', appointments=appointments)
+ 
 
 @app.route('/viewcard')
 def viewcard():
