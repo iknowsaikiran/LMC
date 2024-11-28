@@ -469,7 +469,24 @@ def service():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboardindex.html')
+    try:
+        cur = mysql.connection.cursor()
+        # Fetch data from the hospital_appointments table
+        cur.execute("""
+            SELECT * FROM hospital_appointments
+        """)
+        appointments = cur.fetchall()
+        cur.close()
+        print(f"appointments are {appointments}")
+    except Exception as e:
+        logging.error(f"Error fetching hospital appointments: {e}")
+        print(f"Error fetching hospital appointments: {e}")
+        flash(f"An error occurred: {e}", "error")
+        print(e)
+        appointments = []
+    
+    return render_template('dashboardindex.html', appointments=appointments)
+ 
 
 
 
