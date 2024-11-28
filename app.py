@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'Saty@136'
+app.config['MYSQL_PASSWORD'] = 'Navyasree@123'
 
 app.config['MYSQL_DB'] = 'hospital'
 
@@ -260,6 +260,7 @@ def category():
     if category_type is None:
         return render_template('category.html', hospitals=[])
     
+    
     username = session.get('username')
     
     #Fetch hospitals and check if they're favorites for the logged-in user
@@ -271,6 +272,7 @@ def category():
         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
         WHERE h.category = %s
     """, (username, category_type))
+    print(f"Category Type: {category_type}, Username: {username}")
     
     hospitals = cur.fetchall()
     cur.close()
