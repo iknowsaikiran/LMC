@@ -321,33 +321,23 @@
 
     </script>
    <script>
-    // Ensure dropdown works on both hover and click
     document.addEventListener('DOMContentLoaded', function () {
-        const dropdown = document.querySelector('.nav-item.dropdown');
-        const dropdownToggle = document.querySelector('#pagesDropdown');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarCollapse');
 
-        dropdownToggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('show');
-        });
-
-        // Close dropdown on clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
+    // Toggle the navbar collapse visibility on toggle button click
+    navbarToggler.addEventListener('click', function () {
+        navbarCollapse.classList.toggle('show');
     });
 
-    // Navbar collapse toggle fix for mobile
+    // Close the navbar collapse if clicking outside of it
     document.addEventListener('click', function (e) {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
         if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
             navbarCollapse.classList.remove('show');
         }
     });
+});
+
 </script>
 
 </body>

@@ -34,7 +34,8 @@
     <!-- Template Stylesheet -->
     <link href="/static/css/style.css" rel="stylesheet">
     <style>
-        body {
+        body,html {
+            height: 100vh;
             overflow-x: hidden;
         }
 
@@ -248,52 +249,6 @@
         /* Base Styling for Footer */
         /* Base Styling for Footer */
         /* Base Styling for Footer */
-        footer {
-            background-color: #343a40;
-            /* Dark background color */
-            color: #fff;
-            /* White text color */
-            padding: 20px 20px;
-            /* Vertical padding */
-        }
-
-        .footer-bottom {
-            display: flex;
-            flex-wrap: nowrap;
-            /* Prevents wrapping on larger screens */
-            align-items: center;
-            justify-content: space-between;
-            /* Space between items */
-            padding: 10px 0;
-            /* Vertical padding */
-            text-align: left;
-            /* Left-align text by default */
-        }
-
-        .footer-text {
-            margin: 0;
-            font-size: 14px;
-            flex: 1;
-            /* Takes available space without forcing new lines */
-        }
-
-        .footer-bottom .d-flex {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            /* Aligns items to the right */
-            flex-wrap: nowrap;
-            /* Prevents wrapping on larger screens */
-        }
-
-        .footer-bottom .mx-2 {
-            margin: 0 8px;
-            /* Margin between icons and text */
-        }
-
-        .footer-bottom .text-white {
-            color: #fff;
-        }
 
 
         /* Responsive Styling */
@@ -507,6 +462,9 @@
             cursor: pointer;
             /* Change cursor to pointer */
         }
+        .page-header{
+            margin-bottom: 60px;
+        }
     </style>
 </head>
 
@@ -521,7 +479,7 @@
     <!-- Spinner End -->
 
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <h1 class="display-3 text-white mb-3 animated slideInDown">My Favourites</h1>
             <nav aria-label="breadcrumb animated slideInDown">
@@ -537,7 +495,7 @@
 
 
     <section id="favourites" class="post-list">
-        <h2>Favourite Hospitals</h2>
+        <h2 class="align-items-center" style="padding-bottom: 40px; text-align: center;">Favourite Hospitals</h2>
         <div class="row justify-content-center d-flex">
             <div class="col-lg-8 post-list">
                 {% if hospitals %}
@@ -595,7 +553,7 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                <p>You have no favorite hospitals.</p>
+                <h4 style="margin: 10px; padding-bottom: 20px; text-align: center;">You have no favorite hospitals.</h4>
                 {% endif %}
             </div>
         </div>
@@ -620,7 +578,7 @@
                         </a>
                         <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
+                            <i class="fa fa-phone-alt me-2" style="font-size: 20px;"></i> +918341322771
                         </a>
 
                     </div>
