@@ -151,7 +151,7 @@
 
 <body>
   <div class="container-scroller">
-    
+
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -224,7 +224,7 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img src="static/assets/dbimages/faces/face28.jpg" alt="profile" />
+              <img src="/static/assets/dbimages/faces/profile.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -327,8 +327,8 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Welcome John</h3>
-                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                      class="text-primary">3 unread alerts!</span></h6>
+                  <!-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                      class="text-primary">3 unread alerts!</span></h6> -->
                 </div>
                 <div class="col-12 col-xl-4">
                   <div class="justify-content-end d-flex">
@@ -375,7 +375,7 @@
                       <p class="mb-4"></p>
                       <h3>My Appointments</h3>
                       <!-- Display OP Count -->
-                      <p id="op-count" class="op-count-text">Loading...</p>
+                      <p id="op-count" class="op-count-text text-light">Loading...</p>
                     </div>
                   </div>
                 </div>
@@ -383,7 +383,7 @@
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <h3 class="mb-4">No of Hospitals in List </h3>
-                      <p class="mb-2">61344</p>
+                      <p class="mb-2 text-light">61344</p>
                       <p></p>
                     </div>
                   </div>
@@ -403,8 +403,8 @@
                   <div class="card card-light-danger">
                     <div class="card-body">
                       <p class="mb-4"></p>
-                      <p class="fs-30 mb-2">Referrals</p>
-                      <p class="text">0</p>
+                      <p class="fs-30 mb-2 text-light">Referrals</p>
+                      <p class="text text-light">0</p>
                     </div>
                   </div>
                 </div>
@@ -421,36 +421,44 @@
                       <thead>
                         <tr>
                           <th></th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">SL.No</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Hospital Name</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">First Name</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Last Name</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Phone Number</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Department</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Email</th>
-                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Gender</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">SL.No
+                          </th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">
+                            Hospital Name</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">First
+                            Name</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Last
+                            Name</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Phone
+                            Number</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">
+                            Department</th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Email
+                          </th>
+                          <th class="text-uppercase text-secondary text-large font-weight-bolder opacity-7 ps-2">Gender
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         {% for appointment in appointments %}
                         <tr>
-                            <td></td>
-                            <td>{{ loop.index }}</td>
-                            <td>{{ appointment[1] }}</td>
-                            <td>{{ appointment[2] }}</td>
-                            <td>{{ appointment[3] }}</td>
-                            <td>{{ appointment[4] }}</td>
-                            <td>{{ appointment[5] }}</td>
-                            <td>{{ appointment[6] }}</td>
-                            <td>{{ appointment[7] }}</td>
+                          <td></td>
+                          <td>{{ loop.index }}</td>
+                          <td>{{ appointment[1] }}</td>
+                          <td>{{ appointment[2] }}</td>
+                          <td>{{ appointment[3] }}</td>
+                          <td>{{ appointment[4] }}</td>
+                          <td>{{ appointment[5] }}</td>
+                          <td>{{ appointment[6] }}</td>
+                          <td>{{ appointment[7] }}</td>
                         </tr>
                         {% endfor %}
-                    </tbody>
+                      </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-            </div>            
+            </div>
           </div>
           <div class="row" id="referfriend">
             <div class="col-md-6 grid-margin stretch-card">
@@ -510,12 +518,51 @@
 
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card position-relative">
-
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card position-relative p-4">
+                <h1 class="text-center mb-4">Change Password</h1>
+                <form id="changePasswordForm" action="/change-password" method="POST">
+                  <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="currentPassword"
+                      name="currentPassword"
+                      placeholder="Enter current password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newPassword"
+                      name="newPassword"
+                      placeholder="Enter new password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Re-enter new password"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mt-3">
+                    Change Password
+                  </button>
+                </form>
               </div>
             </div>
           </div>
+          
 
           <div class="row">
             <div class="col-md-4 stretch-card grid-margin">
