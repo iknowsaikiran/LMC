@@ -508,44 +508,72 @@
     </script> -->
     <script>
         const container = document.querySelector('.container');
-        const registerBtn = document.querySelector('.register-btn');
-        const loginBtn = document.querySelector('.login-btn');
-    
-        // Toggle between Login and Register Form
-        registerBtn.addEventListener('click', () => {
-            container.classList.add('active');
-        });
-    
-        loginBtn.addEventListener('click', () => {
-            container.classList.remove('active');
-        });
-    
-        // Handle Registration form submission via AJAX (remains the same)
-        document.getElementById('register-form').addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent page reload
-            const formData = new FormData(this);
-    
-            fetch('/signup', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);  // Show success/failure message
-                if (data.success) {
-                    document.getElementById('register-form').reset();  // Clear the form fields
-                    container.classList.remove('active');  // Switch to login view
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    
-        // For Login, remove AJAX and let the form submission trigger backend redirect
-        const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', function(event) {
-            // No JavaScript required for redirection since the backend handles it
-            console.log('Login form submitted, backend will handle redirection.');
-        });
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+const forgotPasswordLink = document.querySelector('.forgot-link a');
+const forgotPasswordForm = document.querySelector('.forgot-password');
+const loginFormBox = document.querySelector('.login');
+const registerFormBox = document.querySelector('.register');
+
+// Toggle between Login and Register Form
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+    loginFormBox.classList.remove('active');
+    registerFormBox.classList.add('active');
+    forgotPasswordForm.classList.remove('active');
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+    loginFormBox.classList.add('active');
+    registerFormBox.classList.remove('active');
+    forgotPasswordForm.classList.remove('active');
+});
+
+// Show Forgot Password Form
+forgotPasswordLink.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    loginFormBox.classList.remove('active');
+    registerFormBox.classList.remove('active');
+    forgotPasswordForm.classList.add('active');
+});
+
+// Handle Forgot Password form submission
+document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form from reloading the page
+    const email = document.getElementById('forgot-email').value;
+
+    // Simulate sending a password reset link
+    alert(`Password reset link sent to ${email}`);
+    forgotPasswordForm.classList.remove('active');
+    loginFormBox.classList.add('active'); // Redirect back to login form
+});
+
+// Handle Registration form submission via AJAX
+document.getElementById('register-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent page reload
+    const formData = new FormData(this);
+
+    fetch('/signup', {
+        method: 'POST',
+        body: formData,
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            alert(data.message); // Show success/failure message
+            if (data.success) {
+                document.getElementById('register-form').reset(); // Clear the form fields
+                container.classList.remove('active'); // Switch to login view
+            }
+        })
+        .catch((error) => console.error('Error:', error));
+});
+
+// Handle Login form submission
+document.getElementById('login-form').addEventListener('submit', function (event) {
+    console.log('Login form submitted, backend will handle redirection.');
+});
+
     </script>
     <script>
         function showLoginForm() {

@@ -13,7 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1210'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -47,8 +47,8 @@ def home():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # Ensure the user is logged in
-    if 'username' not in session:  # Check if the session has the username
+    #Check if user is logged in
+    if 'username' not in session:
         return redirect(url_for('signup'))
 
     user_id = session['username']  # Get the logged-in user's username from the session
@@ -196,9 +196,7 @@ def index():
 def about_us():
     return render_template('about.html')
 
-# @app.route('/favourites')
-# def favourites():
-#     return render_template('favourites.html')
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -278,9 +276,6 @@ def category():
 
 
 
-# @app.route('/signup', methods=['GET','POST'])
-# def signup():
-#     return render_template('signup.html') 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -322,8 +317,8 @@ def login():
             return jsonify({'success': False, 'message': 'Invalid username or password.'})
         cursor.close()
         session['username'] = username
-        print(username)
-        print(f"Logged in as: {session.get('username')}")
+        # print(username)
+        # print(f"Logged in as: {session.get('username')}")
         return redirect(url_for('index'))  # This should redirect to index
     return render_template('signup.html')
 
@@ -468,8 +463,28 @@ def service():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboardindex.html')
+    try:
+        cur = mysql.connection.cursor()
+        # Fetch data from the hospital_appointments table
+        cur.execute("""
+            SELECT * FROM hospital_appointments
+        """)
+        appointments = cur.fetchall()
+        cur.close()
+        print(f"appointments are {appointments}")
+    except Exception as e:
+        logging.error(f"Error fetching hospital appointments: {e}")
+        print(f"Error fetching hospital appointments: {e}")
+        flash(f"An error occurred: {e}", "error")
+        print(e)
+        appointments = []
+    
+    return render_template('dashboardindex.html', appointments=appointments)
+ 
 
+@app.route('/viewcard')
+def viewcard():
+    return render_template('viewcard.html')
 
 
 @app.route('/favourite')
