@@ -197,9 +197,7 @@ def index():
 def about_us():
     return render_template('about.html')
 
-# @app.route('/favourites')
-# def favourites():
-#     return render_template('favourites.html')
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -279,9 +277,6 @@ def category():
 
 
 
-# @app.route('/signup', methods=['GET','POST'])
-# def signup():
-#     return render_template('signup.html') 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -323,8 +318,8 @@ def login():
             return jsonify({'success': False, 'message': 'Invalid username or password.'})
         cursor.close()
         session['username'] = username
-        print(username)
-        print(f"Logged in as: {session.get('username')}")
+        # print(username)
+        # print(f"Logged in as: {session.get('username')}")
         return redirect(url_for('index'))  # This should redirect to index
     return render_template('signup.html')
 
