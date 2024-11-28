@@ -14,12 +14,11 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
-
 
 # Function to calculate distance between two coordinates using Haversine formula
 # Function to calculate distance between two coordinates using Haversine formula
@@ -199,9 +198,7 @@ def index():
 def about_us():
     return render_template('about.html')
 
-# @app.route('/favourites')
-# def favourites():
-#     return render_template('favourites.html')
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -260,6 +257,7 @@ def category():
     if category_type is None:
         return render_template('category.html', hospitals=[])
     
+    
     username = session.get('username')
     
     #Fetch hospitals and check if they're favorites for the logged-in user
@@ -271,6 +269,7 @@ def category():
         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
         WHERE h.category = %s
     """, (username, category_type))
+    print(f"Category Type: {category_type}, Username: {username}")
     
     hospitals = cur.fetchall()
     cur.close()
@@ -281,9 +280,6 @@ def category():
 
 
 
-# @app.route('/signup', methods=['GET','POST'])
-# def signup():
-#     return render_template('signup.html') 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -325,8 +321,8 @@ def login():
             return jsonify({'success': False, 'message': 'Invalid username or password.'})
         cursor.close()
         session['username'] = username
-        print(username)
-        print(f"Logged in as: {session.get('username')}")
+        # print(username)
+        # print(f"Logged in as: {session.get('username')}")
         return redirect(url_for('index'))  # This should redirect to index
     return render_template('signup.html')
 
