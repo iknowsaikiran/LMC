@@ -14,12 +14,11 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'Saty@136'
+app.config['MYSQL_PASSWORD'] = 'varma'
 
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
-
 
 # Function to calculate distance between two coordinates using Haversine formula
 # Function to calculate distance between two coordinates using Haversine formula
