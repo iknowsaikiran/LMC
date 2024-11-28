@@ -20,7 +20,6 @@ app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
 
-
 # Function to calculate distance between two coordinates using Haversine formula
 # Function to calculate distance between two coordinates using Haversine formula
 from math import radians, sin, cos, sqrt, atan2
@@ -258,6 +257,7 @@ def category():
     if category_type is None:
         return render_template('category.html', hospitals=[])
     
+    
     username = session.get('username')
     
     #Fetch hospitals and check if they're favorites for the logged-in user
@@ -269,6 +269,7 @@ def category():
         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
         WHERE h.category = %s
     """, (username, category_type))
+    print(f"Category Type: {category_type}, Username: {username}")
     
     hospitals = cur.fetchall()
     cur.close()
