@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Klinik - Clinic Website Template</title>
-    {%include 'header.html'%}
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -15,7 +15,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax//static/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -35,22 +37,23 @@
     <link href="/static/css/style.css" rel="stylesheet">
     <style>
         .modal-form {
-    margin-top: 20px;
-}
+            margin-top: 20px;
+        }
 
-.modal-form label {
-    display: block;
-    margin-bottom: 5px;
-}
+        .modal-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.modal-form .form-control {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.form-container {
+        .modal-form .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container {
             max-width: 600px;
             margin: 50px auto;
             background-color: #fff;
@@ -73,7 +76,9 @@
             display: block;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -82,7 +87,9 @@
             font-size: 16px;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus,
+        select:focus,
+        textarea:focus {
             border-color: #4A90E2;
             outline: none;
         }
@@ -123,29 +130,170 @@
                 flex-direction: column;
             }
         }
+
         @media (max-width: 768px) {
             .button5 {
                 display: flex;
                 justify-content: space-between;
                 margin-left: 10px;
             }
-            .custom-btn{
+
+            .custom-btn {
                 margin-right: 10px;
             }
         }
+
         @media (max-width: 768px) {
-            .appointment{
-                padding:12px;
+            .appointment {
+                padding: 12px;
             }
         }
+        /* Chat Toggle Button */
+        #chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        #chat-toggle-btn{
+                margin-bottom:1%;
+            }
 
+        #chat-toggle-btn:hover {
+            background-color: #9462d5 !important;
+        }
 
+        /* Chat Container */
+        .chat-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background-color: #512888 !important;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header .chat-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header .chat-title small {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        #close-chat {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+            background-color: #f9f9f9;
+        }
+
+        .bot-message,
+        .user-message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            background-color: #512888 !important;
+            color: white;
+            align-self: flex-start;
+            animation: fadeIn 0.3s;
+        }
+
+        .user-message {
+            background-color: #f1f1f1;
+            align-self: flex-end;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Chat Footer */
+        .chat-footer {
+            display: flex;
+            padding: 10px 15px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #send-btn {
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #send-btn:hover {
+            background-color: #9a66df !important;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
     </style>
 </head>
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -153,7 +301,46 @@
     <!-- Spinner End -->
 
 
-   
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/about_us" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="feature.html" class="dropdown-item">Feature</a>
+                        <a href="/team" class="dropdown-item">Home visit Doctors</a>
+                        <a href="/appointment" class="dropdown-item">Appointment</a>
+                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        <a href="404.html" class="dropdown-item">404 Page</a>
+                    </div>
+                </div>
+                {% if 'username' in session %}
+                <a href="/contact" class="nav-item nav-link">Contact</a>
+                <a href="/category" class="nav-item nav-link">Category</a>
+                <a href="/favourite" class="nav-item nav-link">Favourites</a>
+                <a href="/dashboard" class="nav-item nav-link">My Profile</a>
+                <!-- <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a> -->
+                <!-- <a href="/logout" class="nav-item nav-link">LOGOUT</a> -->
+
+                {% else %}
+                <a href="/signup" class="nav-item nav-link">SIGNUP/LOGIN</a>
+                {% endif %}
+                <!-- <a href="/register" class="nav-item nav-link">Register for free</a> -->
+            </div>
+        </div>
+    </nav>
+
+
+
 
 
     <!-- Page Header Start -->
@@ -179,9 +366,12 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
                     <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
                     <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-phone-alt text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -190,7 +380,8 @@
                         </div>
                     </div>
                     <div class="bg-light rounded d-flex align-items-center p-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-envelope-open text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -201,7 +392,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="container appointment">
-                
+
                         <div class="form-container">
                             <h1>Book Your Appointment</h1>
                             <form id="appointmentForm " method="POST" action="/appointment">
@@ -209,14 +400,16 @@
                                 <div class="form-group ">
                                     <div class="">
                                         <label for="firstName">First Name:</label>
-                                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" class="form-control " required>
+                                        <input type="text" id="firstName" name="firstName"
+                                            placeholder="Enter your first name" class="form-control " required>
                                     </div>
                                     <div class="">
                                         <label for="lastName">Last Name:</label>
-                                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" class="form-control" required>
+                                        <input type="text" id="lastName" name="lastName"
+                                            placeholder="Enter your last name" class="form-control" required>
                                     </div>
                                 </div>
-                    
+
                                 <!-- Gender and Phone Number -->
                                 <div class="form-group">
                                     <div class="">
@@ -230,10 +423,11 @@
                                     </div>
                                     <div class="">
                                         <label for="number">Phone Number:</label>
-                                        <input type="text" id="number" name="number" placeholder="Enter your phone number" required class="form-control">
+                                        <input type="text" id="number" name="number"
+                                            placeholder="Enter your phone number" required class="form-control">
                                     </div>
                                 </div>
-                    
+
                                 <!-- Department -->
                                 <label for="department">Department:</label>
                                 <select id="department" name="department" required class="form-control">
@@ -243,23 +437,26 @@
                                     <option value="orthopedics">Orthopedics</option>
                                     <option value="dermatology">Dermatology</option>
                                 </select>
-                    
+
                                 <!-- Appointment Date and Time -->
                                 <div class="form-group">
                                     <div class="">
                                         <label for="appointmentDate">Appointment Date:</label>
-                                        <input type="date" id="appointmentDate" name="appointmentDate" required class="form-control">
+                                        <input type="date" id="appointmentDate" name="appointmentDate" required
+                                            class="form-control">
                                     </div>
                                     <div class="">
                                         <label for="appointmentTime">Preferred Time:</label>
-                                        <input type="time" id="appointmentTime" name="appointmentTime" required class="form-control">
+                                        <input type="time" id="appointmentTime" name="appointmentTime" required
+                                            class="form-control">
                                     </div>
                                 </div>
-                    
+
                                 <!-- Comments -->
                                 <label for="comments">Additional Comments (Optional):</label>
-                                <textarea id="comments" name="comments" rows="4" placeholder="Describe your issue or leave a note" class="form-control"></textarea>
-                    
+                                <textarea id="comments" name="comments" rows="4"
+                                    placeholder="Describe your issue or leave a note" class="form-control"></textarea>
+
                                 <!-- Submit Button -->
                                 <button type="submit" class="button">Book Appointment</button>
                             </form>
@@ -273,10 +470,10 @@
         </div>
     </div>
     <!-- Appointment End -->
-        
+
 
     <!-- Footer Start -->
-      <footer>
+    <footer>
         <div class="bg-dark text-light py-3">
             <div class="">
                 <div class="row footer-bottom align-items-center justify-content-between" style="margin-right:0px;">
@@ -296,7 +493,7 @@
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
                             <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +91 8341322771
                         </a>
-                      
+
                     </div>
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
@@ -319,12 +516,36 @@
             </div>
         </div>
     </footer>
-   
+
+    <button id="chat-toggle-btn">
+        💬
+    </button>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span>Help Center</span>
+                <small>We’re here to assist you</small>
+            </div>
+            <span id="close-chat">✖</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="bot-message">
+                <p>Hi! 👋 How can we help you today?</p>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your message here...">
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+
+
     <!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a> -->
+    
 
 
     <!-- JavaScript /static/libraries -->
@@ -341,6 +562,90 @@
 
     <!-- Template Javascript -->
     <script src="/static/js/main.js"></script>
+
+    <script>
+        const chatContainer = document.getElementById("chat-container");
+        const chatToggleBtn = document.getElementById("chat-toggle-btn");
+        const closeChat = document.getElementById("close-chat");
+        const chatBody = document.getElementById("chat-body");
+        const chatInput = document.getElementById("chat-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        // Toggle chat visibility
+        chatToggleBtn.addEventListener("click", () => {
+            chatContainer.style.display = chatContainer.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Close chat
+        closeChat.addEventListener("click", () => {
+            chatContainer.style.display = "none";
+        });
+
+        // Send message
+        sendBtn.addEventListener("click", sendMessage);
+
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === "") return;
+
+            // Display user message
+            displayMessage(userMessage, "user");
+
+            // Simulate bot response
+            setTimeout(() => {
+                displayMessage(generateBotResponse(userMessage), "bot");
+            }, 800);
+
+            chatInput.value = "";
+        }
+
+        function displayMessage(message, sender) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender === "bot" ? "bot-message" : "user-message";
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            if (userMessage.toLowerCase().includes("hello")) {
+                return "Hello! How can I assist you today?";
+            } else if (userMessage.toLowerCase().includes("problem")) {
+                return "Can you describe the issue you're facing?";
+            } else {
+                return "I'm here to help. Please provide more details.";
+            }
+        }
+        // Ensure dropdown works on both hover and click
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.querySelector('.nav-item.dropdown');
+            const dropdownToggle = document.querySelector('#pagesDropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+
+            // Close dropdown on clicking outside
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Navbar collapse toggle fix for mobile
+        document.addEventListener('click', function (e) {
+            const navbarCollapse = document.getElementById('navbarCollapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+                navbarCollapse.classList.remove('show');
+            }
+
+        });
+
+    </script>
 </body>
 
 </html>
