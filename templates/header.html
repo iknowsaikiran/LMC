@@ -317,8 +317,23 @@
 
 
     </script>
+<<<<<<<<< Temporary merge branch 1
    <script>
-    // Ensure dropdown works on both hover and click
+    document.addEventListener('DOMContentLoaded', function () {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarCollapse');
+
+    // Toggle the navbar collapse visibility on toggle button click
+    navbarToggler.addEventListener('click', function () {
+        navbarCollapse.classList.toggle('show');
+    });
+
+    // Close the navbar collapse if clicking outside of it
+    document.addEventListener('click', function (e) {
+        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+            navbarCollapse.classList.remove('show');
+=========
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
         const dropdown = document.querySelector('.nav-item.dropdown');
         const dropdownToggle = document.querySelector('#pagesDropdown');
@@ -329,24 +344,29 @@
             dropdownMenu.classList.toggle('show');
         });
 
-        // Close dropdown on clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-    });
-
-    // Navbar collapse toggle fix for mobile
+    // Close dropdown when clicking outside
     document.addEventListener('click', function (e) {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-            navbarCollapse.classList.remove('show');
+        if (!dropdown.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
+>>>>>>>>> Temporary merge branch 2
         }
-        
     });
+});
+
+<<<<<<<<< Temporary merge branch 1
 </script>
+=========
+// Navbar collapse toggle fix for mobile
+document.addEventListener('click', function (e) {
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+        navbarCollapse.classList.remove('show');
+    }
+});
+
+  </script>
+>>>>>>>>> Temporary merge branch 2
 
 </body>
 
