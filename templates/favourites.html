@@ -719,6 +719,29 @@
                 transform: translateY(0);
             }
         }
+        /* Default color for empty heart */
+        .btns .fas.fa-heart {
+            color: gray !important; /* Default color */
+            font-weight: 1000;
+        }
+
+        /* Color for filled heart */
+        .btns .fas.fa-heart.active {
+            color: red !important; /* Active color */
+            font-weight: 1000;
+        }
+
+        /* Optional: Ensuring the button also gets a style (if needed) */
+        .btns .toggle-favourite {
+            background: none; /* Remove button background */
+            border: none; /* Remove button border */
+            padding: 0; /* Remove padding */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        .btns li{
+            list-style-type:none;
+        }
         
     </style>
 </head>
@@ -802,33 +825,35 @@
                             </div>
                             <!-- Details -->
                             <div class="details flex-grow-1">
-                                <div class="title d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <a href="#" class="text-decoration-none">
-                                            <h4 class="mb-1">{{ hospital[1] }}</h4>
+                                <div class="title d-flex flex-row justify-content-between">
+                                    <div class="titles">
+                                        <a href="#">
+                                            <h4>{{ hospital[1] }}</h4> <!-- Hospital Name -->
                                         </a>
-                                        <h6 class="text-success">Available Now</h6>
+                                        <h6>Available Now</h6>
                                     </div>
-                                    <div class="btn-group">
-                                        <form action="/remove_favourite" method="POST" class="me-2">
-                                            <input type="hidden" name="hospital_id" value="{{ hospital[0] }}">
-                                            <button type="button" class=" btn-link text-danger p-0" aria-label="Remove from favorites">
-                                                <i class="fas fa-heart active"></i>
-                                            </button>
-                                        </form>
-                                        <a href="#" class="btb btn-link text-primary p-0 view-card" 
-                                           data-title="{{ hospital[2] }}" 
-                                           data-status="Available Now"
-                                           data-description="Description here"
-                                           data-experience="{{ hospital[4] }} years in health care"
-                                           data-address="Address here"
-                                           data-distance="Distance here"
-                                           data-price="Op price ({{ hospital[5] }})"
-                                           data-op-status="Op 100-200 (Op current status)"
-                                           data-image="{{ url_for('static', filename='img/post.png') }}">
-                                            View
-                                        </a>
-                                    </div>
+                                    <ul class="btns">
+                                        <li class="m-2">
+                                            <form action="/remove_favourite" method="POST" style="display:inline;">
+                                                <input type="hidden" name="hospital_id" value="{{ hospital[0] }}">
+                                                <button type="button" class="toggle-favourite" aria-label="Remove from favorites">
+                                                    <i class="fas fa-heart active "></i>
+                                                </button>
+                                            </form>
+                                        </li>                                
+                                        <li>
+                                            <a href="#" class="view-card"
+                                               data-title="{{ hospital[2] }}"
+                                               data-status="Available Now"
+                                               data-description="Description here"
+                                               data-experience="{{ hospital[4] }} years in health care"
+                                               data-address="Address here"
+                                               data-distance="Distance here"
+                                               data-price="Op price({{ hospital[5] }})"
+                                               data-op-status="Op 100-200 (Op current status)"
+                                               data-image="{{ url_for('static', filename='img/post.png') }}">View</a>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <p class="text-muted mb-2"><strong>Timings:</strong> {{ hospital[2] }}</p>
                                 <p class="text-muted mb-2"><strong>Experience:</strong> {{ hospital[3] }} years in healthcare</p>
@@ -1033,27 +1058,28 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
-
-            favoriteButtons.forEach(button => {
-                button.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent the default form submission
-
-                    const hospitalId = this.closest('form').querySelector('input[name="hospital_id"]').value; // Get hospital_id
-                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
-                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
-                    const action = isActive ? 'remove' : 'add'; // Determine action
-
-                    fetch(action === 'add' ? '/add_favourite' : '/remove_favourite', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            'hospital_id': hospitalId
+       
+            document.addEventListener("DOMContentLoaded", function () {
+                const favoriteButtons = document.querySelectorAll('.toggle-favourite');
+        
+                favoriteButtons.forEach(button => {
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+        
+                        const hospitalId = this.closest('form').querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                        const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                        const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                        const action = isActive ? 'remove' : 'add'; // Determine action
+        
+                        fetch(action === 'add' ? '/add_favourite' : '/remove_favourite', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                'hospital_id': hospitalId
+                            })
                         })
-                    })
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok.');
@@ -1074,9 +1100,9 @@
                         .catch(error => {
                             console.error('There was a problem with the fetch operation:', error);
                         });
+                    });
                 });
             });
-        });
     </script>
 
 </body>
