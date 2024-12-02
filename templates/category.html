@@ -228,10 +228,12 @@
             flex-direction: row;
             justify-content: space-between;
         }
-        .showallbutton{
+
+        .showallbutton {
             border-radius: 7px;
         }
-        .ambulance{
+
+        .ambulance {
             border-radius: 7px;
             margin-left: 10px;
         }
@@ -250,7 +252,7 @@
 
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
+            <h1 class="m-0 text-primary"><img src="/static/img/logo1.png" alt="" srcset="" width="85px"></h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -290,7 +292,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">Cato</h1>
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Category</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb text-uppercase mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -323,7 +325,7 @@
         </div>
         <div class="row m-3 mobilecard">
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=general">
+                <a class="category-button" data-category="general hospitals">
                     <div class="single-fcat">
 
                         <img src="/static/img/general.png" alt="" width="60px" height="60px">
@@ -333,7 +335,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=cardiology">
+                <a class="category-button" data-category="cardiology">
                     <div class="single-fcat">
 
                         <img src="/static/img/humanheart.jpg" alt="" width="60px" height="60px">
@@ -343,7 +345,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=dermatology">
+                <a class="category-button" data-category="dermatology">
                     <div class="single-fcat">
 
                         <img src="/static/img/hand.png" alt="" width="60px" height="60px">
@@ -353,7 +355,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=neurology">
+                <a class="category-button" data-category="neurology">
                     <div class="single-fcat">
 
                         <img src="/static/img/health.png" alt="" width="60px" height="60px">
@@ -363,7 +365,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=gynecology">
+                <a class="category-button" data-category="gynecology">
                     <div class="single-fcat">
 
                         <img src="/static/img/maternity.png" alt="" width="60px" height="60px">
@@ -373,7 +375,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=orthopaedic">
+                <a class="category-button" data-category="orthopaedic">
                     <div class="single-fcat">
 
                         <img src="/static/img/ortho.png" alt="" width="60px" height="60px">
@@ -385,7 +387,7 @@
 
         </div>
         <div class="row m-3 mobilecard" id="category-2" style="display: none;">
-            <a href="/category?type=oncology">
+            <a class="category-button" data-category="oncology">
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                     <div class="single-fcat">
 
@@ -396,7 +398,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=pulmonology">
+            <a class="category-button" data-category="pulmonology">
                 <div class="single-fcat">
 
                     <img src="/static/img/pulmonology.webp" alt="" width="60px" height="60px">
@@ -406,7 +408,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=opthalmology">
+            <a class="category-button" data-category="opthalmology">
                 <div class="single-fcat">
 
                     <img src="/static/img/eye.png" alt="" width="60px" height="60px">
@@ -416,7 +418,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=nephrology">
+            <a class="category-button" data-category="nephrology">
                 <div class="single-fcat">
 
                     <img src="/static/img/nephrology.webp" alt="" width="60px" height="60px">
@@ -426,7 +428,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=heptaology">
+            <a class="category-button" data-category="heptaology">
                 <div class="single-fcat">
 
                     <img src="/static/img/hepatology.png" alt="" width="60px" height="60px">
@@ -437,7 +439,7 @@
 
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=gastroenterology">
+            <a class="category-button" data-category="gastroenterology">
                 <div class="single-fcat">
 
                     <img src="/static/img/gastro.png" alt="" width="60px" height="60px">
@@ -721,6 +723,7 @@
                 console.error("Geolocation is not supported by this browser.");
             }
 
+            // Function to fetch and process user location
             function success(position) {
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
@@ -736,32 +739,54 @@
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Geocoding API response:", data);  // Log the full response for debugging
+                        console.log("Geocoding API response:", data); // Log the full response for debugging
                         const locality = data.locality || 'Unknown locality';
                         const principalSubdivision = data.principalSubdivision || 'Unknown region';
                         const locationDetails = `${locality}, ${principalSubdivision}`;
 
                         console.log(`User's location: ${locationDetails}`);
 
-                        // Send user location to the backend
-                        return fetch('/', {
+                        // Attach event listeners to category buttons after getting location
+                        attachCategoryListeners(latitude, longitude, locationDetails);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            // Function to attach event listeners to category buttons
+            function attachCategoryListeners(latitude, longitude, locationDetails) {
+                document.querySelectorAll('.category-button').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault(); // Prevent default navigation if it's an anchor tag
+                        const categoryType = this.getAttribute('data-category'); // Get the category type
+
+                        console.log(`Selected category: ${categoryType}`);
+
+                        // Make the POST request with the selected category and location details
+                        fetch('/category', {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
                                 latitude: latitude,
                                 longitude: longitude,
-                                locationDetails: locationDetails
+                                category_type: categoryType,
+                                locationDetails: locationDetails,
+                            }),
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to fetch hospital data.');
+                                }
+                                return response.json();
                             })
-                        });
-                    })
-                    .then(response => response.json()) // Assuming server returns a JSON array of hospitals
-                    .then(hospitals => {
-                        console.log("Received data from server:", hospitals);
-                        displayHospitals(hospitals);  // Update the UI with hospital data
-                    })
-                    .catch(error => console.error('Error:', error));
+                            .then(hospitals => {
+                                console.log(`Hospitals for ${categoryType}:`, hospitals);
+                                displayHospitals(hospitals); // Update the UI with the filtered hospitals
+                            })
+                            .catch(error => console.error('Error:', error));
+                    });
+                });
             }
 
             // Handle errors in geolocation
@@ -789,6 +814,7 @@
         }
     </script>
 
+
     <script>
         var swiper = new Swiper('.blog-slider', {
             spaceBetween: 30,
@@ -806,6 +832,7 @@
     </script>
     <!--Dynamically gettting the cards and Favourites-->
     <script>
+
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
@@ -961,6 +988,7 @@
             displayHospitals(hospitals); // Call this to initialize with available hospitals
         });
     </script>
+
 
 
 </body>
