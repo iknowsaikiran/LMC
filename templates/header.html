@@ -44,7 +44,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #512888 !important;
+            background-color: #e96022 !important;
             color: white;
             border: none;
             padding: 15px;
@@ -59,7 +59,7 @@
             }
 
         #chat-toggle-btn:hover {
-            background-color: #9462d5 !important;
+            background-color: #512888 !important;
         }
 
         /* Chat Container */
@@ -317,38 +317,35 @@
 
 
     </script>
-  <script>
+   <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const dropdown = document.querySelector('.nav-item.dropdown');
-    const dropdownToggle = document.querySelector('#pagesDropdown');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
+        const dropdown = document.querySelector('.nav-item.dropdown');
+        const dropdownToggle = document.querySelector('#pagesDropdown');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
 
-    // Bootstrap's dropdown toggle works with the `data-bs-toggle="dropdown"` attribute, 
-    // but you can still manually toggle it if needed:
-    dropdownToggle.addEventListener('click', function (e) {
-        e.preventDefault();  // Prevent default behavior (e.g., navigating to href="#")
-        e.stopPropagation(); // Stop event propagation to prevent the document click handler from closing the dropdown immediately
-        dropdownMenu.classList.toggle('show'); // Toggle the visibility of the dropdown menu
+        dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close dropdown on clicking outside
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
     });
 
-    // Close dropdown when clicking outside
+    // Navbar collapse toggle fix for mobile
     document.addEventListener('click', function (e) {
-        if (!dropdown.contains(e.target)) {
-            dropdownMenu.classList.remove('show');
+        const navbarCollapse = document.getElementById('navbarCollapse');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+            navbarCollapse.classList.remove('show');
         }
+        
     });
-});
-
-// Navbar collapse toggle fix for mobile
-document.addEventListener('click', function (e) {
-    const navbarCollapse = document.getElementById('navbarCollapse');
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-        navbarCollapse.classList.remove('show');
-    }
-});
-
-  </script>
+</script>
 
 </body>
 
