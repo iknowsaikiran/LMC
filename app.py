@@ -13,9 +13,7 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-
 app.config['MYSQL_PASSWORD'] = 'Saty@136'
-
 app.config['MYSQL_DB'] = 'hospital'
 
 mysql = MySQL(app)
@@ -702,6 +700,14 @@ def dashboard():
             """, (username,))
 
         appointments = cur.fetchall()
+        
+        
+        # Fetch the count of favourites
+        cur.execute("""
+            SELECT COUNT(*) FROM favourites
+            WHERE username = %s
+        """, (username,))
+        favourite_count = cur.fetchone()[0]  # Get the count value
         cur.close()
         print(f"appointments are {appointments}")
     except Exception as e:
@@ -711,7 +717,7 @@ def dashboard():
         print(e)
         appointments = []
     
-    return render_template('dashboardindex.html', appointments=appointments)
+    return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  
 
 @app.route('/viewcard')
