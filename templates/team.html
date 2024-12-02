@@ -33,7 +33,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/static/css/card.css" rel="stylesheet">
-    <style>
+    <!-- <style>
         .footer {
             background-color: #343a40;
         }
@@ -59,7 +59,7 @@
                 margin-bottom: 8px;
             }
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -238,43 +238,45 @@
 
 
     <!-- Footer Start -->
-    <footer class="footer bg-dark text-light p-4">
-        <div class="container">
-            <div class="row text-center text-md-start align-items-center">
-                <!-- Left Section -->
-                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                    <p class="mb-0 text-light">&copy; 2024 Your Company</p>
-                </div>
+    <footer>
+        <div class="bg-dark text-light py-3">
+            <div class="">
+                <div class="row footer-bottom align-items-center justify-content-between" style="margin-right:0px;">
+                    <div class="col-md-4 text-center text-md-start">
+                        <p class="footer-text mb-0">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved by <strong>BAtalks</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <a href="mailto:contact@batalks.com"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                        </a>
+                        <a href="tel:+91 8341322771"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-phone-alt me-2" style="font-size: 15px;"></i> +91 8341322771
+                        </a>
 
-                <!-- Center Section -->
-                <div class="col-12 col-md-4 mb-3 mb-md-0">
-                    <p class="mb-0 text-light">
-                        <a href="mailto:contact@yourcompany.com"
-                            class="text-light text-decoration-none">contact@batalks.com</a> |
-                        <i class="fa fa-phone-alt text-primary me-2"></i>+91 8341322771
-                    </p>
-                </div>
-
-                <!-- Right Section -->
-                <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2"
-                        href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
-                        aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2"
-                        href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
-                        target="_blank" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-2"
-                        href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary"
-                        href="https://www.instagram.com/batalkspvtltd/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
+                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
+                            target="_blank" class="text-light mx-2">
+                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
