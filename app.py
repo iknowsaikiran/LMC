@@ -212,6 +212,10 @@ def index():
 def about_us():
     return render_template('about.html')
 
+@app.route('/hospitaldb')
+def hospitaldb():
+    return render_template('hospitaldb.html')
+
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
     if request.method == 'POST':
