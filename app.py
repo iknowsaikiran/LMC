@@ -17,7 +17,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'varma'
 
 app.config['MYSQL_DB'] = 'hospital'
-
 mysql = MySQL(app)
 
 
@@ -199,8 +198,6 @@ def index():
 def about_us():
     return render_template('about.html')
 
-
-
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
     if request.method == 'POST':
@@ -214,6 +211,13 @@ def appointment():
         appointmentDate = request.form.get('appointmentDate')
         appointmentTime = request.form.get('appointmentTime')
         purpose = request.form.get('comments')
+        
+        # Get the logged-in user's username from session
+        username = session.get('username')  
+        
+        if not username:  # Check if user is logged in
+            flash("You must be logged in to make an appointment.")
+            return redirect(url_for('login'))  # Redirect to login page if not logged in
 
         #Validate form inputs
         if not first_name or not last_name or not phone_number:
@@ -225,10 +229,10 @@ def appointment():
             cur = mysql.connection.cursor()
             query = """
                 INSERT INTO hospital_appointments 
-                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
-            values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose)
+            values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose, username)
             cur.execute(query, values)  # Execute the query
             mysql.connection.commit()  # Commit the changes
             cur.close()  # Close the cursor
@@ -466,12 +470,24 @@ def service():
 @app.route('/dashboard')
 def dashboard():
     try:
+        username = session.get('username') 
+        
         cur = mysql.connection.cursor()
-        # Fetch data from the hospital_appointments table
+        # Fetch data from the hospital_appointments table based on the username
         cur.execute("""
             SELECT * FROM hospital_appointments
-        """)
+            WHERE username = %s
+            """, (username,))
+
         appointments = cur.fetchall()
+        
+        
+        # Fetch the count of favourites
+        cur.execute("""
+            SELECT COUNT(*) FROM favourites
+            WHERE username = %s
+        """, (username,))
+        favourite_count = cur.fetchone()[0]  # Get the count value
         cur.close()
         print(f"appointments are {appointments}")
     except Exception as e:
@@ -481,7 +497,7 @@ def dashboard():
         print(e)
         appointments = []
     
-    return render_template('dashboardindex.html', appointments=appointments)
+    return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  
 
 @app.route('/viewcard')
