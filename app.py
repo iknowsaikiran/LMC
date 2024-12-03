@@ -41,96 +41,30 @@ def haversine(lat1, lon1, lat2, lon2):
     return distance
 
 @app.route('/')
-def home():
-    return  render_template('index.html')
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    #Check if user is logged in
-    if 'username' not in session:
-        return redirect(url_for('signup'))
-
-    user_id = session['username']  # Get the logged-in user's username from the session
-    print(f"Logged in user_id (from session): {user_id}")  # Debugging
-
-    # Fetch the username from the signup table
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT username FROM signup WHERE username = %s", (user_id,))
-    result = cur.fetchone()
-    cur.close()
-
-    if not result:
-        print("User not found in the signup table.")  # Debugging
-        return redirect(url_for('login'))  # Redirect if the user does not exist
-
-    username = result[0]  # Extract the username string from the result tuple
-    print(f"Fetched username: {username}")  # Debugging
-
-    if request.method == 'POST':
-        # Handle POST request (when the geolocation data is sent)
-        data = request.get_json()  # Parse the JSON data
-        print("Received data:", data)  # Debugging to verify received data
-
-        user_latitude = float(data.get('latitude'))
-        user_longitude = float(data.get('longitude'))
-
-        print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
-
-        # Fetch hospital data from the database with favorite status
-        cur = mysql.connection.cursor()
-        cur.execute("""
-            SELECT 
-                h.hospital_id, 
-                h.hospital_name, 
-                h.timings, 
-                h.years_since_established, 
-                h.opcard_price, 
-                h.latitude, 
-                h.longitude, 
-                CASE 
-                    WHEN f.username IS NOT NULL THEN TRUE 
-                    ELSE FALSE 
-                END AS is_favorite
-            FROM hospitals h
-            LEFT JOIN favourites f 
-            ON h.hospital_id = f.hospital_id AND f.username = %s
-        """, (username,))
-        hospitals = cur.fetchall()
-        cur.close()
-
-        # Compute nearby hospitals
-        nearby_hospitals = []
-        for hospital in hospitals:
-            hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
-            distance = haversine(user_latitude, user_longitude, lat, lon)
-            if distance <= 5:  # Check if the hospital is within 5 km
-                nearby_hospitals.append({
-                    'hospital_id': hospital_id,
-                    'hospital_name': hospital_name,
-                    'timings': timings,
-                    'years_since_established': years_since_established,
-                    'opcard_price': opcard_price,
-                    'distance': round(distance, 2),  # Round distance to 2 decimal places
-                    'is_favorite': is_favorite
-                })
-
-        print("Nearby hospitals:", nearby_hospitals)  # Debugging
-
-        # Return nearby hospitals as JSON response
-        return jsonify(nearby_hospitals)
-
-    # If GET request (when the page is first loaded)
-    return render_template('index.html', hospitals=[])
-
+def home():    
+    return render_template('index.html')
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
 #     #Check if user is logged in
-#     if 'username' not in session:
-#         return redirect(url_for('home'))
+#     # if 'username' not in session:
+#     #     return redirect(url_for('signup'))
 
-#     username = session['username']  # Get the username from the session
-#     print(f"Logged in user: {username}")  # Debugging
+#     user_id = session['username']  # Get the logged-in user's username from the session
+#     print(f"Logged in user_id (from session): {user_id}")  # Debugging
+
+#     # Fetch the username from the signup table
+#     cur = mysql.connection.cursor()
+#     cur.execute("SELECT username FROM signup WHERE username = %s", (user_id,))
+#     result = cur.fetchone()
+#     cur.close()
+
+#     if not result:
+#         print("User not found in the signup table.")  # Debugging
+#         return redirect(url_for('login'))  # Redirect if the user does not exist
+
+#     username = result[0]  # Extract the username string from the result tuple
+#     print(f"Fetched username: {username}")  # Debugging
 
 #     if request.method == 'POST':
 #         # Handle POST request (when the geolocation data is sent)
@@ -140,8 +74,8 @@ def index():
 #         user_latitude = float(data.get('latitude'))
 #         user_longitude = float(data.get('longitude'))
 
-#         # Debugging: Print the latitude and longitude
-#         print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
+#         print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
+
 #         # Fetch hospital data from the database with favorite status
 #         cur = mysql.connection.cursor()
 #         cur.execute("""
@@ -167,19 +101,17 @@ def index():
 #         # Compute nearby hospitals
 #         nearby_hospitals = []
 #         for hospital in hospitals:
-        
-#             hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favourite = hospital
+#             hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
 #             distance = haversine(user_latitude, user_longitude, lat, lon)
 #             if distance <= 5:  # Check if the hospital is within 5 km
 #                 nearby_hospitals.append({
-                    
 #                     'hospital_id': hospital_id,
 #                     'hospital_name': hospital_name,
 #                     'timings': timings,
 #                     'years_since_established': years_since_established,
 #                     'opcard_price': opcard_price,
-#                     'distance': round(distance, 2),
-#                     'is_favourite': is_favourite # Round distance to 2 decimal places
+#                     'distance': round(distance, 2),  # Round distance to 2 decimal places
+#                     'is_favorite': is_favorite
 #                 })
 
 #         print("Nearby hospitals:", nearby_hospitals)  # Debugging
@@ -189,6 +121,88 @@ def index():
 
 #     # If GET request (when the page is first loaded)
 #     return render_template('index.html', hospitals=[])
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    # Retrieve user ID from session if available (optional)
+    user_id = session.get('username', None)  # Get the logged-in user's username, or None if not logged in
+    print(f"Logged in user_id (from session): {user_id}")  # Debugging
+
+    username = None
+    if user_id:
+        try:
+            # Fetch the username from the signup table
+            cur = mysql.connection.cursor()
+            cur.execute("SELECT username FROM signup WHERE username = %s", (user_id,))
+            result = cur.fetchone()
+            cur.close()
+
+            if result:
+                username = result[0]  # Extract the username string from the result tuple
+                print(f"Fetched username: {username}")  # Debugging
+        except Exception as e:
+            print(f"Error fetching username: {e}")
+
+    if request.method == 'POST':
+        try:
+            # Handle POST request (when the geolocation data is sent)
+            data = request.get_json()  # Parse the JSON data
+            print("Received data:", data)  # Debugging to verify received data
+
+            user_latitude = float(data.get('latitude'))
+            user_longitude = float(data.get('longitude'))
+
+            print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
+
+            # Fetch hospital data from the database with favorite status
+            cur = mysql.connection.cursor()
+            cur.execute("""
+                SELECT 
+                    h.hospital_id, 
+                    h.hospital_name, 
+                    h.timings, 
+                    h.years_since_established, 
+                    h.opcard_price, 
+                    h.latitude, 
+                    h.longitude, 
+                    CASE 
+                        WHEN %s IS NOT NULL AND f.username IS NOT NULL THEN TRUE 
+                        ELSE FALSE 
+                    END AS is_favorite
+                FROM hospitals h
+                LEFT JOIN favourites f 
+                ON h.hospital_id = f.hospital_id AND f.username = %s
+            """, (username, username))
+            hospitals = cur.fetchall()
+            cur.close()
+
+            # Compute nearby hospitals
+            nearby_hospitals = []
+            for hospital in hospitals:
+                hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
+                distance = haversine(user_latitude, user_longitude, lat, lon)
+                if distance <= 5:  # Check if the hospital is within 5 km
+                    nearby_hospitals.append({
+                        'hospital_id': hospital_id,
+                        'hospital_name': hospital_name,
+                        'timings': timings,
+                        'years_since_established': years_since_established,
+                        'opcard_price': opcard_price,
+                        'distance': round(distance, 2),  # Round distance to 2 decimal places
+                        'is_favorite': is_favorite
+                    })
+
+            print("Nearby hospitals:", nearby_hospitals)  # Debugging
+
+            # Return nearby hospitals as JSON response
+            return jsonify(nearby_hospitals)
+
+        except Exception as e:
+            print(f"Error processing request: {e}")
+            return "Internal Server Error", 500
+
+    # If GET request (when the page is first loaded)
+    return render_template('index.html', hospitals=[])
 
 
 @app.route('/about_us')
