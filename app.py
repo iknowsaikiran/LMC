@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, json, jsonify
 from flask_mysqldb import MySQL
 from math import radians, cos, sin, asin, sqrt
-from flask_mysqldb import MySQL
 import logging
 import os
 from werkzeug.utils import secure_filename
@@ -14,7 +13,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'varma'
 
 app.config['MYSQL_DB'] = 'hospital'
 mysql = MySQL(app)
@@ -44,14 +43,14 @@ def haversine(lat1, lon1, lat2, lon2):
     return distance
 
 @app.route('/')
-def home():
-    return  render_template('index.html')
+def home():    
+    return render_template('index.html')
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
 #     #Check if user is logged in
-#     if 'username' not in session:
-#         return redirect(url_for('signup'))
+#     # if 'username' not in session:
+#     #     return redirect(url_for('signup'))
 
 #     user_id = session['username']  # Get the logged-in user's username from the session
 #     print(f"Logged in user_id (from session): {user_id}")  # Debugging
@@ -124,7 +123,6 @@ def home():
 
 #     # If GET request (when the page is first loaded)
 #     return render_template('index.html', hospitals=[])
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -209,14 +207,13 @@ def index():
     return render_template('index.html', hospitals=[])
 
 
-
 @app.route('/about_us')
 def about_us():
     return render_template('about.html')
-
 @app.route('/hospitaldb')
 def hospitaldb():
     return render_template('hospitaldb.html')
+
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -386,15 +383,11 @@ def appointment():
 ##########$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
 @app.route('/category', methods=['GET', 'POST'])
 def category():
-    # Log the request method to verify if it's POST or GET
-    print("Request Method:", request.method)
-
-    # Check if the user is logged in
     if 'username' not in session:
         return '''
             <script type="text/javascript">
                 alert("Please log in to view categories.");
-                window.location.href = "/";
+                window.location.href = "/";  // Redirect to the desired page after alert
             </script>
         '''
 
@@ -721,6 +714,7 @@ def dashboard():
         flash(f"An error occurred: {e}", "error")
         print(e)
         appointments = []
+        favourite_count = 0  # Default count in case of error
     
     return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  

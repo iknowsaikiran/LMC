@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Locate My Care</title>
+    <title>Klinik - Clinic Website Template</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
@@ -300,7 +300,7 @@
         function displayMessage(message, sender) {
             const messageDiv = document.createElement("div");
             messageDiv.className = sender === "bot" ? "bot-message" : "user-message";
-            messageDiv.innerHTML = `<p>${message}</p>`;
+            messageDiv.innerHTML = <p>${message}</p>;
             chatBody.appendChild(messageDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
@@ -328,24 +328,28 @@
             dropdownMenu.classList.toggle('show');
         });
 
-        // Close dropdown on clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-    });
-
-    // Navbar collapse toggle fix for mobile
+    // Close dropdown when clicking outside
     document.addEventListener('click', function (e) {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-            navbarCollapse.classList.remove('show');
+        if (!dropdown.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
+
         }
-        
     });
+});
+
 </script>
+=========
+// Navbar collapse toggle fix for mobile
+document.addEventListener('click', function (e) {
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+        navbarCollapse.classList.remove('show');
+    }
+});
+
+  </script>
+
 
 </body>
 
