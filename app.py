@@ -17,7 +17,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
 
 app.config['MYSQL_DB'] = 'hospital'
-
 mysql = MySQL(app)
 
 
@@ -214,6 +213,10 @@ def index():
 @app.route('/about_us')
 def about_us():
     return render_template('about.html')
+
+@app.route('/hospitaldb')
+def hospitaldb():
+    return render_template('hospitaldb.html')
 
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
@@ -702,6 +705,14 @@ def dashboard():
             """, (username,))
 
         appointments = cur.fetchall()
+        
+        
+        # Fetch the count of favourites
+        cur.execute("""
+            SELECT COUNT(*) FROM favourites
+            WHERE username = %s
+        """, (username,))
+        favourite_count = cur.fetchone()[0]  # Get the count value
         cur.close()
         print(f"appointments are {appointments}")
     except Exception as e:
@@ -711,7 +722,7 @@ def dashboard():
         print(e)
         appointments = []
     
-    return render_template('dashboardindex.html', appointments=appointments)
+    return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  
 
 @app.route('/viewcard')
