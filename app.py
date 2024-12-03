@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 
 app.config['MYSQL_DB'] = 'hospital'
 mysql = MySQL(app)
@@ -267,49 +267,6 @@ def appointment():
 
 
 
-############################
-# @app.route('/category', methods=['POST','GET'])
-# def category():
-    
-#     if 'username' not in session:
-#         return '''
-#             <script type="text/javascript">
-#                 alert("Please log in to view categories.");
-#                 window.location.href = "/";  // Redirect to the desired page after alert
-#             </script>
-#         '''
-#     category_type = request.args.get('type')
-#     print(f"Category Type: {category_type}")
-#     username = session.get('username')  # Get logged-in user's username from the session
-
-#     cur = mysql.connection.cursor()
-
-#     if category_type:
-#         # Fetch hospitals for the selected category
-#         query = """
-#             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, 
-#                    h.opcard_price, h.category,
-#                    CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-#             FROM hospitals h
-#             LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-#             WHERE h.category = %s
-#         """
-#         cur.execute(query, (username, category_type))
-#     else:
-#         # Fetch all hospitals for initial view
-#         query = """
-#             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, 
-#                    h.opcard_price, h.category,
-#                    CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-#             FROM hospitals h
-#             LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-#         """
-#         cur.execute(query, (username,))
-
-#     hospitals = cur.fetchall()
-#     cur.close()
-
-#     return render_template('category.html', hospitals=hospitals, category=category_type)
 
 ##############################################################################################################
 # @app.route('/category', methods=['GET','POST'])
@@ -501,9 +458,6 @@ def category():
         return jsonify(nearby_hospitals)
 
     return "Invalid request method.", 405
-
-
-
 
 
 
@@ -721,6 +675,7 @@ def dashboard():
         flash(f"An error occurred: {e}", "error")
         print(e)
         appointments = []
+        favourite_count = 0  # Default count in case of error
     
     return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  
