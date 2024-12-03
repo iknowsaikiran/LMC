@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = '1234@Saikiran'
+app.config['MYSQL_PASSWORD'] = 'Saty@136'
 
 app.config['MYSQL_DB'] = 'hospital'
 mysql = MySQL(app)
@@ -675,6 +675,7 @@ def dashboard():
         flash(f"An error occurred: {e}", "error")
         print(e)
         appointments = []
+        favourite_count = 0  # Default count in case of error
     
     return render_template('dashboardindex.html', appointments=appointments, username=username, count=favourite_count)
  
