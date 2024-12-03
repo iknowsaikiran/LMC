@@ -44,7 +44,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #e96022 !important;
+            background-color: #512888 !important;
             color: white;
             border: none;
             padding: 15px;
@@ -59,7 +59,7 @@
             }
 
         #chat-toggle-btn:hover {
-            background-color: #512888 !important;
+            background-color: #9462d5 !important;
         }
 
         /* Chat Container */
@@ -186,7 +186,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0 text-primary"><img src="/static/img/logo1.png" alt="" srcset="" width="85px"></h1>
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -317,7 +317,23 @@
 
 
     </script>
+<<<<<<<<< Temporary merge branch 1
    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarCollapse');
+
+    // Toggle the navbar collapse visibility on toggle button click
+    navbarToggler.addEventListener('click', function () {
+        navbarCollapse.classList.toggle('show');
+    });
+
+    // Close the navbar collapse if clicking outside of it
+    document.addEventListener('click', function (e) {
+        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+            navbarCollapse.classList.remove('show');
+=========
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
         const dropdown = document.querySelector('.nav-item.dropdown');
         const dropdownToggle = document.querySelector('#pagesDropdown');
@@ -328,24 +344,29 @@
             dropdownMenu.classList.toggle('show');
         });
 
-        // Close dropdown on clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-    });
-
-    // Navbar collapse toggle fix for mobile
+    // Close dropdown when clicking outside
     document.addEventListener('click', function (e) {
-        const navbarCollapse = document.getElementById('navbarCollapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-            navbarCollapse.classList.remove('show');
+        if (!dropdown.contains(e.target)) {
+            dropdownMenu.classList.remove('show');
+>>>>>>>>> Temporary merge branch 2
         }
-        
     });
+});
+
+<<<<<<<<< Temporary merge branch 1
 </script>
+=========
+// Navbar collapse toggle fix for mobile
+document.addEventListener('click', function (e) {
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+        navbarCollapse.classList.remove('show');
+    }
+});
+
+  </script>
+>>>>>>>>> Temporary merge branch 2
 
 </body>
 
