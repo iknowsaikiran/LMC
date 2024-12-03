@@ -695,9 +695,6 @@
         
         
     </style>
-
-
-
 </head>
 <body>
 
@@ -716,15 +713,14 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="/team" class="dropdown-item">Home visit Doctors</a>
+                        <!-- <a href="feature.html" class="dropdown-item">Feature</a> -->
+                       
                         <a href="/appointment" class="dropdown-item">Appointment</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <!-- <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
+                        <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
                     </div>
                 </div>
                 {% if 'username' in session %}
-                <a href="/contact" class="nav-item nav-link">Contact</a>
                 <a href="/category" class="nav-item nav-link">Category</a>
                 <a href="/favourite" class="nav-item nav-link">Favourites</a>
                 <a href="/dashboard" class="nav-item nav-link">My Profile</a>
@@ -752,21 +748,22 @@
     <div class="container-fluid header bg-primary p-0 ">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-3 wow fadeIn " data-wow-delay="0.1s">
-                <h4 class="display-4 p-1 m-2 text-white ">HELLO WELCOME TO LOCATE MY CARE</h4>
+                <h4 class="display-4  text-white ">HELLO</h4>
+                <p class="display-6 text-white " > WELCOME TO LOCATE MY CARE</p>
                 <div class="row g-4">
-                    <div class="col-sm-4 ps-4">
+                    <div class="col-sm-4">
                         <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">123</h2>
                             <p class="text-light mb-0">Expert Doctors</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 ps-4">
+                    <div class="col-sm-4 ">
                         <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">1234</h2>
                             <p class="text-light mb-0">Medical Staff</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 ps-4">
+                    <div class="col-sm-4">
                         <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">12345</h2>
                             <p class="text-light mb-0">Total Patients</p>
@@ -823,7 +820,9 @@
             </div>
         </div>
     </form>
-
+    <div class="d-flex justify-content-center">
+       <a href="/team"> <button class=" btn-primary showallbutton" >Home Vist Doctors</button></a>
+      </div>
 
 
 
