@@ -55,7 +55,6 @@
 
         .form-container {
             max-width: 600px;
-            margin: 50px auto;
             background-color: #fff;
             padding: 20px 30px;
             border-radius: 10px;
@@ -148,6 +147,7 @@
                 padding: 12px;
             }
         }
+
         /* Chat Toggle Button */
         #chat-toggle-btn {
             position: fixed;
@@ -163,9 +163,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
-        #chat-toggle-btn{
-                margin-bottom:1%;
-            }
+
+        #chat-toggle-btn {
+            margin-bottom: 1%;
+        }
 
         #chat-toggle-btn:hover {
             background-color: #9462d5 !important;
@@ -274,6 +275,7 @@
         #send-btn:hover {
             background-color: #9a66df !important;
         }
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -286,8 +288,31 @@
                 transform: translateY(0);
             }
         }
-        
     </style>
+    <style>
+        .review-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-item {
+            margin-bottom: 20px;
+        }
+        
+        .text-warning i {
+            color: #ffc107;
+        }
+        
+        textarea:focus, input:focus, select:focus {
+
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        </style>
+        
 </head>
 
 <body>
@@ -319,7 +344,7 @@
                        
                         
                         <a href="/appointment" class="dropdown-item">Appointment</a>
-                        
+
                     </div>
                 </div>
                 {% if 'username' in session %}
@@ -345,7 +370,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">Appointment</h1>
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Appointment {% if hospital %} for {{ hospital[2] }} {% else %} {% endif %}</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb text-uppercase mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -362,68 +387,87 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
-                    <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
-                    </p>
-                    <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
-                            style="width: 55px; height: 55px;">
-                            <i class="fa fa-phone-alt text-primary"></i>
-                        </div>
-                        <div class="ms-4">
-                            <p class="mb-2">Call Us Now</p>
-                            <h5 class="mb-0">+012 345 6789</h5>
-                        </div>
-                    </div>
-                    <div class="bg-light rounded d-flex align-items-center p-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
-                            style="width: 55px; height: 55px;">
-                            <i class="fa fa-envelope-open text-primary"></i>
-                        </div>
-                        <div class="ms-4">
-                            <p class="mb-2">Mail Us Now</p>
-                            <h5 class="mb-0">info@example.com</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="container appointment">
+                <!-- Hospital List Section -->
+                <div class="col-lg-6">
+                    <div class="row justify-content-center">
 
-                        <div class="form-container">
-                            <h1>Book Your Appointment</h1>
-                            <form id="appointmentForm " method="POST" action="/appointment">
-                                <!-- First and Last Name -->
-                                <div class="form-group ">
-                                    <div class="">
-                                        <label for="firstName">First Name:</label>
-                                        <input type="text" id="firstName" name="firstName"
-                                            placeholder="Enter your first name" class="form-control " required>
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="single-post d-flex flex-wrap align-items-start p-3 mb-4 shadow-sm bg-white rounded">
+                                    <!-- Thumbnail -->
+                                    <div class="thumb me-3">
+                                        <img src="/static/img/apollo.jfif" alt="Hospital Image"
+                                            class="img-fluid rounded">
                                     </div>
-                                    <div class="">
-                                        <label for="lastName">Last Name:</label>
-                                        <input type="text" id="lastName" name="lastName"
-                                            placeholder="Enter your last name" class="form-control" required>
+                                    <!-- Details -->
+                                    <div class="details flex-grow-1">
+                                        <div class="title d-flex flex-row justify-content-between">
+                                            <div class="titles">
+                                                <a href="#">
+                                                    <h4>{{ hospital[2] }}</h4>
+                                                </a>
+                                                <h6>Available Now</h6>
+                                            </div>
+                                            <!-- <ul class="btns">
+                                                    <li class="m-2">
+                                                        <button type="button" class="toggle-favourite" aria-label="Remove from favorites">
+                                                            <i class="fas fa-heart active"></i>
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="view-card">View</a>
+                                                    </li>
+                                                </ul> -->
+                                        </div>
+                                        <p class="text-muted mb-2"><strong>Timings: {{ hospital[6] }}</strong></p>
+                                        <p class="text-muted mb-2"><strong>Experience:</strong>{{ hospital[7] }} years in healthcare</p>
+                                        <p class="text-muted mb-2"><i class="fa-solid fa-location-dot"></i> Address here
+                                            <span>&nbsp; Distance here</span></p>
+                                        <p class="text-muted mb-2">Op price: <i
+                                                class="fa-solid fa-indian-rupee-sign"></i>{{ hospital[8] }}</p>
+                                        <p class="text-muted"><i class="fa-solid fa-chart-line"></i> Op 100-200 &nbsp;
+                                            (Op current status)</p>
                                     </div>
                                 </div>
+                            </li>
+                        </ul>
 
+                    </div>
+                </div>
+                <!-- Appointment Form Section -->
+                <div class="col-lg-6">
+                    <div class="container appointment">
+                        <div class="form-container">
+                            <h1>Book Your Appointment</h1>
+                            <form id="appointmentForm">
+                                <!-- First and Last Name -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="firstName">First Name:</label>
+                                        <input type="text" id="firstName" name="firstName"
+                                            placeholder="Enter your first name" class="form-control col-md-6" required>
+                                    </div>
+                                    <div class="row">
+                                        <label for="lastName">Last Name:</label>
+                                        <input type="text" id="lastName" name="lastName"
+                                            placeholder="Enter your last name" class="form-control col-md-6" required>
+                                    </div>
+                                </div>
                                 <!-- Gender and Phone Number -->
                                 <div class="form-group">
-                                    <div class="">
+                                    <div class="row">
                                         <label for="gender">Gender:</label>
-                                        <select id="gender" name="gender" required class="form-control">
+                                        <select id="gender" name="gender" required class="form-control col-md-6">
                                             <option value="" disabled selected>Select Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                             <option value="other">Other</option>
                                         </select>
                                     </div>
-                                    <div class="">
+                                    <div class="row">
                                         <label for="number">Phone Number:</label>
                                         <input type="text" id="number" name="number"
-                                            placeholder="Enter your phone number" required class="form-control">
+                                            placeholder="Enter your phone number" required class="form-control col-md-6">
                                     </div>
                                 </div>
                                 <label for="department">select Hospital:</label>
@@ -436,34 +480,44 @@
                                 </select>
 
                                 <!-- Department -->
-                                <label for="department">Department:</label>
-                                <select id="department" name="department" required class="form-control">
-                                    <option value="" disabled selected>Choose Department</option>
-                                    <option value="general">General Medicine</option>
-                                    <option value="cardiology">Cardiology</option>
-                                    <option value="orthopedics">Orthopedics</option>
-                                    <option value="dermatology">Dermatology</option>
-                                </select>
+                                 <div class="form-group">
+                                    <div class="row">
+                                        <label for="department">Department:</label>
+                                        <select id="department" name="department" required class="form-control col-md-6">
+                                            <option value="" disabled selected>Choose Department</option>
+                                            <option value="general">General Medicine</option>
+                                            <option value="cardiology">Cardiology</option>
+                                            <option value="orthopedics">Orthopedics</option>
+                                            <option value="dermatology">Dermatology</option>
+                                        </select>
 
+                                    </div>
+                                 </div>
+                               
                                 <!-- Appointment Date and Time -->
                                 <div class="form-group">
-                                    <div class="">
+                                    <div class="row">
                                         <label for="appointmentDate">Appointment Date:</label>
                                         <input type="date" id="appointmentDate" name="appointmentDate" required
-                                            class="form-control">
+                                            class="form-control col-md-6">
                                     </div>
-                                    <div class="">
+                                    <div class="row">
                                         <label for="appointmentTime">Preferred Time:</label>
                                         <input type="time" id="appointmentTime" name="appointmentTime" required
-                                            class="form-control">
+                                            class="form-control col-md-6">
                                     </div>
                                 </div>
-
                                 <!-- Comments -->
-                                <label for="comments">Additional Comments (Optional):</label>
-                                <textarea id="comments" name="comments" rows="4"
-                                    placeholder="Describe your issue or leave a note" class="form-control"></textarea>
+                                 <div class="form-group">
+                                    <div class="row">
+                                        <label for="comments">Describe your problem (Optional):</label>
+                                        <textarea id="comments" name="comments" rows="4"
+                                            placeholder="Describe your issue or leave a note" class="form-control col-md-6"></textarea>
 
+                                    </div>
+
+                                 </div>
+                               
                                 <!-- Submit Button -->
                                 <button type="submit" class="button">Book Appointment</button>
                             </form>
@@ -475,8 +529,45 @@
                 </div>
             </div>
         </div>
+
     </div>
     <!-- Appointment End -->
+    <div class="review-section mt-4 m-3">
+        <h5 class="text-center mb-3">Reviews</h5>
+        <!-- Existing Reviews -->
+        <div class="existing-reviews row">
+            <div class="review-item border-bottom pb-3 mb-3 col-md-6">
+                <div class="d-flex align-items-center mb-2">
+                    <strong class="me-2">John Doe</strong>
+                    <br>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-alt"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </div>
+                <p class="mb-0">Great experience! The staff was very helpful, and the facilities were top-notch.</p>
+            </div>
+            <div class="review-item border-bottom pb-3 mb-3 col-md-6">
+                <div class="d-flex align-items-center mb-2">
+                    <strong class="me-2">Jane Smith</strong>
+                    <br>
+                    <span class="text-warning">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </span>
+                </div>
+                <p class="mb-0">Exceptional care and friendly staff. Highly recommended!</p>
+            </div>
+        </div>
+     
+    </div>
+    
 
 
     <!-- Footer Start -->
@@ -494,36 +585,36 @@
                     <div class="col-md-4 d-flex">
                         <a href="mailto:contact@batalks.com"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                            <i class="fa fa-envelope-square me-2" style="font-size: 15px;"></i> contact@batalks.com
                         </a>
                         <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +91 8341322771
+                            <i class="fa fa-phone-alt me-2" style="font-size: 15px;"></i> +91 8341322771
                         </a>
 
                     </div>
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                            <i class="bi bi-facebook" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
-                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                            <i class="bi bi-instagram" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
                             target="_blank" class="text-light mx-2">
-                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                            <i class="bi bi-whatsapp" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                            <i class="bi bi-linkedin" style="font-size: 15px;"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
+    
     <button id="chat-toggle-btn">
         💬
     </button>
@@ -552,7 +643,7 @@
     <!-- Footer End -->
 
 
-    
+
 
 
     <!-- JavaScript /static/libraries -->
