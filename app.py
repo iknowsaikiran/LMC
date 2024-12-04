@@ -136,6 +136,9 @@ def hospitaldb():
     return render_template('hospitaldb.html')
 
 
+
+
+
 # @app.route('/appointment', methods=['GET', 'POST'])
 # def appointment():
 #     if request.method == 'POST':
@@ -667,6 +670,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Ensure the folder exists
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
+    
+    
+@app.route('/hospitalregister')
+def hospitalregister():
+    return render_template('hospital_registration.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
