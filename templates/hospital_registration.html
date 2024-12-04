@@ -294,12 +294,13 @@
 
             <!-- Accreditations & Certifications -->
             <label for="accreditations">Accreditations & Certifications:</label><br>
-            <select id="accreditations" name="accreditations" class="form-control" multiple>
-                <option value="NABH">NABH</option>
-                <option value="JCI">JCI</option>
-                <option value="ISO Certification">ISO Certification</option>
-                <option value="Other">Other (Please specify)</option>
-            </select><br><br>
+            <label for="accreditations">Accreditations & Certifications:</label><br>
+    <div id="accreditations">
+        <label><input type="checkbox" name="accreditations[]" value="NABH"> NABH</label><br>
+        <label><input type="checkbox" name="accreditations[]" value="JCI"> JCI</label><br>
+        <label><input type="checkbox" name="accreditations[]" value="ISO Certification"> ISO Certification</label><br>
+        <label><input type="checkbox" name="accreditations[]" value="Other"> Other (Please specify)</label><br>
+    </div><br><br>
         
             <!-- Upload Section for Documents -->
             <label for="uploadDocuments">Upload Documents:</label>
@@ -739,6 +740,16 @@
     // Show the first page initially
     showPage(currentPage);
 });
+// Optional: Dynamically log the selected accreditations
+const checkboxes = document.querySelectorAll('input[name="accreditations[]"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const selectedValues = Array.from(checkboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
+                console.log('Selected Accreditations:', selectedValues);
+            });
+        });
 
     </script>
 </body>
