@@ -115,82 +115,10 @@
                 <label for="state" class="form-label">State:</label>
                 <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
             </div>
-        </div>
-          <!-- Page 4: Medical Expertise -->
-        <div class="page" id="page4">
-            <h2>Medical Expertise</h2>
-            <!-- Fields from Page 4 -->
-            <form action="#" method="POST" enctype="multipart/form-data" class="form-group">
-                <!-- Medical Expertise Section -->
-                <fieldset>
-                    <legend>Medical Expertise</legend>
 
-                    <label for="noOfDoctors">Number of Doctors:</label>
-                    <input type="number" id="noOfDoctors" name="noOfDoctors" class="form-control" required><br><br>
-
-                    <label for="bedCapacity">Total Bed Capacity:</label>
-                    <input type="number" id="bedCapacity" name="bedCapacity" placeholder="e.g., 150 beds"
-                        class="form-control" required><br><br>
-
-                    <label for="departments">Departments & Specialties Offered:</label><br>
-                    <select id="departments" name="departments[]" class="form-control" multiple required>
-                        <option value="Cardiology">Cardiology</option>
-                        <option value="Orthopedics">Orthopedics</option>
-                        <option value="Pediatrics">Pediatrics</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Emergency">Emergency</option>
-                        <option value="Radiology">Radiology</option>
-                        <option value="Other">Other (Please specify)</option>
-                    </select><br><br>
-        
-                    <label for="doctorFile">List of Registered Doctors (Upload file):</label>
-                    <input type="file" id="doctorFile" name="doctorFile" accept=".csv, .xlsx, .xls" class="form-control"
-                        required><br><br>
-
-                    <label for="keyHealthcareProviders">Key Healthcare Providers (Optional):</label>
-                    <input type="file" id="keyHealthcareProviders" name="keyHealthcareProviders"
-                        accept=".csv, .xlsx, .xls" class="form-control"><br><br>
-                </fieldset>
-
-                <!-- Hospital Operations Section -->
-                <fieldset>
-                    <legend>Hospital Operations</legend>
-
-                    <label for="operationalHours">Hospital’s Operational Hours (Monday to Friday):</label><br>
-                    <input type="time" id="weekdaysStart" name="weekdaysStart" class="form-control" required>
-                    to
-                    <input type="time" id="weekdaysEnd" name="weekdaysEnd" class="form-control" required><br><br>
-
-                    <label for="saturdayHours">Saturday Operational Hours (Optional):</label><br>
-                    <input type="time" id="saturdayStart" name="saturdayStart" class="form-control">
-                    to
-                    <input type="time" id="saturdayEnd" name="saturdayEnd" class="form-control"><br><br>
-
-                    <label for="sundayHours">Sunday Operational Hours (Optional):</label><br>
-                    <input type="time" id="sundayStart" name="sundayStart" class="form-control">
-                    to
-                    <input type="time" id="sundayEnd" name="sundayEnd" class="form-control"><br><br>
-
-                    <label for="is247">24/7 Services Available:</label><br>
-                    <input type="radio" id="yes247" name="is247" value="Yes" class="form-control" required>
-                    <label for="yes247">Yes</label>
-                    <input type="radio" id="no247" name="is247" value="No" class="form-control" required>
-                    <label for="no247">No</label><br><br>
-
-                    <label for="languagesSpoken">Languages Spoken:</label><br>
-                    <input type="text" id="languagesSpoken" name="languagesSpoken"
-                        placeholder="e.g., English, Spanish, Hindi" class="form-control" required><br><br>
-
-                    <label for="medicalEquipment">Available Medical Equipment:</label><br>
-                    <textarea id="medicalEquipment" name="medicalEquipment" rows="4" cols="50"
-                        placeholder="e.g., X-ray machines, MRI, Ultrasound, ECG, Ventilators" class="form-control"
-                        required></textarea><br><br>
-                </fieldset>
-            </form>
-
-            <div class="button-container">
-                <button type="button" id="prev4">Previous</button>
-                <button type="button" id="next4">Next</button>
+            <div class="mb-3">
+                <label for="pincode" class="form-label">Pincode:</label>
+                <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required>
             </div>
 
             <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
