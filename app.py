@@ -12,7 +12,9 @@ app.secret_key = 'your_secret_key'
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Saty@136'
+
+app.config['MYSQL_PASSWORD'] = 'varma'
+
 app.config['MYSQL_DB'] = 'hospital'
 mysql = MySQL(app)
 
@@ -131,6 +133,10 @@ def index():
 @app.route('/about_us')
 def about_us():
     return render_template('about.html')
+@app.route('/hospitaldb')
+def hospitaldb():
+    return render_template('hospitaldb.html')
+
 
 # @app.route('/appointment', methods=['GET', 'POST'])
 # def appointment():
