@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Locate My Care</title>
-    
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -503,22 +504,25 @@
             min-width: 150px;
             /* Maintain a decent width */
         }
+
         .dropdown-menu-custom li:hover {
             background-color: #f8f9fa;
             /* Highlight on hover */
         }
+
         /* Responsive styling */
         @media (max-width: 768px) {
             .dropdown-menu-custom {
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
-           
+
         }
+
         .ambulance {
             border-radius: 10px !important;
             margin-left: 10px !important;
-            height:60px;
+            height: 60px;
 
         }
 
@@ -533,10 +537,11 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
-            #animalBitesButton{
-                 margin-right: 10px;
+
+            #animalBitesButton {
+                margin-right: 10px;
             }
-            
+
         }
 
         .dropdown-menu-custom {
@@ -569,9 +574,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
-        #chat-toggle-btn{
-                margin-bottom:1%;
-            }
+
+        #chat-toggle-btn {
+            margin-bottom: 1%;
+        }
 
         #chat-toggle-btn:hover {
             background-color: #9462d5 !important;
@@ -680,6 +686,7 @@
         #send-btn:hover {
             background-color: #9a66df !important;
         }
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -692,10 +699,9 @@
                 transform: translateY(0);
             }
         }
-        
-        
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
@@ -714,7 +720,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
                         <!-- <a href="feature.html" class="dropdown-item">Feature</a> -->
-                       
+
                         <a href="/appointment" class="dropdown-item">Appointment</a>
                         <!-- <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
                         <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
@@ -726,7 +732,7 @@
                 <a href="/dashboard" class="nav-item nav-link">My Profile</a>
                 <!-- <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a> -->
                 <!-- <a href="/logout" class="nav-item nav-link">LOGOUT</a> -->
-                
+
                 {% else %}
                 <a href="/signup" class="nav-item nav-link">SIGNUP/LOGIN</a>
                 {% endif %}
@@ -821,8 +827,8 @@
         </div>
     </form>
     <div class="d-flex justify-content-center">
-       <a href="/team"> <button class=" btn-primary showallbutton" >Home Vist Doctors</button></a>
-      </div>
+        <a href="/team"> <button class=" btn-primary showallbutton mb-1">Home Vist Doctors</button></a>
+    </div>
 
 
 
@@ -962,17 +968,15 @@
             </a>
         </div>
     </div>
-    </div>
-      <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
         <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
-      </div>
-    </section>
+    </div>
     <!-- End feature-cat Area -->
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
-       
-        
-       
+
+
+
     </div>
 
     <!--24/7 buttons-->
@@ -985,33 +989,34 @@
                 <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
                 <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
             </ul>
-            <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
+            <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal"
+                data-bs-target="#ambulanceModal">
                 Ambulance Services
             </button>
             <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>We are trying very hard to get you the best ambulance services near to your location.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>We are trying very hard to get you the best ambulance services near to your location.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
-           
-            
+
+
 
         </div>
     </div>
- </div>
+    </div>
 
     <!--based on the location-->
     <!-- Start post Area -->
@@ -1043,7 +1048,7 @@
                     <div class="col-md-4 d-flex">
                         <a href="mailto:contact@batalks.com"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                            <i class="fa fa-envelope-square me-2" style="font-size: 15px;"></i> contact@batalks.com
                         </a>
                         <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
@@ -1054,25 +1059,25 @@
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                            <i class="bi bi-facebook" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
-                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                            <i class="bi bi-instagram" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
                             target="_blank" class="text-light mx-2">
-                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                            <i class="bi bi-whatsapp" style="font-size: 15px;"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                            <i class="bi bi-linkedin" style="font-size: 15px;"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
+    
 
     <button id="chat-toggle-btn">
         💬
@@ -1099,7 +1104,7 @@
     </div>
 
 
-   
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1571,34 +1576,34 @@
                 document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
-                        alert('This feature is coming soon.');  
+                        alert('This feature is coming soon.');
                     });
                 });
 
             }
         }
 
-        
+
 
         // Toggle between New Patient and Existing Patient forms in the modal
         hospitalList.addEventListener('click', function (event) {
         const target = event.target; // The clicked element
         const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
 
-    if (hospitalId) {
-        if (target.classList.contains('new-patient-btn')) {
-            // Show the "New Patient" form and hide the "Existing Patient" form
-            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
-            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
-        }
+            if (hospitalId) {
+                if (target.classList.contains('new-patient-btn')) {
+                    // Show the "New Patient" form and hide the "Existing Patient" form
+                    document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
+                    document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
+                }
 
-        if (target.classList.contains('existing-patient-btn')) {
-            // Show the "Existing Patient" form and hide the "New Patient" form
-            document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
-            document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
-        }
-    }
-});
+                if (target.classList.contains('existing-patient-btn')) {
+                    // Show the "Existing Patient" form and hide the "New Patient" form
+                    document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
+                    document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                }
+            }
+        });
 
         // OnClick function to toggle between add/remove from favorites
         function toggleFavourite(hospitalId, button) {

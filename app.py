@@ -136,6 +136,9 @@ def hospitaldb():
     return render_template('hospitaldb.html')
 
 
+
+
+
 # @app.route('/appointment', methods=['GET', 'POST'])
 # def appointment():
 #     if request.method == 'POST':
@@ -487,11 +490,6 @@ def referafriend():
 @app.route('/team')
 def team():
     return render_template('team.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 # @app.route('/logout')
 # def logout():
 #     # Remove the username from the session
@@ -667,6 +665,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Ensure the folder exists
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
+    
+    
+@app.route('/hospitalregister')
+def hospitalregister():
+    return render_template('hospital_registration.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
