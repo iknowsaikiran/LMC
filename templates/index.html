@@ -748,7 +748,7 @@
     <div class="container-fluid header bg-primary p-0 ">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-3 wow fadeIn " data-wow-delay="0.1s">
-                <h4 class="display-4  text-white ">HELLO {{ username | upper}} !</h4>
+                <h4 class="display-4  text-white ">HELLO {{ session['username'] | upper}} !</h4>
                 <p class="display-6 text-white " > WELCOME TO LOCATE MY CARE</p>
                 <div class="row g-4">
                     <div class="col-sm-4">
@@ -1257,9 +1257,9 @@
         }
 
         // Function to navigate to a new page for new patients
-        function navigateToNewPage() {
-            window.location.href = "/appointment"; // Redirect to the new page
-        }
+        //function navigateToNewPage() {
+        //    window.location.href = "/appointment"; // Redirect to the new page
+        //}
 
         // Function for existing patient functionality
         //24/7 and 8am to 8pm hospitals
@@ -1449,6 +1449,18 @@
 
     <!--Favourites-->
     <script>
+        function navigateToNewPage(hospitalId) {
+            console.log("Navigating with hospitalId:", hospitalId); // Debug log
+            console.log("Navigating with hospitalId");
+            if (!hospitalId) {
+                console.error("Hospital ID is not provided.");
+                return;
+            }
+            // Redirect to the appointment page with the hospital_id as a query parameter
+            window.location.href = `/appointment?hospital_id=${hospitalId}`;
+        }
+    </script>
+    <script>
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
             hospitalList.innerHTML = ''; // Clear the list before adding new items
@@ -1509,7 +1521,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="text-center">
-                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
+                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage('${hospital.hospital_id}')">New Patient</button>
                                 <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
                             </div>
                             <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
@@ -1550,10 +1562,7 @@
                         </div>
                     </div>
                 </div>
-            </div>`;
-                    function navigateToNewPage() {
-                        window.location.href = "appointments.html"; // Redirect to the new page
-                    }
+            </div>`;                    
 
                     hospitalList.innerHTML += hospitalItem;
                 });
@@ -1573,8 +1582,8 @@
 
         // Toggle between New Patient and Existing Patient forms in the modal
         hospitalList.addEventListener('click', function (event) {
-    const target = event.target; // The clicked element
-    const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
+        const target = event.target; // The clicked element
+        const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
 
     if (hospitalId) {
         if (target.classList.contains('new-patient-btn')) {

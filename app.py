@@ -44,83 +44,6 @@ def haversine(lat1, lon1, lat2, lon2):
 def home():    
     return render_template('index.html')
 
-# @app.route('/', methods=['GET', 'POST'])
-# def index():
-#     #Check if user is logged in
-#     # if 'username' not in session:
-#     #     return redirect(url_for('signup'))
-
-#     user_id = session['username']  # Get the logged-in user's username from the session
-#     print(f"Logged in user_id (from session): {user_id}")  # Debugging
-
-#     # Fetch the username from the signup table
-#     cur = mysql.connection.cursor()
-#     cur.execute("SELECT username FROM signup WHERE username = %s", (user_id,))
-#     result = cur.fetchone()
-#     cur.close()
-
-#     if not result:
-#         print("User not found in the signup table.")  # Debugging
-#         return redirect(url_for('login'))  # Redirect if the user does not exist
-
-#     username = result[0]  # Extract the username string from the result tuple
-#     print(f"Fetched username: {username}")  # Debugging
-
-#     if request.method == 'POST':
-#         # Handle POST request (when the geolocation data is sent)
-#         data = request.get_json()  # Parse the JSON data
-#         print("Received data:", data)  # Debugging to verify received data
-
-#         user_latitude = float(data.get('latitude'))
-#         user_longitude = float(data.get('longitude'))
-
-#         print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
-
-#         # Fetch hospital data from the database with favorite status
-#         cur = mysql.connection.cursor()
-#         cur.execute("""
-#             SELECT 
-#                 h.hospital_id, 
-#                 h.hospital_name, 
-#                 h.timings, 
-#                 h.years_since_established, 
-#                 h.opcard_price, 
-#                 h.latitude, 
-#                 h.longitude, 
-#                 CASE 
-#                     WHEN f.username IS NOT NULL THEN TRUE 
-#                     ELSE FALSE 
-#                 END AS is_favorite
-#             FROM hospitals h
-#             LEFT JOIN favourites f 
-#             ON h.hospital_id = f.hospital_id AND f.username = %s
-#         """, (username,))
-#         hospitals = cur.fetchall()
-#         cur.close()
-
-#         # Compute nearby hospitals
-#         nearby_hospitals = []
-#         for hospital in hospitals:
-#             hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
-#             distance = haversine(user_latitude, user_longitude, lat, lon)
-#             if distance <= 5:  # Check if the hospital is within 5 km
-#                 nearby_hospitals.append({
-#                     'hospital_id': hospital_id,
-#                     'hospital_name': hospital_name,
-#                     'timings': timings,
-#                     'years_since_established': years_since_established,
-#                     'opcard_price': opcard_price,
-#                     'distance': round(distance, 2),  # Round distance to 2 decimal places
-#                     'is_favorite': is_favorite
-#                 })
-
-#         print("Nearby hospitals:", nearby_hospitals)  # Debugging
-
-#         # Return nearby hospitals as JSON response
-#         return jsonify(nearby_hospitals)
-
-#     # If GET request (when the page is first loaded)
-#     return render_template('index.html', hospitals=[])
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -213,8 +136,63 @@ def hospitaldb():
     return render_template('hospitaldb.html')
 
 
+# @app.route('/appointment', methods=['GET', 'POST'])
+# def appointment():
+#     if request.method == 'POST':
+#         # Get form data
+#         first_name = request.form.get('firstName')
+#         last_name = request.form.get('lastName')
+#         email = request.form.get('email')
+#         phone_number = request.form.get('number')
+#         gender = request.form.get('gender')
+#         department = request.form.get('department')
+#         appointmentDate = request.form.get('appointmentDate')
+#         appointmentTime = request.form.get('appointmentTime')
+#         purpose = request.form.get('comments')
+        
+#         # Get the logged-in user's username from session
+#         username = session.get('username')  
+        
+#         if not username:  # Check if user is logged in
+#             flash("You must be logged in to make an appointment.")
+#             return redirect(url_for('login'))  # Redirect to login page if not logged in
+
+#         #Validate form inputs
+#         if not first_name or not last_name or not phone_number:
+#             flash("All fields are required!")
+#             return redirect(url_for('appointment'))
+
+#         #Insert into database
+#         try:
+#             cur = mysql.connection.cursor()
+#             query = """
+#                 INSERT INTO hospital_appointments 
+#                 (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username) 
+#                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+#             """
+#             values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose, username)
+#             cur.execute(query, values)  # Execute the query
+#             mysql.connection.commit()  # Commit the changes
+#             cur.close()  # Close the cursor
+#             flash("Appointment successfully booked!")
+#             return redirect(url_for('appointment_success'))
+#         except Exception as e:
+#             flash(f"An error occurred: {str(e)}")
+#             return redirect(url_for('appointment'))
+
+#     # Handle GET request
+#     return render_template('appointment.html')
+
+
 @app.route('/appointment', methods=['GET', 'POST'])
 def appointment():
+    if 'username' not in session:
+        return '''
+            <script type="text/javascript">
+                alert("Please log in to book appointment.");
+                window.location.href = "/";  // Redirect to the desired page after alert
+            </script>
+        '''
     if request.method == 'POST':
         # Get form data
         first_name = request.form.get('firstName')
@@ -223,23 +201,23 @@ def appointment():
         phone_number = request.form.get('number')
         gender = request.form.get('gender')
         department = request.form.get('department')
-        appointmentDate = request.form.get('appointmentDate')
-        appointmentTime = request.form.get('appointmentTime')
+        appointment_date = request.form.get('appointmentDate')
+        appointment_time = request.form.get('appointmentTime')
         purpose = request.form.get('comments')
-        
+
         # Get the logged-in user's username from session
-        username = session.get('username')  
-        
+        username = session.get('username')
+
         if not username:  # Check if user is logged in
             flash("You must be logged in to make an appointment.")
-            return redirect(url_for('login'))  # Redirect to login page if not logged in
+            return redirect(url_for('login'))
 
-        #Validate form inputs
-        if not first_name or not last_name or not phone_number:
+        # Validate form inputs
+        if not all([first_name, last_name, phone_number, department, appointment_date]):
             flash("All fields are required!")
-            return redirect(url_for('appointment'))
+            return redirect(request.url)
 
-        #Insert into database
+        # Insert into database
         try:
             cur = mysql.connection.cursor()
             query = """
@@ -247,135 +225,37 @@ def appointment():
                 (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
-            values = (first_name, last_name, email, phone_number, gender, department, appointmentDate, appointmentTime, purpose, username)
-            cur.execute(query, values)  # Execute the query
-            mysql.connection.commit()  # Commit the changes
-            cur.close()  # Close the cursor
+            values = (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username)
+            cur.execute(query, values)
+            mysql.connection.commit()
+            cur.close()
             flash("Appointment successfully booked!")
             return redirect(url_for('appointment_success'))
         except Exception as e:
             flash(f"An error occurred: {str(e)}")
-            return redirect(url_for('appointment'))
+            return redirect(request.url)
 
     # Handle GET request
-    return render_template('appointment.html')
-
-
-
-############################
-# @app.route('/category', methods=['POST','GET'])
-# def category():
+    hospital_id = request.args.get('hospital_id', type=int)
+    print("Hospital ID:", hospital_id)  # Debug statement
+    print("Type of hospital_id:", type(hospital_id))  # Check type of hospital_id
+    hospital = None
+    if hospital_id:
+        print(f"Hospital ID is valid: {hospital_id}")  # Debug statement
+        try:
+            cur = mysql.connection.cursor()
+            query = "SELECT * FROM hospitals WHERE hospital_id = %s"
+            cur.execute(query, (hospital_id,))
+            hospital = cur.fetchone()
+            print("Fetched hospital data:", hospital) 
+            cur.close()
+        except Exception as e:
+            flash(f"An error occurred while fetching hospital details: {str(e)}")
     
-#     if 'username' not in session:
-#         return '''
-#             <script type="text/javascript">
-#                 alert("Please log in to view categories.");
-#                 window.location.href = "/";  // Redirect to the desired page after alert
-#             </script>
-#         '''
-#     category_type = request.args.get('type')
-#     print(f"Category Type: {category_type}")
-#     username = session.get('username')  # Get logged-in user's username from the session
+    return render_template('appointment.html', hospital=hospital)
 
-#     cur = mysql.connection.cursor()
 
-#     if category_type:
-#         # Fetch hospitals for the selected category
-#         query = """
-#             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, 
-#                    h.opcard_price, h.category,
-#                    CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-#             FROM hospitals h
-#             LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-#             WHERE h.category = %s
-#         """
-#         cur.execute(query, (username, category_type))
-#     else:
-#         # Fetch all hospitals for initial view
-#         query = """
-#             SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, 
-#                    h.opcard_price, h.category,
-#                    CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-#             FROM hospitals h
-#             LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-#         """
-#         cur.execute(query, (username,))
 
-#     hospitals = cur.fetchall()
-#     cur.close()
-
-#     return render_template('category.html', hospitals=hospitals, category=category_type)
-
-##############################################################################################################
-# @app.route('/category', methods=['GET','POST'])
-# def category():
-    
-#     if 'username' not in session:
-#         return '''
-#             <script type="text/javascript">
-#                 alert("Please log in to view categories.");
-#                 window.location.href = "/";  // Redirect to the desired page after alert
-#             </script>
-#         '''
-    
-#     category_type = request.args.get('type')  # Get category type from query parameters
-#     print("Request Headers:", request.headers)
-#     data = request.get_json()  # Parse the JSON data
-    
-#     user_latitude = float(data.get('latitude'))
-#     user_longitude = float(data.get('longitude'))
-
-#     print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")  # Debugging
-    
-#     username = session.get('username')  # Get logged-in user's username from the session
-
-#     cur = mysql.connection.cursor()
-
-#     # Construct the query to fetch hospitals based on category and location
-#     query = """
-#         SELECT h.hospital_id, h.hospital_name, h.timings, h.years_since_established, 
-#                h.opcard_price, h.category, h.latitude, 
-#                 h.longitude, 
-#                CASE WHEN f.hospital_id IS NOT NULL THEN TRUE ELSE FALSE END AS is_favorite
-#         FROM hospitals h
-#         LEFT JOIN favourites f ON h.hospital_id = f.hospital_id AND f.username = %s
-#         WHERE 1=1
-#     """
-    
-#     params = [username]
-    
-#     # If a category filter is provided, add it to the query
-#     if category_type:
-#         query += " AND h.category = %s"
-#         params.append(category_type)
-#     else:
-#         # If category is None, fetch all categories but filter based on location
-#         query += " AND h.latitude IS NOT NULL AND h.longitude IS NOT NULL"
-    
-#     # Execute the query with the filters
-#     cur.execute(query, tuple(params))
-#     hospitals = cur.fetchall()
-#     cur.close()
-
-#     # Filter hospitals based on proximity (using Haversine)
-#     nearby_hospitals = []
-#     for hospital in hospitals:
-#         hospital_id, hospital_name, timings, years_since_established, opcard_price, lat, lon, is_favorite = hospital
-#         distance = haversine(user_latitude, user_longitude, lat, lon)
-        
-#         # Only include hospitals within a 5 km radius
-#         if distance <= 5:  # You can adjust this value as per your needs
-#             nearby_hospitals.append({
-#                 'hospital_id': hospital_id,
-#                 'hospital_name': hospital_name,
-#                 'timings': timings,
-#                 'years_since_established': years_since_established,
-#                 'opcard_price': opcard_price,
-#                 'distance': round(distance, 2),  # Round distance to 2 decimal places
-#                 'is_favorite': is_favorite
-#             })
-
-#     return render_template('category.html', hospitals=nearby_hospitals, category=category_type)
 
 
 ##########$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4
@@ -619,12 +499,21 @@ def contact():
 #     flash("You have been logged out.", "info")
 #     return redirect(url_for('index'))
 
+
+#logout after 15 minutes
+from datetime import timedelta
+app.permanent_session_lifetime = timedelta(minutes=5)
+@app.before_request
+def make_session_permanent():
+    """Make session permanent for each request"""
+    session.permanent = True
 @app.route('/logout')
 def logout():
     # Remove the username from the session
     session.pop('username', None)
-    flash("You have been logged out.", "info")
+    flash("You have been logged out due to inactivity.", "info")
     return redirect(url_for('index'))
+######################
 
 
 def toggle_favorite(hospital_id, action):
