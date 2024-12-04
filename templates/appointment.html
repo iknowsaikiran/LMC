@@ -442,7 +442,7 @@
                                                 </ul> -->
                                         </div>
                                         <p class="text-muted mb-2"><strong>Timings: {{ hospital[6] }}</strong></p>
-                                        <p class="text-muted mb-2"><strong>Experience:</strong>{{ hospital[7] }} years in healthcare</p>
+                                        <p class="text-muted mb-2"><strong>Experience:</strong> {{ hospital[7] }} years in healthcare</p>
                                         <p class="text-muted mb-2"><i class="fa-solid fa-location-dot"></i> Address here
                                             <span>&nbsp; Distance here</span></p>
                                         <p class="text-muted mb-2">Op price: <i
@@ -492,14 +492,15 @@
                                             placeholder="Enter your phone number" required class="form-control col-md-6">
                                     </div>
                                 </div>
-                                <label for="department">select Hospital:</label>
-                                <select id="department" name="department" required class="form-control">
+                                <label for="department">Hospital Name:</label>
+                                <input type="text" class="form-control" id="hospital" value="{{ hospital[2] }}" readonly>
+                                <!-- <select id="department" name="department" required class="form-control">
                                     <option value="" disabled selected>Choose Hospital</option>
                                     <option value="general">satya hospital</option>
                                     <option value="cardiology">kiran hospital</option>
                                     <option value="orthopedics">yashodha hospital</option>
                                     
-                                </select>
+                                </select> -->
 
                                 <!-- Department -->
                                  <div class="form-group">
