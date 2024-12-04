@@ -699,6 +699,29 @@
                 transform: translateY(0);
             }
         }
+
+        /* Default font size (desktop view) */
+        a.text-light {
+            font-size: 15px;
+        }
+
+        /* Media query for smaller screens (mobile view) */
+        @media (max-width: 576px) {
+            a.text-light {
+                font-size: 13px;
+                /* Reduce font size for smaller screens */
+            }
+
+            .footer-bottom {
+                flex-wrap: wrap;
+                /* Ensures proper wrapping if necessary */
+            }
+
+            .footer-bottom a {
+                margin-bottom: 5px;
+                /* Adds spacing between stacked elements */
+            }
+        }
     </style>
 </head>
 
@@ -755,7 +778,7 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-3 wow fadeIn " data-wow-delay="0.1s">
                 <h4 class="display-4  text-white ">HELLO {{ session['username'] | upper}} !</h4>
-                <p class="display-6 text-white " > WELCOME TO LOCATE MY CARE</p>
+                <p class="display-6 text-white "> WELCOME TO LOCATE MY CARE</p>
                 <div class="row g-4">
                     <div class="col-sm-4">
                         <div class="border-start border-light ">
@@ -827,8 +850,8 @@
         </div>
     </form>
     <div class="d-flex justify-content-center">
-       <a href="/team"> <button class=" btn-primary showallbutton" >Home Vist Doctors</button></a>
-      </div>
+        <a href="/team"> <button class=" btn-primary showallbutton">Home Vist Doctors</button></a>
+    </div>
 
 
 
@@ -1059,25 +1082,25 @@
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-facebook" style="font-size: 15px;"></i>
+                            <i class="bi bi-facebook" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
-                            <i class="bi bi-instagram" style="font-size: 15px;"></i>
+                            <i class="bi bi-instagram" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
                             target="_blank" class="text-light mx-2">
-                            <i class="bi bi-whatsapp" style="font-size: 15px;"></i>
+                            <i class="bi bi-whatsapp" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-linkedin" style="font-size: 15px;"></i>
+                            <i class="bi bi-linkedin" style="font-size: 17px;"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    
+
 
     <button id="chat-toggle-btn">
         💬
@@ -1567,7 +1590,7 @@
                         </div>
                     </div>
                 </div>
-            </div>`;                    
+            </div>`;
 
                     hospitalList.innerHTML += hospitalItem;
                 });
@@ -1587,8 +1610,8 @@
 
         // Toggle between New Patient and Existing Patient forms in the modal
         hospitalList.addEventListener('click', function (event) {
-        const target = event.target; // The clicked element
-        const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
+            const target = event.target; // The clicked element
+            const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
 
             if (hospitalId) {
                 if (target.classList.contains('new-patient-btn')) {

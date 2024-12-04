@@ -80,7 +80,7 @@
 
         .input-box {
             position: relative;
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
         .input-box input {
@@ -270,49 +270,90 @@
         @media screen and (max-width: 400px) {
             .form-box {
                 padding: 20px;
-               
+
             }
 
             .toggle-panel h1 {
                 font-size: 30px;
             }
         }
+
         .form-box {
             display: none;
-           
+
         }
+
         .form-box.active {
             display: block;
         }
-        
+
         .input-box label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         .input-box input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        
-        
-        
-        
-       
+
         .toggle-box {
             display: flex;
             justify-content: space-between;
-           
+
         }
-        .formlogin{
-            margin-top:5px;
+
+        .formlogin {
+            margin-top: 5px;
         }
-       
-        
+
+        @media (max-width: 768px) {
+
+
+
+
+            .toggle-panel h1 {
+                font-size: 1.25rem;
+                /* Smaller font size */
+            }
+
+            .toggle-panel p {
+                font-size: 0.9rem;
+            }
+
+            .toggle-panel .btn {
+                font-size: 0.9rem;
+                /* Smaller button text */
+                padding: 0.6rem 1.2rem;
+                /* Adjust padding */
+            }
+        }
+
+        /* Extra Small Screens (Mobile) */
+        @media (max-width: 576px) {
+
+            .toggle-panel h1 {
+                font-size: 1rem;
+                /* Smaller heading font */
+            }
+
+            .toggle-panel p {
+                font-size: 0.85rem;
+                /* Smaller paragraph font */
+            }
+
+            .toggle-panel .btn {
+                font-size: 0.85rem;
+                /* Smaller button font */
+                padding: 0.5rem 1rem;
+                /* Adjust button padding */
+            }
+        }
     </style>
-    
+
 </head>
 
 <!-- <body>
@@ -383,13 +424,14 @@
         })
     </script>
 </body> -->
+
 <body>
     <div class="container">
         <!-- Login Form -->
-        
+
         <div class="form-box login active">
-            <img src="/static/img/logo1.png" alt="" srcset="" width="120px">
-            <form action="/login" method="POST" id="login-form" class="formlogin">  <!-- Change method to POST -->
+            <img src="/static/img/logo1.png" alt="" srcset="" width="95px">
+            <form action="/login" method="POST" id="login-form" class="formlogin"> <!-- Change method to POST -->
                 <h1>Login</h1>
                 <div class="input-box">
                     <input type="text" name="username" placeholder="Username" required>
@@ -402,7 +444,7 @@
                 <div class="forgot-link">
                     <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn m-3">Login</button>
             </form>
         </div>
         <!-- Forgot Password Form -->
@@ -416,12 +458,12 @@
                 <button type="button" class="btn" onclick="sendPasswordReset()">Send reset link</button>
             </form>
         </div>
-        
+
 
         <!-- Registration Form -->
         <div class="form-box register active">
-            <img src="/static/img/logo1.png" alt="" srcset="" width="120px">
-            <form id="register-form" >
+            <img src="/static/img/logo1.png" alt="" srcset="" width="90px">
+            <form id="register-form">
                 <h1>Registration</h1>
                 <div class="input-box">
                     <input type="text" id="reg-username" name="username" placeholder="Username" required>
@@ -511,71 +553,71 @@
     </script> -->
     <script>
         const container = document.querySelector('.container');
-const registerBtn = document.querySelector('.register-btn');
-const loginBtn = document.querySelector('.login-btn');
-const forgotPasswordLink = document.querySelector('.forgot-link a');
-const forgotPasswordForm = document.querySelector('.forgot-password');
-const loginFormBox = document.querySelector('.login');
-const registerFormBox = document.querySelector('.register');
+        const registerBtn = document.querySelector('.register-btn');
+        const loginBtn = document.querySelector('.login-btn');
+        const forgotPasswordLink = document.querySelector('.forgot-link a');
+        const forgotPasswordForm = document.querySelector('.forgot-password');
+        const loginFormBox = document.querySelector('.login');
+        const registerFormBox = document.querySelector('.register');
 
-// Toggle between Login and Register Form
-registerBtn.addEventListener('click', () => {
-    container.classList.add('active');
-    loginFormBox.classList.remove('active');
-    registerFormBox.classList.add('active');
-    forgotPasswordForm.classList.remove('active');
-});
+        // Toggle between Login and Register Form
+        registerBtn.addEventListener('click', () => {
+            container.classList.add('active');
+            loginFormBox.classList.remove('active');
+            registerFormBox.classList.add('active');
+            forgotPasswordForm.classList.remove('active');
+        });
 
-loginBtn.addEventListener('click', () => {
-    container.classList.remove('active');
-    loginFormBox.classList.add('active');
-    registerFormBox.classList.remove('active');
-    forgotPasswordForm.classList.remove('active');
-});
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+            loginFormBox.classList.add('active');
+            registerFormBox.classList.remove('active');
+            forgotPasswordForm.classList.remove('active');
+        });
 
-// Show Forgot Password Form
-forgotPasswordLink.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
-    loginFormBox.classList.remove('active');
-    registerFormBox.classList.remove('active');
-    forgotPasswordForm.classList.add('active');
-});
+        // Show Forgot Password Form
+        forgotPasswordLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor behavior
+            loginFormBox.classList.remove('active');
+            registerFormBox.classList.remove('active');
+            forgotPasswordForm.classList.add('active');
+        });
 
-// Handle Forgot Password form submission
-document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form from reloading the page
-    const email = document.getElementById('forgot-email').value;
+        // Handle Forgot Password form submission
+        document.getElementById('forgot-password-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form from reloading the page
+            const email = document.getElementById('forgot-email').value;
 
-    // Simulate sending a password reset link
-    alert(`Password reset link sent to ${email}`);
-    forgotPasswordForm.classList.remove('active');
-    loginFormBox.classList.add('active'); // Redirect back to login form
-});
+            // Simulate sending a password reset link
+            alert(`Password reset link sent to ${email}`);
+            forgotPasswordForm.classList.remove('active');
+            loginFormBox.classList.add('active'); // Redirect back to login form
+        });
 
-// Handle Registration form submission via AJAX
-document.getElementById('register-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent page reload
-    const formData = new FormData(this);
+        // Handle Registration form submission via AJAX
+        document.getElementById('register-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent page reload
+            const formData = new FormData(this);
 
-    fetch('/signup', {
-        method: 'POST',
-        body: formData,
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            alert(data.message); // Show success/failure message
-            if (data.success) {
-                document.getElementById('register-form').reset(); // Clear the form fields
-                container.classList.remove('active'); // Switch to login view
-            }
-        })
-        .catch((error) => console.error('Error:', error));
-});
+            fetch('/signup', {
+                method: 'POST',
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert(data.message); // Show success/failure message
+                    if (data.success) {
+                        document.getElementById('register-form').reset(); // Clear the form fields
+                        container.classList.remove('active'); // Switch to login view
+                    }
+                })
+                .catch((error) => console.error('Error:', error));
+        });
 
-// Handle Login form submission
-document.getElementById('login-form').addEventListener('submit', function (event) {
-    console.log('Login form submitted, backend will handle redirection.');
-});
+        // Handle Login form submission
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            console.log('Login form submitted, backend will handle redirection.');
+        });
 
     </script>
     <script>
@@ -599,7 +641,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
             }
         }
     </script>
-    
+
 </body>
 
 
