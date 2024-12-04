@@ -591,11 +591,6 @@ def referafriend():
 @app.route('/team')
 def team():
     return render_template('team.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 # @app.route('/logout')
 # def logout():
 #     # Remove the username from the session
