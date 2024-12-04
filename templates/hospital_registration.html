@@ -218,6 +218,72 @@
         font-size: 0.9rem;
     }
 }
+body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .dropdown-container {
+            position: relative;
+            width: 300px;
+        }
+        .dropdown {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        .dropdown:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+        .dropdown-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #fff;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+        .dropdown-options.active {
+            display: block;
+        }
+        .dropdown-options div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-options div:hover {
+            background-color: #f0f0f0;
+        }
+        .selected {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .selected span {
+            background: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .selected span .remove {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        #other-department-container {
+            margin-top: 10px;
+            display: none;
+        }
+
 
     </style>
 </head>
@@ -362,78 +428,7 @@
         </div>
 
         <!-- Page 3: Agreement -->
-        <div class="page" id="page3" class="form-group">
-            <h2>Registration Information</h2>
-            <!-- Fields from Page 3 -->
-            <form action="#" method="POST" class="form-group">
-                <!-- Medical Expertise Section -->
-                <fieldset>
-                    <legend>Medical Expertise</legend>
-                    
-                    <label for="noOfDoctors">Number of Doctors:</label>
-                    <input type="number" id="noOfDoctors" name="noOfDoctors" class="form-control" required><br><br>
-                    
-                    <label for="bedCapacity">Total Bed Capacity:</label>
-                    <input type="number" id="bedCapacity" name="bedCapacity" placeholder="e.g., 150 beds" class="form-control" required><br><br>
-                    
-                    <label for="departments">Departments & Specialties Offered:</label><br>
-                    <select id="departments" name="departments" class="form-control" multiple required>
-                        <option value="Cardiology">Cardiology</option>
-                        <option value="Orthopedics">Orthopedics</option>
-                        <option value="Pediatrics">Pediatrics</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Emergency">Emergency</option>
-                        <option value="Radiology">Radiology</option>
-                        <option value="Other">Other (Please specify)</option>
-                    </select><br><br>
-                    
-                    <label for="doctorFile">List of Registered Doctors (Upload file):</label>
-                    <input type="file" id="doctorFile" name="doctorFile" accept=".csv, .xlsx, .xls" class="form-control" required><br><br>
-                    
-                    <label for="keyHealthcareProviders">Key Healthcare Providers (Optional):</label>
-                    <input type="file" id="keyHealthcareProviders" name="keyHealthcareProviders" class="form-control" accept=".csv, .xlsx, .xls"><br><br>
-                </fieldset>
         
-                <!-- Hospital Operations Section -->
-                <fieldset>
-                    <legend>Hospital Operations</legend>
-                    
-                    <label for="operationalHours">Hospital’s Operational Hours (Monday to Friday):</label><br>
-                    <input type="time" id="weekdaysStart" name="weekdaysStart" class="form-control" required>
-                    to
-                    <input type="time" id="weekdaysEnd" name="weekdaysEnd" class="form-control" required><br><br>
-                    
-                    <label for="saturdayHours">Saturday Operational Hours (Optional):</label><br>
-                    <input type="time" id="saturdayStart" name="saturdayStart" class="form-control">
-                    to
-                    <input type="time" id="saturdayEnd" name="saturdayEnd" class="form-control"><br><br>
-                    
-                    <label for="sundayHours">Sunday Operational Hours (Optional):</label><br>
-                    <input type="time" id="sundayStart" name="sundayStart" class="form-control">
-                    to
-                    <input type="time" id="sundayEnd" name="sundayEnd" class="form-control"><br><br>
-                    
-                    <label for="is247">24/7 Services Available:</label><br>
-                    <input type="radio" id="yes247" name="is247" value="Yes" class="form-control" required>
-                    <label for="yes247">Yes</label>
-                    <input type="radio" id="no247" name="is247" value="No" class="form-control" required>
-                    <label for="no247">No</label><br><br>
-                    
-                    <label for="languagesSpoken">Languages Spoken:</label><br>
-                    <input type="text" id="languagesSpoken" name="languagesSpoken" class="form-control" placeholder="e.g., English, Spanish, Hindi" required><br><br>
-                    
-                    <label for="medicalEquipment">Available Medical Equipment:</label><br>
-                    <textarea id="medicalEquipment" name="medicalEquipment" rows="4" cols="50" class="form-control" placeholder="e.g., X-ray machines, MRI, Ultrasound, ECG, Ventilators" required></textarea><br><br>
-                </fieldset>
-        
-                
-            </form>
-
-            <div class="button-container">
-                <button type="button" id="prev3">Previous</button>
-                <button type="button" id="next3">Next</button>
-            </div>
-        </div>
           <!-- Page 4: Medical Expertise -->
         <div class="page" id="page4">
             <h2>Medical Expertise</h2>
@@ -451,15 +446,28 @@
                         class="form-control" required><br><br>
 
                     <label for="departments">Departments & Specialties Offered:</label><br>
-                    <select id="departments" name="departments[]" class="form-control" multiple required>
-                        <option value="Cardiology">Cardiology</option>
-                        <option value="Orthopedics">Orthopedics</option>
-                        <option value="Pediatrics">Pediatrics</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Emergency">Emergency</option>
-                        <option value="Radiology">Radiology</option>
-                        <option value="Other">Other (Please specify)</option>
-                    </select><br><br>
+                    <h2>Departments & Specialties Offered</h2>
+<div class="dropdown-container">
+    <div id="dropdown" class="dropdown" tabindex="0" onclick="toggleDropdown()">Select Departments</div>
+    <div id="dropdown-options" class="dropdown-options">
+        <div onclick="selectOption('Cardiology')">Cardiology</div>
+        <div onclick="selectOption('Orthopedics')">Orthopedics</div>
+        <div onclick="selectOption('Pediatrics')">Pediatrics</div>
+        <div onclick="selectOption('Neurology')">Neurology</div>
+        <div onclick="selectOption('Emergency')">Emergency</div>
+        <div onclick="selectOption('Radiology')">Radiology</div>
+        <div onclick="selectOther()">Other (Please specify)</div>
+    </div>
+</div>
+
+<div class="selected" id="selected-departments"></div>
+
+<div id="other-department-container">
+    <label for="other-department-text">Please specify department:</label>
+    <input type="text" id="other-department-text" placeholder="Enter department" oninput="updateOther()">
+</div>
+
+<br><br>
         
                     <label for="doctorFile">List of Registered Doctors (Upload file):</label>
                     <input type="file" id="doctorFile" name="doctorFile" accept=".csv, .xlsx, .xls" class="form-control" required><br><br>
@@ -750,6 +758,70 @@ const checkboxes = document.querySelectorAll('input[name="accreditations[]"]');
                 console.log('Selected Accreditations:', selectedValues);
             });
         });
+        let selectedDepartments = [];
+
+function toggleDropdown() {
+    const dropdownOptions = document.getElementById('dropdown-options');
+    dropdownOptions.classList.toggle('active');
+}
+
+function selectOption(department) {
+    if (!selectedDepartments.includes(department)) {
+        selectedDepartments.push(department);
+        updateSelectedDepartments();
+    }
+}
+
+function selectOther() {
+    if (!selectedDepartments.includes("Other")) {
+        selectedDepartments.push("Other");
+        document.getElementById('other-department-container').style.display = 'block';
+        updateSelectedDepartments();
+    }
+}
+
+function updateOther() {
+    const otherText = document.getElementById('other-department-text').value;
+    const otherIndex = selectedDepartments.indexOf("Other");
+    if (otherIndex !== -1) {
+        selectedDepartments[otherIndex] = otherText ? `Other: ${otherText}` : "Other";
+    }
+    updateSelectedDepartments();
+}
+
+function updateSelectedDepartments() {
+    const container = document.getElementById('selected-departments');
+    container.innerHTML = "";
+    selectedDepartments.forEach(dept => {
+        const span = document.createElement('span');
+        span.textContent = dept;
+        const removeButton = document.createElement('span');
+        removeButton.textContent = "x";
+        removeButton.classList.add('remove');
+        removeButton.onclick = () => removeDepartment(dept);
+        span.appendChild(removeButton);
+        container.appendChild(span);
+    });
+}
+
+function removeDepartment(department) {
+    selectedDepartments = selectedDepartments.filter(dept => dept !== department);
+    if (department.startsWith("Other")) {
+        document.getElementById('other-department-text').value = "";
+        document.getElementById('other-department-container').style.display = 'none';
+    }
+    updateSelectedDepartments();
+}
+
+// Close dropdown when clicking outside
+window.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('dropdown');
+    const dropdownOptions = document.getElementById('dropdown-options');
+    if (!dropdown.contains(e.target) && !dropdownOptions.contains(e.target)) {
+        dropdownOptions.classList.remove('active');
+    }
+});
+
 
     </script>
 </body>
