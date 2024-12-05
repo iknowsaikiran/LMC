@@ -572,13 +572,6 @@ def service():
 
 @app.route('/dashboard')
 def dashboard():
-    if 'username' not in session:
-        return '''
-            <script type="text/javascript">
-                alert("Please log in to view your dashboard.");
-                window.location.href = "/";  // Redirect to the desired page after alert
-            </script>
-        '''
     try:
         username = session.get('username') 
         
@@ -677,40 +670,6 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 def hospitalregister():
     return render_template('hospital_registration.html')
 
-#code for the changing the user password
-@app.route('/changepassword', methods=['POST','GET'])
-def change_password():
-    username = session.get('username')
-    current_password = request.form.get('currentPassword')
-    new_password = request.form.get('newPassword')
-    confirm_password = request.form.get('confirmPassword')
-
-    if new_password != confirm_password:
-        flash('New password and confirm password do not match', 'error')
-        return redirect('/changepassword')
-
-    try:
-        # Retrieve the current password from the database
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT password FROM signup WHERE username = %s", (username,))
-        result = cursor.fetchone()
-        #print(result)
-
-        if result and result[0] == current_password:
-            # Update the password in the database
-            cursor.execute("UPDATE signup SET password = %s WHERE username = %s", (new_password, username))
-            mysql.connection.commit()
-            flash('Password changed successfully', 'success')
-        else:
-            flash('Current password is incorrect', 'error')
-
-    except Exception as err:
-        flash(f"Error: {err}", 'danger')
-        print(err)
-
-    return redirect('/dashboard')
-
-
 
 
 @app.route('/submit_step1', methods=['POST'])
@@ -722,9 +681,9 @@ def submit_step1():
     phone = data.get('phone')
     
     # Store data in session to persist across steps
-    # session['hospital_name'] = hospital_name
-    # session['email'] = email
-    # session['phone'] = phone
+    session['hospital_name'] = hospital_name
+    session['email'] = email
+    session['phone'] = phone
     
     # Insert into the database
     cur = mysql.connection.cursor()
@@ -746,10 +705,10 @@ def submit_step2():
     pincode = data.get('pincode')
 
     # Store data in session to persist across steps
-    # session['address'] = address
-    # session['city'] = city
-    # session['state'] = state
-    # session['pincode'] = pincode
+    session['address'] = address
+    session['city'] = city
+    session['state'] = state
+    session['pincode'] = pincode
     
     # Insert into the database
     cur = mysql.connection.cursor()
@@ -768,8 +727,8 @@ def submit_step3():
     categories = ",".join(data.get('categories'))  # Convert list to string
     
     # Store data in session to persist across steps
-    #session['price'] = price
-    #session['categories'] = categories
+    session['price'] = price
+    session['categories'] = categories
     
     # Insert into the database
     cur = mysql.connection.cursor()
@@ -787,11 +746,11 @@ def submit_step4():
     
     username = data.get('username')
     password = data.get('password')
-    #print(username)
-    #print(password)
+    print(username)
+    print(password)
     # Store data in session to persist across steps
-    # session['username'] = username
-    # session['password'] = password
+    session['username'] = username
+    session['password'] = password
     
     # Insert into the database
     cur = mysql.connection.cursor()
@@ -810,6 +769,7 @@ def register():
         if 'username' not in session:
             flash("Please log in to register a hospital.", "info")
             return redirect(url_for('login'))
+
         try:
             # Extract form data
             hospital_name = request.form.get('hospitalName')
@@ -880,6 +840,7 @@ def register():
             # Success message
             flash("Hospital registered successfully!", "success")
             return redirect(url_for('index'))
+
         except Exception as e:
             print(f"Error occurred: {e}")
             mysql.connection.rollback()
