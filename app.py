@@ -615,7 +615,6 @@ def dashboard():
 def viewcard():
     return render_template('viewcard.html')
 
-
 @app.route('/favourite')
 def favourite():
     if 'username' not in session:
