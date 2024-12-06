@@ -271,9 +271,9 @@
             margin-top: 20px;
         }
 
-        button[type="submit"] {
+        /* button[type="submit"] {
             background-color: #28a745;
-        }
+        } */
 
         button[type="submit"]:hover {
             background-color: #218838;
@@ -281,6 +281,7 @@
 
         button[type="button"] {
             margin: 0 10px;
+            padding:10px;
         }
 
         button:disabled {
@@ -391,6 +392,72 @@
             font-size: 0.875rem;
         }
     </style>
+    <style>
+        /* Form container styling */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        /* Form styling */
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+        }
+    
+        .form-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    
+        .checkbox-group {
+            font-size: 1rem;
+        }
+    
+        .checkbox {
+            margin-right: 10px;
+        }
+    
+        /* Agreement section styling */
+        .agreement-section h3 {
+            font-size: 1.25rem;
+            color: #333;
+        }
+    
+        /* Navigation button styling */
+        .btn {
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+    
+        /* Add hover effects for buttons */
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    
+        .btn-primary:hover {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    
+        /* Heading */
+        h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+    
+        /* Spacing for form sections */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    
+        /* Shadow effect for form */
+        .shadow-sm {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
 </head>
 
@@ -412,43 +479,45 @@
 
             <!-- Step 1: Hospital Basic Info -->
             <div class="step active" id="step1">
-                <div id="hospital-form" action="next-page.html" method="post" class="form-group">
+                <form id="hospital-form" action="next-page.html" method="post" class="form-group">
                     <h2>Basic Information</h2>
+                    
+                    <!-- Hospital Name -->
                     <label for="hospital-name">Hospital Name:</label>
                     <input type="text" id="hospital-name" name="hospital_name"
                         placeholder="e.g., St. John’s Medical Center" required>
                     <br>
-
+            
+                    <!-- Hospital Type -->
                     <label for="hospital-type">Hospital Type:</label>
                     <select id="hospital-type" name="hospital_type" required>
                         <option value="" disabled selected>Select (optional)</option>
                         <option value="general">General Hospital</option>
-                        <option value="specialty">Specialty Hospital (e.g., Cardiology, Orthopedics, Pediatrics)
-                        </option>
+                        <option value="specialty">Specialty Hospital (e.g., Cardiology, Orthopedics, Pediatrics)</option>
                         <option value="clinic">Clinic</option>
                         <option value="other">Other (please specify below)</option>
                     </select>
                     <textarea id="other-type" name="other_type" placeholder="If 'Other,' please specify"
                         style="margin-top: 10px;"></textarea>
                     <br>
-
-
+            
                     <!-- Location & Communication Section -->
-
                     <label for="hospital-address">Hospital Address:</label>
                     <textarea id="hospital-address" name="hospital_address"
                         placeholder="Street Address, City, State/Province, Postal Code, Country" required></textarea>
                     <br>
-
+            
+                    <!-- Phone Number -->
                     <label for="phone-number">Phone Number (with Country Code):</label>
                     <input type="tel" id="phone-number" name="phone_number" placeholder="+1 234 567 8901" required>
                     <br>
-
+            
+                    <!-- Email Address -->
                     <label for="email-address">Email Address:</label>
-                    <input type="email" id="email-address" name="email_address" placeholder="e.g., info@hospital.com"
-                        required>
+                    <input type="email" id="email-address" name="email_address" placeholder="e.g., info@hospital.com" required>
                     <br>
-
+            
+                    <!-- Website URL -->
                     <div class="mb-4">
                         <label for="website-url" class="form-label fw-semibold text-primary">
                             Website URL <span class="text-muted">(Optional)</span>:
@@ -463,29 +532,27 @@
                             <strong>http://</strong> or <strong>https://</strong>.
                         </div>
                     </div>
-
-
-
+            
+                    <!-- Navigation Button -->
                     <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
-                </div>
-
+                </form>
             </div>
+            
 
             <!-- Step 2: Address Info -->
             <div class="step" id="step2">
                 <form action="/submit-registration" method="POST" enctype="multipart/form-data">
+                    <!-- Insurance Type Section -->
                     <label for="insurance-type">Insurance Type (e.g., Medical Malpractice, Liability):</label>
-                    <input type="text" id="insurance-type" name="insurance_type"
-                        placeholder="Enter insurance type (optional)">
-
+                    <input type="text" id="insurance-type" name="insurance_type" placeholder="Enter insurance type (optional)">
+                    
                     <label for="provider-name">Provider Name:</label>
-                    <input type="text" id="provider-name" name="provider_name"
-                        placeholder="Enter provider name (optional)">
-
+                    <input type="text" id="provider-name" name="provider_name" placeholder="Enter provider name (optional)">
+                    
                     <label for="policy-number">Policy Number:</label>
-                    <input type="text" id="policy-number" name="policy_number"
-                        placeholder="Enter policy number (optional)">
-
+                    <input type="text" id="policy-number" name="policy_number" placeholder="Enter policy number (optional)">
+            
+                    <!-- Proof of Registration -->
                     <div class="mb-4">
                         <label for="proof-registration" class="form-label fw-semibold text-primary">
                             Proof of Registration <span class="text-danger">*</span>
@@ -501,6 +568,8 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+            
+                    <!-- Operating License -->
                     <div class="mb-4">
                         <label for="operating-license" class="form-label fw-semibold text-primary">
                             Operating License <span class="text-danger">*</span>
@@ -516,6 +585,8 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+            
+                    <!-- Compliance Documents -->
                     <div class="mb-4">
                         <label for="compliance-docs" class="form-label fw-semibold text-primary">
                             Compliance Documents <span class="text-muted">(e.g., Accreditation, ISO Certificates)</span>
@@ -531,19 +602,14 @@
                             You can upload multiple files. Accepted formats: .pdf, .jpg, .png, .doc, .docx.
                         </div>
                     </div>
-
-
-
-
-
-                </form>
-                <!-- Supporting Documents Section -->
-                <div class="section-title">Upload Supporting Documents</div>
-                <form action="/submit-documents" method="POST" enctype="multipart/form-data">
+            
+                    <!-- Supporting Documents Section -->
+                    <div class="section-title">Upload Supporting Documents</div>
+            
+                    <!-- License Documents -->
                     <div class="mb-4">
                         <label for="license-docs" class="form-label fw-semibold text-primary">
-                            Upload License <span class="text-muted">(e.g., Operating License, Registration
-                                Certificate)</span>
+                            Upload License <span class="text-muted">(e.g., Operating License, Registration Certificate)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
@@ -556,7 +622,8 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
-
+            
+                    <!-- Insurance Documents -->
                     <div class="mb-4">
                         <label for="insurance-docs" class="form-label fw-semibold text-primary">
                             Upload Insurance Documents <span class="text-muted">(e.g., Insurance Policy Details)</span>
@@ -572,12 +639,11 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
-
-
+            
+                    <!-- Accreditation Documents -->
                     <div class="mb-4">
                         <label for="accreditation-docs" class="form-label fw-semibold text-primary">
-                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI
-                                Certification)</span>
+                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI Certification)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
@@ -590,15 +656,15 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. This field is mandatory.
                         </div>
                     </div>
-
-
+            
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                    </div>
                 </form>
-                <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
-                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
-                </div>
             </div>
-
+            
             <!-- Step 3: Medical staff and Services -->
             <div class="step" id="step3">
 
@@ -674,9 +740,9 @@
 
 
             </div>
-            
-            
-            
+
+
+
 
             <!-- Step 4: Account Credentials -->
             <!-- Form Section -->
@@ -745,8 +811,8 @@
                                 <option value="Hindi">Hindi</option>
                                 <option value="Arabic">Arabic</option>
                             </select>
-                            <input type="text" id="languages-text" class="form-control mt-2"
-                                placeholder="Selected Languages" readonly>
+                            <!-- <input type="text" id="languages-text" class="form-control mt-2" placeholder="Selected Languages" readonly> -->
+                           
                         </div>
 
                         <!-- Available Medical Equipment -->
@@ -760,7 +826,7 @@
                         <!-- Navigation Buttons -->
                         <div class="d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
-                            <button type="submit" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(5)">Next</button>
                         </div>
                     </form>
                 </div>
@@ -913,84 +979,80 @@
                             <!-- Navigation Buttons -->
                             <div class="d-flex justify-content-between mt-4">
                                 <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Previous</button>
-                                <button type="submit" class="btn btn-primary" onclick="nextStep(6)">Next</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(6)">Next</button>
                             </div>
 
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="step" id="step6">
-                <div class="container">
-                    <h2>Banking & Tax Information</h2>
-
-                    <form action="#" method="POST">
+            <div class="step" id="step6" >
+                <div class="container my-5">
+                   
+                    <form action="#" method="POST" class="border p-4 rounded shadow-sm">
+                        <h2 class="text-center mb-4">Banking & Tax Information</h2>
+            
                         <!-- Bank Account Information -->
-                        <div class="form-group">
-                            <label for="account-name">Account Name:</label>
-                            <input type="text" id="account-name" name="account-name" placeholder="Enter account name"
-                                required>
+                        <div class="form-group mb-4">
+                            <label for="account-name" class="form-label fw-bold">Account Name:</label>
+                            <input type="text" id="account-name" name="account-name" class="form-control" placeholder="Enter account name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="bank-name">Bank Name:</label>
-                            <input type="text" id="bank-name" name="bank-name" placeholder="Enter bank name" required>
+                        <div class="form-group mb-4">
+                            <label for="bank-name" class="form-label fw-bold">Bank Name:</label>
+                            <input type="text" id="bank-name" name="bank-name" class="form-control" placeholder="Enter bank name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="account-number">Account Number:</label>
-                            <input type="text" id="account-number" name="account-number"
-                                placeholder="Enter account number" required>
+                        <div class="form-group mb-4">
+                            <label for="account-number" class="form-label fw-bold">Account Number:</label>
+                            <input type="text" id="account-number" name="account-number" class="form-control" placeholder="Enter account number" required>
                         </div>
-                        <div class="form-group">
-                            <label for="ifsc-code">IFSC Code/SWIFT Code:</label>
-                            <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC/SWIFT code"
-                                required>
+                        <div class="form-group mb-4">
+                            <label for="ifsc-code" class="form-label fw-bold">IFSC Code/SWIFT Code:</label>
+                            <input type="text" id="ifsc-code" name="ifsc-code" class="form-control" placeholder="Enter IFSC/SWIFT code" required>
                         </div>
-
+            
                         <!-- Tax Identification Number -->
-                        <div class="form-group">
-                            <label for="tax-id">Tax Identification Number (TIN):</label>
-                            <input type="text" id="tax-id" name="tax-id" placeholder="Enter TIN" required>
+                        <div class="form-group mb-4">
+                            <label for="tax-id" class="form-label fw-bold">Tax Identification Number (TIN):</label>
+                            <input type="text" id="tax-id" name="tax-id" class="form-control" placeholder="Enter TIN" required>
                         </div>
-
-
+            
+                        <!-- Agreement Section -->
+                        <div class="agreement-section mt-5">
+                            <h3 class="mb-4">Agreement and Consent</h3>
+            
+                            <!-- Terms and Conditions -->
+                            <div class="checkbox-group mb-3">
+                                <input type="checkbox" id="terms" class="checkbox" required>
+                                <label for="terms" class="form-check-label">
+                                    I agree to the <a href="/terms" target="_blank">Terms & Conditions</a> of Locate My Care.
+                                </label>
+                            </div>
+            
+                            <!-- Privacy Policy -->
+                            <div class="checkbox-group mb-3">
+                                <input type="checkbox" id="privacy-policy" class="checkbox" required>
+                                <label for="privacy-policy" class="form-check-label">
+                                    I consent to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> of Locate My Care.
+                                </label>
+                            </div>
+            
+                            <!-- Declaration -->
+                            <div class="checkbox-group mb-4">
+                                <input type="checkbox" id="declaration" class="checkbox" required>
+                                <label for="declaration" class="form-check-label">
+                                    I declare that the information provided is accurate and true to the best of my knowledge.
+                                </label>
+                            </div>
+            
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
+                                <button type="submit" class="btn btn-primary">Register Hospital</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                <div class="agreement-section">
-                    <div id="registrationForm">
-                        <h2>Agreement and Consent</h2>
-
-                        <!-- Terms and Conditions -->
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="terms" class="checkbox" required>
-                            <label for="terms" class="label">
-                                I agree to the <a href="/terms" target="_blank">Terms & Conditions</a> of Locate My
-                                Care.
-                            </label>
-                        </div>
-
-                        <!-- Privacy Policy -->
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="privacy-policy" class="checkbox" required>
-                            <label for="privacy-policy" class="label">
-                                I consent to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> of Locate
-                                My Care.
-                            </label>
-                        </div>
-
-                        <!-- Declaration -->
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="declaration" class="checkbox" required>
-                            <label for="declaration" class="label">
-                                I declare that the information provided is accurate and true to the best of my
-                                knowledge.
-                            </label>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
-                            <button type="submit" class="btn btn-primary">register hospital</button>
-                        </div>
-
-                </div>
+            </div>
 
         </form>
 
@@ -1092,15 +1154,24 @@
                 otherTextArea.value = ""; // Clear the textarea when hidden
             }
         }
+        document.addEventListener('DOMContentLoaded', function () {
+    const languagesSelect = document.getElementById('languages');
+    
+    const choices = new Choices(languagesSelect, {
+        removeItemButton: true,  // Allows removing items
+        placeholder: true,       // Enables placeholder text
+        searchEnabled: true,     // Allows searching within the options
+        shouldSort: false,       // Keeps options in the original order
+        noResultsText: 'No languages found',  // Custom message when no matches
+        itemSelectText: '',      // Removes default "Select" text
+    });
 
-
-
-
-
-
-
-
-
+    // Update the text input with selected languages
+    languagesSelect.addEventListener('change', function() {
+        const selectedLanguages = Array.from(languagesSelect.selectedOptions).map(option => option.value).join(', ');
+        document.getElementById('languages-text').value = selectedLanguages;
+    });
+});
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
