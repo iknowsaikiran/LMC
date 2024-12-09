@@ -1,134 +1,772 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Registration Form</title>
-    <style>
-        /* Basic styling */
-        .page {
-            display: none;
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Locate My Care</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="static/assets/dbvendors/feather/feather.css">
+  <link rel="stylesheet" href="static/assets/dbvendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="static/assets/dbvendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="static/assets/dbvendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/assets/dbvendors/mdi/css/materialdesignicons.min.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- <link rel="stylesheet" href="static/assets/dbvendors/datatables.net-bs4/dataTables.bootstrap4.css"> -->
+  <link rel="stylesheet" href="static/assets/dbvendors/datatables.net-bs5/dataTables.bootstrap5.css">
+  <link rel="stylesheet" href="static/assets/dbvendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="static/assets/dbjs/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="static/assets/dbcss/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="static/assets/dbimages/favicon.png" />
+  <style>
+    footer {
+      font-family: 'Arial', sans-serif;
+    }
+
+    footer .footer-bottom {
+      padding-top: 15px;
+    }
+
+    footer .footer-text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer a {
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    footer a:hover {
+      color: #17a2b8;
+      /* Bootstrap teal */
+      transform: scale(1.1);
+    }
+
+    footer .fa {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    footer .fa:hover {
+      transform: rotate(10deg);
+    }
+
+    footer .d-flex a {
+      font-size: 20px;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 768px) {
+      footer .footer-bottom {
+        text-align: center;
+      }
+
+      footer .col-md-4 {
+        margin-bottom: 15px;
+      }
+    }
+
+    .containerrefer {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: rgb(43, 43, 44);
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .button1 {
+      width: 100%;
+      padding: 12px;
+      background: #512888;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button1:hover {
+      background: #512888;
+    }
+
+
+
+    .referral-code {
+      font-weight: bold;
+      color: #333;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .referral-link {
+      background: #f4f4f9;
+      color: #512888;
+      border: 1px dashed #512888;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      display: block;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .referral-link:hover {
+      background: #e6f0ff;
+    }
+
+    hr {
+      border: 0.5px solid #ddd;
+      margin: 20px 0;
+    }
+    /* General Styling */
+    body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            padding: 20px;
         }
-        .page.active {
-            display: block;
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        .button-container {
-            text-align: right;
+
+        .card-content {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-content h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #007bff;
+            margin: 0;
+        }
+
+        .card-content p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        /* OP Count Input */
+        .op-count-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .op-count-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            width: 48%;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        /* Flexbox for Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
             margin-top: 20px;
         }
-        fieldset {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .btn-container {
+                flex-direction: column;
+            }
+
+            .btn-custom {
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
-        legend {
-            font-weight: bold;
-        }
-    </style>
+  </style>
 </head>
+
 <body>
-    <form id="hospitalForm">
-        <!-- Page 1: Basic Information -->
-        <div class="page active" id="page1">
-            <h2>Basic Information</h2>
-            <label for="hospitalName">Hospital Name:</label>
-            <input type="text" id="hospitalName" name="hospitalName" placeholder="e.g., St. John’s Medical Center" required><br><br>
+  <div class="container-scroller">
 
-            <label for="hospitalType">Hospital Type:</label>
-            <select id="hospitalType" name="hospitalType" required>
-                <option value="">Select Type</option>
-                <option value="general">General Hospital</option>
-                <option value="specialty">Specialty Hospital</option>
-                <option value="clinic">Clinic</option>
-                <option value="other">Other (please specify)</option>
-            </select><br><br>
-
-            <label for="hospitalAddress">Hospital Address:</label>
-            <textarea id="hospitalAddress" name="hospitalAddress" rows="4" placeholder="Enter full address" required></textarea><br><br>
-
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+1 123-456-7890" required><br><br>
-
-            <label for="emailAddress">Email Address:</label>
-            <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g., example@hospital.com" required><br><br>
-
-            <div class="button-container">
-                <button type="button" id="next1">Next</button>
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start mb-2">
+        <a class="navbar-brand brand-logo me-5" href="/"><img src="/static/img/logo1.png" alt="" srcset="" width="85px" style="height: 80px;">
+            </a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="/static/img/logo1.png" alt="" srcset="" width="125px" style="height: 80px;"></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+                aria-label="search" aria-describedby="search">
             </div>
-        </div>
-
-        <!-- Page 2: Location & Communication -->
-        <div class="page" id="page2">
-            <h2>Location & Communication</h2>
-            <label for="registrationNumber">Registration Number:</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" required><br><br>
-
-            <label for="establishmentDate">Date of Establishment:</label>
-            <input type="date" id="establishmentDate" name="establishmentDate" required><br><br>
-
-            <fieldset>
-                <legend>License Details</legend>
-                <label for="licenseNumber">License Number:</label>
-                <input type="text" id="licenseNumber" name="licenseNumber" required><br><br>
-                <label for="issuingAuthority">Issuing Authority:</label>
-                <input type="text" id="issuingAuthority" name="issuingAuthority" required><br><br>
-                <label for="expiryDate">Expiry Date:</label>
-                <input type="date" id="expiryDate" name="expiryDate" required><br><br>
-            </fieldset>
-
-            <div class="button-container">
-                <button type="button" id="prev2">Previous</button>
-                <button type="button" id="next2">Next</button>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+              data-bs-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+              aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
+                </div>
+              </a>
             </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+              <img src="/static/assets/dbimages/faces/profile.jpg" alt="profile" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i> Settings </a>
+              <a class="dropdown-item" href="/logout">
+                <i class="ti-power-off text-primary"></i> Logout </a>
+            </div>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#table">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+              aria-controls="ui-basic">
+              <span class="menu-title">UI Elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+          
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
+              aria-controls="form-elements">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Form elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="icon-bar-graph menu-icon"></i>
+              <span class="menu-title">Charts</span>
+            </a>
+
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Tables</span>
+            </a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="icon-contract menu-icon"></i>
+              <span class="menu-title">Icons</span>
+            </a>
+
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">User Pages</span>
+            </a>
+
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link"  href="#changep" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Change Password</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#referfriend">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Refer a Friend</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome {{ username | upper}} !</h3>
+                  <!-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                      class="text-primary">3 unread alerts!</span></h6> -->
+                </div>
+                <div class="col-12 col-xl-4">
+                  <!-- <div class="justify-content-end d-flex">
+                    <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                      <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                        <a class="dropdown-item" href="#">January - March</a>
+                        <a class="dropdown-item" href="#">March - June</a>
+                        <a class="dropdown-item" href="#">June - August</a>
+                        <a class="dropdown-item" href="#">August - November</a>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card tale-bg">
+                <div class="card-people mt-auto">
+                  <div class="weather-info">
+                    <!-- <div class="d-flex">
+                      <div>
+                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
+                      </div>
+                      <div class="ms-2">
+                        <h4 class="location font-weight-normal">Chicago</h4>
+                        <h6 class="font-weight-normal">Illinois</h6>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin transparent">
+              <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <div class="card-body">
+                      <p class="mb-4"></p>
+                      <h3>Today's Booking</h3>
+                      <p></p>
+                      <!-- Display OP Count -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <div class="card-body">
+                      <h3 class="mb-4">No of Patients </h3>
+                      <p class="mb-2 text-white"></p>
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <div class="card-body">
+                      <p class="mb-4"></p>
+                      <h3 class="mb-2">total booking list</h3>
+                      <p class="mb-2 text-white"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                  <div class="card card-light-danger">
+                    <div class="card-body">
+                      <p class="mb-4"></p>
+                      <p class=" mb-2 text-white" style="font-size: 25px;">Total Revenue today</p>
+                      <p class="text text-white">0</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="row" id="referfriend">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="container">
+                    <!-- OP Count Card -->
+                    <div class="card-content">
+                        <h2 id="total-patient-count">0</h2>
+                        <p>Total OP Patients</p>
+                    </div>
+                
+                    <!-- OP Count Input -->
+                    <div>
+                        <label for="op-count">Enter OP Count:</label>
+                        <input type="number" id="op-count" class="op-count-input" placeholder="Enter OP count" min="1">
+                    </div>
+                
+                    <!-- Buttons -->
+                    <div class="btn-container">
+                        <button class="btn btn-primary btn-custom" id="add-count-btn" onclick="addOPCount()">Add Count</button>
+                        <button class="btn btn-danger btn-custom" id="reset-btn" onclick="resetCount()">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="col-lg-12 wow fadeIn" data-wow-delay="0.5s">
+                  <div class="containerrefer">
+                    <h2>Send an Invitation</h2>
+                    <p>Send a personalized invitation to your friend:</p>
+                    <form id="send-invitation-form" onsubmit="handleInvitation(event)">
+                      <input type="email" id="friend-email" placeholder="Friend's Email" required>
+                      <button type="submit" class="button1">Send Invitation</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="invitationModal" class="modal fade" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Invitation Sent!</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card" id="changep">
+              <div class="card position-relative p-4">
+                <h1 class="text-center mb-4">Change Password</h1>
+                <form id="changePasswordForm" action="/change-password" method="POST">
+                  <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="currentPassword"
+                      name="currentPassword"
+                      placeholder="Enter current password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newPassword"
+                      name="newPassword"
+                      placeholder="Enter new password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Re-enter new password"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block mt-3">
+                    Change Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+
+        
+          <!-- <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Quote#</th>
+                              <th>Product</th>
+                              <th>Business type</th>
+                              <th>Policy holder</th>
+                              <th>Premium</th>
+                              <th>Status</th>
+                              <th>Updated at</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!-- <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a
+                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash.
+              All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                class="ti-heart text-danger ms-1"></i></span>
+          </div>
+        </footer> -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="static/assets/dbvendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="static/assets/dbvendors/chart.js/chart.umd.js"></script>
+  <script src="static/assets/dbvendors/datatables.net/jquery.dataTables.js"></script>
+  <!-- <script src="static/assets/dbvendors/datatables.net-bs4/dataTables.bootstrap4.js"></script> -->
+  <script src="static/assets/dbvendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
+  <script src="static/assets/dbjs/dataTables.select.min.js"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="static/assets/dbjs/off-canvas.js"></script>
+  <script src="static/assets/dbjs/template.js"></script>
+  <script src="static/assets/dbjs/settings.js"></script>
+  <script src="static/assets/dbjs/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="static/assets/dbjs/jquery.cookie.js" type="text/javascript"></script>
+  <script src="static/assets/dbjs/dashboard.js"></script>
+  <!-- <script src="static/assets/dbjs/Chart.roundedBarCharts.js"></script> -->
+  <!-- End custom js for this page-->
+  <script>
+    // Generate a random referral code
+    function generateReferralCode() {
+      const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById("referral-code-display").innerHTML = `<p>Your Referral Code: <span class="referral-code">${code}</span></p>`;
+      const referralLink = `${window.location.href}?ref=${code}`;
+      document.getElementById("referral-link").textContent = referralLink;
+      document.getElementById("referral-link").href = referralLink;
+      document.getElementById("referral-link-section").style.display = "block";
+    }
 
-        <!-- Additional pages (3, 4, ...) follow the same structure -->
-    </form>
+    // Copy the referral link
+    function copyReferralLink() {
+      const referralLink = document.getElementById("referral-link").href;
+      navigator.clipboard.writeText(referralLink).then(() => {
+        alert("Referral link copied to clipboard!");
+      });
+    }
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const pages = document.querySelectorAll(".page");
-            let currentPage = 0;
+    // Handle sending invitation
+    document.getElementById("send-invitation-form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent page reload
 
-            const showPage = (index) => {
-                pages.forEach((page, i) => {
-                    page.classList.toggle("active", i === index);
-                });
-            };
+      // Get input values
+      const email = document.getElementById("friend-email").value;
+      const message = document.getElementById("invitation-message").value || "Check out this amazing app and join now using my referral!";
 
-            document.querySelector("#next1").addEventListener("click", function () {
-                if (validatePage(0)) {
-                    currentPage = 1;
-                    showPage(currentPage);
-                }
-            });
+      // Simulate sending email (this would be a server call in a real app)
+      alert(`Invitation sent to ${email} with the message:\n\n"${message}"`);
 
-            document.querySelector("#prev2").addEventListener("click", function () {
-                currentPage = 0;
-                showPage(currentPage);
-            });
+      // Reset the form fields
+      document.getElementById("friend-email").value = "";
+      document.getElementById("invitation-message").value = "";
+    });
+    // Handle form submission
+    function handleInvitation(event) {
+      event.preventDefault(); // Prevent form from refreshing the page
 
-            document.querySelector("#next2").addEventListener("click", function () {
-                if (validatePage(1)) {
-                    currentPage = 2; // Adjust for additional pages
-                    showPage(currentPage);
-                }
-            });
+      // Simulate sending invitation (you can add your backend logic here)
+      const email = document.getElementById("friend-email").value;
+      if (email) {
+        // Show the modal
+        const modal = new bootstrap.Modal(document.getElementById("invitationModal"));
+        modal.show();
+      }
+    }
 
-            const validatePage = (index) => {
-                const fields = pages[index].querySelectorAll("input, select, textarea");
-                let isValid = true;
-                fields.forEach((field) => {
-                    if (!field.checkValidity()) {
-                        field.reportValidity();
-                        isValid = false;
-                    }
-                });
-                return isValid;
-            };
+  </script>
 
-            showPage(currentPage);
-        });
-    </script>
+  <script>
+    // Example: Fetch OP count from server
+    function fetchOPCount() {
+      // Mocking a fetch call (Replace this with actual API call)
+      setTimeout(() => {
+        const opCount = 120; // Example count
+        document.getElementById("op-count").textContent = `Hospital OP Count: ${opCount}`;
+      }, 1000); // Simulate server delay
+    }
+
+    // Call function to fetch and display OP count
+    fetchOPCount();
+  </script>
+  <script>
+    // Function to add OP count to the total
+    function addOPCount() {
+        const opCountInput = document.getElementById('op-count');
+        const opCount = parseInt(opCountInput.value);
+
+        if (isNaN(opCount) || opCount <= 0) {
+            alert("Please enter a valid OP count.");
+            return;
+        }
+
+        // Get the current total patient count
+        const totalPatientCountElement = document.getElementById('total-patient-count');
+        let totalPatientCount = parseInt(totalPatientCountElement.innerText);
+
+        // Add the OP count to the total count
+        totalPatientCount += opCount;
+
+        // Update the total patient count display
+        totalPatientCountElement.innerText = totalPatientCount;
+
+        // Reset the OP count input field
+        opCountInput.value = '';
+    }
+
+    // Function to reset the total patient count
+    function resetCount() {
+        const totalPatientCountElement = document.getElementById('total-patient-count');
+        totalPatientCountElement.innerText = '0';  // Reset the total count to 0
+
+        // Clear the OP count input field
+        const opCountInput = document.getElementById('op-count');
+        opCountInput.value = '';
+    }
+  </script>
+
 </body>
+
 </html>

@@ -6,737 +6,405 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Registration Form</title>
     <!-- /static/libraries Stylesheet -->
-    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax//static/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include Choices.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+    <!-- Include Choices.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
     <style>
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .error {
-            border: 1px solid red;
-        }
-
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        h2 {
-            color: #333;
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        form {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        fieldset {
-            border: 1px solid #ccc;
-            padding: 20px;
+        .progress-bar {
+            height: 10px;
             margin-bottom: 20px;
-            border-radius: 8px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
         }
 
-        legend {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #555;
+        .hospital-registration {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
-        /* Input Fields */
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
+        .progress {
+            height: 10px;
+            background: linear-gradient(to right, #007bff, #17a2b8);
+            width: 25%;
+            transition: width 0.3s ease-in-out;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        input[type="number"],
-        input[type="time"],
-        textarea,
-        select {
+        .btn {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            background-color: #fafafa;
-            color: #333;
+            margin-top: 10px;
         }
 
-        textarea {
-            resize: vertical;
-        }
-
-        input[type="file"] {
-            padding: 5px;
-        }
-
-        /* Buttons */
-        button {
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        button[type="submit"] {
-            background-color: #28a745;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #218838;
-        }
-
-        button[type="button"] {
-            margin: 0 10px;
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        /* Navigation Buttons */
-        button#next1,
-        button#prev2,
-        button#next2,
-        button#prev3,
-        button#next3,
-        button#prev4,
-        button#next4,
-        button#prev5,
-        button#next5,
-        button#prev6,
-        button#next6,
-        button#prev7,
-        button#next7,
-        button#prev8 {
-            background-color: #6c757d;
-        }
-
-        button#next1:hover,
-        button#prev2:hover,
-        button#next2:hover,
-        button#prev3:hover,
-        button#next3:hover,
-        button#prev4:hover,
-        button#next4:hover,
-        button#prev5:hover,
-        button#next5:hover,
-        button#prev6:hover,
-        button#next6:hover,
-        button#prev7:hover,
-        button#next7:hover,
-        button#prev8:hover {
-            background-color: #5a6268;
-        }
-
-        /* Checkboxes and Radio Buttons */
-        input[type="checkbox"],
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        /* Multi-Step Form Pagination */
-        .page {
+        .step {
             display: none;
         }
 
-        .page.active {
+        .step.active {
             display: block;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            form {
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"],
-            input[type="date"],
-            input[type="number"],
-            input[type="time"],
-            textarea,
-            select {
-                font-size: 0.9rem;
-            }
-
-            button {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
 
 <body>
-    <form id="hospitalForm" class="form-group">
-        <!-- Page 1: Basic Information -->
-        <div class="page active form-group" id="page1">
-            <h2>Basic Information</h2>
-            <label for="hospitalName">Hospital Name:</label>
-            <input type="text" id="hospitalName" name="hospitalName" placeholder="e.g., St. John’s Medical Center"
-                class="form-control" required>
-
-            <label for="hospitalType">Hospital Type:</label>
-            <select id="hospitalType" name="hospitalType" class="form-group" required>
-                <option value="general">General Hospital</option>
-                <option value="specialty">Specialty Hospital</option>
-                <option value="clinic">Clinic</option>
-                <option value="other">Other (please specify)</option>
-            </select>
-
-            <label for="hospitalAddress">Hospital Address:</label>
-            <textarea id="hospitalAddress" name="hospitalAddress" rows="4"
-                placeholder="Street Address, City, State/Province, Postal Code, Country" class="form-control"
-                required></textarea>
-
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., +1 123-456-7890"
-                class="form-control" required>
-
-            <label for="emailAddress">Email Address:</label>
-            <input type="email" id="emailAddress" name="emailAddress" placeholder="e.g., example@hospital.com"
-                class="form-control" required>
-
-            <div class="button-container">
-                <button type="button" id="next1">Next</button>
-            </div>
+    <!-- <div class="container mt-4">
+        
+        <div id="registerAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+            <strong>Success!</strong> Your hospital registration is complete. Please complete your KYC process to get
+            listed.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <!-- Page 2: Additional Fields Example -->
-        <div class="page form-group" id="page2">
-            <h2>Location & Communication</h2>
-            <!-- Additional fields from Page 2 can be added here -->
-            <label for="registrationNumber">Registration Number:</label>
-            <input type="text" id="registrationNumber" name="registrationNumber" placeholder="e.g., H-123456789"
-                class="form-control"><br><br>
 
-            <!-- Date of Establishment -->
-            <label for="establishmentDate">Date of Establishment:</label>
-            <input type="date" id="establishmentDate" name="establishmentDate" class="form-control"><br><br>
-
-            <!-- License Details -->
-            <fieldset>
-                <legend>License Details</legend>
-
-                <label for="licenseNumber">License Number:</label>
-                <input type="text" id="licenseNumber" name="licenseNumber" class="form-control"><br><br>
-
-                <label for="issuingAuthority">Issuing Authority:</label>
-                <input type="text" id="issuingAuthority" name="issuingAuthority" class="form-control"><br><br>
-
-                <label for="expiryDate">Expiry Date:</label>
-                <input type="date" id="expiryDate" name="expiryDate" class="form-control"><br><br>
-            </fieldset>
-
-            <!-- Accreditations & Certifications -->
-            <label for="accreditations">Accreditations & Certifications:</label><br>
-            <select id="accreditations" name="accreditations" class="form-control" multiple>
-                <option value="NABH">NABH</option>
-                <option value="JCI">JCI</option>
-                <option value="ISO Certification">ISO Certification</option>
-                <option value="Other">Other (Please specify)</option>
-            </select><br><br>
-
-            <!-- Upload Section for Documents -->
-            <label for="uploadDocuments">Upload Documents:</label>
-            <input type="file" id="uploadDocuments" name="uploadDocuments" class="form-control" multiple><br><br>
-
-            <h2>Administrative Information</h2>
-
-            <!-- Ownership Type -->
-            <fieldset>
-                <legend>Ownership Type</legend>
-
-                <input type="radio" id="private" name="ownership" value="Private" class="form-control">
-                <label for="private">Private</label><br>
-
-                <input type="radio" id="government" name="ownership" value="Government" class="form-control">
-                <label for="government">Government</label><br>
-
-                <input type="radio" id="ppp" name="ownership" value="Public-Private Partnership" class="form-control">
-                <label for="ppp">Public-Private Partnership</label><br>
-
-                <input type="radio" id="otherOwnership" name="ownership" value="Other">
-                <label for="otherOwnership">Other (Please specify)</label><br><br>
-            </fieldset>
-
-            <!-- CEO/Administrator Name -->
-            <label for="ceoName">CEO/Administrator Name:</label>
-            <input type="text" id="ceoName" name="ceoName" placeholder="e.g., Dr. John Doe"
-                class="form-control"><br><br>
-
-            <!-- CEO/Administrator Contact -->
-            <label for="ceoPhone">CEO/Administrator Phone Number:</label>
-            <input type="text" id="ceoPhone" name="ceoPhone" class="form-control"><br><br>
-
-            <label for="ceoEmail">CEO/Administrator Email Address:</label>
-            <input type="email" id="ceoEmail" name="ceoEmail" class="form-control"><br><br>
-
-            <!-- Medical Director’s Details -->
-            <h3>Medical Director’s Details (if applicable):</h3>
-
-            <label for="medicalDirectorName">Name:</label>
-            <input type="text" id="medicalDirectorName" name="medicalDirectorName" class="form-control"><br><br>
-
-            <label for="medicalDirectorQualifications">Qualifications:</label>
-            <input type="text" id="medicalDirectorQualifications" name="medicalDirectorQualifications"
-                class="form-control"><br><br>
-
-            <label for="medicalDirectorContactPhone">Contact Phone Number:</label>
-            <input type="text" id="medicalDirectorContactPhone" name="medicalDirectorContactPhone"
-                class="form-control"><br><br>
-
-            <label for="medicalDirectorContactEmail">Contact Email Address:</label>
-            <input type="email" id="medicalDirectorContactEmail" name="medicalDirectorContactEmail"
-                class="form-control"><br><br>
-
-            <div class="button-container">
-                <button type="button" id="prev2">Previous</button>
-                <button type="button" id="next2">Next</button>
+        <form id="hospitalRegistrationForm" onsubmit="return handleFormSubmit(event)">
+            <h5>Register Your Hospital</h5>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
             </div>
-        </div>
 
-        <!-- Page 3: Agreement -->
-        <div class="page" id="page3" class="form-group">
-            <h2>Registration Information</h2>
-            <!-- Fields from Page 3 -->
-            <form action="#" method="POST" class="form-group">
-                <!-- Medical Expertise Section -->
-                <fieldset>
-                    <legend>Medical Expertise</legend>
+           
+            <div class="step active" id="step1">
+                <h5>Step 1: Basic Information</h5>
 
-                    <label for="noOfDoctors">Number of Doctors:</label>
-                    <input type="number" id="noOfDoctors" name="noOfDoctors" class="form-control" required><br><br>
+                <div class="mb-3">
+                    <label for="hospitalName" class="form-label">Hospital Name:</label>
+                    <input type="text" class="form-control" id="hospitalName" name="hospitalName"
+                        placeholder="Hospital Name" required>
+                </div>
 
-                    <label for="bedCapacity">Total Bed Capacity:</label>
-                    <input type="number" id="bedCapacity" name="bedCapacity" placeholder="e.g., 150 beds"
-                        class="form-control" required><br><br>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Hospital Email"
+                        required>
+                </div>
 
-                    <label for="departments">Departments & Specialties Offered:</label><br>
-                    <select id="departments" name="departments" class="form-control" multiple required>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Hospital Phone Number"
+                        required>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+            </div>
+
+            
+            <div class="step" id="step2">
+                <h5>Step 2: Address Information</h5>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Hospital Address"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="city" class="form-label">City:</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="state" class="form-label">State:</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pincode" class="form-label">Pincode:</label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+            </div>
+
+            
+            <div class="step" id="step3">
+                <h5>Step 3: Pricing & Categories</h5>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">OP Price:</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="e.g., ₹1000" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categories" class="form-label">Categories:</label>
+                    <select class="form-select" id="categories" name="categories[]" multiple required>
+                        <option value="General Hospitals">General Hospitals</option>
                         <option value="Cardiology">Cardiology</option>
                         <option value="Orthopedics">Orthopedics</option>
                         <option value="Pediatrics">Pediatrics</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Emergency">Emergency</option>
-                        <option value="Radiology">Radiology</option>
-                        <option value="Other">Other (Please specify)</option>
-                    </select><br><br>
-
-                    <label for="doctorFile">List of Registered Doctors (Upload file):</label>
-                    <input type="file" id="doctorFile" name="doctorFile" accept=".csv, .xlsx, .xls" class="form-control"
-                        required><br><br>
-
-                    <label for="keyHealthcareProviders">Key Healthcare Providers (Optional):</label>
-                    <input type="file" id="keyHealthcareProviders" name="keyHealthcareProviders" class="form-control"
-                        accept=".csv, .xlsx, .xls"><br><br>
-                </fieldset>
-
-                <!-- Hospital Operations Section -->
-                <fieldset>
-                    <legend>Hospital Operations</legend>
-
-                    <label for="operationalHours">Hospital’s Operational Hours (Monday to Friday):</label><br>
-                    <input type="time" id="weekdaysStart" name="weekdaysStart" class="form-control" required>
-                    to
-                    <input type="time" id="weekdaysEnd" name="weekdaysEnd" class="form-control" required><br><br>
-
-                    <label for="saturdayHours">Saturday Operational Hours (Optional):</label><br>
-                    <input type="time" id="saturdayStart" name="saturdayStart" class="form-control">
-                    to
-                    <input type="time" id="saturdayEnd" name="saturdayEnd" class="form-control"><br><br>
-
-                    <label for="sundayHours">Sunday Operational Hours (Optional):</label><br>
-                    <input type="time" id="sundayStart" name="sundayStart" class="form-control">
-                    to
-                    <input type="time" id="sundayEnd" name="sundayEnd" class="form-control"><br><br>
-
-                    <label for="is247">24/7 Services Available:</label><br>
-                    <input type="radio" id="yes247" name="is247" value="Yes" class="form-control" required>
-                    <label for="yes247">Yes</label>
-                    <input type="radio" id="no247" name="is247" value="No" class="form-control" required>
-                    <label for="no247">No</label><br><br>
-
-                    <label for="languagesSpoken">Languages Spoken:</label><br>
-                    <input type="text" id="languagesSpoken" name="languagesSpoken" class="form-control"
-                        placeholder="e.g., English, Spanish, Hindi" required><br><br>
-
-                    <label for="medicalEquipment">Available Medical Equipment:</label><br>
-                    <textarea id="medicalEquipment" name="medicalEquipment" rows="4" cols="50" class="form-control"
-                        placeholder="e.g., X-ray machines, MRI, Ultrasound, ECG, Ventilators"
-                        required></textarea><br><br>
-                </fieldset>
+                    </select>
+                </div>
 
 
-            </form>
-
-            <div class="button-container">
-                <button type="button" id="prev3">Previous</button>
-                <button type="button" id="next3">Next</button>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
             </div>
+
+
+            <div class="step" id="step4">
+                <h5>Step 4: Account Credentials</h5>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                        placeholder="Confirm Password" required>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+
+
+                <button type="submit" class="btn btn-primary">Register Hospital</button>
+        </form>
+    </div> -->
+    <div class="container mt-4">
+        <!-- Hidden Alert -->
+        <div id="registerAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+            <strong>Success!</strong> Your hospital registration is complete. Please complete your KYC process to get
+            listed.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <!-- Page 4: Medical Expertise -->
-        <div class="page" id="page4">
-            <h2>Medical Expertise</h2>
-            <!-- Fields from Page 4 -->
-            <form action="#" method="POST" enctype="multipart/form-data" class="form-group">
-                <!-- Medical Expertise Section -->
-                <fieldset>
-                    <legend>Medical Expertise</legend>
 
-                    <label for="noOfDoctors">Number of Doctors:</label>
-                    <input type="number" id="noOfDoctors" name="noOfDoctors" class="form-control" required><br><br>
+        <!-- Registration Form -->
+        <form id="hospitalRegistrationForm" onsubmit="return handleFormSubmit(event)">
+            <h5>Register Your Hospital</h5>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
 
-                    <label for="bedCapacity">Total Bed Capacity:</label>
-                    <input type="number" id="bedCapacity" name="bedCapacity" placeholder="e.g., 150 beds"
-                        class="form-control" required><br><br>
+            <!-- Step 1: Hospital Basic Info -->
+            <div class="step active" id="step1">
+                <h5>Step 1: Basic Information</h5>
 
-                    <label for="departments">Departments & Specialties Offered:</label><br>
-                    <select id="departments" name="departments[]" class="form-control" multiple required>
+                <div class="mb-3">
+                    <label for="hospitalName" class="form-label">Hospital Name:</label>
+                    <input type="text" class="form-control" id="hospitalName" name="hospitalName"
+                        placeholder="Hospital Name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Hospital Email"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Hospital Phone Number"
+                        required>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="handleStepSubmit(1)">Next</button>
+            </div>
+
+            <!-- Step 2: Address Info -->
+            <div class="step" id="step2">
+                <h5>Step 2: Address Information</h5>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Hospital Address"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="city" class="form-label">City:</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="state" class="form-label">State:</label>
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pincode" class="form-label">Pincode:</label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="handleStepSubmit(2)">Next</button>
+            </div>
+
+            <!-- Step 3: Pricing & Categories -->
+            <div class="step" id="step3">
+                <h5>Step 3: Pricing & Categories</h5>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">OP Price:</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="e.g., ₹1000" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="categories" class="form-label">Categories:</label>
+                    <select class="form-select" id="categories" name="categories[]" multiple required>
+                        <option value="General Hospitals">General Hospitals</option>
                         <option value="Cardiology">Cardiology</option>
                         <option value="Orthopedics">Orthopedics</option>
                         <option value="Pediatrics">Pediatrics</option>
-                        <option value="Neurology">Neurology</option>
-                        <option value="Emergency">Emergency</option>
-                        <option value="Radiology">Radiology</option>
-                        <option value="Other">Other (Please specify)</option>
-                    </select><br><br>
+                    </select>
+                </div>
 
-                    <label for="doctorFile">List of Registered Doctors (Upload file):</label>
-                    <input type="file" id="doctorFile" name="doctorFile" accept=".csv, .xlsx, .xls" class="form-control"
-                        required><br><br>
-
-                    <label for="keyHealthcareProviders">Key Healthcare Providers (Optional):</label>
-                    <input type="file" id="keyHealthcareProviders" name="keyHealthcareProviders"
-                        accept=".csv, .xlsx, .xls" class="form-control"><br><br>
-                </fieldset>
-
-                <!-- Hospital Operations Section -->
-                <fieldset>
-                    <legend>Hospital Operations</legend>
-
-                    <label for="operationalHours">Hospital’s Operational Hours (Monday to Friday):</label><br>
-                    <input type="time" id="weekdaysStart" name="weekdaysStart" class="form-control" required>
-                    to
-                    <input type="time" id="weekdaysEnd" name="weekdaysEnd" class="form-control" required><br><br>
-
-                    <label for="saturdayHours">Saturday Operational Hours (Optional):</label><br>
-                    <input type="time" id="saturdayStart" name="saturdayStart" class="form-control">
-                    to
-                    <input type="time" id="saturdayEnd" name="saturdayEnd" class="form-control"><br><br>
-
-                    <label for="sundayHours">Sunday Operational Hours (Optional):</label><br>
-                    <input type="time" id="sundayStart" name="sundayStart" class="form-control">
-                    to
-                    <input type="time" id="sundayEnd" name="sundayEnd" class="form-control"><br><br>
-
-                    <label for="is247">24/7 Services Available:</label><br>
-                    <input type="radio" id="yes247" name="is247" value="Yes" class="form-control" required>
-                    <label for="yes247">Yes</label>
-                    <input type="radio" id="no247" name="is247" value="No" class="form-control" required>
-                    <label for="no247">No</label><br><br>
-
-                    <label for="languagesSpoken">Languages Spoken:</label><br>
-                    <input type="text" id="languagesSpoken" name="languagesSpoken"
-                        placeholder="e.g., English, Spanish, Hindi" class="form-control" required><br><br>
-
-                    <label for="medicalEquipment">Available Medical Equipment:</label><br>
-                    <textarea id="medicalEquipment" name="medicalEquipment" rows="4" cols="50"
-                        placeholder="e.g., X-ray machines, MRI, Ultrasound, ECG, Ventilators" class="form-control"
-                        required></textarea><br><br>
-                </fieldset>
-            </form>
-
-            <div class="button-container">
-                <button type="button" id="prev4">Previous</button>
-                <button type="button" id="next4">Next</button>
-            </div>
-        </div>
-        <!-- Page 5: Insurance & Compliance -->
-        <div class="page" id="page5">
-            <h2>Insurance & Compliance</h2>
-            <!-- Fields from Page 5 -->
-            <form action="#" method="POST" enctype="multipart/form-data" class="form-group">
-                <!-- Insurance & Compliance Section -->
-                <fieldset>
-                    <legend>Insurance & Compliance</legend>
-
-                    <label for="insuranceType">Insurance Type:</label>
-                    <input type="text" id="insuranceType" name="insuranceType"
-                        placeholder="e.g., Medical malpractice, liability" class="form-control"><br><br>
-
-                    <label for="providerName">Provider Name:</label>
-                    <input type="text" id="providerName" name="providerName" class="form-control"><br><br>
-
-                    <label for="policyNumber">Policy Number:</label>
-                    <input type="text" id="policyNumber" name="policyNumber" class="form-control"><br><br>
-
-                    <label for="proofRegistration">Proof of Registration (Upload hospital’s official registration
-                        certificate):</label>
-                    <input type="file" id="proofRegistration" name="proofRegistration" accept="application/pdf, image/*"
-                        class="form-control"><br><br>
-
-                    <label for="operatingLicense">Operating License (Upload the hospital's operating license):</label>
-                    <input type="file" id="operatingLicense" name="operatingLicense" accept="application/pdf, image/*"
-                        class="form-control"><br><br>
-
-                    <label for="complianceDocuments">Compliance Documents (Upload required certificates):</label>
-                    <input type="file" id="complianceDocuments" name="complianceDocuments"
-                        accept="application/pdf, image/*" class="form-control"><br><br>
-                </fieldset>
-
-                <!-- Upload Supporting Documents Section -->
-                <fieldset>
-                    <legend>Upload Supporting Documents</legend>
-
-                    <label for="uploadLicense">Upload License (e.g., Operating License, Registration
-                        Certificate):</label>
-                    <input type="file" id="uploadLicense" name="uploadLicense" accept="application/pdf, image/*"
-                        class="form-control"><br><br>
-
-                    <label for="uploadInsuranceDocs">Upload Insurance Documents (e.g., Insurance policy
-                        details):</label>
-                    <input type="file" id="uploadInsuranceDocs" name="uploadInsuranceDocs"
-                        accept="application/pdf, image/*" class="form-control"><br><br>
-
-                    <label for="uploadAccreditationDocs">Upload Accreditation Documents (e.g., NABH or JCI
-                        certification):</label>
-                    <input type="file" id="uploadAccreditationDocs" name="uploadAccreditationDocs"
-                        accept="application/pdf, image/*" class="form-control"><br><br>
-                </fieldset>
-            </form>
-            <div class="button-container">
-                <button type="button" id="prev5">Previous</button>
-                <button type="button" id="next5">Next</button>
-            </div>
-        </div>
-        <!-- Page 6: Banking & Tax Information -->
-        <div class="page" id="page6">
-            <h2>Banking & Tax Information</h2>
-            <!-- Fields from Page 6 -->
-
-
-            <form action="#" method="POST" class="form-group">
-                <!-- Banking & Tax Information Section -->
-                <fieldset>
-                    <legend>Banking & Tax Information</legend>
-
-                    <label for="accountName">Account Name:</label>
-                    <input type="text" id="accountName" name="accountName" placeholder="Enter Account Name"
-                        class="form-control" required><br><br>
-
-                    <label for="bankName">Bank Name:</label>
-                    <input type="text" id="bankName" name="bankName" placeholder="Enter Bank Name" class="form-control"
-                        required><br><br>
-
-                    <label for="accountNumber">Account Number:</label>
-                    <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter Account Number"
-                        class="form-control" required><br><br>
-
-                    <label for="ifscCode">IFSC Code/SWIFT Code:</label>
-                    <input type="text" id="ifscCode" name="ifscCode" placeholder="Enter IFSC Code or SWIFT Code"
-                        class="form-control" class="form-control" required><br><br>
-
-                    <label for="tinNumber">Tax Identification Number (TIN):</label>
-                    <input type="text" id="tinNumber" name="tinNumber" placeholder="e.g., 1234567890"
-                        class="form-control" required><br><br>
-                </fieldset>
-            </form>
-
-
-            <div class="button-container">
-                <button type="button" id="prev6">Previous</button>
-                <button type="button" id="next6">Next</button>
-            </div>
-        </div>
-        <!-- Page 7: Hospital Branding -->
-        <div class="page" id="page7">
-            <h2>Hospital Branding</h2>
-            <!-- Fields from Page 7 -->
-
-            <form action="#" method="POST" enctype="multipart/form-data" class="form-group">
-                <!-- Hospital Branding Section -->
-                <fieldset>
-                    <legend>Hospital Branding</legend>
-
-                    <label for="hospitalLogo">Hospital Logo:</label>
-                    <input type="file" id="hospitalLogo" name="hospitalLogo" accept="image/*"
-                        class="form-control"><br><br>
-
-                    <label for="hospitalDescription">Hospital Description:</label><br>
-                    <textarea id="hospitalDescription" name="hospitalDescription" rows="4" cols="50"
-                        placeholder="Write a brief description of the hospital, its vision, services, and specialties"
-                        class="form-control" required></textarea><br><br>
-                </fieldset>
-            </form>
-            <div class="button-container">
-                <button type="button" id="prev7">Previous</button>
-                <button type="button" id="next7">Next</button>
-            </div>
-        </div>
-        <!-- Page 8: Agreement and Consent -->
-        <div class="page" id="page8">
-            <h2>Agreement and Consent</h2>
-            <!-- Fields from Page 8 -->
-            <form action="#" method="POST" class="form-group">
-                <!-- Agreement and Consent Section -->
-                <fieldset>
-                    <legend>Agreement and Consent</legend>
-
-                    <label for="termsConditions">
-                        <input type="checkbox" id="termsConditions" name="termsConditions" class="form-group" required>
-                        I agree to the Terms & Conditions of [App Name].
-                    </label><br><br>
-
-                    <label for="privacyPolicy">
-                        <input type="checkbox" id="privacyPolicy" name="privacyPolicy" class="form-group" required>
-                        I consent to the Privacy Policy of [App Name].
-                    </label><br><br>
-
-                    <label for="declaration">
-                        <input type="checkbox" id="declaration" name="declaration" class="form-group" required>
-                        I declare that the information provided is accurate and true to the best of my knowledge.
-                    </label><br><br>
-                </fieldset>
-
-                <!-- Submission Section -->
-                <fieldset>
-                    <legend>Submission</legend>
-                    <div class="button-container">
-                        <button type="button" id="prev8">Previous</button>
-                        <button type="submit">Submit Your Registration</button>
-                    </div>
-                </fieldset>
-            </form>
-
-            <!-- Confirmation Message (Optional) -->
-            <div id="confirmationMessage" style="display:none;">
-                <p>Thank you for registering. We will review your submission and notify you once your hospital is
-                    approved.</p>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="handleStepSubmit(3)">Next</button>
             </div>
 
+            <!-- Step 4: Account Credentials -->
+            <div class="step" id="step4">
+                <h5>Step 4: Account Credentials</h5>
 
-        </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                        required>
+                </div>
 
-    </form>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                        placeholder="Confirm Password" required>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+
+                <button type="button" class="btn btn-primary" onclick="handleStepSubmit(4)">Register Hospital</button>
+        </form>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const pages = document.querySelectorAll(".page");
-            let currentPage = 0;
+        let currentStep = 1;
 
-            // Show the current page and hide others
-            function showPage(pageIndex) {
-                pages.forEach((page, index) => {
-                    page.classList.toggle("active", index === pageIndex);
-                });
+        function handleStepSubmit(step) {
+            let formData = new FormData(document.getElementById('hospitalRegistrationForm'));
+            let stepData = {};
+        
+            // Prepare step-specific data
+            if (step === 1) {
+                stepData = {
+                    hospitalName: formData.get('hospitalName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone')
+                };
+            } else if (step === 2) {
+                stepData = {
+                    address: formData.get('address'),
+                    city: formData.get('city'),
+                    state: formData.get('state'),
+                    pincode: formData.get('pincode')
+                };
+            } else if (step === 3) {
+                stepData = {
+                    price: formData.get('price'),
+                    categories: formData.getAll('categories[]')
+                };
+            } else if (step === 4) {
+                // Ensure you only send necessary fields for step 4
+                stepData = {
+                    username: formData.get('username'),
+                    password: formData.get('password'), // Password should be handled securely (hashed)
+                    confirmPassword: formData.get('confirmPassword')
+                };
             }
-
-            // Navigate to the next page
-            function nextPage() {
-                if (validatePage(currentPage)) {
-                    if (currentPage < pages.length - 1) {
-                        currentPage++;
-                        showPage(currentPage);
-                    }
+        
+            // Send data to back-end via AJAX
+            fetch(`/submit_step${step}`, {
+                method: 'POST',
+                body: JSON.stringify(stepData),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            }
-
-            // Navigate to the previous page
-            function prevPage() {
-                if (currentPage > 0) {
-                    currentPage--;
-                    showPage(currentPage);
-                }
-            }
-
-            // Validate the current page's required fields
-            function validatePage(pageIndex) {
-                const inputs = pages[pageIndex].querySelectorAll("input[required], select[required], textarea[required]");
-                let isValid = true;
-
-                inputs.forEach((input) => {
-                    if (!input.value.trim()) {
-                        isValid = false;
-                        input.classList.add("error");
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (step === 4) {
+                            handleFormSubmit(); // If step 4 is successful, submit the form
+                        } else {
+                            nextStep(step + 1); // Proceed to the next step
+                        }
                     } else {
-                        input.classList.remove("error");
+                        alert('Error: ' + data.message);
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
+        }
+        
+        function nextStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
 
-                if (!isValid) {
-                    alert("Please fill in all required fields before proceeding.");
-                }
-                return isValid;
-            }
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
 
-            // Add event listeners to "Next" and "Previous" buttons
-            document.querySelectorAll("#next1, #next2, #next3, #next4, #next5, #next6, #next7").forEach((btn) => {
-                btn.addEventListener("click", nextPage);
+        function updateProgress() {
+            const progress = document.getElementById('progress');
+            progress.style.width = `${(currentStep / 4) * 100}%`;
+        }
+        function showCompletionPopup(event) {
+            event.preventDefault(); // Prevent form submission
+            const modal = new bootstrap.Modal(document.getElementById('completionModal'));
+            modal.show();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const categoriesSelect = document.getElementById('categories');
+            const choices = new Choices(categoriesSelect, {
+                removeItemButton: true,  // Adds "remove" buttons for selected items
+                placeholder: true,      // Enables a placeholder text
+                searchEnabled: true,    // Enables searching
+                shouldSort: false,      // Keeps the order of options as defined
             });
-
-            document.querySelectorAll("#prev2, #prev3, #prev4, #prev5, #prev6, #prev7, #prev8").forEach((btn) => {
-                btn.addEventListener("click", prevPage);
-            });
-
-            // Show the first page initially
-            showPage(currentPage);
         });
 
+
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            //event.preventDefault(); // Prevent default form submission
+
+            // Show the alert
+            const alertBox = document.getElementById('registerAlert');
+            alertBox.style.display = 'block'; // Display the alert
+            alertBox.classList.add('show');  // Trigger Bootstrap fade animation
+
+            // Optionally, you can reset the form after submission
+            document.getElementById('hospitalRegistrationForm').reset();
+        }
     </script>
 </body>
 

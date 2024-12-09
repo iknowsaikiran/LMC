@@ -33,33 +33,30 @@
 
     <!-- Template Stylesheet -->
     <link href="/static/css/card.css" rel="stylesheet">
-    <!-- <style>
-        .footer {
-            background-color: #343a40;
+    <style>
+         /* Default font size (desktop view) */
+         a.text-light {
+            font-size: 15px;
         }
 
-        .footer .btn {
-            width: 36px;
-            height: 36px;
-            line-height: 36px;
-            text-align: center;
-        }
-
-        .footer p {
-            margin-bottom: 0;
-            font-size: 14px;
-        }
-
+        /* Media query for smaller screens (mobile view) */
         @media (max-width: 576px) {
-            .footer p {
-                font-size: 12px;
+            a.text-light {
+                font-size: 13px;
+                /* Reduce font size for smaller screens */
             }
 
-            .footer .btn {
-                margin-bottom: 8px;
+            .footer-bottom {
+                flex-wrap: wrap;
+                /* Ensures proper wrapping if necessary */
+            }
+
+            .footer-bottom a {
+                margin-bottom: 5px;
+                /* Adds spacing between stacked elements */
             }
         }
-    </style> -->
+    </style>
 </head>
 
 <body>

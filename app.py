@@ -7,13 +7,11 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-
-
 # MySQL configurations
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'varma'
 
 app.config['MYSQL_DB'] = 'hospital'
 mysql = MySQL(app)
@@ -492,27 +490,27 @@ def referafriend():
 @app.route('/team')
 def team():
     return render_template('team.html')
-# @app.route('/logout')
-# def logout():
-#     # Remove the username from the session
-#     session.pop('username', None)
-#     flash("You have been logged out.", "info")
-#     return redirect(url_for('index'))
-
-
-#logout after 15 minutes
-from datetime import timedelta
-app.permanent_session_lifetime = timedelta(minutes=5)
-@app.before_request
-def make_session_permanent():
-    """Make session permanent for each request"""
-    session.permanent = True
 @app.route('/logout')
 def logout():
     # Remove the username from the session
     session.pop('username', None)
-    flash("You have been logged out due to inactivity.", "info")
+    flash("You have been logged out.", "info")
     return redirect(url_for('index'))
+
+
+#logout after 15 minutes
+# from datetime import timedelta
+# app.permanent_session_lifetime = timedelta(minutes=5)
+# @app.before_request
+# def make_session_permanent():
+#     """Make session permanent for each request"""
+#     session.permanent = True
+# @app.route('/logout')
+# def logout():
+#     # Remove the username from the session
+#     session.pop('username', None)
+#     flash("You have been logged out due to inactivity.", "info")
+#     return redirect(url_for('index'))
 ####################################
 
 
@@ -610,7 +608,6 @@ def dashboard():
 def viewcard():
     return render_template('viewcard.html')
 
-
 @app.route('/favourite')
 def favourite():
     if 'username' not in session:
@@ -673,6 +670,98 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 def hospitalregister():
     return render_template('hospital_registration.html')
 
+
+
+@app.route('/submit_step1', methods=['POST'])
+def submit_step1():
+    data = request.get_json()
+    
+    hospital_name = data.get('hospitalName')
+    email = data.get('email')
+    phone = data.get('phone')
+    
+    # Store data in session to persist across steps
+    session['hospital_name'] = hospital_name
+    session['email'] = email
+    session['phone'] = phone
+    
+    # Insert into the database
+    cur = mysql.connection.cursor()
+    query = """INSERT INTO step1 (hospital_name, email_id, phone_number)
+               VALUES (%s, %s, %s)"""
+    cur.execute(query, (hospital_name, email, phone))
+    mysql.connection.commit()
+    cur.close()
+
+    return jsonify({"success": True})
+
+@app.route('/submit_step2', methods=['POST'])
+def submit_step2():
+    data = request.get_json()
+    
+    address = data.get('address')
+    city = data.get('city')
+    state = data.get('state')
+    pincode = data.get('pincode')
+
+    # Store data in session to persist across steps
+    session['address'] = address
+    session['city'] = city
+    session['state'] = state
+    session['pincode'] = pincode
+    
+    # Insert into the database
+    cur = mysql.connection.cursor()
+    query = """INSERT INTO step2 (address, city, state, pincode)
+               VALUES (%s, %s, %s, %s)"""
+    cur.execute(query, (address, city, state, pincode))
+    mysql.connection.commit()
+    cur.close()
+
+    return jsonify({"success": True})
+@app.route('/submit_step3', methods=['POST'])
+def submit_step3():
+    data = request.get_json()
+    
+    price = data.get('price')
+    categories = ",".join(data.get('categories'))  # Convert list to string
+    
+    # Store data in session to persist across steps
+    session['price'] = price
+    session['categories'] = categories
+    
+    # Insert into the database
+    cur = mysql.connection.cursor()
+    query = """INSERT INTO step3 (op_price, categories)
+               VALUES (%s, %s)"""
+    cur.execute(query, (price, categories))
+    mysql.connection.commit()
+    cur.close()
+
+    return jsonify({"success": True})
+
+@app.route('/submit_step4', methods=['POST'])
+def submit_step4():
+    data = request.get_json()
+    
+    username = data.get('username')
+    password = data.get('password')
+    print(username)
+    print(password)
+    # Store data in session to persist across steps
+    session['username'] = username
+    session['password'] = password
+    
+    # Insert into the database
+    cur = mysql.connection.cursor()
+    query = """INSERT INTO step4 (username, password)
+               VALUES (%s, %s)"""
+    cur.execute(query, (username, password))
+    mysql.connection.commit()
+    cur.close()
+
+    # After step 4, you can redirect to a success page or complete the registration
+    return jsonify({"success": True})
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
