@@ -32,14 +32,14 @@
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Include Choices.js CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
-<!-- Include Choices.js JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<!-- Include Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Choices.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -283,32 +283,33 @@
                 font-size: 0.9rem;
             }
         }
+
         .custom-file-input {
-          cursor: pointer;
-          transition: border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-.custom-file-input:focus {
-    outline: none;
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
+        .custom-file-input:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
 
-.input-group-text {
-    border-radius: 0.375rem 0 0 0.375rem;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.form-label {
-    font-size: 1rem;
-}
+        .input-group-text {
+            border-radius: 0.375rem 0 0 0.375rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.form-text {
-    font-size: 0.875rem;
-}
+        .form-label {
+            font-size: 1rem;
+        }
 
+        .form-text {
+            font-size: 0.875rem;
+        }
     </style>
 
 </head>
@@ -373,12 +374,12 @@
                         </label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-globe"></i></span>
-                            <input type="url" id="website-url" name="website_url" class="form-control" 
-                                   placeholder="https://www.hospitalwebsite.com">
+                            <input type="url" id="website-url" name="website_url" class="form-control"
+                                placeholder="https://www.hospitalwebsite.com">
                         </div>
                         <div class="form-text">Enter your hospital's website URL, if available.</div>
                     </div>
-                    
+
 
 
                     <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
@@ -401,79 +402,77 @@
                     <input type="text" id="policy-number" name="policy_number"
                         placeholder="Enter policy number (optional)">
 
-                        <div class="mb-4">
-                            <label for="proof-registration" class="form-label fw-semibold text-primary">
-                                Proof of Registration <span class="text-danger">*</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-secondary">
-                                    <i class="bi bi-file-earmark-text"></i>
-                                </span>
-                                <input type="file" id="proof-registration" name="proof_registration" 
-                                       class="form-control custom-file-input" 
-                                       accept=".pdf,.jpg,.png,.doc,.docx" required>
-                            </div>
-                            <div class="form-text text-muted">
-                                Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
-                            </div>
+                    <div class="mb-4">
+                        <label for="proof-registration" class="form-label fw-semibold text-primary">
+                            Proof of Registration <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-secondary">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </span>
+                            <input type="file" id="proof-registration" name="proof_registration"
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx" required>
                         </div>
-                        <div class="mb-4">
-                            <label for="operating-license" class="form-label fw-semibold text-primary">
-                                Operating License <span class="text-danger">*</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-secondary">
-                                    <i class="bi bi-card-checklist"></i>
-                                </span>
-                                <input type="file" id="operating-license" name="operating_license" 
-                                       class="form-control custom-file-input" 
-                                       accept=".pdf,.jpg,.png,.doc,.docx" required>
-                            </div>
-                            <div class="form-text text-muted">
-                                Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
-                            </div>
+                        <div class="form-text text-muted">
+                            Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
-                        <div class="mb-4">
-                            <label for="compliance-docs" class="form-label fw-semibold text-primary">
-                                Compliance Documents <span class="text-muted">(e.g., Accreditation, ISO Certificates)</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-secondary">
-                                    <i class="bi bi-file-earmark-text"></i>
-                                </span>
-                                <input type="file" id="compliance-docs" name="compliance_docs" multiple
-                                       class="form-control custom-file-input"
-                                       accept=".pdf,.jpg,.png,.doc,.docx">
-                            </div>
-                            <div class="form-text text-muted">
-                                You can upload multiple files. Accepted formats: .pdf, .jpg, .png, .doc, .docx.
-                            </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="operating-license" class="form-label fw-semibold text-primary">
+                            Operating License <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-secondary">
+                                <i class="bi bi-card-checklist"></i>
+                            </span>
+                            <input type="file" id="operating-license" name="operating_license"
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx" required>
                         </div>
-                              
+                        <div class="form-text text-muted">
+                            Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="compliance-docs" class="form-label fw-semibold text-primary">
+                            Compliance Documents <span class="text-muted">(e.g., Accreditation, ISO Certificates)</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-secondary">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </span>
+                            <input type="file" id="compliance-docs" name="compliance_docs" multiple
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx">
+                        </div>
+                        <div class="form-text text-muted">
+                            You can upload multiple files. Accepted formats: .pdf, .jpg, .png, .doc, .docx.
+                        </div>
+                    </div>
 
-                    
 
-                   
+
+
+
                 </form>
                 <!-- Supporting Documents Section -->
                 <div class="section-title">Upload Supporting Documents</div>
                 <form action="/submit-documents" method="POST" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label for="license-docs" class="form-label fw-semibold text-primary">
-                            Upload License <span class="text-muted">(e.g., Operating License, Registration Certificate)</span>
+                            Upload License <span class="text-muted">(e.g., Operating License, Registration
+                                Certificate)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
                                 <i class="bi bi-file-earmark-medical"></i>
                             </span>
-                            <input type="file" id="license-docs" name="license_docs" class="form-control custom-file-input" 
-                                   accept=".pdf,.jpg,.png,.doc,.docx" required>
+                            <input type="file" id="license-docs" name="license_docs"
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx" required>
                         </div>
                         <div class="form-text text-muted">
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
-                    
+
                     <div class="mb-4">
                         <label for="insurance-docs" class="form-label fw-semibold text-primary">
                             Upload Insurance Documents <span class="text-muted">(e.g., Insurance Policy Details)</span>
@@ -482,112 +481,110 @@
                             <span class="input-group-text bg-light text-secondary">
                                 <i class="bi bi-file-earmark-shield"></i>
                             </span>
-                            <input type="file" id="insurance-docs" name="insurance_docs" class="form-control custom-file-input" 
-                                   accept=".pdf,.jpg,.png,.doc,.docx" required>
+                            <input type="file" id="insurance-docs" name="insurance_docs"
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx" required>
                         </div>
                         <div class="form-text text-muted">
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
-                    
+
 
                     <div class="mb-4">
                         <label for="accreditation-docs" class="form-label fw-semibold text-primary">
-                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI Certification)</span>
+                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI
+                                Certification)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
                                 <i class="bi bi-file-earmark-text"></i>
                             </span>
-                            <input type="file" id="accreditation-docs" name="accreditation_docs" 
-                                   class="form-control custom-file-input" 
-                                   accept=".pdf,.jpg,.png,.doc,.docx" required>
+                            <input type="file" id="accreditation-docs" name="accreditation_docs"
+                                class="form-control custom-file-input" accept=".pdf,.jpg,.png,.doc,.docx" required>
                         </div>
                         <div class="form-text text-muted">
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. This field is mandatory.
                         </div>
                     </div>
-                    
+
 
                 </form>
-               <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
-               </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                </div>
             </div>
 
             <!-- Step 3: Medical staff and Services -->
             <div class="step" id="step3">
-                
-                    
 
-                    <form action="#" method="POST" enctype="multipart/form-data">
-                        <!-- Section 1: Medical Expertise -->
-                        <h2>Medical Expertise</h2>
 
-                        <!-- No. of Doctors -->
-                        <label for="doctors">No. of Doctors:</label>
-                        <input type="number" id="doctors" name="doctors" required>
 
-                        <!-- Total Bed Capacity -->
-                        <label for="bed-capacity">Total Bed Capacity:</label>
-                        <input type="number" id="bed-capacity" name="bed_capacity" required>
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    <!-- Section 1: Medical Expertise -->
+                    <h2>Medical Expertise</h2>
 
-                        <!-- Departments and Specialities -->
-                        <div class="mb-3">
-                            <label for="categories" class="form-label">Categories:</label>
-                            <select class="form-select" id="categories" name="categories[]" multiple required>
-                                <option value="General Hospitals">General Hospitals</option>
-                                <option value="Cardiology">Cardiology</option>
-                                <option value="Orthopedics">Orthopedics</option>
-                                <option value="Pediatrics">Pediatrics</option>
-                            </select>
+                    <!-- No. of Doctors -->
+                    <label for="doctors">No. of Doctors:</label>
+                    <input type="number" id="doctors" name="doctors" required>
+
+                    <!-- Total Bed Capacity -->
+                    <label for="bed-capacity">Total Bed Capacity:</label>
+                    <input type="number" id="bed-capacity" name="bed_capacity" required>
+
+                    <!-- Departments and Specialities -->
+                    <div class="mb-3">
+                        <label for="categories" class="form-label">Categories:</label>
+                        <select class="form-select" id="categories" name="categories[]" multiple required>
+                            <option value="General Hospitals">General Hospitals</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+
+                    <!-- List of Registered Doctors -->
+                    <div class="mb-4">
+                        <label for="doctors-list" class="form-label fw-semibold text-primary">
+                            List of Registered Doctors <span class="text-muted">(Upload)</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-secondary">
+                                <i class="bi bi-people-fill"></i>
+                            </span>
+                            <input type="file" id="doctors-list" name="doctors_list"
+                                class="form-control custom-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx" required>
                         </div>
+                        <div class="form-text text-muted">
+                            Supported formats: .pdf, .doc, .docx, .xls, .xlsx. This field is mandatory.
+                        </div>
+                    </div>
 
-                        <!-- List of Registered Doctors -->
-                        <div class="mb-4">
-                            <label for="doctors-list" class="form-label fw-semibold text-primary">
-                                List of Registered Doctors <span class="text-muted">(Upload)</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-secondary">
-                                    <i class="bi bi-people-fill"></i>
-                                </span>
-                                <input type="file" id="doctors-list" name="doctors_list" 
-                                       class="form-control custom-file-input" 
-                                       accept=".pdf,.doc,.docx,.xls,.xlsx" required>
-                            </div>
-                            <div class="form-text text-muted">
-                                Supported formats: .pdf, .doc, .docx, .xls, .xlsx. This field is mandatory.
-                            </div>
+                    <!-- Key Healthcare Providers -->
+                    <div class="mb-4">
+                        <label for="key-providers-file" class="form-label fw-semibold text-primary">
+                            Key Healthcare Providers <span class="text-muted">(Upload)</span>
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-secondary">
+                                <i class="bi bi-person-lines-fill"></i>
+                            </span>
+                            <input type="file" id="key-providers-file" name="key_providers_file"
+                                class="form-control custom-file-input" accept=".pdf,.doc,.docx,.xls,.xlsx" required>
                         </div>
-                        
-                        <!-- Key Healthcare Providers -->
-                        <div class="mb-4">
-                            <label for="key-providers-file" class="form-label fw-semibold text-primary">
-                                Key Healthcare Providers <span class="text-muted">(Upload)</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-secondary">
-                                    <i class="bi bi-person-lines-fill"></i>
-                                </span>
-                                <input type="file" id="key-providers-file" name="key_providers_file"
-                                       class="form-control custom-file-input" 
-                                       accept=".pdf,.doc,.docx,.xls,.xlsx" required>
-                            </div>
-                            <div class="form-text text-muted">
-                                Supported formats: .pdf, .doc, .docx, .xls, .xlsx. This field is mandatory.
-                            </div>
+                        <div class="form-text text-muted">
+                            Supported formats: .pdf, .doc, .docx, .xls, .xlsx. This field is mandatory.
                         </div>
-                        
-                        <div class="d-flex justify-content-between ">
-                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
-                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
-                        </div>
+                    </div>
 
-                    </form>
-                    
-                
+                    <div class="d-flex justify-content-between ">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+                    </div>
+
+                </form>
+
+
 
 
 
@@ -596,62 +593,71 @@
 
             <!-- Step 4: Account Credentials -->
             <!-- Form Section -->
-<div class="step" id="step4">
-    <form action="/submit-documents" method="POST" enctype="multipart/form-data">
-    
+            <div class="step" id="step4">
+                <form action="/submit-documents" method="POST" enctype="multipart/form-data">
 
-        <!-- Operational Hours -->
-        <div class="mb-3">
-            <label for="weekday-hours" class="form-label">Operational Hours (Monday to Friday):</label>
-            <input type="time" id="weekday-start" name="weekday_start" class="form-control" placeholder="Start Time" required>
-            <input type="time" id="weekday-end" name="weekday_end" class="form-control" placeholder="End Time" required>
-        </div>
 
-        <!-- Weekend Operational Hours -->
-        <div class="mb-3">
-            <label for="weekend-hours" class="form-label optional">Optional: Operational Hours (Saturday/Sunday):</label>
-            <input type="time" id="weekend-start" name="weekend_start" class="form-control" placeholder="Start Time">
-            <input type="time" id="weekend-end" name="weekend_end" class="form-control" placeholder="End Time">
-        </div>
+                    <!-- Operational Hours -->
+                    <div class="mb-3">
+                        <label for="weekday-hours" class="form-label">Operational Hours (Monday to Friday):</label>
+                        <input type="time" id="weekday-start" name="weekday_start" class="form-control"
+                            placeholder="Start Time" required>
+                        <input type="time" id="weekday-end" name="weekday_end" class="form-control"
+                            placeholder="End Time" required>
+                    </div>
 
-        <!-- 24/7 Services -->
-        <div class="mb-3">
-            <label class="form-label">24/7 Services Available:</label>
-            <div class="d-flex gap-3">
-                <label><input type="radio" name="services_24_7" value="Yes" class="form-check-input" required> Yes</label>
-                <label><input type="radio" name="services_24_7" value="No" class="form-check-input" required> No</label>
+                    <!-- Weekend Operational Hours -->
+                    <div class="mb-3">
+                        <label for="weekend-hours" class="form-label optional">Optional: Operational Hours
+                            (Saturday/Sunday):</label>
+                        <input type="time" id="weekend-start" name="weekend_start" class="form-control"
+                            placeholder="Start Time">
+                        <input type="time" id="weekend-end" name="weekend_end" class="form-control"
+                            placeholder="End Time">
+                    </div>
+
+                    <!-- 24/7 Services -->
+                    <div class="mb-3">
+                        <label class="form-label">24/7 Services Available:</label>
+                        <div class="d-flex gap-3">
+                            <label><input type="radio" name="services_24_7" value="Yes" class="form-check-input"
+                                    required> Yes</label>
+                            <label><input type="radio" name="services_24_7" value="No" class="form-check-input"
+                                    required> No</label>
+                        </div>
+                    </div>
+
+                    <!-- Languages Spoken -->
+                    <div class="mb-3">
+                        <label for="languages" class="form-label">Languages Spoken:</label>
+                        <select id="languages" name="languages[]" class="form-select" multiple required>
+                            <option value="English">English</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
+                            <option value="Mandarin">Mandarin</option>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Arabic">Arabic</option>
+                        </select>
+                        <input type="text" id="languages-text" class="form-control mt-2"
+                            placeholder="Selected Languages" readonly>
+                    </div>
+
+                    <!-- Available Medical Equipment -->
+                    <div class="mb-3">
+                        <label for="medical-equipment" class="form-label">Available Medical Equipment:</label>
+                        <textarea id="medical-equipment" name="medical_equipment" rows="5"
+                            placeholder="List all medical equipment available..." required></textarea>
+                    </div>
+
+
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                        <button type="submit" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+                    </div>
+                </form>
             </div>
-        </div>
-
-        <!-- Languages Spoken -->
-        <div class="mb-3">
-            <label for="languages" class="form-label">Languages Spoken:</label>
-            <select id="languages" name="languages[]" class="form-select" multiple required>
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-                <option value="French">French</option>
-                <option value="German">German</option>
-                <option value="Mandarin">Mandarin</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Arabic">Arabic</option>
-            </select>
-            <input type="text" id="languages-text" class="form-control mt-2" placeholder="Selected Languages" readonly>
-        </div>
-
-        <!-- Available Medical Equipment -->
-        <div class="mb-3">
-            <label for="medical-equipment" class="form-label">Available Medical Equipment:</label>
-            <textarea id="medical-equipment" name="medical_equipment" rows="5" placeholder="List all medical equipment available..." required></textarea>
-        </div>
-    
-
-    <!-- Navigation Buttons -->
-    <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
-        <button type="submit" class="btn btn-primary" onclick="nextStep(5)">Next</button>
-    </div>
-    </form>
-</div>
 
 
             <div class="step" id="step5">
@@ -810,10 +816,10 @@
                                 knowledge.
                             </label>
                         </div>
-                       <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
-                        <button type="submit" class="btn btn-primary">register hospital</button>
-                       </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
+                            <button type="submit" class="btn btn-primary">register hospital</button>
+                        </div>
 
                 </div>
 
@@ -822,10 +828,10 @@
 
     </div>
 
-    
 
-    
-    
+
+
+
 
     <script>
         let currentStep = 1;
@@ -876,11 +882,20 @@
             // Optionally, you can reset the form after submission
             document.getElementById('hospitalRegistrationForm').reset();
         }
-        
-        
-    
 
 
-       
+        const languageSelect = document.getElementById('languages');
+        const languageText = document.getElementById('languages-text');
+
+        languageSelect.addEventListener('change', function () {
+            const selectedLanguages = Array.from(languageSelect.selectedOptions).map(option => option.text);
+            languageText.value = selectedLanguages.join(', ');
+        });
+
+
+
+
+
+
     </script>
 </body>
