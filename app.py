@@ -132,6 +132,9 @@ def about_us():
 @app.route('/hospitaldb')
 def hospitaldb():
     return render_template('hospitaldb.html')
+@app.route('/completeregistration')
+def completeregistration():
+    return render_template('completeregistration.html')
 
 
 
