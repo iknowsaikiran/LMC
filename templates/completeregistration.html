@@ -47,6 +47,86 @@
 
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #0066cc;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        select,
+        textarea {
+            width: calc(100% - 20px);
+            margin-top: 8px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        option {
+            padding: 10px;
+        }
+
+        #other-type {
+            display: none;
+        }
+
         .progress-bar {
             height: 10px;
             margin-bottom: 20px;
@@ -191,9 +271,9 @@
             margin-top: 20px;
         }
 
-        button[type="submit"] {
+        /* button[type="submit"] {
             background-color: #28a745;
-        }
+        } */
 
         button[type="submit"]:hover {
             background-color: #218838;
@@ -201,6 +281,7 @@
 
         button[type="button"] {
             margin: 0 10px;
+            padding:10px;
         }
 
         button:disabled {
@@ -310,6 +391,75 @@
         .form-text {
             font-size: 0.875rem;
         }
+<<<<<<< HEAD
+=======
+    </style>
+    <style>
+        /* Form container styling */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        /* Form styling */
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+        }
+    
+        .form-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    
+        .checkbox-group {
+            font-size: 1rem;
+        }
+    
+        .checkbox {
+            margin-right: 10px;
+        }
+    
+        /* Agreement section styling */
+        .agreement-section h3 {
+            font-size: 1.25rem;
+            color: #333;
+        }
+    
+        /* Navigation button styling */
+        .btn {
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+    
+        /* Add hover effects for buttons */
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    
+        .btn-primary:hover {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    
+        /* Heading */
+        h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+    
+        /* Spacing for form sections */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    
+        /* Shadow effect for form */
+        .shadow-sm {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
     </style>
 
 </head>
@@ -332,65 +482,85 @@
 
             <!-- Step 1: Hospital Basic Info -->
             <div class="step active" id="step1">
-                <div id="hospital-form" action="next-page.html" method="post" class="form-group">
+                <form id="hospital-form" action="next-page.html" method="post" class="form-group">
                     <h2>Basic Information</h2>
+                    
+                    <!-- Hospital Name -->
                     <label for="hospital-name">Hospital Name:</label>
                     <input type="text" id="hospital-name" name="hospital_name"
                         placeholder="e.g., St. John’s Medical Center" required>
                     <br>
-
+            
+                    <!-- Hospital Type -->
                     <label for="hospital-type">Hospital Type:</label>
                     <select id="hospital-type" name="hospital_type" required>
                         <option value="" disabled selected>Select (optional)</option>
                         <option value="general">General Hospital</option>
-                        <option value="specialty">Specialty Hospital (e.g., Cardiology, Orthopedics, Pediatrics)
-                        </option>
+                        <option value="specialty">Specialty Hospital (e.g., Cardiology, Orthopedics, Pediatrics)</option>
                         <option value="clinic">Clinic</option>
                         <option value="other">Other (please specify below)</option>
                     </select>
                     <textarea id="other-type" name="other_type" placeholder="If 'Other,' please specify"
                         style="margin-top: 10px;"></textarea>
                     <br>
-
+            
                     <!-- Location & Communication Section -->
-
                     <label for="hospital-address">Hospital Address:</label>
                     <textarea id="hospital-address" name="hospital_address"
                         placeholder="Street Address, City, State/Province, Postal Code, Country" required></textarea>
                     <br>
-
+            
+                    <!-- Phone Number -->
                     <label for="phone-number">Phone Number (with Country Code):</label>
                     <input type="tel" id="phone-number" name="phone_number" placeholder="+1 234 567 8901" required>
                     <br>
-
+            
+                    <!-- Email Address -->
                     <label for="email-address">Email Address:</label>
-                    <input type="email" id="email-address" name="email_address" placeholder="e.g., info@hospital.com"
-                        required>
+                    <input type="email" id="email-address" name="email_address" placeholder="e.g., info@hospital.com" required>
                     <br>
-
+            
+                    <!-- Website URL -->
                     <div class="mb-4">
                         <label for="website-url" class="form-label fw-semibold text-primary">
                             Website URL <span class="text-muted">(Optional)</span>:
                         </label>
+<<<<<<< HEAD
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-globe"></i></span>
                             <input type="url" id="website-url" name="website_url" class="form-control"
                                 placeholder="https://www.hospitalwebsite.com">
+=======
+                        <div class="input-group shadow-sm">
+                            <span class="input-group-text bg-light text-secondary"><i class="bi bi-globe"></i></span>
+                            <input type="url" id="website-url" name="website_url" class="form-control border-0"
+                                placeholder="https://www.hospitalwebsite.com">
                         </div>
-                        <div class="form-text">Enter your hospital's website URL, if available.</div>
+                        <div class="form-text text-muted">
+                            Enter your hospital's website URL, if available. Ensure it starts with
+                            <strong>http://</strong> or <strong>https://</strong>.
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
+                        </div>
                     </div>
+<<<<<<< HEAD
 
 
 
+=======
+            
+                    <!-- Navigation Button -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
-                </div>
-
+                </form>
             </div>
+            
 
             <!-- Step 2: Address Info -->
             <div class="step" id="step2">
                 <form action="/submit-registration" method="POST" enctype="multipart/form-data">
+                    <!-- Insurance Type Section -->
                     <label for="insurance-type">Insurance Type (e.g., Medical Malpractice, Liability):</label>
+<<<<<<< HEAD
                     <input type="text" id="insurance-type" name="insurance_type"
                         placeholder="Enter insurance type (optional)">
 
@@ -402,6 +572,17 @@
                     <input type="text" id="policy-number" name="policy_number"
                         placeholder="Enter policy number (optional)">
 
+=======
+                    <input type="text" id="insurance-type" name="insurance_type" placeholder="Enter insurance type (optional)">
+                    
+                    <label for="provider-name">Provider Name:</label>
+                    <input type="text" id="provider-name" name="provider_name" placeholder="Enter provider name (optional)">
+                    
+                    <label for="policy-number">Policy Number:</label>
+                    <input type="text" id="policy-number" name="policy_number" placeholder="Enter policy number (optional)">
+            
+                    <!-- Proof of Registration -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="proof-registration" class="form-label fw-semibold text-primary">
                             Proof of Registration <span class="text-danger">*</span>
@@ -417,6 +598,11 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+            
+                    <!-- Operating License -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="operating-license" class="form-label fw-semibold text-primary">
                             Operating License <span class="text-danger">*</span>
@@ -432,6 +618,11 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+            
+                    <!-- Compliance Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="compliance-docs" class="form-label fw-semibold text-primary">
                             Compliance Documents <span class="text-muted">(e.g., Accreditation, ISO Certificates)</span>
@@ -447,6 +638,7 @@
                             You can upload multiple files. Accepted formats: .pdf, .jpg, .png, .doc, .docx.
                         </div>
                     </div>
+<<<<<<< HEAD
 
 
 
@@ -456,6 +648,13 @@
                 <!-- Supporting Documents Section -->
                 <div class="section-title">Upload Supporting Documents</div>
                 <form action="/submit-documents" method="POST" enctype="multipart/form-data">
+=======
+            
+                    <!-- Supporting Documents Section -->
+                    <div class="section-title">Upload Supporting Documents</div>
+            
+                    <!-- License Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="license-docs" class="form-label fw-semibold text-primary">
                             Upload License <span class="text-muted">(e.g., Operating License, Registration
@@ -472,7 +671,12 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+            
+                    <!-- Insurance Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="insurance-docs" class="form-label fw-semibold text-primary">
                             Upload Insurance Documents <span class="text-muted">(e.g., Insurance Policy Details)</span>
@@ -488,8 +692,13 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
 
 
+=======
+            
+                    <!-- Accreditation Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="accreditation-docs" class="form-label fw-semibold text-primary">
                             Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI
@@ -506,6 +715,7 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. This field is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
 
 
                 </form>
@@ -513,8 +723,17 @@
                     <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
                     <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
                 </div>
+=======
+            
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                    </div>
+                </form>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
             </div>
-
+            
             <!-- Step 3: Medical staff and Services -->
             <div class="step" id="step3">
 
@@ -591,8 +810,12 @@
 
             </div>
 
+
+
+
             <!-- Step 4: Account Credentials -->
             <!-- Form Section -->
+<<<<<<< HEAD
             <div class="step" id="step4">
                 <form action="/submit-documents" method="POST" enctype="multipart/form-data">
 
@@ -737,55 +960,315 @@
                         <label for="director-email">Email Address:</label>
                         <input type="email" id="director-email" name="director_email"
                             placeholder="e.g., director@hospital.com">
+=======
+            <div class="container my-5">
+                <div class="step" id="step4">
+                    <form action="/submit-documents" method="POST" enctype="multipart/form-data"
+                        class="p-4 border rounded shadow-sm">
+                        <h3 class="mb-4 text-center">Operational Details</h3>
+
+                        <!-- Operational Hours -->
+                        <div class="mb-4">
+                            <label for="weekday-hours" class="form-label fw-bold">Operational Hours (Monday to
+                                Friday):</label>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <input type="time" id="weekday-start" name="weekday_start" class="form-control"
+                                        placeholder="Start Time" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="time" id="weekday-end" name="weekday_end" class="form-control"
+                                        placeholder="End Time" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weekend Operational Hours -->
+                        <div class="mb-4">
+                            <label for="weekend-hours" class="form-label fw-bold">Optional: Operational Hours
+                                (Saturday/Sunday):</label>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <input type="time" id="weekend-start" name="weekend_start" class="form-control"
+                                        placeholder="Start Time">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="time" id="weekend-end" name="weekend_end" class="form-control"
+                                        placeholder="End Time">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 24/7 Services -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">24/7 Services Available:</label>
+                            <div class="form-check">
+                                <input type="radio" id="services-yes" name="services_24_7" value="Yes"
+                                    class="form-check-input" required>
+                                <label for="services-yes" class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="services-no" name="services_24_7" value="No"
+                                    class="form-check-input" required>
+                                <label for="services-no" class="form-check-label">No</label>
+                            </div>
+                        </div>
+
+                        <!-- Languages Spoken -->
+                        <div class="mb-4">
+                            <label for="languages" class="form-label fw-bold">Languages Spoken:</label>
+                            <select id="languages" name="languages[]" class="form-select" multiple required>
+                                <option value="English">English</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="French">French</option>
+                                <option value="German">German</option>
+                                <option value="Mandarin">Mandarin</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Arabic">Arabic</option>
+                            </select>
+                            <!-- <input type="text" id="languages-text" class="form-control mt-2" placeholder="Selected Languages" readonly> -->
+                           
+                        </div>
+
+                        <!-- Available Medical Equipment -->
+                        <div class="mb-4">
+                            <label for="medical-equipment" class="form-label fw-bold">Available Medical
+                                Equipment:</label>
+                            <textarea id="medical-equipment" name="medical_equipment" class="form-control" rows="5"
+                                placeholder="List all medical equipment available..." required></textarea>
+                        </div>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
 
                         <!-- Navigation Buttons -->
                         <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Previous</button>
-                            <button type="submit" class="btn btn-primary" onclick="nextStep(6)">Next</button>
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(5)">Next</button>
                         </div>
-
                     </form>
                 </div>
-
-
-
-
             </div>
-            <div class="step" id="step6">
-                <div class="container">
-                    <h2>Banking & Tax Information</h2>
 
-                    <form action="#" method="POST">
+
+
+
+
+            <div class="container my-5">
+                <div class="step" id="step5">
+                    <div class="form-container">
+
+                        <form id="registration-form" action="next-page.html" method="post"
+                            class="p-4 border rounded shadow-sm">
+
+                            <!-- Registration Information Section -->
+                            <h2 class="mb-3">Registration Information</h2>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="registration-number" class="form-label">Registration Number:</label>
+                                    <input type="text" id="registration-number" name="registration_number"
+                                        class="form-control" placeholder="e.g., H-123456789" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="establishment-date" class="form-label">Date of Establishment:</label>
+                                    <input type="date" id="establishment-date" name="establishment_date"
+                                        class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="license-number" class="form-label">License Number:</label>
+                                    <input type="text" id="license-number" name="license_number" class="form-control"
+                                        placeholder="License Number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="issuing-authority" class="form-label">Issuing Authority:</label>
+                                    <input type="text" id="issuing-authority" name="issuing_authority"
+                                        class="form-control" placeholder="Issuing Authority" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="expiry-date" class="form-label">License Expiry Date:</label>
+                                    <input type="date" id="expiry-date" name="expiry_date" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="accreditations" class="form-label">Accreditations &
+                                        Certifications:</label>
+                                    <select id="accreditations" name="accreditations" class="form-select"
+                                        onchange="toggleSpecifyBox()">
+                                        <option value="" selected disabled>-- Select Accreditation --</option>
+                                        <option value="nabh">NABH</option>
+                                        <option value="jci">JCI</option>
+                                        <option value="iso">ISO Certification</option>
+                                        <option value="other">Other (Please specify below)</option>
+                                    </select>
+                                    <textarea id="other-accreditation" name="other_accreditation"
+                                        class="form-control mt-2" placeholder="Please specify"
+                                        style="display: none;"></textarea>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Administrative Information Section -->
+                            <h2 class="mt-4 mb-3">Ownership & Leadership</h2>
+                            <div class="container py-4">
+                                <div class="row g-3">
+                                    <!-- Ownership Type Section -->
+                                    <div class="col-12">
+                                        <label for="ownership-type"
+                                            class="form-label fw-semibold text-primary">Ownership Type:</label>
+                                        <div class="form-check">
+                                            <input type="radio" id="private" name="ownership_type" value="private"
+                                                class="form-check-input" onchange="toggleOtherOwnership()">
+                                            <label for="private" class="form-check-label">Private</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="government" name="ownership_type" value="government"
+                                                class="form-check-input" onchange="toggleOtherOwnership()">
+                                            <label for="government" class="form-check-label">Government</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="public-private" name="ownership_type"
+                                                value="public-private" class="form-check-input"
+                                                onchange="toggleOtherOwnership()">
+                                            <label for="public-private" class="form-check-label">Public-Private
+                                                Partnership</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="other-ownership" name="ownership_type" value="other"
+                                                class="form-check-input" onchange="toggleOtherOwnership()">
+                                            <label for="other-ownership" class="form-check-label">Other (Please specify
+                                                below)</label>
+                                        </div>
+                                        <textarea id="other-ownership-type" name="other_ownership_type"
+                                            class="form-control mt-2" placeholder="If 'Other,' please specify"
+                                            style="display: none;"></textarea>
+                                    </div>
+
+                                    <!-- CEO/Administrator Information -->
+                                    <div class="col-md-6">
+                                        <label for="ceo-name" class="form-label fw-semibold">CEO/Administrator
+                                            Name:</label>
+                                        <input type="text" id="ceo-name" name="ceo_name" class="form-control"
+                                            placeholder="e.g., Dr. John Doe" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ceo-phone" class="form-label fw-semibold">CEO/Administrator Contact
+                                            (Phone Number):</label>
+                                        <input type="tel" id="ceo-phone" name="ceo_phone" class="form-control"
+                                            placeholder="e.g., +1 234 567 8901" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ceo-email" class="form-label fw-semibold">CEO/Administrator
+                                            Email:</label>
+                                        <input type="email" id="ceo-email" name="ceo_email" class="form-control"
+                                            placeholder="e.g., ceo@hospital.com" required>
+                                    </div>
+
+                                    <!-- Medical Director Information -->
+                                    <div class="col-md-6">
+                                        <label for="medical-director-name" class="form-label fw-semibold">Medical
+                                            Director’s Name:</label>
+                                        <input type="text" id="medical-director-name" name="medical_director_name"
+                                            class="form-control" placeholder="Medical Director's Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="medical-director-qualifications"
+                                            class="form-label fw-semibold">Qualifications:</label>
+                                        <input type="text" id="medical-director-qualifications"
+                                            name="medical_director_qualifications" class="form-control"
+                                            placeholder="Medical Director's Qualifications">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="director-phone" class="form-label fw-semibold">Medical Director’s
+                                            Phone Number:</label>
+                                        <input type="tel" id="director-phone" name="director_phone" class="form-control"
+                                            placeholder="e.g., +1 234 567 8901">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="director-email" class="form-label fw-semibold">Medical Director’s
+                                            Email:</label>
+                                        <input type="email" id="director-email" name="director_email"
+                                            class="form-control" placeholder="e.g., director@hospital.com">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(6)">Next</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="step" id="step6" >
+                <div class="container my-5">
+                   
+                    <form action="#" method="POST" class="border p-4 rounded shadow-sm">
+                        <h2 class="text-center mb-4">Banking & Tax Information</h2>
+            
                         <!-- Bank Account Information -->
-                        <div class="form-group">
-                            <label for="account-name">Account Name:</label>
-                            <input type="text" id="account-name" name="account-name" placeholder="Enter account name"
-                                required>
+                        <div class="form-group mb-4">
+                            <label for="account-name" class="form-label fw-bold">Account Name:</label>
+                            <input type="text" id="account-name" name="account-name" class="form-control" placeholder="Enter account name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="bank-name">Bank Name:</label>
-                            <input type="text" id="bank-name" name="bank-name" placeholder="Enter bank name" required>
+                        <div class="form-group mb-4">
+                            <label for="bank-name" class="form-label fw-bold">Bank Name:</label>
+                            <input type="text" id="bank-name" name="bank-name" class="form-control" placeholder="Enter bank name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="account-number">Account Number:</label>
-                            <input type="text" id="account-number" name="account-number"
-                                placeholder="Enter account number" required>
+                        <div class="form-group mb-4">
+                            <label for="account-number" class="form-label fw-bold">Account Number:</label>
+                            <input type="text" id="account-number" name="account-number" class="form-control" placeholder="Enter account number" required>
                         </div>
-                        <div class="form-group">
-                            <label for="ifsc-code">IFSC Code/SWIFT Code:</label>
-                            <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC/SWIFT code"
-                                required>
+                        <div class="form-group mb-4">
+                            <label for="ifsc-code" class="form-label fw-bold">IFSC Code/SWIFT Code:</label>
+                            <input type="text" id="ifsc-code" name="ifsc-code" class="form-control" placeholder="Enter IFSC/SWIFT code" required>
                         </div>
-
+            
                         <!-- Tax Identification Number -->
-                        <div class="form-group">
-                            <label for="tax-id">Tax Identification Number (TIN):</label>
-                            <input type="text" id="tax-id" name="tax-id" placeholder="Enter TIN" required>
+                        <div class="form-group mb-4">
+                            <label for="tax-id" class="form-label fw-bold">Tax Identification Number (TIN):</label>
+                            <input type="text" id="tax-id" name="tax-id" class="form-control" placeholder="Enter TIN" required>
                         </div>
-
-
+            
+                        <!-- Agreement Section -->
+                        <div class="agreement-section mt-5">
+                            <h3 class="mb-4">Agreement and Consent</h3>
+            
+                            <!-- Terms and Conditions -->
+                            <div class="checkbox-group mb-3">
+                                <input type="checkbox" id="terms" class="checkbox" required>
+                                <label for="terms" class="form-check-label">
+                                    I agree to the <a href="/terms" target="_blank">Terms & Conditions</a> of Locate My Care.
+                                </label>
+                            </div>
+            
+                            <!-- Privacy Policy -->
+                            <div class="checkbox-group mb-3">
+                                <input type="checkbox" id="privacy-policy" class="checkbox" required>
+                                <label for="privacy-policy" class="form-check-label">
+                                    I consent to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> of Locate My Care.
+                                </label>
+                            </div>
+            
+                            <!-- Declaration -->
+                            <div class="checkbox-group mb-4">
+                                <input type="checkbox" id="declaration" class="checkbox" required>
+                                <label for="declaration" class="form-check-label">
+                                    I declare that the information provided is accurate and true to the best of my knowledge.
+                                </label>
+                            </div>
+            
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
+                                <button type="submit" class="btn btn-primary">Register Hospital</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
+<<<<<<< HEAD
                 <div class="agreement-section">
                     <form id="registrationForm">
                         <h2>Agreement and Consent</h2>
@@ -822,6 +1305,9 @@
                         </div>
 
                 </div>
+=======
+            </div>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
 
         </form>
 
@@ -882,6 +1368,7 @@
             // Optionally, you can reset the form after submission
             document.getElementById('hospitalRegistrationForm').reset();
         }
+<<<<<<< HEAD
 
 
         const languageSelect = document.getElementById('languages');
@@ -897,5 +1384,78 @@
 
 
 
+=======
+        // JavaScript function to toggle visibility of "Other" textarea
+        document.getElementById('hospital-type').addEventListener('change', function () {
+            const otherTypeField = document.getElementById('other-type');
+            if (this.value === 'other') {
+                // Show the textarea when 'Other' is selected
+                otherTypeField.style.display = 'block';
+            } else {
+                // Hide the textarea for all other selections
+                otherTypeField.style.display = 'none';
+            }
+        });
+
+
+        function toggleSpecifyBox() {
+            const selectBox = document.getElementById("accreditations");
+            const textBox = document.getElementById("other-accreditation");
+
+            // Check if 'Other' is selected
+            if (selectBox.value === "other") {
+                textBox.style.display = "block";
+                textBox.required = true; // Make the text box required when visible
+            } else {
+                textBox.style.display = "none";
+                textBox.required = false; // Remove the required attribute when hidden
+                textBox.value = ""; // Clear the text box
+            }
+        }
+        function toggleOtherOwnership() {
+            const otherRadio = document.getElementById("other-ownership");
+            const otherTextArea = document.getElementById("other-ownership-type");
+
+            // Display the textarea if "Other" is selected; otherwise, hide it
+            if (otherRadio.checked) {
+                otherTextArea.style.display = "block";
+                otherTextArea.required = true; // Make textarea required when visible
+            } else {
+                otherTextArea.style.display = "none";
+                otherTextArea.required = false; // Remove required attribute when hidden
+                otherTextArea.value = ""; // Clear the textarea when hidden
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+    const languagesSelect = document.getElementById('languages');
+    
+    const choices = new Choices(languagesSelect, {
+        removeItemButton: true,  // Allows removing items
+        placeholder: true,       // Enables placeholder text
+        searchEnabled: true,     // Allows searching within the options
+        shouldSort: false,       // Keeps options in the original order
+        noResultsText: 'No languages found',  // Custom message when no matches
+        itemSelectText: '',      // Removes default "Select" text
+    });
+
+    // Update the text input with selected languages
+    languagesSelect.addEventListener('change', function() {
+        const selectedLanguages = Array.from(languagesSelect.selectedOptions).map(option => option.value).join(', ');
+        document.getElementById('languages-text').value = selectedLanguages;
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
