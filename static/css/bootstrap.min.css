@@ -7661,7 +7661,7 @@ fieldset:disabled .btn {
 }
 
 .mx-2 {
-    margin-right: .5rem !important;
+    margin-right: 1.5rem !important;
     margin-left: .5rem !important
 }
 
@@ -10055,7 +10055,7 @@ fieldset:disabled .btn {
     }
 
     .text-md-start {
-        text-align: left !important
+        text-align: left ;
     }
 
     .text-md-end {

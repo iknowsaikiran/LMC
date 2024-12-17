@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Locate My Care</title>
+        {%include 'header.html'%}
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+    
+        <!-- Favicon -->
+        <link href="/static/img/favicon.ico" rel="icon">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+            rel="stylesheet">
+    
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+        <!-- Libraries Stylesheet -->
+        <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Template Stylesheet -->
+        <link href="/static/css/style.css" rel="stylesheet">
+        <style>
+            /* Style for the registration form */
+            
+.hospital-registration {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.step {
+    display: none;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background-color: #4caf50;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 10px;
+}
+
+input[type="text"], input[type="file"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.btn-prev {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.btn-prev:hover {
+    background-color: #ddd;
+}
+
+select-btn {
+    cursor: pointer;
+}
+
+select-btn:hover {
+    background-color: #ddd;
+}
+
+/* Category select box */
+.category-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-align: left;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.list-items {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    border-radius: 5px;
+    top: 100%;
+}
+
+.item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f0f0f0;
+}
+
+.selected {
+    background-color: #4caf50;
+    color: white;
+}
+
+.item-text {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.arrow-dwn {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.selected ~ .list-items {
+    display: block;
+}
+
+.selected .arrow-dwn i {
+    transform: rotate(180deg);
+}
+.btn-next{
+    background-color: #512888;
+}
+.star{
+    color: red ;
+}
+
+        </style>
+        
+    </head>
+<body>
+    <div class="hospital-registration">
+        <h4>Register Your Hospital</h4>
+        
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    
+        <form id="hospitalRegistrationForm" action="/register" method="POST" enctype="multipart/form-data">
+            
+            <!-- Step 1: Basic Info -->
+            <div class="step" id="step1">
+                <h5>Step 1: Basic Information</h5>
+                <label for="hospitalName">Hospital Name:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="hospitalName" name="hospitalName" placeholder="Hospital Name" required>
+    
+                <label for="status">Availability Status:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="status" name="status" placeholder="Available Now / Not Available" required>
+    
+                <label for="patientcount">Number of patients handled daily:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="patientcount" name="patientcount" placeholder="e.g., 100 patients per day" required>
+    
+                <label for="description">Description:
+                    <span class="star">*</span>
+                </label>
+                <textarea id="description" name="description" placeholder="Brief description of the hospital" required></textarea>
+    
+                <button type="button" class="btn btn-next" onclick="nextStep(2)">Next</button>
+            </div>
+    
+            <!-- Step 2: Location & Timings -->
+            <div class="step" id="step2" style="display: none;">
+                <h5>Step 2: Location & Timings</h5>
+                <label for="address">Address:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="address" name="address" placeholder="Hospital Address" required>
+    
+                <label for="timings">Hospital Timings:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="timings" name="timings" placeholder="(e.g., 10:00 AM to 6:00 PM OR 24 hrs)" required>
+    
+                <label for="opendays">Hospital Open Days:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="opendays" name="opendays" placeholder="Days available">
+    
+                <button type="button" class="btn btn-prev" onclick="prevStep(1)">Previous</button>
+                <button type="button" class="btn btn-next" onclick="nextStep(3)">Next</button>
+            </div>
+    
+            <!-- Step 3: Pricing & Category -->
+            <div class="step" id="step3" style="display: none;">
+                <h5>Step 3: Pricing & Category</h5>
+    
+                <label for="price">OP Price:
+                    <span class="star">*</span>
+                </label>
+                <input type="text" id="price" name="price" placeholder="OP Price (e.g., ₹1000)" required>
+    
+                <label for="category">Select Hospital Category:
+                    <span class="star">*</span>
+                </label>
+                <div class="category-select">
+                    <div class="select-btn">
+                        <span class="btn-text">Select Category</span>
+                        <span class="arrow-dwn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <ul class="list-items">
+                        <li class="item" data-value="General Hospitals">
+                            <span class="checkbox"><i class="fa-solid fa-check check-icon"></i></span>
+                            <span class="item-text">General Hospitals</span>
+                        </li>
+                        <li class="item" data-value="Cardiology">
+                            <span class="checkbox"><i class="fa-solid fa-check check-icon"></i></span>
+                            <span class="item-text">Cardiology</span>
+                        </li>
+                        <li class="item" data-value="Orthopedics">
+                            <span class="checkbox"><i class="fa-solid fa-check check-icon"></i></span>
+                            <span class="item-text">Orthopedics</span>
+                        </li>
+                        <li class="item" data-value="Neurology">
+                            <span class="checkbox"><i class="fa-solid fa-check check-icon"></i></span>
+                            <span class="item-text">Neurology</span>
+                        </li>
+                        <!-- Add more categories here -->
+                    </ul>
+                </div>
+                <input type="hidden" id="selectedCategoriesJson" name="selectedCategoriesJson">
+    
+                <button type="button" class="btn btn-prev" onclick="prevStep(2)">Previous</button>
+                <button type="button" class="btn btn-next" onclick="nextStep(4)">Next</button>
+            </div>
+    
+            <!-- Step 4: Upload & Finish -->
+            <div class="step" id="step4" style="display: none;">
+                <h5>Step 4: Upload Image & Complete Registration</h5>
+    
+                <label for="upload_hospital_image">Upload Hospital Image:
+                    <span class="star">*</span>
+                </label>
+                <input type="file" name="upload_hospital_image" id="upload_hospital_image" accept="image/*" required><br>
+    
+                <button type="button" class="btn btn-prev" onclick="prevStep(3)">Previous</button>
+                <button type="submit" class="btn btn-primary">Register Hospital</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <div class="bg-dark text-light py-3">
+            <div class="">
+                <div class="row footer-bottom align-items-center justify-content-between" style="margin-right:0px;">
+                    <div class="col-md-4 text-center text-md-start">
+                        <p class="footer-text mb-0">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved by <strong>BA Talks</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <a href="mailto:contact@batalks.com"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                        </a>
+                        <a href="tel:+918341322771"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-phone-alt me-2" style="font-size: 20px;"></i> +918341322771
+                        </a>
+                      
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
+                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
+                            target="_blank" class="text-light mx-2">
+                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+   <script>
+    let currentStep = 1;
+const totalSteps = 4;
+
+function showStep(step) {
+    for (let i = 1; i <= totalSteps; i++) {
+        document.getElementById('step' + i).style.display = (i === step) ? 'block' : 'none';
+    }
+    updateProgressBar();
+}
+
+function nextStep(step) {
+    if (step <= totalSteps) {
+        currentStep = step;
+        showStep(currentStep);
+    }
+}
+
+function prevStep(step) {
+    if (step >= 1) {
+        currentStep = step;
+        showStep(currentStep);
+    }
+}
+
+function updateProgressBar() {
+    const progress = (currentStep - 1) / (totalSteps - 1) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+    document.getElementById('progress').innerHTML = Math.round(progress) + '%';
+}
+
+// Category Selection
+document.querySelectorAll('.category-select .item').forEach(item => {
+    item.addEventListener('click', function () {
+        let selectedCategories = [];
+        item.classList.toggle('selected');
+
+        document.querySelectorAll('.category-select .item.selected').forEach(selectedItem => {
+            selectedCategories.push(selectedItem.getAttribute('data-value'));
+        });
+
+        document.getElementById('selectedCategoriesJson').value = JSON.stringify(selectedCategories);
+    });
+});
+
+showStep(currentStep);
+
+   </script> 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/wow/wow.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

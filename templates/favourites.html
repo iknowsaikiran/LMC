@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Locate My Care</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="/static/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/card.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .single-feature {
+            position: relative;
+        }
+
+        #prem {
+            position: absolute;
+            bottom: 60px;
+            left: 180px;
+        }
+
+        .badge-icon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .single-feature {
+            position: relative;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .nav-menu a {
+            padding: 6px 10px;
+            text-decoration: none;
+            display: inline-block;
+            color: #fff;
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .sticky {
+
+            position: sticky;
+
+            bottom: 0;
+            padding: 5px;
+            margin: 10px;
+            width: 300px;
+            float: right;
+        }
+
+        .sticky h1 {
+            color: orangered;
+        }
+
+        .section-gap {
+            padding: 50px 0;
+        }
+
+        .single-popular-post {
+            background-color: lavender;
+            padding: 50px;
+            color: #000;
+        }
+
+        .single-popular-post h1 {
+            color: #000;
+        }
+
+        .get-app {
+            margin-left: 10px;
+        }
+
+        /* Styling for the Get App now button */
+        .get-app-btn {
+            display: inline-block;
+            padding: 10px 10px;
+            background-color: #ff5722;
+            /* Change to your preferred color */
+            color: #fff;
+            border-radius: 50px;
+            /* Rounded appearance */
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 15px;
+            text-transform: lowercase;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .get-app-btn:hover {
+            background-color: #e64a19;
+            /* Slightly darker color for hover state */
+        }
+
+        /* Additional adjustments for Get App now button */
+        .get-app {
+            margin-left: auto;
+            /* Pushes the Get App button to the far right */
+        }
+
+        .get-app-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.5);
+            /* Optional focus state styling */
+        }
+
+        .register-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            width: 400px;
+            background: orangered;
+            /* Gradient background */
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            /* Rounded corners */
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+        }
+
+        .register-btn:hover {
+            background: orangered;
+            /* Reverse gradient on hover */
+            transform: translateY(-2px);
+            /* Lift effect on hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            /* Enhance shadow on hover */
+        }
+
+        .get-app-btn:hover {
+            background: orangered;
+            /* Reverse gradient on hover */
+            transform: translateY(-2px);
+            /* Lift effect on hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            /* Enhance shadow on hover */
+        }
+
+        .register-btn:active {
+            transform: translateY(0);
+            /* Remove lift effect when clicking */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Restore original shadow */
+        }
+
+        .get-app-btn,
+        .register-btn {
+            display: inline-block;
+            background-color: #ff9800;
+            /* Original background color */
+            color: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+
+            .get-app-btn,
+            .register-btn {
+                background-color: transparent;
+                color: #333;
+                /* Use a standard text color */
+                border: none;
+                /* Remove border */
+                padding: 0;
+                /* Remove padding */
+                margin-left: 0;
+                text-align: left;
+                font-size: 14px;
+                /* Slightly smaller font */
+            }
+
+            .get-app-btn:hover,
+            .register-btn:hover {
+                text-decoration: underline;
+                /* Add underline on hover for better interaction feedback */
+            }
+
+            .get-app,
+            .register {
+                margin: 10px 0;
+                width: 0;
+
+            }
+
+            .nav-menu li {
+                margin: 5px 0;
+                display: block;
+                text-align: center;
+            }
+        }
+
+        
+
+        /* Footer Base Styling */
+        /* Base Styling for Footer */
+        /* Base Styling for Footer */
+        /* Base Styling for Footer */
+        /* Base Styling for Footer */
+        /* footer { */
+            /* background-color: #343a40; */
+            /* Dark background color */
+            /* color: #fff; */
+            /* White text color */
+            /* padding: 20px 20px; */
+            /* Vertical padding */
+        /* } */
+
+        .footer-bottom {
+            display: flex;
+            flex-wrap: nowrap;
+            /* Prevents wrapping on larger screens */
+            align-items: center;
+            justify-content: space-between;
+            /* Space between items */
+            padding: 10px 0;
+            /* Vertical padding */
+            text-align: left;
+            /* Left-align text by default */
+        }
+
+        .footer-text {
+            margin: 0;
+            font-size: 14px;
+            flex: 1;
+            /* Takes available space without forcing new lines */
+        }
+
+        .footer-bottom .d-flex {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            /* Aligns items to the right */
+            flex-wrap: nowrap;
+            /* Prevents wrapping on larger screens */
+        }
+
+        .footer-bottom .mx-2 {
+            margin: 0 8px;
+            /* Margin between icons and text */
+        }
+
+        .footer-bottom .text-white {
+            color: #fff;
+        }
+
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .footer-bottom {
+                flex-direction: column;
+                /* Stack elements vertically on small screens */
+                gap: 5px;
+                /* Reduce gap for small screens */
+            }
+
+            .footer-bottom a {
+                margin: 5px 0;
+                /* Adjust margin for small screens */
+            }
+
+            .footer-bottom .d-flex {
+                justify-content: center;
+                /* Center the social icons on small screens */
+                margin-top: 5px;
+                /* Adjust top margin */
+            }
+        }
+
+
+        @media (min-width: 768px) {
+            .single-popular-post {
+                flex-direction: row;
+                /* Side-by-side on larger screens */
+                align-items: center;
+            }
+
+            .details h3 {
+                font-size: 20px;
+            }
+
+            .details h5 {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .single-popular-post {
+                width: 100%;
+                /* Ensure it takes up full width on small screens */
+            }
+
+            .details h3 {
+                font-size: 20px;
+            }
+
+            .details h5 {
+                font-size: 14px;
+            }
+        }
+
+        /* Keyframes for fadeInUp animation */
+        @-webkit-keyframes fadeInUp {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Animation class */
+        .fadeInUp {
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            /* animation-delay: 12s; */
+            /* animation-iteration-count: infinite; */
+        }
+
+        .fadeInLeft {
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            /* animation-delay: 12s; */
+            /* animation-iteration-count: infinite; */
+        }
+
+        .fadeInLeft.show {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .fadeInUp {
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+        }
+
+        @-webkit-keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .fadeInLeft {
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+        }
+
+        .language-switcher-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+            position: absolute;
+            top: 10px;
+            right: 3px;
+        }
+
+        .language-switcher-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .language-switcher-card button {
+            background-color: rgb(119, 119, 227);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .language-switcher-card button:hover {
+            background-color: rgb(102, 102, 221);
+        }
+
+        /* Default color for empty heart */
+        .btns .fas.fa-heart {
+            color: gray !important;
+            /* Default color */
+            font-weight: 1000;
+        }
+
+        /* Color for filled heart */
+        .btns .fas.fa-heart.active {
+            color: red !important;
+            /* Active color */
+            font-weight: 1000;
+        }
+
+        /* Optional: Ensuring the button also gets a style (if needed) */
+        .btns .toggle-favourite {
+            background: none;
+            /* Remove button background */
+            border: none;
+            /* Remove button border */
+            padding: 0;
+            /* Remove padding */
+            cursor: pointer;
+            /* Change cursor to pointer */
+        }
+        .chat-btn {
+            margin-left: 10px;
+            /* Adds space between the buttons */
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            background: #512888; 
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #512888;
+        }
+       
+        .callbuttons {
+            display: flex;
+            /* Ensures buttons are in a row */
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+    .single-post {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .thumb {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .details {
+        text-align: center;
+    }
+
+    .callbuttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .single-post {
+        padding: 10px;
+    }
+
+    .thumb img {
+        max-width: 100px;
+    }
+
+    .details .title h4 {
+        font-size: 16px;
+    }
+
+    .callbuttons button {
+        font-size: 12px;
+    }
+}
+.single-post {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+    </style>
+    <style>
+        /* Chat Toggle Button */
+        #chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        #chat-toggle-btn{
+                margin-bottom:1%;
+            }
+
+        #chat-toggle-btn:hover {
+            background-color: #9462d5 !important;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background-color: #512888 !important;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header .chat-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header .chat-title small {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        #close-chat {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+            background-color: #f9f9f9;
+        }
+
+        .bot-message,
+        .user-message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            background-color: #512888 !important;
+            color: white;
+            align-self: flex-start;
+            animation: fadeIn 0.3s;
+        }
+
+        .user-message {
+            background-color: #f1f1f1;
+            align-self: flex-end;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Chat Footer */
+        .chat-footer {
+            display: flex;
+            padding: 10px 15px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #send-btn {
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #send-btn:hover {
+            background-color: #9a66df !important;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Default color for empty heart */
+        .btns .fas.fa-heart {
+            color: gray !important; /* Default color */
+            font-weight: 1000;
+        }
+
+        /* Color for filled heart */
+        .btns .fas.fa-heart.active {
+            color: red !important; /* Active color */
+            font-weight: 1000;
+        }
+
+        /* Optional: Ensuring the button also gets a style (if needed) */
+        .btns .toggle-favourite {
+            background: none; /* Remove button background */
+            border: none; /* Remove button border */
+            padding: 0; /* Remove padding */
+            cursor: pointer; /* Change cursor to pointer */
+        }
+
+        .btns li{
+            list-style-type:none;
+        }
+         /* Default font size (desktop view) */
+         a.text-light {
+            font-size: 15px;
+        }
+
+        /* Media query for smaller screens (mobile view) */
+        @media (max-width: 576px) {
+            a.text-light {
+                font-size: 13px;
+                /* Reduce font size for smaller screens */
+            }
+
+            .footer-bottom {
+                flex-wrap: wrap;
+                /* Ensures proper wrapping if necessary */
+            }
+
+            .footer-bottom a {
+                margin-bottom: 5px;
+                /* Adds spacing between stacked elements */
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><img src="/static/img/logo1.png" alt="" srcset="" width="85px"></h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/about_us" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                       
+                        
+                        <a href="/appointment" class="dropdown-item">Appointment</a>
+                        
+                    </div>
+                </div>
+                {% if 'username' in session %}
+                <a href="/category" class="nav-item nav-link">Category</a>
+                <a href="/favourite" class="nav-item nav-link">Favourites</a>
+                <a href="/dashboard" class="nav-item nav-link">My Profile</a>
+                <!-- <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a> -->
+                <!-- <a href="/logout" class="nav-item nav-link">LOGOUT</a> -->
+
+                {% else %}
+                <a href="/signup" class="nav-item nav-link">SIGNUP/LOGIN</a>
+                {% endif %}
+                <!-- <a href="/register" class="nav-item nav-link">Register for free</a> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">My Favourites</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb text-uppercase mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Favourites</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <section id="favourites" class="post-list container mt-5">
+        <h2 class="text-center mb-4">Favourite Hospitals</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                {% if hospitals %}
+                <ul class="list-unstyled">
+                    {% for hospital in hospitals %}
+                    <li>
+                        <div class="single-post d-flex flex-wrap align-items-start p-3 mb-4 shadow-sm bg-white rounded">
+                            <!-- Thumbnail -->
+                            <div class="thumb me-3">
+                                <img src="/static/img/apollo.jfif" alt="Hospital Image" class="img-fluid rounded">
+                            </div>
+                            <!-- Details -->
+                            <div class="details flex-grow-1">
+                                <div class="title d-flex flex-row justify-content-between">
+                                    <div class="titles">
+                                        <a href="#">
+                                            <h4>{{ hospital[1] }}</h4> <!-- Hospital Name -->
+                                        </a>
+                                        <h6>Available Now</h6>
+                                    </div>
+                                    <ul class="btns">
+                                        <li class="m-2">
+                                            <form action="/remove_favourite" method="POST" style="display:inline;">
+                                                <input type="hidden" name="hospital_id" value="{{ hospital[0] }}">
+                                                <button type="button" class="toggle-favourite" aria-label="Remove from favorites">
+                                                    <i class="fas fa-heart active "></i>
+                                                </button>
+                                            </form>
+                                        </li>                                
+                                        <li>
+                                            <a href="#" class="view-card"
+                                               data-title="{{ hospital[2] }}"
+                                               data-status="Available Now"
+                                               data-description="Description here"
+                                               data-experience="{{ hospital[4] }} years in health care"
+                                               data-address="Address here"
+                                               data-distance="Distance here"
+                                               data-price="Op price({{ hospital[5] }})"
+                                               data-op-status="Op 100-200 (Op current status)"
+                                               data-image="{{ url_for('static', filename='img/post.png') }}">View</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p class="text-muted mb-2"><strong>Timings:</strong> {{ hospital[2] }}</p>
+                                <p class="text-muted mb-2"><strong>Experience:</strong> {{ hospital[3] }} years in healthcare</p>
+                                <p class="text-muted mb-2"><i class="fa-solid fa-location-dot"></i> Address here <span>&nbsp; Distance here</span></p>
+                                <p class="text-muted mb-2">Op price: <i class="fa-solid fa-indian-rupee-sign"></i> {{ hospital[4] }}</p>
+                                <p class="text-muted"><i class="fa-solid fa-chart-line"></i> Op 100-200 &nbsp; (Op current status)</p>
+                                <div class="callbuttons mt-3 d-flex flex-wrap">
+                                    <button class="btn call-btn btn-sm me-2 mb-2">Call</button>
+                                    <button class="btn call-btn btn-sm me-2 mb-2">Chat</button>
+                                    <button class="btn call-btn btn-sm mb-2">Book Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-center text-muted mb-5">You have no favorite hospitals.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer Start -->
+    <footer>
+        <div class="bg-dark text-light py-3">
+            <div class="">
+                <div class="row footer-bottom align-items-center justify-content-between" style="margin-right:0px;">
+                    <div class="col-md-4 text-center text-md-start">
+                        <p class="footer-text mb-0">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved by <strong>BAtalks</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 d-flex">
+                        <a href="mailto:contact@batalks.com"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                        </a>
+                        <a href="tel:+91 8341322771"
+                            class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
+                            <i class="fa fa-phone-alt me-2" style="font-size: 20px;"></i> +91 8341322771
+                        </a>
+
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <a href="https://www.facebook.com/people/BA-talks/61561068777682/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
+                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
+                            target="_blank" class="text-light mx-2">
+                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
+                            class="text-light mx-2">
+                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <button id="chat-toggle-btn">
+        💬
+    </button>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span>Help Center</span>
+                <small>We’re here to assist you</small>
+            </div>
+            <span id="close-chat">✖</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="bot-message">
+                <p>Hi! 👋 How can we help you today?</p>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your message here...">
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+
+
+
+    <!-- Back to Top -->
+
+
+    
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/wow/wow.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    
+    <!-- fav -->
+    <script>
+        const chatContainer = document.getElementById("chat-container");
+        const chatToggleBtn = document.getElementById("chat-toggle-btn");
+        const closeChat = document.getElementById("close-chat");
+        const chatBody = document.getElementById("chat-body");
+        const chatInput = document.getElementById("chat-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        // Toggle chat visibility
+        chatToggleBtn.addEventListener("click", () => {
+            chatContainer.style.display = chatContainer.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Close chat
+        closeChat.addEventListener("click", () => {
+            chatContainer.style.display = "none";
+        });
+
+        // Send message
+        sendBtn.addEventListener("click", sendMessage);
+
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === "") return;
+
+            // Display user message
+            displayMessage(userMessage, "user");
+
+            // Simulate bot response
+            setTimeout(() => {
+                displayMessage(generateBotResponse(userMessage), "bot");
+            }, 800);
+
+            chatInput.value = "";
+        }
+
+        function displayMessage(message, sender) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender === "bot" ? "bot-message" : "user-message";
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            if (userMessage.toLowerCase().includes("hello")) {
+                return "Hello! How can I assist you today?";
+            } else if (userMessage.toLowerCase().includes("problem")) {
+                return "Can you describe the issue you're facing?";
+            } else {
+                return "I'm here to help. Please provide more details.";
+            }
+        }
+        // Ensure dropdown works on both hover and click
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.querySelector('.nav-item.dropdown');
+            const dropdownToggle = document.querySelector('#pagesDropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+
+            // Close dropdown on clicking outside
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Navbar collapse toggle fix for mobile
+        document.addEventListener('click', function (e) {
+            const navbarCollapse = document.getElementById('navbarCollapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+                navbarCollapse.classList.remove('show');
+            }
+
+        });
+
+    </script>
+    <!---->
+    <script>
+       
+            document.addEventListener("DOMContentLoaded", function () {
+                const favoriteButtons = document.querySelectorAll('.toggle-favourite');
+        
+                favoriteButtons.forEach(button => {
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault(); // Prevent the default form submission
+        
+                        const hospitalId = this.closest('form').querySelector('input[name="hospital_id"]').value; // Get hospital_id
+                        const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
+                        const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
+                        const action = isActive ? 'remove' : 'add'; // Determine action
+        
+                        fetch(action === 'add' ? '/add_favourite' : '/remove_favourite', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: new URLSearchParams({
+                                'hospital_id': hospitalId
+                            })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok.');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                if (action === 'remove') {
+                                    heartIcon.classList.remove('active'); // Change back to empty heart style
+                                    this.setAttribute('aria-label', 'Add to favorites'); // Update button label
+                                } else {
+                                    heartIcon.classList.add('active'); // Change to filled heart style
+                                    this.setAttribute('aria-label', 'Remove from favorites'); // Update button label
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                    });
+                });
+            });
+    </script>
+
+</body>
+
+</html>
+
+

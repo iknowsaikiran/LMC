@@ -182,48 +182,8 @@ def success():
     return "Hospital registered successfully!"
 
 
-@app.route('/bookappointment', methods=['GET', 'POST'])
-def appointment():
-    if request.method == 'POST':
-        # Get form data
-        your_name = request.form.get('your_name')
-        your_email = request.form.get('your_email')
-        your_mobile = request.form.get('your_mobile')
-        gender = request.form.get('gender')
-        choose_doctor = request.form.get('choose_doctor')
-        department = request.form.get('department')
-        choose_date = request.form.get('choose_date')
-        choose_time = request.form.get('choose_time')
-        describe_your_problem = request.form.get('describe_your_problem')
 
-        # Validate form inputs
-        if not your_name or not your_email or not your_mobile:
-            flash("All fields are required!")
-            return redirect(url_for('appointment'))
 
-        # Insert into database
-        try:
-            conn = mysql.connector.connect(**db_config)
-            cursor = conn.cursor()
-            query = """
-                INSERT INTO hospital_appointments 
-                (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem) 
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """
-            values = (your_name, your_email, your_mobile, gender, choose_doctor, department, choose_date, choose_time, describe_your_problem)
-            cursor.execute(query, values)
-            conn.commit()
-            flash("Appointment successfully booked!")
-            return redirect(url_for('appointment_success'))
-        except mysql.connector.Error as err:
-            flash(f"Database Error: {err}")
-            return render_template('error.html', message="Unable to book your appointment. Please try again later.")
-        finally:
-            if conn.is_connected():
-                cursor.close()
-                conn.close()
-
-    return render_template('bookappointment.html')
 
 @app.route('/nearby_hospitals')
 def get_nearby_hospitals():
@@ -743,175 +703,65 @@ def update_profile():
 #         }
 
 
-#  <script>
-#         function displayHospitals(hospitals) {
-#             const hospitalList = document.querySelector('.hospital-list');
-#             hospitalList.innerHTML = ''; // Clear the list before adding new items
+@app.route('/appointment', methods=['GET', 'POST'])
+def appointment():
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        email = request.form.get('email')
+        phone_number = request.form.get('number')
+        gender = request.form.get('gender')
+        department = request.form.get('department')
+        appointment_date = request.form.get('appointmentDate')
+        appointment_time = request.form.get('appointmentTime')
+        purpose = request.form.get('comments')
 
-#             if (!hospitals || hospitals.length === 0) {
-#                 hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
-#             } else {
-#                 hospitals.forEach(hospital => {
-#                     const hospitalItem = `
-#             <div class="blog-slider">
-#                 <div class="blog-slider__wrp swiper-wrapper">
-#                     <div class="blog-slider__item swiper-slide d-flex">
-#                         <div class="blog-slider__img col-lg-3">
-#                             <img src="/static/img/apollo.jfif" alt="Hospital Image">
-#                         </div>
-#                         <div class="blog-slider__content col-lg-3" style="margin-left:20px">
-#                             <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
-#                             <p class="availability-status" style="color: green;">Available Now</p>
-#                             <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
-#                             <p>${hospital.years_since_established} years in healthcare</p>
-#                             <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
-#                             <p>Op price: ₹${hospital.opcard_price}</p>
-#                             <p class="current-op-count">
-#                                 <strong>Current OP count:</strong> 
-#                                 <span onclick="alert('Please login to see the current OP count.')">**</span>
-#                             </p>
-#                         </div>
-#                         <div class="button-group col-lg-4 btnt">
-#                             <ul class="btns d-flex" style="list-style-type:none">
-#                                     <li >
-#                                         <form action="/toggle_favourite" method="POST" style="display:inline;">
-#                                             <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-#                                             <button type="button" class="toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-#                                                 <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
-#                                             </button>
-#                                         </form>
-#                                     </li>
-#                                     <li style="padding-top:10px">
-#                                         <a href="#" class="view-card" style="margin-left:10px">View</a>
-#                                     </li>
-#                             </ul>
-#                             <div class="callbuttons col-lg-4">
-#                                 <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-#                             <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
-#                             </div>
-#                             <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
-#                         </div>
-#                     </div>
-#                 </div>
-#             </div>
-#             <!-- Appointment Modal -->
-#             <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
-#                 <div class="modal-dialog modal-lg">
-#                     <div class="modal-content">
-#                         <div class="modal-header">
-#                             <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
-#                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-#                         </div>
-#                         <div class="modal-body">
-#                             <div class="text-center">
-#                                 <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
-#                                 <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
-#                             </div>
-#                             <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
-#                                       <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-#                                       <label for="firstName">First Name:</label>
-#                                       <input type="text" name="firstName" placeholder="First name" class="form-control" required>
-  
-#                                       <label for="lastName">Last Name:</label>
-#                                       <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
-  
-#                                       <label for="number">Phone Number:</label>
-#                                       <input type="text" name="number" placeholder="Phone number" class="form-control" required>
-  
-#                                       <label for="address">Address:</label>
-#                                       <input type="text" name="address" placeholder="Your address" class="form-control" required>
-  
-#                                       <label for="reason">Reason for your Appointment:</label>
-#                                       <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
-  
-#                                       <label for="appointmentDate">Select Date:</label>
-#                                       <input type="date" name="appointmentDate" class="form-control" required>
-  
-#                                       <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-#                                   </form>
-#                                  <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
-#                                       <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-#                                       <label for="opName">Name on OP Card:</label>
-#                                       <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
-  
-#                                       <label for="opPhone">Phone Number on OP Card:</label>
-#                                       <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
-  
-#                                       <label for="opNumber">OP Number:</label>
-#                                       <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
-  
-#                                       <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-#                                   </form>
-#                         </div>
-#                     </div>
-#                 </div>
-#             </div>`;
-#                     function navigateToNewPage() {
-#                         window.location.href = "appointments.html"; // Redirect to the new page
-#                     }
+        # Get the logged-in user's username from session
+        username = session.get('username')
 
-#                     hospitalList.innerHTML += hospitalItem;
-#                 });
+        if not username:  # Check if user is logged in
+            flash("You must be logged in to make an appointment.")
+            return redirect(url_for('login'))
 
-#                 // Add event listeners for Call and Chat buttons to display "coming soon" modals
-#                 document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
-#                     button.addEventListener('click', (e) => {
-#                         e.preventDefault();
-#                         alert('This feature is coming soon.');
-#                     });
-#                 });
+        # Validate form inputs
+        if not all([first_name, last_name, phone_number, department, appointment_date]):
+            flash("All fields are required!")
+            return redirect(request.url)
 
-#                 // Toggle between New Patient and Existing Patient forms in the modal
-#                 hospitalList.addEventListener('click', function (event) {
-#                     const target = event.target;
-#                     const hospitalId = target.dataset.hospitalId;
+        # Insert into database
+        try:
+            cur = mysql.connection.cursor()
+            query = """
+                INSERT INTO hospital_appointments 
+                (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (first_name, last_name, email, phone_number, gender, department, appointment_date, appointment_time, purpose, username)
+            cur.execute(query, values)
+            mysql.connection.commit()
+            cur.close()
+            flash("Appointment successfully booked!")
+            return redirect(url_for('appointment_success'))
+        except Exception as e:
+            flash(f"An error occurred: {str(e)}")
+            return redirect(request.url)
 
-#                     if (target.classList.contains('new-patient-btn')) {
-#                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
-#                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
-#                     }
+    # Handle GET request
+    hospital_id = request.args.get('hospital_id', type=int)
+    hospital = None
+    if hospital_id:
+        try:
+            cur = mysql.connection.cursor()
+            query = "SELECT * FROM hospitals WHERE id = %s"
+            cur.execute(query, (hospital_id,))
+            hospital = cur.fetchone()
+            cur.close()
+        except Exception as e:
+            flash(f"An error occurred while fetching hospital details: {str(e)}")
+    
+    return render_template('appointment.html', hospital=hospital)
 
-#                     if (target.classList.contains('existing-patient-btn')) {
-#                         document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
-#                         document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
-#                     }
-
-#                     // Handle favorite button click using event delegation
-#                     if (target.classList.contains('toggle-favourite')) {
-#                         event.preventDefault();
-#                         const hospitalId = target.dataset.hospitalId;
-#                         const heartIcon = target.querySelector('.fas.fa-heart');
-#                         const isActive = heartIcon.classList.contains('active');
-#                         const action = isActive ? 'remove' : 'add';
-
-#                         const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-
-#                         fetch(endpoint, {
-#                             method: 'POST',
-#                             headers: {
-#                                 'Content-Type': 'application/x-www-form-urlencoded'
-#                             },
-#                             body: new URLSearchParams({ 'hospital_id': hospitalId })
-#                         })
-#                             .then(response => response.json())
-#                             .then(data => {
-#                                 if (data.success) {
-#                                     heartIcon.classList.toggle('active');
-#                                     heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
-#                                     target.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
-#                                 } else {
-#                                     console.error("Error toggling favorite:", data.message);
-#                                 }
-#                             })
-#                             .catch(error => {
-#                                 console.error("Fetch operation error:", error);
-#                             });
-#                     }
-#                 });
-#             }
-#         }
-
-#     </script>
 
 
 

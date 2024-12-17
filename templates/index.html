@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Klinik - Clinic Website Template</title>
-    {%include 'header.html'%}
+    <title>Locate My Care</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -35,10 +35,6 @@
     <link href="/static/css/card.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-
-
-
     <style>
         .fadeInLeft {
             -webkit-animation-name: fadeInLeft;
@@ -179,7 +175,7 @@
         .custom-modal {
             display: none;
             /* Hidden by default */
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -226,6 +222,7 @@
         /* Form Styling */
         .modal-form {
             margin-top: 20px;
+
         }
 
         .modal-form label {
@@ -357,6 +354,7 @@
             color: white;
             border-radius: 10px;
             cursor: pointer;
+            width: 160px;
         }
 
         .button24:hover {
@@ -518,11 +516,14 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+
         }
 
         .ambulance {
-            border-radius: 7px;
-            margin-left: 10px
+            border-radius: 10px !important;
+            margin-left: 10px !important;
+            height: 60px;
+
         }
 
         .dropdown-menu-custom li:hover {
@@ -536,14 +537,232 @@
                 min-width: 100%;
                 /* Full width in smaller screens */
             }
+
+            #animalBitesButton {
+                margin-right: 10px;
+            }
+
+        }
+
+        .dropdown-menu-custom {
+            display: none;
+            position: absolute;
+            top: 100%;
+            /* Adjust according to placement */
+            left: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        .dropdown-menu-custom.show {
+            display: block;
+        }
+
+        /* Chat Toggle Button */
+        #chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #chat-toggle-btn {
+            margin-bottom: 1%;
+        }
+
+        #chat-toggle-btn:hover {
+            background-color: #9462d5 !important;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background-color: #512888 !important;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header .chat-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header .chat-title small {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        #close-chat {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+            background-color: #f9f9f9;
+        }
+
+        .bot-message,
+        .user-message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            background-color: #512888 !important;
+            color: white;
+            align-self: flex-start;
+            animation: fadeIn 0.3s;
+        }
+
+        .user-message {
+            background-color: #f1f1f1;
+            align-self: flex-end;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Chat Footer */
+        .chat-footer {
+            display: flex;
+            padding: 10px 15px;
+            border-top: 1px solid #ddd;
+            background: #fff;
+        }
+
+        #chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #send-btn {
+            background-color: #512888 !important;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #send-btn:hover {
+            background-color: #9a66df !important;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Default font size (desktop view) */
+        a.text-light {
+            font-size: 15px;
+        }
+
+        /* Media query for smaller screens (mobile view) */
+        @media (max-width: 576px) {
+            a.text-light {
+                font-size: 13px;
+                /* Reduce font size for smaller screens */
+            }
+
+            .footer-bottom {
+                flex-wrap: wrap;
+                /* Ensures proper wrapping if necessary */
+            }
+
+            .footer-bottom a {
+                margin-bottom: 5px;
+                /* Adds spacing between stacked elements */
+            }
         }
     </style>
-
-
-
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><img src="/static/img/logo1.png" alt="" srcset="" width="85px"></h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a>
+                <a href="/about_us" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <!-- <a href="feature.html" class="dropdown-item">Feature</a> -->
+
+                        <a href="/appointment" class="dropdown-item">Appointment</a>
+                        <!-- <a href="testimonial.html" class="dropdown-item">Testimonial</a> -->
+                        <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
+                    </div>
+                </div>
+                {% if 'username' in session %}
+                <a href="/category" class="nav-item nav-link">Category</a>
+                <a href="/favourite" class="nav-item nav-link">Favourites</a>
+                <a href="/dashboard" class="nav-item nav-link">My Profile</a>
+                <!-- <a href="/referafriend" class="nav-item nav-link">Refer A Friend</a> -->
+                <!-- <a href="/logout" class="nav-item nav-link">LOGOUT</a> -->
+
+                {% else %}
+                <a href="/signup" class="nav-item nav-link">SIGNUP/LOGIN</a>
+                {% endif %}
+                <!-- <a href="/register" class="nav-item nav-link">Register for free</a> -->
+            </div>
+        </div>
+    </nav>
 
     <!-- Spinner Start -->
     <div id="spinner"
@@ -555,49 +774,28 @@
     <!-- Spinner End -->
 
     <!-- Header Start -->
-    <div class="container-fluid header bg-primary p-0 mb-5">
+    <div class="container-fluid header bg-primary p-0 ">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
-            <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
-                <h1 class="display-4 text-white mb-5">HELLO WELCOME TO LOCATE MY CARE</h1>
+            <div class="col-lg-6 p-3 wow fadeIn " data-wow-delay="0.1s">
+                <h4 class="display-4  text-white ">HELLO {{ session['username'] | upper}} !</h4>
+                <p class="display-6 text-white "> WELCOME TO LOCATE MY CARE</p>
                 <div class="row g-4">
                     <div class="col-sm-4">
-                        <div class="border-start border-light ps-4">
+                        <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">123</h2>
                             <p class="text-light mb-0">Expert Doctors</p>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="border-start border-light ps-4">
+                    <div class="col-sm-4 ">
+                        <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">1234</h2>
-                            <p class="text-light mb-0">Medical Stuff</p>
+                            <p class="text-light mb-0">Medical Staff</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="border-start border-light ps-4">
+                        <div class="border-start border-light ">
                             <h2 class="text-white mb-1" data-toggle="counter-up">12345</h2>
                             <p class="text-light mb-0">Total Patients</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <div class="owl-carousel header-carousel">
-                    <div class="owl-carousel-item position-relative">
-                        <img class="img-fluid" src="/static/img/carousel-1.jpg" alt="">
-                        <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Cardiology</h1>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item position-relative">
-                        <img class="img-fluid" src="/static/img/carousel-2.jpg" alt="">
-                        <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Neurology</h1>
-                        </div>
-                    </div>
-                    <div class="owl-carousel-item position-relative">
-                        <img class="img-fluid" src="/static/img/carousel-3.jpg" alt="">
-                        <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Pulmonary</h1>
                         </div>
                     </div>
                 </div>
@@ -607,7 +805,7 @@
     <!-- Header End -->
 
 
-    <!-- About Start -->
+    <!-- search  -->
     <form action="search.html" class="search-form-area d-flex justify-content-center col-12" id="search-form">
         <div class="row justify-content-center form-wrap">
             <!-- Search Input -->
@@ -630,15 +828,15 @@
             </div>
 
             <!-- Problem Dropdown -->
-            <div class="col-lg-3 col-md-4 col-sm-6 form-cols ">
+            <div class="col-lg-3 col-md-4 col-sm-6 form-cols">
                 <div class="dropdown">
                     <select class="form-select shadow-sm border-0 rounded-pill form-media" id="problemSelect"
                         onchange="navigateToPage()">
                         <option value="">By Problem</option>
-                        <option value="/category?problem=fever">Fever</option>
-                        <option value="/category?problem=headache">Headache</option>
-                        <option value="/category?problem=emergency">Emergency</option>
-                        <option value="/category?problem=stomach-pain">Stomach Pain</option>
+                        <option value="">Fever</option>
+                        <option value="">Headache</option>
+                        <option value="">Emergency</option>
+                        <option value="">Stomach Pain</option>
                     </select>
                 </div>
             </div>
@@ -651,10 +849,11 @@
             </div>
         </div>
     </form>
+    <div class="d-flex justify-content-center">
+        <a href="/team"> <button class=" btn-primary showallbutton mb-1">Home Vist Doctors</button></a>
+    </div>
 
 
-    <!-- Custom Styles (Optional) -->
-    <!-- About End -->
 
 
     <!-- Service Start -->
@@ -669,17 +868,15 @@
         </div>
         <div class="row m-3 mobilecard">
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=general">
+                <a href="/category">
                     <div class="single-fcat">
-
                         <img src="/static/img/general.png" alt="" width="60px" height="60px">
-
                         <p>General Hospitals</p>
                     </div>
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=cardiology">
+                <a href="/category">
                     <div class="single-fcat">
 
                         <img src="/static/img/humanheart.jpg" alt="" width="60px" height="60px">
@@ -689,7 +886,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=dermatology">
+                <a href="/category">
                     <div class="single-fcat">
 
                         <img src="/static/img/hand.png" alt="" width="60px" height="60px">
@@ -699,7 +896,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=neurology">
+                <a href="/category">
                     <div class="single-fcat">
 
                         <img src="/static/img/health.png" alt="" width="60px" height="60px">
@@ -709,7 +906,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=gynecology">
+                <a href="/category">
                     <div class="single-fcat">
 
                         <img src="/static/img/maternity.png" alt="" width="60px" height="60px">
@@ -719,12 +916,12 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                <a href="/category?type=orthopaedic">
+                <a href="/category">
                     <div class="single-fcat">
 
                         <img src="/static/img/ortho.png" alt="" width="60px" height="60px">
 
-                        <p>Orthopaedic</p>
+                        <p>Orthopedic</p>
                     </div>
                 </a>
             </div>
@@ -732,7 +929,7 @@
 
         </div>
         <div class="row m-3 mobilecard" id="category-2" style="display: none;">
-            <a href="/category?type=onocology">
+            <a href="/category">
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                     <div class="single-fcat">
 
@@ -743,7 +940,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=pulmonology">
+            <a href="/category">
                 <div class="single-fcat">
 
                     <img src="/static/img/pulmonology.webp" alt="" width="60px" height="60px">
@@ -753,7 +950,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=opthalmology">
+            <a href="/category">
                 <div class="single-fcat">
 
                     <img src="/static/img/eye.png" alt="" width="60px" height="60px">
@@ -763,7 +960,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=nephrology">
+            <a href="/category">
                 <div class="single-fcat">
 
                     <img src="/static/img/nephrology.webp" alt="" width="60px" height="60px">
@@ -773,7 +970,7 @@
             </a>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=heptaology">
+            <a href="/category">
                 <div class="single-fcat">
 
                     <img src="/static/img/hepatology.png" alt="" width="60px" height="60px">
@@ -784,7 +981,7 @@
 
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-            <a href="/category?type=gastroenterology">
+            <a href="/category">
                 <div class="single-fcat">
 
                     <img src="/static/img/gastro.png" alt="" width="60px" height="60px">
@@ -794,65 +991,65 @@
             </a>
         </div>
     </div>
+    <div class="d-flex justify-content-center">
+        <button class=" btn-primary showallbutton" id="showbtn">Show All Categories</button>
     </div>
-    </section>
     <!-- End feature-cat Area -->
     <!-- show button  -->
     <div class="d-flex justify-content-center align-items-center showbutton">
-        <button class=" btn-primary showallbutton" id="showbtn">Show All Features</button>
-        <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal" data-bs-target="#ambulanceModal">
-            Ambulance Services
-        </button>
-        <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>We are trying very hard to get you the best ambulance services. Please wait while we connect you to a provider.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-        </div>
+
+
+
     </div>
 
     <!--24/7 buttons-->
     <div class="mb-3 text-center mt-3">
-
-
         <div class="btn-group">
-            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
             <button class="button24" id="animalBitesButton" onclick="toggleDropdown()">Animal Bites</button>
             <ul id="animalDropdown" class="dropdown-menu-custom">
-                <li style="color: black;"><button class="button24 dropdown-item"
-                        onclick="filterHospitals('snake')">Snake Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('rat')">Rat Bites</button></li>
-                <li><button class="button24 dropdown-item" onclick="filterHospitals('dog')">Dog Bites</button></li>
+                <li><a href="#" class="dropdown-item" style="color: black;" onclick="filterHospitals('snake')">Snake
+                        Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('rat')">Rat Bites</a></li>
+                <li><a href="#" class="dropdown-item" onclick="filterHospitals('dog')">Dog Bites</a></li>
             </ul>
+            <button type="button" class="btn btn-primary ambulance" data-bs-toggle="modal"
+                data-bs-target="#ambulanceModal">
+                Ambulance Services
+            </button>
+            <div class="modal fade" id="ambulanceModal" tabindex="-1" aria-labelledby="ambulanceModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ambulanceModalLabel">Ambulance Services</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>We are trying very hard to get you the best ambulance services near to your location.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="button24" onclick="filterHospitals('247')">24/7 Hospitals</button>
+
+
+
         </div>
-
     </div>
-
-
-
     </div>
 
     <!--based on the location-->
     <!-- Start post Area -->
     <section class="">
         <div class="container">
-            <div class="row justify-content-center d-flex">
+            <div class="row justify-content-center d-flex text text-align-center">
                 <div class="col-lg-12 post-list">
                     <div class="hospital-list">
                         <!-- Hospitals will be dynamically inserted here -->
                     </div>
-
                     <a class="text-uppercase text-align-center loadmore-btn mx-auto d-block" href="#">Load More
                         hospitals</a>
                 </div>
@@ -860,45 +1057,6 @@
         </div>
     </section>
 
-    <!--Hospital End-->
-    <div id="customModal" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Book Appointment - Saty Kiran babu Hospitals</h2>
-            <div class="text-center mb-3">
-                <button class="btn m-2" onclick="navigateToNewPage()">New Patient</button>
-                <button class="btn m-2" onclick="toggleForm('existing')">Already a Patient</button>
-            </div>
-
-            <!-- New Patient Form -->
-            <form id="newPatientForm" class="modal-form" style="display: none;">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" class="form-control" required>
-
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" class="form-control" required>
-
-                <label for="number">Phone Number:</label>
-                <input type="text" name="number" class="form-control" required>
-
-                <button type="submit" class="btn mt-3">Book Appointment</button>
-            </form>
-
-
-            <!-- Existing Patient Form -->
-            <form id="existingPatientForm" class="modal-form" style="display: none;">
-                <label for="opName">Name on OP Card:</label>
-                <input type="text" name="opName" class="form-control" required>
-
-                <label for="opNumber">OP Number:</label>
-                <input type="text" name="opNumber" class="form-control" required>
-
-                <button type="submit" class="btn mt-3 button">Book Appointment</button>
-
-                <button type="submit" class="btn mt-3">Book Appointment</button>
-            </form>
-        </div>
-    </div>
     <footer>
         <div class="bg-dark text-light py-3">
             <div class="">
@@ -907,44 +1065,69 @@
                         <p class="footer-text mb-0">
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script>
-                            All rights reserved by <strong>BA Talks</strong>
+                            All rights reserved by <strong>BAtalks</strong>
                         </p>
                     </div>
-                    <div class="col-md-4 ">
+                    <div class="col-md-4 d-flex">
                         <a href="mailto:contact@batalks.com"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-envelope-square me-2" style="font-size: 20px;"></i> contact@batalks.com
+                            <i class="fa fa-envelope-square me-2" style="font-size: 15px;"></i> contact@batalks.com
                         </a>
-                        <a href="tel:+918341322771"
+                        <a href="tel:+91 8341322771"
                             class="text-light mx-2 text-decoration-none d-inline-flex align-items-center">
-                            <i class="fa fa-phone me-2" style="font-size: 20px;"></i> +918341322771
+                            <i class="fa fa-phone-alt me-2" style="font-size: 15px;"></i> +91 8341322771
                         </a>
 
                     </div>
                     <div class="col-md-4 text-center text-md-end">
                         <a href="https://www.facebook.com/people/BA-Talks/61561068777682/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                            <i class="bi bi-facebook" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://www.instagram.com/batalkspvtltd/" target="_blank" class="text-light mx-2">
-                            <i class="bi bi-instagram" style="font-size: 20px;"></i>
+                            <i class="bi bi-instagram" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://api.whatsapp.com/send/?phone=%2B918341322771&text&type=phone_number&app_absent=0"
                             target="_blank" class="text-light mx-2">
-                            <i class="bi bi-whatsapp" style="font-size: 20px;"></i>
+                            <i class="bi bi-whatsapp" style="font-size: 17px;"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/ba-talks-pvt-ltd/" target="_blank"
                             class="text-light mx-2">
-                            <i class="bi bi-linkedin" style="font-size: 20px;"></i>
+                            <i class="bi bi-linkedin" style="font-size: 17px;"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- Back to Top -->
-    <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i -->
-    <!-- class="bi bi-arrow-up"></i></a> -->
+
+
+    <button id="chat-toggle-btn">
+        💬
+    </button>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span>Help Center</span>
+                <small>We’re here to assist you</small>
+            </div>
+            <span id="close-chat">✖</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="bot-message">
+                <p>Hi! 👋 How can we help you today?</p>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your message here...">
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+
+
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -959,30 +1142,91 @@
 
     <!-- Template Javascript -->
     <script src="/static/js/main.js"></script>
+    <script>
+        const chatContainer = document.getElementById("chat-container");
+        const chatToggleBtn = document.getElementById("chat-toggle-btn");
+        const closeChat = document.getElementById("close-chat");
+        const chatBody = document.getElementById("chat-body");
+        const chatInput = document.getElementById("chat-input");
+        const sendBtn = document.getElementById("send-btn");
+
+        // Toggle chat visibility
+        chatToggleBtn.addEventListener("click", () => {
+            chatContainer.style.display = chatContainer.style.display === "flex" ? "none" : "flex";
+        });
+
+        // Close chat
+        closeChat.addEventListener("click", () => {
+            chatContainer.style.display = "none";
+        });
+
+        // Send message
+        sendBtn.addEventListener("click", sendMessage);
+
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === "") return;
+
+            // Display user message
+            displayMessage(userMessage, "user");
+
+            // Simulate bot response
+            setTimeout(() => {
+                displayMessage(generateBotResponse(userMessage), "bot");
+            }, 800);
+
+            chatInput.value = "";
+        }
+
+        function displayMessage(message, sender) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender === "bot" ? "bot-message" : "user-message";
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            if (userMessage.toLowerCase().includes("hello")) {
+                return "Hello! How can I assist you today?";
+            } else if (userMessage.toLowerCase().includes("problem")) {
+                return "Can you describe the issue you're facing?";
+            } else {
+                return "I'm here to help. Please provide more details.";
+            }
+        }
+        // Ensure dropdown works on both hover and click
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.querySelector('.nav-item.dropdown');
+            const dropdownToggle = document.querySelector('#pagesDropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            dropdownToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+
+            // Close dropdown on clicking outside
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Navbar collapse toggle fix for mobile
+        document.addEventListener('click', function (e) {
+            const navbarCollapse = document.getElementById('navbarCollapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+                navbarCollapse.classList.remove('show');
+            }
+
+        });
+
+    </script>
 
     <script>
-        // Function to detect user's location and update the input field
-        //function getLocation() {
-        //  if (navigator.geolocation) {
-        //        navigator.geolocation.getCurrentPosition(function (position) {
-        //            var lat = position.coords.latitude;
-        //            var lon = position.coords.longitude;
-        //
-        //           // Update the location input field with latitude and longitude
-        //            document.getElementById("location-input").value = "Latitude: " + lat + ", Longitude: " + lon;
-        //
-        //            // Optionally, you can use reverse geocoding to get the city name using the coordinates
-        //        }, function (error) {
-        //            document.getElementById("location-input").value = "Location not available";
-        //        });
-        //    } else {
-        //        document.getElementById("location-input").value = "Geolocation is not supported by this browser.";
-        //    }
-        //}
-
-        // Function to redirect to the selected problem category
-
-
         document.getElementById('showbtn').addEventListener('click', function () {
             var hiddenCategories = document.getElementById('category-2');
             if (hiddenCategories.style.display === 'none') {
@@ -990,7 +1234,7 @@
                 this.textContent = 'Show Less'; // Changes button text
             } else {
                 hiddenCategories.style.display = 'none'; // Hides the categories again
-                this.textContent = 'Show All'; // Resets button text
+                this.textContent = 'Show All Categories'; // Resets button text
             }
         });
 
@@ -1035,117 +1279,15 @@
 
     </script>
     <script>
-        function openModal() {
-            document.getElementById("customModal").style.display = "flex";
-        }
-
-        function closeModal() {
-            document.getElementById("customModal").style.display = "none";
-            toggleForm(); // Reset forms
-        }
-
-        function toggleForm(type) {
-            const newPatientForm = document.getElementById("newPatientForm");
-            const existingPatientForm = document.getElementById("existingPatientForm");
-
-            if (type === "new") {
-                newPatientForm.style.display = "block";
-                existingPatientForm.style.display = "none";
-            } else if (type === "existing") {
-                newPatientForm.style.display = "none";
-                existingPatientForm.style.display = "block";
-            } else {
-                newPatientForm.style.display = "none";
-                existingPatientForm.style.display = "none";
-            }
-        }
-    </script>
-    <!-- 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const favoriteButtons = document.querySelectorAll('.toggle-favourite');
-
-            favoriteButtons.forEach(button => {
-                button.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default form submission
-
-                    const form = this.closest('form'); // Get the form element
-                    const hospitalId = form.querySelector('input[name="hospital_id"]').value; // Get hospital_id
-                    const heartIcon = this.querySelector('.fas.fa-heart'); // Get the heart icon
-                    const isActive = heartIcon.classList.contains('active'); // Check if the heart is active
-                    const action = isActive ? 'remove' : 'add'; // Determine action
-
-                    const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-
-                    fetch(endpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams({
-                            'hospital_id': hospitalId
-                        })
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.success) {
-                                heartIcon.classList.toggle('active'); // Toggle the heart icon state
-
-                                // Change the color of the heart icon based on active state
-                                if (heartIcon.classList.contains('active')) {
-                                    heartIcon.style.color = 'red'; // Change to orange
-                                    this.setAttribute('aria-label', 'Remove from favorites');
-                                } else {
-                                    heartIcon.style.color = 'gray'; // Change to gray
-                                    this.setAttribute('aria-label', 'Add to favorites');
-                                }
-                            } else {
-                                console.error('Error toggling favorite:', data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
-                });
-            });
-        });
-    </script> -->
-    <script>
-        document.getElementById("appointmentForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const formData = new FormData(event.target);
-            const firstName = formData.get("firstName");
-            const lastName = formData.get("lastName");
-            const gender = formData.get("gender");
-            const number = formData.get("number");
-            const department = formData.get("department");
-            const appointmentDate = formData.get("appointmentDate");
-            const appointmentTime = formData.get("appointmentTime");
-
-            // Simulate appointment booking confirmation
-            alert(`Thank you, ${firstName} ${lastName}! Your appointment for ${department} on ${appointmentDate} at ${appointmentTime} has been booked. We have noted your gender as ${gender} and will contact you at ${number}.`);
-
-            // Clear the form after submission
-            event.target.reset();
-        });
-
-    </script>
-    <script>
         // Function to close the modal
         function closeModal() {
             document.getElementById("customModal").style.display = "none";
         }
 
         // Function to navigate to a new page for new patients
-        function navigateToNewPage() {
-            window.location.href = "/appointment"; // Redirect to the new page
-        }
+        //function navigateToNewPage() {
+        //    window.location.href = "/appointment"; // Redirect to the new page
+        //}
 
         // Function for existing patient functionality
         //24/7 and 8am to 8pm hospitals
@@ -1165,9 +1307,6 @@
                 }
             });
         }
-
-
-
     </script>
 
     <!--CODE FROM INDEX.HTML-->
@@ -1252,188 +1391,9 @@
             }
         }
     </script>
+
+    <!--search bar-->
     <script>
-        function displayHospitals(hospitals) {
-            const hospitalList = document.querySelector('.hospital-list');
-            hospitalList.innerHTML = ''; // Clear the list before adding new items
-
-            if (!hospitals || hospitals.length === 0) {
-                hospitalList.innerHTML = '<p>No nearby hospitals found within 5km of your location.</p>';
-            } else {
-                hospitals.forEach(hospital => {
-                    const hospitalItem = `
-            <div class="blog-slider">
-                <div class="blog-slider__wrp swiper-wrapper">
-                    <div class="blog-slider__item swiper-slide d-flex">
-                        <div class="blog-slider__img col-lg-3">
-                            <img src="/static/img/apollo.jfif" alt="Hospital Image">
-                        </div>
-                        <div class="blog-slider__content col-lg-3" style="margin-left:20px">
-                            <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
-                            <p class="availability-status" style="color: green;">Available Now</p>
-                            <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
-                            <p>${hospital.years_since_established} years in healthcare</p>
-                            <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
-                            <p>Op price: ₹${hospital.opcard_price}</p>
-                            <p class="current-op-count">
-                                <strong>Current OP count:</strong> 
-                                <span onclick="alert('Please login to see the current OP count.')">**</span>
-                            </p>
-                        </div>
-                        <div class="button-group col-lg-4 btnt">
-                            <ul class="btns d-flex" style="list-style-type:none">
-                                    <li >
-                                        <form action="/toggle_favourite" method="POST" style="display:inline;">
-                                            <input type="hidden" name="hospital_id" value="{{ hospitals[0] }}">
-                                            <button type="button" class="btn toggle-favourite" aria-label="{{ 'Remove from favorites' if hospitals[5] else 'Add to favorites' }}">
-                                                <i class="fas fa-heart {{ 'active' if hospitals[5] else '' }}"></i>
-                                            </button>
-                                        </form>
-                                    </li>
-                                    <li style="padding-top:10px">
-                                        <a href="#" class="view-card" style="margin-left:10px">View</a>
-                                    </li>
-                            </ul>
-                            <div class="callbuttons col-lg-4">
-                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
-                            </div>
-                            <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Appointment Modal -->
-            <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="text-center">
-                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
-                                <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
-                            </div>
-                            <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                      <label for="firstName">First Name:</label>
-                                      <input type="text" name="firstName" placeholder="First name" class="form-control" required>
-  
-                                      <label for="lastName">Last Name:</label>
-                                      <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
-  
-                                      <label for="number">Phone Number:</label>
-                                      <input type="text" name="number" placeholder="Phone number" class="form-control" required>
-  
-                                      <label for="address">Address:</label>
-                                      <input type="text" name="address" placeholder="Your address" class="form-control" required>
-  
-                                      <label for="reason">Reason for your Appointment:</label>
-                                      <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
-  
-                                      <label for="appointmentDate">Select Date:</label>
-                                      <input type="date" name="appointmentDate" class="form-control" required>
-  
-                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-                                  </form>
-                                 <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                      <label for="opName">Name on OP Card:</label>
-                                      <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
-  
-                                      <label for="opPhone">Phone Number on OP Card:</label>
-                                      <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
-  
-                                      <label for="opNumber">OP Number:</label>
-                                      <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
-  
-                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-                                  </form>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-                    function navigateToNewPage() {
-                        window.location.href = "appointments.html"; // Redirect to the new page
-                    }
-
-                    hospitalList.innerHTML += hospitalItem;
-                });
-
-                // Add event listeners for Call and Chat buttons to display "coming soon" modals
-                document.querySelectorAll('.call-btn, .chat-btn').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        alert('This feature is coming soon.');
-                    });
-                });
-
-                // Toggle between New Patient and Existing Patient forms in the modal
-                hospitalList.addEventListener('click', function (event) {
-                    const target = event.target;
-                    const hospitalId = target.dataset.hospitalId;
-
-                    if (target.classList.contains('new-patient-btn')) {
-                        document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
-                        document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
-                    }
-
-                    if (target.classList.contains('existing-patient-btn')) {
-                        document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
-                        document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
-                    }
-
-                    // Handle favorite button click using event delegation
-                    if (target.classList.contains('toggle-favourite')) {
-                        event.preventDefault();
-                        const hospitalId = target.dataset.hospitalId;
-                        const heartIcon = target.querySelector('.fas.fa-heart');
-                        const isActive = heartIcon.classList.contains('active');
-                        const action = isActive ? 'remove' : 'add';
-
-                        const endpoint = action === 'add' ? '/add_favourite' : '/remove_favourite';
-
-                        fetch(endpoint, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams({ 'hospital_id': hospitalId })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    heartIcon.classList.toggle('active');
-                                    heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
-                                    target.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
-                                } else {
-                                    console.error("Error toggling favorite:", data.message);
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Fetch operation error:", error);
-                            });
-                    }
-                });
-            }
-        }
-
-    </script>
-    <script>
-        //document.getElementById('showbtn').addEventListener('click', function () {
-        //	var hiddenCategories = document.getElementById('category-2');
-        //	if (hiddenCategories.style.display === 'none') {
-        //		hiddenCategories.style.display = 'flex'; // Shows the hidden categories
-        //		this.textContent = 'Show Less'; // Changes button text
-        //	} else {
-        //		hiddenCategories.style.display = 'none'; // Hides the categories again
-        //		this.textContent = 'Show All'; // Resets button text
-        //	}
-        //});
-
-
         // Header links by problem
         function navigateToPage() {
             var select = document.getElementById("problemSelect");
@@ -1443,18 +1403,6 @@
             }
         }
     </script>
-    <script>
-        // Add this script to your HTML
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) { // Change this value to control when the effect starts
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
-
     <!-- Modal JavaScript -->
     <script>
         // Get modal element
@@ -1482,8 +1430,6 @@
                 modal.style.display = 'none';
             }
         }
-
-
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -1530,7 +1476,18 @@
     </script>
 
     <!--Favourites-->
-
+    <script>
+        function navigateToNewPage(hospitalId) {
+            console.log("Navigating with hospitalId:", hospitalId); // Debug log
+            console.log("Navigating with hospitalId");
+            if (!hospitalId) {
+                console.error("Hospital ID is not provided.");
+                return;
+            }
+            // Redirect to the appointment page with the hospital_id as a query parameter
+            window.location.href = `/appointment?hospital_id=${hospitalId}`;
+        }
+    </script>
     <script>
         function displayHospitals(hospitals) {
             const hospitalList = document.querySelector('.hospital-list');
@@ -1541,89 +1498,99 @@
             } else {
                 hospitals.forEach(hospital => {
                     const hospitalItem = `
-                        <div class="blog-slider">
-                            <div class="blog-slider__wrp swiper-wrapper">
-                                <div class="blog-slider__item swiper-slide d-flex">
-                                    <div class="blog-slider__img col-lg-3">
-                                        <img src="/static/img/apollo.jfif" alt="Hospital Image">
-                                    </div>
-                                    <div class="blog-slider__content col-lg-3" style="margin-left:20px">
-                                        <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
-                                        <p class="availability-status" style="color: green;">Available Now</p>
-                                        <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
-                                        <p>${hospital.years_since_established} years in healthcare</p>
-                                        <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
-                                        <p>Op price: ₹${hospital.opcard_price}</p>
-                                    </div>
-                                    <div class="button-group col-lg-4 btnt">
-                                        <ul class="btns d-flex" style="list-style-type:none">
-                                            <li>
-                                                <form action="/toggle_favourite" method="POST" class="favourite-form" style="display:inline;">
-                                                    <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
-                                                    <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favourite ? 'Remove from favorites' : 'Add to favorites'}">
-                                                        <i class="fas fa-heart ${hospital.is_favourite ? 'active' : ''}" style="color: ${hospital.is_favourite ? 'red' : 'gray'};"></i>
-                                                    </button>
-                                                </form>
-                                            </li>
-    
-                                            <li style="padding-top:10px">
-                                                <a href="#" class="view-card" style="margin-left:10px">View</a>
-                                            </li>
-                                        </ul>
-                                        <div class="callbuttons col-lg-4">
-                                            <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
-                                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
-                                        </div>
-                                        <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="blog-slider">
+                <div class="blog-slider__wrp swiper-wrapper">
+                    <div class="blog-slider__item swiper-slide d-flex">
+                        <div class="blog-slider__img col-lg-3">
+                            <img src="/static/img/apollo.jfif" alt="Hospital Image">
                         </div>
-                        <!-- Appointment Modal -->
-                        <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center">
-                                            <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage()">New Patient</button>
-                                            <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
-                                        </div>
-                                        <!-- New Patient Form -->
-                                        <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                            <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                            <label for="firstName">First Name:</label>
-                                            <input type="text" name="firstName" placeholder="First name" class="form-control" required>
-                                            <label for="lastName">Last Name:</label>
-                                            <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
-                                            <label for="number">Phone Number:</label>
-                                            <input type="text" name="number" placeholder="Phone number" class="form-control" required>
-                                            <label for="address">Address:</label>
-                                            <input type="text" name="address" placeholder="Your address" class="form-control" required>
-                                            <label for="reason">Reason for your Appointment:</label>
-                                            <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
-                                            <label for="appointmentDate">Select Date:</label>
-                                            <input type="date" name="appointmentDate" class="form-control" required>
-                                            <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                        <div class="blog-slider__content col-lg-3" style="margin-left:20px">
+                            <h3 class="blog-slider__title">${hospital.hospital_name}</h3>
+                            <p class="availability-status" style="color: green;">Available Now</p>
+                            <p class="timings"><strong>Timings:</strong> ${hospital.timings}</p>
+                            <p>${hospital.years_since_established} years in healthcare</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
+                            <p><i class="fa-solid fa-chart-line"></i>Op price: ₹${hospital.opcard_price} </p>
+                            <p class="current-op-count">
+                                <strong>Current OP count:</strong> 
+                                <span onclick="alert('Please login to see the current OP count.')">**</span>
+                            </p>
+                        </div>
+                        <div class="button-group col-lg-4 btnt">
+                            <ul class="btns d-flex" style="list-style-type:none">
+                                    <li >
+                                        <form action="/toggle_favourite" method="POST" style="display:inline;">
+                                            <input type="hidden" name="hospital_id" value="${hospital.hospital_id}">
+                                            <button type="button" class="toggle-favourite" onclick="toggleFavourite(${hospital.hospital_id}, this)" aria-label="${hospital.is_favorite ? 'Remove from favorites' : 'Add to favorites'}">
+                                                    <i class="fas fa-heart ${hospital.is_favorite ? 'active' : ''}" style="color: ${hospital.is_favorite ? 'red' : 'gray'};"></i>
+                                             </button>
                                         </form>
-                                        <!-- Existing Patient Form -->
-                                        <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
-                                            <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
-                                            <label for="opName">Name on OP Card:</label>
-                                            <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
-                                            <label for="opPhone">Phone Number on OP Card:</label>
-                                            <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
-                                            <label for="opNumber">OP Number:</label>
-                                            <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
-                                            <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                    </li>
+                                    <li style="padding-top:10px">
+                                        <a href="#" class="view-card" style="margin-left:10px">View</a>
+                                    </li>
+                            </ul>
+                            <div class="callbuttons col-lg-4">
+                                <button class="btn p-2 call-btn" data-hospital-id="${hospital.hospital_id}">Call</button>
+                            <button class="btn p-2 chat-btn" data-hospital-id="${hospital.hospital_id}">Chat</button>
                             </div>
-                        </div>`;
+                            <button class="btn p-2 mt-10" data-bs-toggle="modal" data-bs-target="#appointmentModal${hospital.hospital_id}">Book Appointment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Appointment Modal -->
+            <div class="modal fade" id="appointmentModal${hospital.hospital_id}" tabindex="-1" aria-labelledby="appointmentModalLabel${hospital.hospital_id}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="appointmentModalLabel${hospital.hospital_id}">Book Appointment - ${hospital.hospital_name}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <button class="btn btn-primary m-2 new-patient-btn" data-hospital-id="${hospital.hospital_id}" onclick="navigateToNewPage('${hospital.hospital_id}')">New Patient</button>
+                                <button class="btn btn-primary m-2 existing-patient-btn" data-hospital-id="${hospital.hospital_id}">Already a Patient</button>
+                            </div>
+                            <form id="newPatientForm${hospital.hospital_id}" class="new-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="firstName">First Name:</label>
+                                      <input type="text" name="firstName" placeholder="First name" class="form-control" required>
+  
+                                      <label for="lastName">Last Name:</label>
+                                      <input type="text" name="lastName" placeholder="Last name" class="form-control" required>
+  
+                                      <label for="number">Phone Number:</label>
+                                      <input type="text" name="number" placeholder="Phone number" class="form-control" required>
+  
+                                      <label for="address">Address:</label>
+                                      <input type="text" name="address" placeholder="Your address" class="form-control" required>
+  
+                                      <label for="reason">Reason for your Appointment:</label>
+                                      <input type="text" name="reason" placeholder="Reason for appointment" class="form-control" required>
+  
+                                      <label for="appointmentDate">Select Date:</label>
+                                      <input type="date" name="appointmentDate" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                                 <form id="existingPatientForm${hospital.hospital_id}" class="existing-patient-form" style="display: none;" method="POST" action="/bookappointment">
+                                      <input type="hidden" name="appointmentDate" value="" id="appointmentDateHidden${hospital.hospital_id}">
+                                      <label for="opName">Name on OP Card:</label>
+                                      <input type="text" name="opName" placeholder="Name on OP card" class="form-control" required>
+  
+                                      <label for="opPhone">Phone Number on OP Card:</label>
+                                      <input type="text" name="opPhone" placeholder="Phone number on OP card" class="form-control" required>
+  
+                                      <label for="opNumber">OP Number:</label>
+                                      <input type="text" name="opNumber" placeholder="OP number" class="form-control" required>
+  
+                                      <button type="submit" class="btn btn-success mt-3">Book Appointment</button>
+                                  </form>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
 
                     hospitalList.innerHTML += hospitalItem;
                 });
@@ -1643,17 +1610,21 @@
 
         // Toggle between New Patient and Existing Patient forms in the modal
         hospitalList.addEventListener('click', function (event) {
-            const target = event.target;
-            const hospitalId = target.dataset.hospitalId;
+            const target = event.target; // The clicked element
+            const hospitalId = target.dataset.hospitalId; // Retrieve the hospital ID from the dataset
 
-            if (target.classList.contains('new-patient-btn')) {
-                document.getElementById('newPatientForm${hospitalId}').style.display = 'block';
-                document.getElementById('existingPatientForm${hospitalId}').style.display = 'none';
-            }
+            if (hospitalId) {
+                if (target.classList.contains('new-patient-btn')) {
+                    // Show the "New Patient" form and hide the "Existing Patient" form
+                    document.getElementById(`newPatientForm${hospitalId}`).style.display = 'block';
+                    document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'none';
+                }
 
-            if (target.classList.contains('existing-patient-btn')) {
-                document.getElementById('newPatientForm${hospitalId}').style.display = 'none';
-                document.getElementById('existingPatientForm${hospitalId}').style.display = 'block';
+                if (target.classList.contains('existing-patient-btn')) {
+                    // Show the "Existing Patient" form and hide the "New Patient" form
+                    document.getElementById(`newPatientForm${hospitalId}`).style.display = 'none';
+                    document.getElementById(`existingPatientForm${hospitalId}`).style.display = 'block';
+                }
             }
         });
 
@@ -1667,31 +1638,41 @@
             fetch(endpoint, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: new URLSearchParams({ 'hospital_id': hospitalId })
+                body: new URLSearchParams({
+                    'hospital_id': hospitalId
+                })
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.success) {
-                        heartIcon.classList.toggle('active');
-                        heartIcon.style.color = heartIcon.classList.contains('active') ? 'red' : 'gray';
-                        button.setAttribute('aria-label', heartIcon.classList.contains('active') ? 'Remove from favorites' : 'Add to favorites');
+                        heartIcon.classList.toggle('active'); // Toggle the heart icon state
+
+                        // Change the color of the heart icon based on active state
+                        if (heartIcon.classList.contains('active')) {
+                            heartIcon.style.color = 'red'; // Change to red when active
+                            button.setAttribute('aria-label', 'Remove from favorites');
+                        } else {
+                            heartIcon.style.color = 'gray'; // Change to gray when inactive
+                            button.setAttribute('aria-label', 'Add to favorites');
+                        }
                     } else {
-                        console.error("Error toggling favorite:", data.message);
+                        console.error('Error toggling favorite:', data.message);
                     }
                 })
                 .catch(error => {
-                    console.error("Fetch operation error:", error);
+                    console.error('There was a problem with the fetch operation:', error);
                 });
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            displayHospitals(hospitals); // Call this to initialize with available hospitals
-        });
     </script>
 
-    <!--fav-->
+    <!--bites dropdown-->
     <script>
         function toggleDropdown() {
             const dropdown = document.getElementById('animalDropdown');
