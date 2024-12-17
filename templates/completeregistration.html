@@ -391,6 +391,8 @@
         .form-text {
             font-size: 0.875rem;
         }
+<<<<<<< HEAD
+=======
     </style>
     <style>
         /* Form container styling */
@@ -457,6 +459,7 @@
         .shadow-sm {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
     </style>
 
 </head>
@@ -522,6 +525,12 @@
                         <label for="website-url" class="form-label fw-semibold text-primary">
                             Website URL <span class="text-muted">(Optional)</span>:
                         </label>
+<<<<<<< HEAD
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-globe"></i></span>
+                            <input type="url" id="website-url" name="website_url" class="form-control"
+                                placeholder="https://www.hospitalwebsite.com">
+=======
                         <div class="input-group shadow-sm">
                             <span class="input-group-text bg-light text-secondary"><i class="bi bi-globe"></i></span>
                             <input type="url" id="website-url" name="website_url" class="form-control border-0"
@@ -530,10 +539,17 @@
                         <div class="form-text text-muted">
                             Enter your hospital's website URL, if available. Ensure it starts with
                             <strong>http://</strong> or <strong>https://</strong>.
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                         </div>
                     </div>
+<<<<<<< HEAD
+
+
+
+=======
             
                     <!-- Navigation Button -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
                 </form>
             </div>
@@ -544,6 +560,19 @@
                 <form action="/submit-registration" method="POST" enctype="multipart/form-data">
                     <!-- Insurance Type Section -->
                     <label for="insurance-type">Insurance Type (e.g., Medical Malpractice, Liability):</label>
+<<<<<<< HEAD
+                    <input type="text" id="insurance-type" name="insurance_type"
+                        placeholder="Enter insurance type (optional)">
+
+                    <label for="provider-name">Provider Name:</label>
+                    <input type="text" id="provider-name" name="provider_name"
+                        placeholder="Enter provider name (optional)">
+
+                    <label for="policy-number">Policy Number:</label>
+                    <input type="text" id="policy-number" name="policy_number"
+                        placeholder="Enter policy number (optional)">
+
+=======
                     <input type="text" id="insurance-type" name="insurance_type" placeholder="Enter insurance type (optional)">
                     
                     <label for="provider-name">Provider Name:</label>
@@ -553,6 +582,7 @@
                     <input type="text" id="policy-number" name="policy_number" placeholder="Enter policy number (optional)">
             
                     <!-- Proof of Registration -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="proof-registration" class="form-label fw-semibold text-primary">
                             Proof of Registration <span class="text-danger">*</span>
@@ -568,8 +598,11 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
             
                     <!-- Operating License -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="operating-license" class="form-label fw-semibold text-primary">
                             Operating License <span class="text-danger">*</span>
@@ -585,8 +618,11 @@
                             Accepted formats: .pdf, .jpg, .png, .doc, .docx (Required).
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
             
                     <!-- Compliance Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="compliance-docs" class="form-label fw-semibold text-primary">
                             Compliance Documents <span class="text-muted">(e.g., Accreditation, ISO Certificates)</span>
@@ -602,14 +638,27 @@
                             You can upload multiple files. Accepted formats: .pdf, .jpg, .png, .doc, .docx.
                         </div>
                     </div>
+<<<<<<< HEAD
+
+
+
+
+
+                </form>
+                <!-- Supporting Documents Section -->
+                <div class="section-title">Upload Supporting Documents</div>
+                <form action="/submit-documents" method="POST" enctype="multipart/form-data">
+=======
             
                     <!-- Supporting Documents Section -->
                     <div class="section-title">Upload Supporting Documents</div>
             
                     <!-- License Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="license-docs" class="form-label fw-semibold text-primary">
-                            Upload License <span class="text-muted">(e.g., Operating License, Registration Certificate)</span>
+                            Upload License <span class="text-muted">(e.g., Operating License, Registration
+                                Certificate)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
@@ -622,8 +671,12 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
+
+=======
             
                     <!-- Insurance Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="insurance-docs" class="form-label fw-semibold text-primary">
                             Upload Insurance Documents <span class="text-muted">(e.g., Insurance Policy Details)</span>
@@ -639,11 +692,17 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. Upload is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
+
+
+=======
             
                     <!-- Accreditation Documents -->
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
                     <div class="mb-4">
                         <label for="accreditation-docs" class="form-label fw-semibold text-primary">
-                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI Certification)</span>
+                            Upload Accreditation Documents <span class="text-muted">(e.g., NABH or JCI
+                                Certification)</span>
                         </label>
                         <div class="input-group">
                             <span class="input-group-text bg-light text-secondary">
@@ -656,6 +715,15 @@
                             Supported formats: .pdf, .jpg, .png, .doc, .docx. This field is mandatory.
                         </div>
                     </div>
+<<<<<<< HEAD
+
+
+                </form>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                </div>
+=======
             
                     <!-- Navigation Buttons -->
                     <div class="d-flex justify-content-between">
@@ -663,6 +731,7 @@
                         <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
                     </div>
                 </form>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
             </div>
             
             <!-- Step 3: Medical staff and Services -->
@@ -746,6 +815,152 @@
 
             <!-- Step 4: Account Credentials -->
             <!-- Form Section -->
+<<<<<<< HEAD
+            <div class="step" id="step4">
+                <form action="/submit-documents" method="POST" enctype="multipart/form-data">
+
+
+                    <!-- Operational Hours -->
+                    <div class="mb-3">
+                        <label for="weekday-hours" class="form-label">Operational Hours (Monday to Friday):</label>
+                        <input type="time" id="weekday-start" name="weekday_start" class="form-control"
+                            placeholder="Start Time" required>
+                        <input type="time" id="weekday-end" name="weekday_end" class="form-control"
+                            placeholder="End Time" required>
+                    </div>
+
+                    <!-- Weekend Operational Hours -->
+                    <div class="mb-3">
+                        <label for="weekend-hours" class="form-label optional">Optional: Operational Hours
+                            (Saturday/Sunday):</label>
+                        <input type="time" id="weekend-start" name="weekend_start" class="form-control"
+                            placeholder="Start Time">
+                        <input type="time" id="weekend-end" name="weekend_end" class="form-control"
+                            placeholder="End Time">
+                    </div>
+
+                    <!-- 24/7 Services -->
+                    <div class="mb-3">
+                        <label class="form-label">24/7 Services Available:</label>
+                        <div class="d-flex gap-3">
+                            <label><input type="radio" name="services_24_7" value="Yes" class="form-check-input"
+                                    required> Yes</label>
+                            <label><input type="radio" name="services_24_7" value="No" class="form-check-input"
+                                    required> No</label>
+                        </div>
+                    </div>
+
+                    <!-- Languages Spoken -->
+                    <div class="mb-3">
+                        <label for="languages" class="form-label">Languages Spoken:</label>
+                        <select id="languages" name="languages[]" class="form-select" multiple required>
+                            <option value="English">English</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
+                            <option value="Mandarin">Mandarin</option>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Arabic">Arabic</option>
+                        </select>
+                        <input type="text" id="languages-text" class="form-control mt-2"
+                            placeholder="Selected Languages" readonly>
+                    </div>
+
+                    <!-- Available Medical Equipment -->
+                    <div class="mb-3">
+                        <label for="medical-equipment" class="form-label">Available Medical Equipment:</label>
+                        <textarea id="medical-equipment" name="medical_equipment" rows="5"
+                            placeholder="List all medical equipment available..." required></textarea>
+                    </div>
+
+
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                        <button type="submit" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="step" id="step5">
+                <div class="form-container">
+                    <h1>Hospital Registration Information</h1>
+                    <form id="registration-form" action="next-page.html" method="post">
+                        <!-- Registration Information Section -->
+                        <h2>Registration Information</h2>
+
+                        <label for="registration-number">Registration Number:</label>
+                        <input type="text" id="registration-number" name="registration_number"
+                            placeholder="e.g., H-123456789" required>
+
+                        <label for="establishment-date">Date of Establishment:</label>
+                        <input type="date" id="establishment-date" name="establishment_date" required>
+
+                        <label for="license-number">License Number:</label>
+                        <input type="text" id="license-number" name="license_number" placeholder="License Number"
+                            required>
+
+                        <label for="issuing-authority">Issuing Authority:</label>
+                        <input type="text" id="issuing-authority" name="issuing_authority"
+                            placeholder="Issuing Authority" required>
+
+                        <label for="expiry-date">License Expiry Date:</label>
+                        <input type="date" id="expiry-date" name="expiry_date" required>
+
+                        <label for="accreditations">Accreditations & Certifications:</label>
+                        <select id="accreditations" name="accreditations" multiple>
+                            <option value="nabh">NABH</option>
+                            <option value="jci">JCI</option>
+                            <option value="iso">ISO Certification</option>
+                            <option value="other">Other (Please specify below)</option>
+                        </select>
+                        <textarea id="other-accreditation" name="other_accreditation" placeholder="Please specify"
+                            style="margin-top: 10px;"></textarea>
+
+                        <!-- Administrative Information Section -->
+                        <h2>Ownership & Leadership</h2>
+
+                        <label for="ownership-type">Ownership Type:</label><br>
+                        <input type="radio" id="private" name="ownership_type" value="private">
+                        <label for="private">Private</label><br>
+                        <input type="radio" id="government" name="ownership_type" value="government">
+                        <label for="government">Government</label><br>
+                        <input type="radio" id="public-private" name="ownership_type" value="public-private">
+                        <label for="public-private">Public-Private Partnership</label><br>
+                        <input type="radio" id="other-ownership" name="ownership_type" value="other">
+                        <label for="other-ownership">Other (Please specify below)</label>
+                        <textarea id="other-ownership-type" name="other_ownership_type"
+                            placeholder="If 'Other,' please specify"></textarea>
+
+                        <label for="ceo-name">CEO/Administrator Name:</label>
+                        <input type="text" id="ceo-name" name="ceo_name" placeholder="e.g., Dr. John Doe" required>
+
+                        <label for="ceo-contact">CEO/Administrator Contact:</label>
+                        <label for="ceo-phone">Phone Number:</label>
+                        <input type="tel" id="ceo-phone" name="ceo_phone" placeholder="e.g., +1 234 567 8901" required>
+
+                        <label for="ceo-email">Email Address:</label>
+                        <input type="email" id="ceo-email" name="ceo_email" placeholder="e.g., ceo@hospital.com"
+                            required>
+
+                        <label for="medical-director">Medical Director’s Details:</label>
+                        <label for="medical-director-name">Name:</label>
+                        <input type="text" id="medical-director-name" name="medical_director_name"
+                            placeholder="Medical Director's Name">
+
+                        <label for="medical-director-qualifications">Qualifications:</label>
+                        <input type="text" id="medical-director-qualifications" name="medical_director_qualifications"
+                            placeholder="Medical Director's Qualifications">
+
+                        <label for="medical-director-contact">Contact Information:</label>
+                        <label for="director-phone">Phone Number:</label>
+                        <input type="tel" id="director-phone" name="director_phone" placeholder="e.g., +1 234 567 8901">
+
+                        <label for="director-email">Email Address:</label>
+                        <input type="email" id="director-email" name="director_email"
+                            placeholder="e.g., director@hospital.com">
+=======
             <div class="container my-5">
                 <div class="step" id="step4">
                     <form action="/submit-documents" method="POST" enctype="multipart/form-data"
@@ -822,6 +1037,7 @@
                             <textarea id="medical-equipment" name="medical_equipment" class="form-control" rows="5"
                                 placeholder="List all medical equipment available..." required></textarea>
                         </div>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
 
                         <!-- Navigation Buttons -->
                         <div class="d-flex justify-content-between">
@@ -1052,7 +1268,46 @@
                         </div>
                     </form>
                 </div>
+<<<<<<< HEAD
+                <div class="agreement-section">
+                    <form id="registrationForm">
+                        <h2>Agreement and Consent</h2>
+
+                        <!-- Terms and Conditions -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" class="checkbox" required>
+                            <label for="terms" class="label">
+                                I agree to the <a href="/terms" target="_blank">Terms & Conditions</a> of Locate My
+                                Care.
+                            </label>
+                        </div>
+
+                        <!-- Privacy Policy -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="privacy-policy" class="checkbox" required>
+                            <label for="privacy-policy" class="label">
+                                I consent to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> of Locate
+                                My Care.
+                            </label>
+                        </div>
+
+                        <!-- Declaration -->
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="declaration" class="checkbox" required>
+                            <label for="declaration" class="label">
+                                I declare that the information provided is accurate and true to the best of my
+                                knowledge.
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
+                            <button type="submit" class="btn btn-primary">register hospital</button>
+                        </div>
+
+                </div>
+=======
             </div>
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
 
         </form>
 
@@ -1113,6 +1368,23 @@
             // Optionally, you can reset the form after submission
             document.getElementById('hospitalRegistrationForm').reset();
         }
+<<<<<<< HEAD
+
+
+        const languageSelect = document.getElementById('languages');
+        const languageText = document.getElementById('languages-text');
+
+        languageSelect.addEventListener('change', function () {
+            const selectedLanguages = Array.from(languageSelect.selectedOptions).map(option => option.text);
+            languageText.value = selectedLanguages.join(', ');
+        });
+
+
+
+
+
+
+=======
         // JavaScript function to toggle visibility of "Other" textarea
         document.getElementById('hospital-type').addEventListener('change', function () {
             const otherTypeField = document.getElementById('other-type');
@@ -1183,6 +1455,7 @@
 
 
 
+>>>>>>> 38ac9b49e6bbd48c43eb6b2afc01d68660c3ebfe
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
