@@ -230,7 +230,7 @@
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             .btn-container {
-                flex-direction: column;
+                
             }
 
             .btn-custom {
@@ -238,6 +238,101 @@
                 margin-bottom: 10px;
             }
         }
+        /* Container Styling */
+        .container {
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #f9f9f9;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Revenue Cards Styling */
+        .patient-count-card {
+          flex: 1;
+          background-color: #ffffff;
+          border: 2px solid #007bff;
+          border-radius: 10px;
+          padding: 20px;
+          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .patient-count-card:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .patient-count-card .card-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .patient-count-card .count {
+          font-size: 3rem;
+          font-weight: bold;
+          color: #007bff;
+          margin: 10px 0;
+        }
+
+        .patient-count-card .label {
+          font-size: 1.2rem;
+          color: #6c757d;
+        }
+
+        /* Input and Button Styling */
+        input.form-control {
+          border: 2px solid #007bff;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 1rem;
+          transition: border-color 0.3s ease;
+        }
+
+        input.form-control:focus {
+          border-color: #0056b3;
+          outline: none;
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button.btn {
+          padding: 10px 20px;
+          font-size: 1rem;
+          border-radius: 5px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button.btn-primary {
+          background-color: #007bff;
+          border: none;
+          color: #fff;
+        }
+
+        button.btn-primary:hover {
+          background-color: #0056b3;
+          transform: translateY(-2px);
+        }
+
+        button.btn-danger {
+          background-color: #dc3545;
+          border: none;
+          color: #fff;
+        }
+
+        button.btn-danger:hover {
+          background-color: #a71d2a;
+          transform: translateY(-2px);
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+        
+
+        .patient-count-card {
+          margin-bottom: 10px;
+        }
+}
+
   </style>
 </head>
 
@@ -247,7 +342,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start mb-2">
-        <a class="navbar-brand brand-logo me-5" href="/"><img src="/static/img/logo1.png" alt="" srcset="" width="85px" style="height: 80px;">
+        <a class="navbar-brand brand-logo me-5" href="/"><img src="/static/img/logo1.png" alt="" srcset="" width="85px" style="height: 75px;">
             </a>
         <a class="navbar-brand brand-logo-mini" href="/"><img src="/static/img/logo1.png" alt="" srcset="" width="125px" style="height: 80px;"></a>
       </div>
@@ -489,7 +584,9 @@
                     <div class="card-body">
                       <p class="mb-4"></p>
                       <p class=" mb-2 text-white" style="font-size: 25px;">Total Revenue today</p>
-                      <p class="text text-white">0</p>
+                      <h2 class="count" id="today-revenue">₹0</h2><p class="label">Today's Revenue</p>
+                      <h2 class="count" id="total-revenue">₹0</h2><p class="label">Total Revenue</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -531,7 +628,7 @@
                   <p>Total earnings</p>
                 </div>
               </div>
-
+            
             </div>
 
           </div>
@@ -562,38 +659,20 @@
               <div class="col-xl-2"></div>
 
             </div>
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="col-lg-12 wow fadeIn" data-wow-delay="0.5s">
-                  <div class="containerrefer">
-                    <h2>Send an Invitation</h2>
-                    <p>Send a personalized invitation to your friend:</p>
-                    <form id="send-invitation-form" onsubmit="handleInvitation(event)">
-                      <input type="email" id="friend-email" placeholder="Friend's Email" required>
-                      <button type="submit" class="button1">Send Invitation</button>
-                    </form>
-                  </div>
-                </div>
+            <div class="container mt-4">
+              
+          
+              <!-- Revenue Input Section -->
+              <div class="mt-4">
+                  <label for="revenue-input">Enter Revenue Amount (₹):</label>
+                  <input type="number" id="revenue-input" class="form-control" placeholder="Enter revenue amount" min="1" />
+                  <button class="btn btn-primary mt-3" onclick="addRevenue(parseInt(document.getElementById('revenue-input').value))">
+                      Add Revenue
+                  </button>
+                  <button class="btn btn-danger mt-3" onclick="resetTodayRevenue()">Reset</button>
               </div>
-            </div>
-
-            <!-- Modal -->
-            <div id="invitationModal" class="modal fade" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Invitation Sent!</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+          
 
           </div>
           <div class="row">
@@ -810,6 +889,67 @@
         opCountInput.value = '';
     }
   </script>
+  <script>// Function to get today's date as a key
+    function getTodayKey() {
+        const today = new Date();
+        return today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    }
+    
+    // Function to initialize revenue
+    function initializeRevenue() {
+        const todayKey = getTodayKey();
+    
+        // Initialize today's revenue
+        const todayRevenue = parseInt(localStorage.getItem(`revenue-${todayKey}`)) || 0;
+        document.getElementById('today-revenue').innerText = `₹${todayRevenue}`;
+    
+        // Initialize total revenue
+        const totalRevenue = parseInt(localStorage.getItem('totalRevenue')) || 0;
+        document.getElementById('total-revenue').innerText = `₹${totalRevenue}`;
+    }
+    
+    // Function to add revenue
+    function addRevenue(amount) {
+        if (isNaN(amount) || amount <= 0) {
+            alert("Please enter a valid revenue amount.");
+            return;
+        }
+    
+        const todayKey = getTodayKey();
+    
+        // Update today's revenue
+        let todayRevenue = parseInt(localStorage.getItem(`revenue-${todayKey}`)) || 0;
+        todayRevenue += amount;
+        localStorage.setItem(`revenue-${todayKey}`, todayRevenue);
+        document.getElementById('today-revenue').innerText = `₹${todayRevenue}`;
+    
+        // Update total revenue
+        let totalRevenue = parseInt(localStorage.getItem('totalRevenue')) || 0;
+        totalRevenue += amount;
+        localStorage.setItem('totalRevenue', totalRevenue);
+        document.getElementById('total-revenue').innerText = `₹${totalRevenue}`;
+    
+        // Clear the input field
+        document.getElementById('revenue-input').value = '';
+    }
+    
+    // Function to reset today's revenue
+    function resetTodayRevenue() {
+        if (!confirm("Are you sure you want to reset today's revenue?")) return;
+    
+        const todayKey = getTodayKey();
+    
+        // Reset today's revenue
+        localStorage.setItem(`revenue-${todayKey}`, 0);
+        document.getElementById('today-revenue').innerText = '₹0';
+    
+        // Clear the input field
+        document.getElementById('revenue-input').value = '';
+    }
+    
+    // Initialize revenue on page load
+    document.addEventListener('DOMContentLoaded', initializeRevenue);
+    </script>
 
 </body>
 

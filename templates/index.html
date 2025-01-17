@@ -558,6 +558,58 @@
         .dropdown-menu-custom.show {
             display: block;
         }
+        /* Basic page styling */
+        body {
+          justify-content: flex-end; /* Align to the right */
+          align-items: center; /* Center vertically */
+          height: 100vh;
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        /* Red Alert Button */
+        .alert-button {
+          position: fixed;
+          bottom: 100px;
+          right: 20px;
+          background-color: #ff0000;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          padding: 15px;
+          font-size: 24px;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        /* Hover effect for the button */
+        .alert-button:hover {
+          background-color: #cc0000;
+          transform: scale(1.1);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        /* Alert Card Styling */
+        .alert-card {
+          position: absolute;
+          top: 50%;
+          right: 10%;
+          transform: translateY(-50%);
+          background-color: white;
+          border: 2px solid #ff0000;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          padding: 20px;
+          max-width: 300px;
+          text-align: center;
+          font-size: 18px;
+          color: #333;
+          z-index: 1000;
+        }
+        /* Hidden class for the card */
+        .hidden {
+          display: none;
+        }
 
         /* Chat Toggle Button */
         #chat-toggle-btn {
@@ -1100,8 +1152,20 @@
             </div>
         </div>
     </footer>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Button</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button class="alert-button" onclick="showAlert()">🚨</button>
 
-
+  <script src="script.js"></script>
+</body>
+</html>
     <button id="chat-toggle-btn">
         💬
     </button>
@@ -1688,6 +1752,11 @@
                 dropdown.classList.remove('show');
             }
         });
+    </script>
+    <script>
+        function showAlert() {
+            alert("alert: the ambulance will reach you soon!");
+        }
     </script>
 </body>
 
