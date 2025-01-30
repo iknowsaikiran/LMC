@@ -23,7 +23,7 @@
   padding-top: $navbar-padding-y;
   padding-right: $navbar-padding-x; // default: null
   padding-bottom: $navbar-padding-y;
-  padding-left: $navbar-padding-x; // default: null
+  padding-left: $navbar-padding-x // default: null
   @include gradient-bg();
 
   // Because flex properties aren't inherited, we need to redeclare these first
@@ -65,6 +65,9 @@
   &:focus {
     text-decoration: if($link-hover-decoration == underline, none, null);
   }
+  width: cal(85px-30px);
+  max-width: 100%;
+  margin:"auto";
 }
 
 

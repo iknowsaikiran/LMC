@@ -315,7 +315,7 @@
         }
 
         button.btn-danger {
-          background-color: #dc3545;
+          background-color: #d62739;
           border: none;
           color: #fff;
         }
@@ -659,22 +659,34 @@
               <div class="col-xl-2"></div>
 
             </div>
-            <div class="container mt-4">
-              
           
-              <!-- Revenue Input Section -->
-              <div class="mt-4">
-                  <label for="revenue-input">Enter Revenue Amount (₹):</label>
-                  <input type="number" id="revenue-input" class="form-control" placeholder="Enter revenue amount" min="1" />
-                  <button class="btn btn-primary mt-3" onclick="addRevenue(parseInt(document.getElementById('revenue-input').value))">
-                      Add Revenue
-                  </button>
-                  <button class="btn btn-danger mt-3" onclick="resetTodayRevenue()">Reset</button>
-              </div>
-          </div>
+       
+        
+        
           
 
           </div>
+          <!--  -->
+          <div class="row" id="referfriend">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="container mt-2">
+              
+          
+                <!-- Revenue Input Section -->
+                <div class="mt-4">
+                    <label for="revenue-input">Enter Revenue Amount (₹):</label>
+                    <input type="number" id="revenue-input" class="form-control" placeholder="Enter revenue amount" min="1" />
+                    <button class="btn btn-primary mt-3" onclick="addRevenue(parseInt(document.getElementById('revenue-input').value))">
+                        Add Revenue
+                    </button>
+                    <button class="btn btn-danger mt-3" onclick="resetTodayRevenue()">Reset</button>
+                </div>
+            </div>
+
+            </div>
+
+          </div>
+          <!--  -->
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card" id="changep">
               <div class="card position-relative p-4">
